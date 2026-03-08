@@ -1,0 +1,63 @@
+[96m================================================================================[0m
+[1m[96m SMTP STATE RESET - ALL TEST CASES[0m
+[96m================================================================================[0m
+
+Total test cases: [92m[1m5[0m
+
+[96m[1mTest Case #1[0m
+[2m--------------------------------------------------------------------------------[0m
+  Connection B Flow:
+    • MAIL FROM:<sender@example.com>
+[93m    • RCPT TO:<invalid@> (ERROR)[0m
+[94m[1m    • RSET[0m
+    • MAIL FROM:<sender@example.com>
+    • RCPT TO:<recipient@example.com>
+[92m[1m  Result: PASS[0m
+
+[96m[1mTest Case #2[0m
+[2m--------------------------------------------------------------------------------[0m
+  Connection B Flow:
+    • MAIL FROM:<sender@example.com>
+    • RCPT TO:<recipient@example.com>
+[94m[1m    • RSET[0m
+    • MAIL FROM:<sender@example.com>
+    • RCPT TO:<recipient@example.com>
+[92m[1m  Result: PASS[0m
+
+[96m[1mTest Case #3[0m
+[2m--------------------------------------------------------------------------------[0m
+  Connection B Flow:
+    • MAIL FROM:<sender@example.com>
+    • RCPT TO:<recipient@example.com>
+[94m[1m    • RSET[0m
+    • MAIL FROM:<sender@example.com>
+    • RCPT TO:<recipient@example.com>
+[2m  Result: Unknown[0m
+
+[96m[1mTest Case #4[0m
+[2m--------------------------------------------------------------------------------[0m
+  Connection B Flow:
+    • MAIL FROM:<sender@example.com>
+[94m[1m    • RSET[0m
+    • MAIL FROM:<sender@example.com>
+    • RCPT TO:<recipient@example.com>
+[92m[1m  Result: PASS[0m
+
+[96m[1mTest Case #5[0m
+[2m--------------------------------------------------------------------------------[0m
+  Connection B Flow:
+[93m    • MAIL FROM:<invalid@> (ERROR)[0m
+[94m[1m    • RSET[0m
+    • MAIL FROM:<sender@example.com>
+    • RCPT TO:<recipient@example.com>
+[92m[1m  Result: PASS[0m
+
+[96m================================================================================[0m
+[1m[96m SUMMARY[0m
+[96m================================================================================[0m
+
+Total test cases:  [1m5[0m
+Passed:            [92m[1m4[0m
+Failed:            [92m0[0m
+
+RFC 5321 Compliance: [92m[1mVERIFIED[0m

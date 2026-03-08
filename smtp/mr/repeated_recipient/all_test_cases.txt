@@ -1,0 +1,43 @@
+[96m================================================================================[0m
+[1m[96m SMTP REPEATED RECIPIENT - ALL TEST CASES[0m
+[96m================================================================================[0m
+
+Total test cases: [92m[1m4[0m
+
+[96m[1mTest Case #1[0m
+[2m--------------------------------------------------------------------------------[0m
+  Connection A: Single RCPT TO
+[94m  Connection B: 2 repeated RCPT TO (same address)[0m
+
+[92m[1m  Result: PASS[0m
+
+[96m[1mTest Case #2[0m
+[2m--------------------------------------------------------------------------------[0m
+  Connection A: Single RCPT TO
+[94m  Connection B: 3 repeated RCPT TO (same address)[0m
+
+[92m[1m  Result: PASS[0m
+
+[96m[1mTest Case #3[0m
+[2m--------------------------------------------------------------------------------[0m
+  Connection A: Single RCPT TO
+[94m  Connection B: 5 repeated RCPT TO (same address)[0m
+
+[92m[1m  Result: PASS[0m
+
+[96m[1mTest Case #4[0m
+[2m--------------------------------------------------------------------------------[0m
+  Connection A: Single RCPT TO
+[94m  Connection B: 4 repeated RCPT TO (same address)[0m
+
+[92m[1m  Result: PASS[0m
+
+[96m================================================================================[0m
+[1m[96m SUMMARY[0m
+[96m================================================================================[0m
+
+Total test cases:  [1m4[0m
+Passed:            [92m[1m4[0m
+Failed:            [92m0[0m
+
+RFC 5321 Compliance: [92m[1mVERIFIED[0m

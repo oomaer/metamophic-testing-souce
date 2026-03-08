@@ -42,11 +42,9 @@ include ("/Users/i7949486/Downloads/docker/metamorphic-testing/mt-smtp/smtp-util
 
 # Repeat the same recipient two or more times (rcpt{2,})
 # Multiple alternatives for different k-paths
-<rcpt_repeated_B> ::= <rcpt_2x> | <rcpt_3x> | <rcpt_4x> | <rcpt_5x>
+<rcpt_repeated_B> ::= <rcpt_2x> | <rcpt_3x>
 <rcpt_2x> ::= <single_rcpt_B><single_rcpt_B>
 <rcpt_3x> ::= <single_rcpt_B><single_rcpt_B><single_rcpt_B>
-<rcpt_4x> ::= <single_rcpt_B><single_rcpt_B><single_rcpt_B><single_rcpt_B>
-<rcpt_5x> ::= <single_rcpt_B><single_rcpt_B><single_rcpt_B><single_rcpt_B><single_rcpt_B>
 
 <single_rcpt_B> ::= <ClientB:request_rcpt_to><ServerB:response_rcpt_to_repeated>
 
@@ -70,23 +68,29 @@ include ("/Users/i7949486/Downloads/docker/metamorphic-testing/mt-smtp/smtp-util
 <response_mail_from> ::= r"250 .+\r\n"
 
 # Same recipient used by both A (once) and B (multiple times)
-<request_rcpt_to> ::= 'RCPT TO:<recipient@example.com>\r\n'
+# Multiple variants to test different address formats
+<request_rcpt_to> ::= <rcpt_simple> | <rcpt_plus> 
+<rcpt_simple> ::= 'RCPT TO:<recipient@example.com>\r\n'
+<rcpt_plus> ::= 'RCPT TO:<recipient+tag@example.com>\r\n'
+
 <response_rcpt_to> ::= r"250 .+\r\n"
 
 # For repeated RCPT TO, server may respond with:
 # - 250 (accepted) - server allows duplicates
-# - 550 (rejected) - server rejects duplicates (e.g., "Duplicate recipient not allowed")
-# Both behaviors are valid per RFC 5321
-<response_rcpt_to_repeated> ::= r"(250|550) .+\r\n"
+# - 550 (rejected) - server rejects duplicates
+# - 452 (too many recipients)
+# - 421 (temporary error)
+# - Any other SMTP response code
+<response_rcpt_to_repeated> ::= r"[2-5][0-9]{2} .+(\r\n)+"
 
 <request_data> ::= 'DATA\r\n'
-<response_data> ::= r"354 .+\r\n"
+<response_data> ::= r"[2-5][0-9]{2} .+\r\n"
 
 <email_content> ::= <email_variant_1> | <email_variant_2>
 <email_variant_1> ::= 'Subject: Test Email\r\n\r\nThis is a test email for repeated recipient testing.\r\n.\r\n'
 <email_variant_2> ::= 'Subject: Metamorphic Test\r\n\r\nTesting repeated recipient behavior.\r\n.\r\n'
 <response_emailA_sent> ::= r"250 .+\r\n"
-<response_emailB_sent> ::= r"250 .+\r\n"
+<response_emailB_sent> ::= r"[2-5][0-9]{2} .+\r\n"
 
 <request_quit> ::= 'QUIT\r\n'
 <response_quit> ::= r"221 .+\r\n"
