@@ -56,7 +56,8 @@ include ("/Users/i7949486/Downloads/docker/metamorphic-testing/mt-smtp/smtp-util
 <exchange_reset_B> ::= <ClientB:request_rset><ServerB:response_rset>
 
 # Complete mail transaction after reset (should work identically to A)
-<exchange_send_email_B> ::= <ClientB:request_mail_from><ServerB:response_mail_from><ClientB:request_rcpt_to><ServerB:response_rcpt_to><ClientB:request_data><ServerB:response_data><ClientB:email_content><ServerB:response_emailB_sent>
+# Use permissive response patterns to catch mutations that return errors
+<exchange_send_email_B> ::= <ClientB:request_mail_from><ServerB:response_mail_from_B><ClientB:request_rcpt_to><ServerB:response_rcpt_to_B><ClientB:request_data><ServerB:response_data_B><ClientB:email_content><ServerB:response_emailB_sent>
 
 <exchange_quit_B> ::= <ClientB:request_quit><ServerB:response_quit>
 
@@ -77,8 +78,14 @@ include ("/Users/i7949486/Downloads/docker/metamorphic-testing/mt-smtp/smtp-util
 <request_mail_from> ::= 'MAIL FROM:<sender@example.com>\r\n'
 <response_mail_from> ::= r"250 .+\r\n"
 
+# Permissive response for post-RSET MAIL FROM in Connection B (catches mutations)
+<response_mail_from_B> ::= r"[2-5][0-9]{2} .+\r\n"
+
 <request_rcpt_to> ::= 'RCPT TO:<recipient@example.com>\r\n'
 <response_rcpt_to> ::= r"250 .+\r\n"
+
+# Permissive response for post-RSET RCPT TO in Connection B (catches cascade errors)
+<response_rcpt_to_B> ::= r"[2-5][0-9]{2} .+\r\n"
 
 # Invalid email commands (for error recovery testing)
 <request_invalid_mail_from> ::= 'MAIL FROM:<invalid@>\r\n'
@@ -90,9 +97,12 @@ include ("/Users/i7949486/Downloads/docker/metamorphic-testing/mt-smtp/smtp-util
 <request_data> ::= 'DATA\r\n'
 <response_data> ::= r"354 .+\r\n"
 
+# Permissive response for post-RSET DATA in Connection B (catches cascade errors)
+<response_data_B> ::= r"[2-5][0-9]{2} .+\r\n"
+
 <email_content> ::= 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
 <response_emailA_sent> ::= r"250 .+\r\n"
-<response_emailB_sent> ::= r"250 .+\r\n"
+<response_emailB_sent> ::= r"[2-5][0-9]{2} .+\r\n"  # Permissive for Connection B
 
 # RSET command
 <request_rset> ::= 'RSET\r\n'
@@ -103,6 +113,31 @@ include ("/Users/i7949486/Downloads/docker/metamorphic-testing/mt-smtp/smtp-util
 
 
 where validateResponses(<response_emailA_sent>, <response_emailB_sent>)
+where validateMailFrom(<response_mail_from>, <response_mail_from_B>)
+
+
+def validateMailFrom(responseA, responseB):
+    """
+    Validate that MAIL FROM works identically after RSET.
+    Connection A's first MAIL FROM should match Connection B's post-RSET MAIL FROM.
+
+    This catches mutations like:
+    - M1: INCOMPLETE_SENDER_RESET (503 Sender already specified)
+    - M3: RSET_CLEARS_AUTH (530 Authentication required)
+    - M7: RSET_NOOP (503 Nested MAIL command)
+    """
+    codeA = str(responseA)[:3]
+    codeB = str(responseB)[:3]
+
+    if codeA == codeB:
+        print("[PASS] MAIL FROM after RSET: Response codes match (A: " + codeA + ", B: " + codeB + ")")
+    else:
+        print("[VIOLATION] MAIL FROM after RSET failed: Response code mismatch")
+        print("  Connection A (normal MAIL FROM): " + codeA + " - " + str(responseA).strip())
+        print("  Connection B (MAIL FROM after RSET): " + codeB + " - " + str(responseB).strip())
+        print("  Expected: Server should accept MAIL FROM identically after RSET")
+
+    return True
 
 
 def validateResponses(responseA, responseB):

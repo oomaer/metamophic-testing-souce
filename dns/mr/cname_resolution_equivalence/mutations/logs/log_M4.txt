@@ -1,0 +1,144 @@
+Mutation: M4
+Description: EXTRA_RECORD - Add fake extra record when following CNAME
+Duration: 9.98s
+================================================================================
+
+fandango:WARNING: <start>: Number of bits (304..6992) may not be a multiple of eight
+fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
+fandango:INFO: Generating (additional) initial population (size: 100)...
+fandango:WARNING: Could not generate a full population of unique individuals. Population size reduced to 1.
+fandango:INFO: Initial population generated in 0.01 seconds
+fandango:INFO: Current coverage: 0.21%
+fandango:INFO: ClientA: <query_cname> "b'\\xed\\x93\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x07example\\x05local\\x00\\x00\\x10\\x00\\x01'"
+fandango:INFO: Current coverage: 44.40%
+fandango:INFO: ServerA: <response_cname> 'í\x93\x85\x80\x00\x01\x00\x03\x00\x00\x00\x00\x07example\x05local\x00\x00\x10\x00\x01\x07example\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x10\x00\x01\x00\x00\x01,\x00\x1f\x1ev=spf1 include:test.local ~all\x04test\x05local\x00\x00\x10\x00\x01\x00\x00\x01,\x00\x12\x11EXTRA FAKE RECORD'
+fandango:INFO: Current coverage: 45.85%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from ServerA to ServerB'
+fandango:INFO: Current coverage: 46.89%
+fandango:INFO: ClientB: <query_target> "b'\\x99i\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x04test\\x05local\\x00\\x00\\x10\\x00\\x01'"
+fandango:INFO: Current coverage: 85.06%
+fandango:INFO: ServerB: <response_target> '\x99i\x85\x80\x00\x01\x00\x01\x00\x00\x00\x00\x04test\x05local\x00\x00\x10\x00\x01\x04test\x05local\x00\x00\x10\x00\x01\x00\x00\x01,\x00\x1f\x1ev=spf1 include:test.local ~all'
+fandango:INFO: Current coverage: 86.31%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 86.31%
+fandango:INFO: ClientA: <query_cname> "b'0\\xfe\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x07example\\x05local\\x00\\x00\\x1c\\x00\\x01'"
+fandango:INFO: Current coverage: 90.04%
+fandango:INFO: ServerA: <response_cname> '0þ\x85\x80\x00\x01\x00\x03\x00\x00\x00\x00\x07example\x05local\x00\x00\x1c\x00\x01\x07example\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x99'
+fandango:INFO: Current coverage: 90.04%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from ServerA to ServerB'
+fandango:INFO: Current coverage: 90.04%
+fandango:INFO: ClientB: <query_target> "b'\\x15\\x9a\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x04test\\x05local\\x00\\x00\\x1c\\x00\\x01'"
+fandango:INFO: Current coverage: 93.15%
+fandango:INFO: ServerB: <response_target> '\x15\x9a\x85\x80\x00\x01\x00\x01\x00\x00\x00\x00\x04test\x05local\x00\x00\x1c\x00\x01\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+fandango:INFO: Current coverage: 93.15%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 93.15%
+fandango:INFO: ClientA: <query_cname> "b'\\xb1V\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x07example\\x05local\\x00\\x00\\x01\\x00\\x01'"
+fandango:INFO: Current coverage: 96.89%
+fandango:INFO: ServerA: <response_cname> '±V\x85\x80\x00\x01\x00\x04\x00\x00\x00\x00\x07example\x05local\x00\x00\x01\x00\x01\x07example\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01c'
+fandango:INFO: Current coverage: 96.89%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from ServerA to ServerB'
+fandango:INFO: Current coverage: 96.89%
+fandango:INFO: ClientB: <query_target> "b'\\xf0\\x17\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x04test\\x05local\\x00\\x00\\x01\\x00\\x01'"
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: ServerB: <response_target> 'ð\x17\x85\x80\x00\x01\x00\x02\x00\x00\x00\x00\x04test\x05local\x00\x00\x01\x00\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02'
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Full coverage reached, stopping evolution.
+================================================================================
+CNAME Resolution Equivalence Test
+================================================================================
+
+Make sure dns_server.py is running on port 5053:
+  python dns/dns_server.py
+
+Starting test...
+
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/dns/mr/cname_resolution_equivalence/grammar.fan
+================================================================================
+Metamorphic Relation: CNAME Resolution Equivalence
+
+Setup:
+  example.local → CNAME → test.local
+  test.local → A → 192.168.1.1, 192.168.1.2
+
+Test:
+  Query A: example.local A (follows CNAME)
+  Query B: test.local A (direct)
+  Relation: A records should be identical
+================================================================================
+[CONNECTION]SwitchedtoServerB(port5054)
+Switching from ServerA to ServerB[DEBUG]Querytype:TXT
+[DEBUG]CNAMEqueryRCODE:NOERROR
+[DEBUG]TargetqueryRCODE:NOERROR
+[DEBUG]CNAMEresponseTXTrecord:"v=spf1 include:test.local ~all"
+[DEBUG]CNAMEresponseTXTrecord:"EXTRA FAKE RECORD"
+[DEBUG]TargetresponseTXTrecord:"v=spf1 include:test.local ~all"
+[VIOLATION]TXTrecordsdiffer!
+CNAMEqueryreturned:{'"v=spf1 include:test.local ~all"', '"EXTRA FAKE RECORD"'}
+Targetqueryreturned:{'"v=spf1 include:test.local ~all"'}
+ExtrainCNAME:{'"EXTRA FAKE RECORD"'}
+
+================================================================================
+TEST CASE #1
+================================================================================
+
+--------------------------------------------------------------------------------
+[CONNECTION]SwitchedtoServerB(port5054)
+Switching from ServerA to ServerB[DEBUG]Querytype:AAAA
+[DEBUG]CNAMEqueryRCODE:NOERROR
+[DEBUG]TargetqueryRCODE:NOERROR
+[DEBUG]CNAMEresponseAAAArecord:2001:db8::1
+[DEBUG]CNAMEresponseAAAArecord:2001:db8::99
+[DEBUG]TargetresponseAAAArecord:2001:db8::1
+[VIOLATION]AAAArecordsdiffer!
+CNAMEqueryreturned:{'2001:db8::99', '2001:db8::1'}
+Targetqueryreturned:{'2001:db8::1'}
+ExtrainCNAME:{'2001:db8::99'}
+
+================================================================================
+TEST CASE #2
+================================================================================
+
+--------------------------------------------------------------------------------
+[CONNECTION]SwitchedtoServerB(port5054)
+Switching from ServerA to ServerB[DEBUG]Querytype:A
+[DEBUG]CNAMEqueryRCODE:NOERROR
+[DEBUG]TargetqueryRCODE:NOERROR
+[DEBUG]CNAMEresponseArecord:192.168.1.1
+[DEBUG]CNAMEresponseArecord:192.168.1.2
+[DEBUG]CNAMEresponseArecord:192.168.1.99
+[DEBUG]TargetresponseArecord:192.168.1.1
+[DEBUG]TargetresponseArecord:192.168.1.2
+[VIOLATION]Arecordsdiffer!
+CNAMEqueryreturned:{'192.168.1.2', '192.168.1.1', '192.168.1.99'}
+Targetqueryreturned:{'192.168.1.2', '192.168.1.1'}
+ExtrainCNAME:{'192.168.1.99'}
+
+================================================================================
+TEST CASE #3
+================================================================================
+
+--------------------------------------------------------------------------------
+
+================================================================================
+SUMMARY
+================================================================================
+Total test cases generated: 3
+Passed: 0
+Violations: 3
+
+Violations per solution:
+  solution1:
+    - [VIOLATION]TXTrecordsdiffer!
+  solution2:
+    - [VIOLATION]AAAArecordsdiffer!
+  solution3:
+    - [VIOLATION]Arecordsdiffer!
+
+TIMING:
+  Test generation time: 7.74 seconds
+  Total execution time: 8.91 seconds
+  Average time per test: 2.58 seconds
+================================================================================
+
+Log saved to: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/dns/mr/cname_resolution_equivalence/mutations/mutation_test_output.log

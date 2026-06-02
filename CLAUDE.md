@@ -32,6 +32,19 @@ fandango -v talk -f mt-smtp/MRs/state_reset/grammar.fan -n 1
 python mt-http/test-http.py
 ```
 
+### DNS Tests
+
+Run CNAME Resolution Equivalence MR test:
+```bash
+cd dns/mr/cname_resolution_equivalence
+python run_test.py
+```
+
+This will:
+1. Start two DNS servers on ports 5053 and 5054
+2. Run the metamorphic relation test
+3. Save results to `test_output.log`
+
 ## Architecture
 
 ### Grammar Files (`.fan`)
@@ -50,10 +63,11 @@ where validateResponses(<response_A>, <response_B>)
 ### Utils Files (`*-utils.fan`)
 
 Define `NetworkParty` subclasses for each protocol:
-- `ClientA/ServerA` - First connection (port 8026 for SMTP)
-- `ClientB/ServerB` - Second connection (port 8027 for SMTP)
+- `ClientA/ServerA` - First connection (port 8026 for SMTP, 5053 for DNS)
+- `ClientB/ServerB` - Second connection (port 8027 for SMTP, 5054 for DNS)
 - Connection management functions (`changeConnection()`, `resetConnection()`)
 - Response validation functions
+- For DNS: Custom send/receive methods with compression/decompression
 
 ### MR (Metamorphic Relation) Structure
 
@@ -78,6 +92,7 @@ for solution in fandango.generate(mode=FuzzingMode.IO):
 ### Protocol Ports
 
 - **SMTP**: 8026 (ServerA), 8027 (ServerB) - mapped from container port 8025
+- **DNS**: 5053 (ServerA), 5054 (ServerB) - UDP protocol, dnslib server
 - **FTP**: 2121 (control), 50100 (data)
 - **MQTT**: 1883
 - **IMAP**: Standard ports in docker
@@ -119,6 +134,7 @@ For each protocol, we will perform mutation testing, we will plant seeded faults
 ## Protocols Supported
 
 - `mt-smtp/` - SMTP with AUTH LOGIN (primary, most developed)
+- `dns/` - DNS protocol with dnslib server, CNAME Resolution Equivalence MR
 - `mt-http/` - HTTP header ordering tests
 - `ftp/` - FTP multi-party interactions
 - `imap/` - IMAP session testing

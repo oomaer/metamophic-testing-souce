@@ -1,0 +1,28 @@
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/dns/mr/cname_recursive_resolver2/grammar.fan
+================================================================================
+Metamorphic Relation: CNAME Recursive Resolver
+
+Setup:
+  Server A (5053): Authoritative - test.local A -> 192.168.1.1, 192.168.1.2
+  Server B (5054): Recursive resolver - example.local CNAME -> test.local
+
+Test:
+  Query A: test.local A on Server A (direct)
+  Query B: example.local A on Server B (recursive)
+  Relation: A records should be identical
+================================================================================
+fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
+fandango:INFO: Generating (additional) initial population (size: 100)...
+fandango:WARNING: Could not generate a full population of unique individuals. Population size reduced to 1.
+fandango:INFO: Initial population generated in 0.01 seconds
+fandango:INFO: Current coverage: 0.48%
+fandango:INFO: ClientA: <query_direct> "b'\\xc6&\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x07example\\x05local\\x00\\x00\\x01\\x00\\x01'"
+fandango:INFO: Current coverage: 83.25%
+fandango:INFO: MimServer: <upstream_query> 'Æ&\x85\x82\x00\x01\x00\x01\x00\x00\x00\x00\x07example\x05local\x00\x00\x01\x00\x01\x07example\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00'
+fandango:INFO: Current coverage: 89.95%
+fandango:INFO: Generation 1 - Average Fitness: 1.47
+fandango:INFO: Generation 1: Increasing mutation rate from 0.200 to 0.220
+fandango:INFO: Generation 1: Decreasing crossover rate from 0.800 to 0.760
+fandango:INFO: Generation 1: Increasing MAX_REPETITION from 20 to 30
+fandango:INFO: Generation 1 stats -- Best fitness: 1.47, Avg fitness: 1.47, Avg diversity: 0.01, Population size: 100
+fandango:INFO: Generation 2 - Average Fitness: 1.47

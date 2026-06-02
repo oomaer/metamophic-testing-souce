@@ -1,0 +1,112 @@
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/dns/mr/cname_recursive_resolver/grammar.fan
+================================================================================
+Metamorphic Relation: CNAME Recursive Resolver
+
+Setup:
+  Server A (5053): Authoritative - test.local A -> 192.168.1.1, 192.168.1.2
+  Server B (5054): Recursive resolver - example.local CNAME -> test.local
+
+Test:
+  Query A: test.local A on Server A (direct)
+  Query B: example.local A on Server B (recursive)
+  Relation: A records should be identical
+================================================================================
+fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
+fandango:INFO: Generating (additional) initial population (size: 100)...
+fandango:WARNING: Could not generate a full population of unique individuals. Population size reduced to 1.
+fandango:INFO: Initial population generated in 0.01 seconds
+fandango:INFO: Current coverage: 0.21%
+fandango:INFO: ClientA: <query_direct> "b'\\x84;\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x04test\\x05local\\x00\\x00\\x1c\\x00\\x01'"
+fandango:INFO: Current coverage: 44.40%
+fandango:INFO: ServerA: <response_direct> '\x84;\x85\x80\x00\x01\x00\x01\x00\x00\x00\x00\x04test\x05local\x00\x00\x1c\x00\x01\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+fandango:INFO: Current coverage: 45.85%
+[CONNECTION]SwitchedtoServerB(port5054)
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from ServerA to ServerB'
+fandango:INFO: Current coverage: 46.89%
+fandango:INFO: ClientB: <query_recursive> "b'\\x87\\x0c\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x07example\\x05local\\x00\\x00\\x1c\\x00\\x01'"
+fandango:INFO: Current coverage: 85.06%
+fandango:INFO: ServerB: <response_recursive> '\x87\x0c\x85\x80\x00\x01\x00\x02\x00\x00\x00\x00\x07example\x05local\x00\x00\x1c\x00\x01\x07example\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+[DEBUG]Querytype:AAAA
+[DEBUG]DirectqueryRCODE:NOERROR
+[DEBUG]RecursivequeryRCODE:NOERROR
+[DEBUG]DirectAAAArecord:2001:db8::1
+[DEBUG]RecursiveCNAMErecord:test.local.
+[DEBUG]RecursiveAAAArecord:2001:db8::1
+[PASS]RecursiveresolutionequivalenceholdsforAAAA:{'2001:db8::1'}
+fandango:INFO: Current coverage: 86.31%
+
+================================================================================
+TEST CASE #1
+================================================================================
+
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 86.31%
+fandango:INFO: ClientA: <query_direct> "b'\\x81i\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x04test\\x05local\\x00\\x00\\x01\\x00\\x01'"
+fandango:INFO: Current coverage: 90.04%
+fandango:INFO: ServerA: <response_direct> '\x81i\x85\x80\x00\x01\x00\x02\x00\x00\x00\x00\x04test\x05local\x00\x00\x01\x00\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02'
+fandango:INFO: Current coverage: 90.04%
+[CONNECTION]SwitchedtoServerB(port5054)
+Switching from ServerA to ServerBfandango:INFO: StdOut: <ChangeConnection> 'Switching from ServerA to ServerB'
+fandango:INFO: Current coverage: 90.04%
+fandango:INFO: ClientB: <query_recursive> "b'\\x0f\\x19\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x07example\\x05local\\x00\\x00\\x01\\x00\\x01'"
+fandango:INFO: Current coverage: 93.15%
+fandango:INFO: ServerB: <response_recursive> '\x0f\x19\x85\x80\x00\x01\x00\x03\x00\x00\x00\x00\x07example\x05local\x00\x00\x01\x00\x01\x07example\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02'
+[DEBUG]Querytype:A
+[DEBUG]DirectqueryRCODE:NOERROR
+[DEBUG]RecursivequeryRCODE:NOERROR
+[DEBUG]DirectArecord:192.168.1.1
+[DEBUG]DirectArecord:192.168.1.2
+[DEBUG]RecursiveCNAMErecord:test.local.
+[DEBUG]RecursiveArecord:192.168.1.1
+[DEBUG]RecursiveArecord:192.168.1.2
+[PASS]RecursiveresolutionequivalenceholdsforA:{'192.168.1.2', '192.168.1.1'}
+fandango:INFO: Current coverage: 93.15%
+
+================================================================================
+TEST CASE #2
+================================================================================
+
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 93.15%
+fandango:INFO: ClientA: <query_direct> "b'\\xa1Y\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x04test\\x05local\\x00\\x00\\x10\\x00\\x01'"
+fandango:INFO: Current coverage: 96.89%
+fandango:INFO: ServerA: <response_direct> '¡Y\x85\x80\x00\x01\x00\x01\x00\x00\x00\x00\x04test\x05local\x00\x00\x10\x00\x01\x04test\x05local\x00\x00\x10\x00\x01\x00\x00\x01,\x00\x1f\x1ev=spf1 include:test.local ~all'
+fandango:INFO: Current coverage: 96.89%
+[CONNECTION]SwitchedtoServerB(port5054)
+Switching from ServerA to ServerBfandango:INFO: StdOut: <ChangeConnection> 'Switching from ServerA to ServerB'
+fandango:INFO: Current coverage: 96.89%
+fandango:INFO: ClientB: <query_recursive> "b'd\\xf2\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x07example\\x05local\\x00\\x00\\x10\\x00\\x01'"
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: ServerB: <response_recursive> 'dò\x85\x80\x00\x01\x00\x02\x00\x00\x00\x00\x07example\x05local\x00\x00\x10\x00\x01\x07example\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x10\x00\x01\x00\x00\x01,\x00\x1f\x1ev=spf1 include:test.local ~all'
+[DEBUG]Querytype:TXT
+[DEBUG]DirectqueryRCODE:NOERROR
+[DEBUG]RecursivequeryRCODE:NOERROR
+[DEBUG]DirectTXTrecord:"v=spf1 include:test.local ~all"
+[DEBUG]RecursiveCNAMErecord:test.local.
+[DEBUG]RecursiveTXTrecord:"v=spf1 include:test.local ~all"
+[PASS]RecursiveresolutionequivalenceholdsforTXT:{'"v=spf1 include:test.local ~all"'}
+fandango:INFO: Current coverage: 100.00%
+
+================================================================================
+TEST CASE #3
+================================================================================
+
+--------------------------------------------------------------------------------
+fandango:INFO: Full coverage reached, stopping evolution.
+
+================================================================================
+SUMMARY
+================================================================================
+Total test cases generated: 3
+Passed: 3
+Violations: 0
+
+All solutions passed! Recursive resolution is working correctly.
+
+TIMING:
+  Test generation time: 7.63 seconds
+  Total execution time: 8.88 seconds
+  Average time per test: 2.54 seconds
+================================================================================

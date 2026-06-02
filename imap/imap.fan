@@ -3,7 +3,7 @@ include("imap-utils.fan")
 # --- IMAP Handshake ---
 <start> ::= <imap_session>
 
-<imap_session> ::= <server_greeting> <login_sequence> <create_mailbox> <select_mailbox> <select_mailbox>
+<imap_session> ::= <server_greeting> <login_sequence> <create_mailbox> <m> <select_mailbox>
 
 # Server initiates with * OK
 <server_greeting> ::= <Server:Client:GREETING_DATA><Server:lastbit>

@@ -37,8 +37,7 @@ class TestResolver(BaseResolver):
             'NS': ['ns1.test.local.', 'ns2.test.local.'],
         },
         'example.local.': {
-            'A': ['10.0.0.1'],
-            'CNAME': ['test.local.'],
+            'CNAME': ['test.local.'],  # CNAME only - per RFC, no other records allowed
         },
         'ns1.test.local.': {
             'A': ['192.168.1.10'],

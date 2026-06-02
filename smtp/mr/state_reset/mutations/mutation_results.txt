@@ -1,0 +1,79 @@
+SMTP STATE RESET - MUTATION TESTING RESULTS
+================================================================================
+
+Date: 2026-05-02 12:51:54
+Total Duration: 4m 6.92s
+Mutation Score: 4/5 (80.0%)
+
+Mutation     Description                                   Detected   P    V    PE  
+-------------------------------------------------------------------------------------
+M1           INCOMPLETE_SENDER_RESET - RSET does not cl... YES        0    15   0   
+M3           RSET_CLEARS_AUTH - RSET incorrectly clears... YES        0    15   0   
+M4           RSET_RETURNS_ERROR - RSET returns 500 error   YES        0    0    3   
+M5           RSET_PARTIAL_STATE_CLEAR - Only first RSET... NO         75   0    0   
+M7           RSET_NOOP - RSET returns 250 but does nothing YES        0    15   0   
+
+================================================================================
+DETAILED RESULTS
+================================================================================
+
+Mutation: M1
+Description: INCOMPLETE_SENDER_RESET - RSET does not clear MAIL FROM buffer
+Detected: YES
+Passes: 0
+Violations: 15
+Parse Errors: 0
+Total Detections: 15
+Duration: 32.78s
+Log: log_M1.txt
+
+--------------------------------------------------------------------------------
+
+Mutation: M3
+Description: RSET_CLEARS_AUTH - RSET incorrectly clears authentication
+Detected: YES
+Passes: 0
+Violations: 15
+Parse Errors: 0
+Total Detections: 15
+Duration: 33.76s
+Log: log_M3.txt
+
+--------------------------------------------------------------------------------
+
+Mutation: M4
+Description: RSET_RETURNS_ERROR - RSET returns 500 error
+Detected: YES
+Passes: 0
+Violations: 0
+Parse Errors: 3
+Total Detections: 3
+Duration: 18.25s
+Log: log_M4.txt
+
+--------------------------------------------------------------------------------
+
+Mutation: M5
+Description: RSET_PARTIAL_STATE_CLEAR - Only first RSET works per session
+Detected: NO
+Passes: 75
+Violations: 0
+Parse Errors: 0
+Total Detections: 0
+Duration: 1m 39.22s
+Log: log_M5.txt
+
+--------------------------------------------------------------------------------
+
+Mutation: M7
+Description: RSET_NOOP - RSET returns 250 but does nothing
+Detected: YES
+Passes: 0
+Violations: 15
+Parse Errors: 0
+Total Detections: 15
+Duration: 32.75s
+Log: log_M7.txt
+
+--------------------------------------------------------------------------------
+

@@ -125,6 +125,9 @@ def run_fandango(grammar_path, log_file_path):
             for line in captured_output.split('\n'):
                 if '[VIOLATION]' in line:
                     solution_violations.append(line.strip())
+                # Also count parse errors as violations
+                elif 'FandangoFailedError' in line:
+                    solution_violations.append('[VIOLATION] Parse error: ' + line.strip())
                 if '[PASS]' in line:
                     has_pass = True
 

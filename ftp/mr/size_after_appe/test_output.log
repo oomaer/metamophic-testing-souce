@@ -1,0 +1,368 @@
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/ftp/mr/size_after_appe/grammar.fan
+================================================================================
+Metamorphic Test: FTP SIZE After APPE (RFC 959/3659)
+A: SIZE test_file.txt (reference)
+B: APPE (append data) → SIZE test_file.txt
+Relation: SIZE_after = SIZE_before + appended_bytes
+================================================================================
+fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
+fandango:INFO: Generating (additional) initial population (size: 100)...
+fandango:WARNING: Could not generate a full population of unique individuals. Population size reduced to 1.
+fandango:INFO: Initial population generated in 0.01 seconds
+fandango:INFO: Current coverage: 0.13%
+fandango:INFO: ServerA -> ClientA: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
+fandango:INFO: Current coverage: 2.26%
+fandango:INFO: ClientA -> ServerA: <user_cmd> 'USER user\r\n'
+fandango:INFO: Current coverage: 3.13%
+fandango:INFO: ServerA -> ClientA: <user_ok> '331 Username ok, send password.\r\n'
+fandango:INFO: Current coverage: 5.51%
+fandango:INFO: ClientA -> ServerA: <pass_cmd> 'PASS 12345\r\n'
+fandango:INFO: Current coverage: 6.39%
+fandango:INFO: ServerA -> ClientA: <pass_ok> '230 Login successful.\r\n'
+fandango:INFO: Current coverage: 8.40%
+fandango:INFO: ClientA -> ServerA: <type_cmd_A> 'TYPE I\r\n'
+fandango:INFO: Current coverage: 9.90%
+fandango:INFO: ServerA -> ClientA: <type_ok_A> '200 Type set to: Binary.\r\n'
+fandango:INFO: Current coverage: 12.41%
+fandango:INFO: ClientA -> ServerA: <size_cmd_A> 'SIZE test_file.txt\r\n'
+fandango:INFO: Current coverage: 13.91%
+fandango:INFO: ServerA -> ClientA: <size_response_A> '213 100\r\n'
+fandango:INFO: Current coverage: 16.79%
+fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
+fandango:INFO: Current coverage: 17.67%
+fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
+fandango:INFO: Current coverage: 19.67%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 20.18%
+fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
+fandango:INFO: Current coverage: 21.43%
+fandango:INFO: ClientB -> ServerB: <user_cmd> 'USER user\r\n'
+fandango:INFO: Current coverage: 21.93%
+fandango:INFO: ServerB -> ClientB: <user_ok> '331 Username ok, send password.\r\n'
+fandango:INFO: Current coverage: 23.18%
+fandango:INFO: ClientB -> ServerB: <pass_cmd> 'PASS 12345\r\n'
+fandango:INFO: Current coverage: 23.68%
+fandango:INFO: ServerB -> ClientB: <pass_ok> '230 Login successful.\r\n'
+fandango:INFO: Current coverage: 24.94%
+fandango:INFO: ClientB -> ServerB: <type_cmd_B> 'TYPE I\r\n'
+fandango:INFO: Current coverage: 26.32%
+fandango:INFO: ServerB -> ClientB: <type_ok_B> '200 Type set to: Binary.\r\n'
+fandango:INFO: Current coverage: 28.70%
+fandango:INFO: ClientB -> ServerB: <size_cmd_before> 'SIZE test_file.txt\r\n'
+fandango:INFO: Current coverage: 30.08%
+fandango:INFO: ServerB -> ClientB: <size_response_before> '213 100\r\n'
+fandango:INFO: Current coverage: 32.71%
+fandango:INFO: ClientB -> ServerB: <epsv_cmd_1> 'EPSV\r\n'
+fandango:INFO: Current coverage: 36.09%
+fandango:INFO: ServerB -> ClientB: <epsv_response_1> '229 Entering extended passive mode (|||59383|).\r\n'
+fandango:INFO: Current coverage: 39.85%
+fandango:INFO: ClientB -> ServerB: <appe_cmd_1> 'APPE test_file.txt\r\n'
+fandango:INFO: Current coverage: 41.73%
+fandango:INFO: ServerB -> ClientB: <appe_start_1> '125 Data connection already open. Transfer starting.\r\n'
+fandango:INFO: Current coverage: 44.36%
+fandango:INFO: ClientDataB -> ServerDataB: <append_data_1> 'AAAAAAAAAA'
+fandango:INFO: Current coverage: 45.61%
+fandango:INFO: SocketControlClientB: <close_data_1> 'Data socket closed.\r\n'
+fandango:INFO: Current coverage: 46.87%
+fandango:INFO: ServerB -> ClientB: <appe_done_1> '226 Transfer complete.\r\n'
+fandango:INFO: Current coverage: 49.50%
+fandango:INFO: ClientB -> ServerB: <size_cmd_after> 'SIZE test_file.txt\r\n'
+fandango:INFO: Current coverage: 50.88%
+fandango:INFO: ServerB -> ClientB: <size_response_after> '213 110\r\n'
+fandango:INFO: Current coverage: 53.51%
+fandango:INFO: ClientB -> ServerB: <quit_cmd> 'QUIT\r\n'
+fandango:INFO: Current coverage: 54.01%
+fandango:INFO: ServerB -> ClientB: <quit_ok> '221 Goodbye.\r\n'
+fandango:INFO: Current coverage: 55.26%
+
+================================================================================
+TEST CASE #1
+================================================================================
+
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerA -> ClientA: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientA -> ServerA: <user_cmd> 'USER user\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerA -> ClientA: <user_ok> '331 Username ok, send password.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientA -> ServerA: <pass_cmd> 'PASS 12345\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerA -> ClientA: <pass_ok> '230 Login successful.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientA -> ServerA: <type_cmd_A> 'TYPE I\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerA -> ClientA: <type_ok_A> '200 Type set to: Binary.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientA -> ServerA: <size_cmd_A> 'SIZE test_file.txt\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerA -> ClientA: <size_response_A> '213 100\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
+fandango:INFO: Current coverage: 55.26%
+Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientB -> ServerB: <user_cmd> 'USER user\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <user_ok> '331 Username ok, send password.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientB -> ServerB: <pass_cmd> 'PASS 12345\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <pass_ok> '230 Login successful.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientB -> ServerB: <type_cmd_B> 'TYPE I\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <type_ok_B> '200 Type set to: Binary.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientB -> ServerB: <size_cmd_before> 'SIZE test_file.txt\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <size_response_before> '213 110\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientB -> ServerB: <epsv_cmd_1> 'EPSV\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <epsv_response_1> '229 Entering extended passive mode (|||59387|).\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientB -> ServerB: <appe_cmd_1> 'APPE test_file.txt\r\n'
+fandango:INFO: Current coverage: 58.40%
+fandango:INFO: ServerB -> ClientB: <appe_start_1> '125 Data connection already open. Transfer starting.\r\n'
+fandango:INFO: Current coverage: 59.02%
+fandango:INFO: ClientDataB -> ServerDataB: <append_data_1> 'AAAAAAAAAA'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: SocketControlClientB: <close_data_1> 'Data socket closed.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <appe_done_1> '226 Transfer complete.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientB -> ServerB: <size_cmd_after> 'SIZE test_file.txt\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <size_response_after> '213 120\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientB -> ServerB: <quit_cmd> 'QUIT\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <quit_ok> '221 Goodbye.\r\n'
+fandango:INFO: Current coverage: 55.26%
+
+================================================================================
+TEST CASE #2
+================================================================================
+
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerA -> ClientA: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientA -> ServerA: <user_cmd> 'USER user\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerA -> ClientA: <user_ok> '331 Username ok, send password.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientA -> ServerA: <pass_cmd> 'PASS 12345\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerA -> ClientA: <pass_ok> '230 Login successful.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientA -> ServerA: <type_cmd_A> 'TYPE I\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerA -> ClientA: <type_ok_A> '200 Type set to: Binary.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientA -> ServerA: <size_cmd_A> 'SIZE test_file.txt\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerA -> ClientA: <size_response_A> '213 100\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
+fandango:INFO: Current coverage: 55.26%
+Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientB -> ServerB: <user_cmd> 'USER user\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <user_ok> '331 Username ok, send password.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientB -> ServerB: <pass_cmd> 'PASS 12345\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <pass_ok> '230 Login successful.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientB -> ServerB: <type_cmd_B> 'TYPE I\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <type_ok_B> '200 Type set to: Binary.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientB -> ServerB: <size_cmd_before> 'SIZE test_file.txt\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <size_response_before> '213 120\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientB -> ServerB: <epsv_cmd_1> 'EPSV\r\n'
+fandango:INFO: Current coverage: 57.02%
+fandango:INFO: ServerB -> ClientB: <epsv_response_1> '229 Entering extended passive mode (|||59391|).\r\n'
+fandango:INFO: Current coverage: 57.64%
+fandango:INFO: ClientB -> ServerB: <appe_cmd_1> 'APPE test_file.txt\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <appe_start_1> '125 Data connection already open. Transfer starting.\r\n'
+fandango:INFO: Current coverage: 59.02%
+fandango:INFO: ClientDataB -> ServerDataB: <append_data_1> 'AAAAAAAAAA'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: SocketControlClientB: <close_data_1> 'Data socket closed.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ServerB -> ClientB: <appe_done_1> '226 Transfer complete.\r\n'
+fandango:INFO: Current coverage: 55.26%
+fandango:INFO: ClientB -> ServerB: <epsv_cmd_2> 'EPSV\r\n'
+fandango:INFO: Current coverage: 62.78%
+fandango:INFO: ServerB -> ClientB: <epsv_response_2> '229 Entering extended passive mode (|||59393|).\r\n'
+fandango:INFO: Current coverage: 66.17%
+fandango:INFO: ClientB -> ServerB: <appe_cmd_2> 'APPE test_file.txt\r\n'
+fandango:INFO: Current coverage: 67.92%
+fandango:INFO: ServerB -> ClientB: <appe_start_2> '125 Data connection already open. Transfer starting.\r\n'
+fandango:INFO: Current coverage: 70.43%
+fandango:INFO: ClientDataB -> ServerDataB: <append_data_2> 'BBBBBBBBBBBBBBBBBBBB'
+fandango:INFO: Current coverage: 71.68%
+fandango:INFO: SocketControlClientB: <close_data_2> 'Data socket closed.\r\n'
+fandango:INFO: Current coverage: 72.81%
+fandango:INFO: ServerB -> ClientB: <appe_done_2> '226 Transfer complete.\r\n'
+fandango:INFO: Current coverage: 75.31%
+fandango:INFO: ClientB -> ServerB: <epsv_cmd_3> 'EPSV\r\n'
+fandango:INFO: Current coverage: 77.69%
+fandango:INFO: ServerB -> ClientB: <epsv_response_3> '229 Entering extended passive mode (|||59395|).\r\n'
+fandango:INFO: Current coverage: 81.08%
+fandango:INFO: ClientB -> ServerB: <appe_cmd_3> 'APPE test_file.txt\r\n'
+fandango:INFO: Current coverage: 82.83%
+fandango:INFO: ServerB -> ClientB: <appe_start_3> '125 Data connection already open. Transfer starting.\r\n'
+fandango:INFO: Current coverage: 85.34%
+fandango:INFO: ClientDataB -> ServerDataB: <append_data_3> 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
+fandango:INFO: Current coverage: 86.59%
+fandango:INFO: SocketControlClientB: <close_data_3> 'Data socket closed.\r\n'
+fandango:INFO: Current coverage: 87.72%
+fandango:INFO: ServerB -> ClientB: <appe_done_3> '226 Transfer complete.\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ClientB -> ServerB: <size_cmd_after> 'SIZE test_file.txt\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerB -> ClientB: <size_response_after> '213 180\r\n'
+[PASS] SIZE monotonicity holds
+  SIZE before: 120 bytes
+  Appended: 60 bytes (data1=10b, data2=20b, data3=30b)
+  SIZE after: 180 bytes (expected: 180)
+fandango:INFO: Current coverage: 90.23%
+[PASS] SIZE monotonicity holds
+  SIZE before: 120 bytes
+  Appended: 60 bytes (data1=10b, data2=20b, data3=30b)
+  SIZE after: 180 bytes (expected: 180)
+fandango:INFO: ClientB -> ServerB: <quit_cmd> 'QUIT\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerB -> ClientB: <quit_ok> '221 Goodbye.\r\n'
+[PASS] SIZE monotonicity holds
+  SIZE before: 120 bytes
+  Appended: 60 bytes (data1=10b, data2=20b, data3=30b)
+  SIZE after: 180 bytes (expected: 180)
+fandango:INFO: Current coverage: 90.23%
+
+================================================================================
+TEST CASE #3
+================================================================================
+
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerA -> ClientA: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ClientA -> ServerA: <user_cmd> 'USER user\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerA -> ClientA: <user_ok> '331 Username ok, send password.\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ClientA -> ServerA: <pass_cmd> 'PASS 12345\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerA -> ClientA: <pass_ok> '230 Login successful.\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ClientA -> ServerA: <type_cmd_A> 'TYPE I\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerA -> ClientA: <type_ok_A> '200 Type set to: Binary.\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ClientA -> ServerA: <size_cmd_A> 'SIZE test_file.txt\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerA -> ClientA: <size_response_A> '213 100\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
+fandango:INFO: Current coverage: 90.23%
+Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ClientB -> ServerB: <user_cmd> 'USER user\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerB -> ClientB: <user_ok> '331 Username ok, send password.\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ClientB -> ServerB: <pass_cmd> 'PASS 12345\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerB -> ClientB: <pass_ok> '230 Login successful.\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ClientB -> ServerB: <type_cmd_B> 'TYPE I\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerB -> ClientB: <type_ok_B> '200 Type set to: Binary.\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ClientB -> ServerB: <size_cmd_before> 'SIZE test_file.txt\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerB -> ClientB: <size_response_before> '213 180\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ClientB -> ServerB: <epsv_cmd_1> 'EPSV\r\n'
+fandango:INFO: Current coverage: 91.98%
+fandango:INFO: ServerB -> ClientB: <epsv_response_1> '229 Entering extended passive mode (|||59399|).\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ClientB -> ServerB: <appe_cmd_1> 'APPE test_file.txt\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerB -> ClientB: <appe_start_1> '125 Data connection already open. Transfer starting.\r\n'
+fandango:INFO: Current coverage: 93.98%
+fandango:INFO: ClientDataB -> ServerDataB: <append_data_1> 'AAAAAAAAAA'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: SocketControlClientB: <close_data_1> 'Data socket closed.\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerB -> ClientB: <appe_done_1> '226 Transfer complete.\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ClientB -> ServerB: <epsv_cmd_2> 'EPSV\r\n'
+fandango:INFO: Current coverage: 96.62%
+fandango:INFO: ServerB -> ClientB: <epsv_response_2> '229 Entering extended passive mode (|||59401|).\r\n'
+fandango:INFO: Current coverage: 97.24%
+fandango:INFO: ClientB -> ServerB: <appe_cmd_2> 'APPE test_file.txt\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerB -> ClientB: <appe_start_2> '125 Data connection already open. Transfer starting.\r\n'
+fandango:INFO: Current coverage: 98.62%
+fandango:INFO: ClientDataB -> ServerDataB: <append_data_2> 'BBBBBBBBBBBBBBBBBBBB'
+fandango:INFO: Current coverage: 99.00%
+fandango:INFO: SocketControlClientB: <close_data_2> 'Data socket closed.\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ServerB -> ClientB: <appe_done_2> '226 Transfer complete.\r\n'
+fandango:INFO: Current coverage: 90.23%
+fandango:INFO: ClientB -> ServerB: <size_cmd_after> 'SIZE test_file.txt\r\n'
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: ServerB -> ClientB: <size_response_after> '213 210\r\n'
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Full coverage reached. Guiding to end of tree.
+fandango:INFO: ClientB -> ServerB: <quit_cmd> 'QUIT\r\n'
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: ServerB -> ClientB: <quit_ok> '221 Goodbye.\r\n'
+fandango:INFO: Current coverage: 100.00%
+
+================================================================================
+TEST CASE #4
+================================================================================
+
+--------------------------------------------------------------------------------
+fandango:INFO: Full coverage reached, stopping evolution.
+================================================================================
+SUMMARY
+================================================================================
+Total test cases generated: 4
+Passed: 1
+Violations: 0
+
+All solutions passed - SIZE monotonicity verified!
+
+TIMING:
+  Test generation time: 4.32 seconds
+  Total execution time: 5.10 seconds
+  Average time per test: 1.08 seconds
+================================================================================

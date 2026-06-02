@@ -1,0 +1,91 @@
+IMAP APPEND+SEARCH - MUTATION TESTING RESULTS
+================================================================================
+
+Date: 2026-05-24 19:49:47
+Total Duration: 8m 34.75s
+Detection Rate: 5/6 (83.3%)
+
+Mutation     Description                                        Detected   P    V   
+--------------------------------------------------------------------------------
+BASELINE     Clean baseline - normal index behavior             N/A        7    0   
+M1           NO_INDEX_UPDATE - APPEND succeeds but search in... YES        0    14  
+M2           DELAYED_INDEX_UPDATE - Index updates only after... YES        0    12  
+M3           PARTIAL_INDEX_UPDATE - Only indexes every 2nd m... YES        3    10  
+M4           WRONG_HEADER_PARSE - Parses FROM header incorre... YES        0    12  
+M5           DUPLICATE_INDEX_ENTRY - Creates 2 index entries... YES        0    14  
+M6           CASE_SENSITIVE_SEARCH - SEARCH is case-sensitive   NO         7    0   
+
+================================================================================
+DETAILED RESULTS
+================================================================================
+
+Mutation: BASELINE
+Description: Clean baseline - normal index behavior
+Detected: N/A (baseline)
+Passes: 7
+Violations: 0
+Duration: 1m 7.80s
+Log: log_BASELINE.txt
+
+--------------------------------------------------------------------------------
+
+Mutation: M1
+Description: NO_INDEX_UPDATE - APPEND succeeds but search index not updated
+Detected: YES
+Passes: 0
+Violations: 14
+Duration: 1m 7.51s
+Log: log_M1.txt
+
+--------------------------------------------------------------------------------
+
+Mutation: M2
+Description: DELAYED_INDEX_UPDATE - Index updates only after re-SELECT
+Detected: YES
+Passes: 0
+Violations: 12
+Duration: 54.79s
+Log: log_M2.txt
+
+--------------------------------------------------------------------------------
+
+Mutation: M3
+Description: PARTIAL_INDEX_UPDATE - Only indexes every 2nd message
+Detected: YES
+Passes: 3
+Violations: 10
+Duration: 1m 15.97s
+Log: log_M3.txt
+
+--------------------------------------------------------------------------------
+
+Mutation: M4
+Description: WRONG_HEADER_PARSE - Parses FROM header incorrectly
+Detected: YES
+Passes: 0
+Violations: 12
+Duration: 1m 1.21s
+Log: log_M4.txt
+
+--------------------------------------------------------------------------------
+
+Mutation: M5
+Description: DUPLICATE_INDEX_ENTRY - Creates 2 index entries per APPEND
+Detected: YES
+Passes: 0
+Violations: 14
+Duration: 1m 6.88s
+Log: log_M5.txt
+
+--------------------------------------------------------------------------------
+
+Mutation: M6
+Description: CASE_SENSITIVE_SEARCH - SEARCH is case-sensitive
+Detected: NO
+Passes: 7
+Violations: 0
+Duration: 1m 10.51s
+Log: log_M6.txt
+
+--------------------------------------------------------------------------------
+

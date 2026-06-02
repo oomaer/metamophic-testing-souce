@@ -1,0 +1,174 @@
+Mutation: M7
+Description: RSET_NOOP - RSET returns 250 but does nothing
+Duration: 32.75s
+================================================================================
+
+fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
+fandango:INFO: Generating (additional) initial population (size: 100)...
+fandango:WARNING: Could not generate a full population of unique individuals. Population size reduced to 1.
+fandango:INFO: Initial population generated in 0.01 seconds
+fandango:INFO: Current coverage: 0.18%
+fandango:INFO: ServerA: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
+fandango:INFO: Current coverage: 1.81%
+fandango:INFO: ClientA: <request_ehlo> 'EHLO localhost\r\n'
+fandango:INFO: Current coverage: 3.09%
+fandango:INFO: ServerA: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
+fandango:INFO: Current coverage: 4.36%
+fandango:INFO: ClientA: <request_auth> 'AUTH LOGIN\r\n'
+fandango:INFO: Current coverage: 7.44%
+fandango:INFO: ServerA: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
+fandango:INFO: Current coverage: 9.26%
+fandango:INFO: ClientA: <request_auth_user> 'dGhlX3VzZXI=\r\n'
+fandango:INFO: Current coverage: 11.07%
+fandango:INFO: ServerA: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
+fandango:INFO: Current coverage: 12.70%
+fandango:INFO: ClientA: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
+fandango:INFO: Current coverage: 14.52%
+fandango:INFO: ServerA: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
+fandango:INFO: Current coverage: 16.33%
+fandango:INFO: ClientA: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
+fandango:INFO: Current coverage: 19.96%
+fandango:INFO: ServerA: <response_mail_from> '250 OK\r\n'
+fandango:INFO: Current coverage: 21.78%
+fandango:INFO: ClientA: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
+fandango:INFO: Current coverage: 23.59%
+fandango:INFO: ServerA: <response_rcpt_to> '250 OK\r\n'
+fandango:INFO: Current coverage: 25.23%
+fandango:INFO: ClientA: <request_data> 'DATA\r\n'
+fandango:INFO: Current coverage: 27.04%
+fandango:INFO: ServerA: <response_data> '354 End data with <CR><LF>.<CR><LF>\r\n'
+fandango:INFO: Current coverage: 28.86%
+fandango:INFO: ClientA: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
+fandango:INFO: Current coverage: 30.67%
+fandango:INFO: ServerA: <response_emailA_sent> '250 OK\r\n'
+fandango:INFO: Current coverage: 32.30%
+fandango:INFO: ClientA: <request_quit> 'QUIT\r\n'
+fandango:INFO: Current coverage: 35.03%
+fandango:INFO: ServerA: <response_quit> '221 Bye\r\n'
+fandango:INFO: Current coverage: 36.84%
+fandango:INFO: StdOut: <ChangeConnection> 'Stopping connection 1 and starting connection 2'
+fandango:INFO: Current coverage: 37.75%
+fandango:INFO: ServerB: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
+fandango:INFO: Current coverage: 38.84%
+fandango:INFO: ClientB: <request_ehlo> 'EHLO localhost\r\n'
+fandango:INFO: Current coverage: 39.56%
+fandango:INFO: ServerB: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
+fandango:INFO: Current coverage: 40.29%
+fandango:INFO: ClientB: <request_auth> 'AUTH LOGIN\r\n'
+fandango:INFO: Current coverage: 42.83%
+fandango:INFO: ServerB: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
+fandango:INFO: Current coverage: 44.10%
+fandango:INFO: ClientB: <request_auth_user> 'dGhlX3VzZXI=\r\n'
+fandango:INFO: Current coverage: 45.37%
+fandango:INFO: ServerB: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
+fandango:INFO: Current coverage: 46.64%
+fandango:INFO: ClientB: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
+fandango:INFO: Current coverage: 47.91%
+fandango:INFO: ServerB: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
+fandango:INFO: Current coverage: 49.18%
+fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
+fandango:INFO: Current coverage: 53.18%
+fandango:INFO: ServerB: <response_mail_from> '250 OK\r\n'
+fandango:INFO: Current coverage: 54.45%
+fandango:INFO: ClientB: <request_rset> 'RSET\r\n'
+fandango:INFO: Current coverage: 57.17%
+fandango:INFO: ServerB: <response_rset> '250 OK\r\n'
+fandango:INFO: Current coverage: 58.80%
+fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
+fandango:INFO: Current coverage: 60.98%
+fandango:INFO: ServerB: <response_mail_from_B> '503 5.5.1 Sender already specified\r\n'
+fandango:INFO: Current coverage: 62.79%
+fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
+fandango:INFO: Current coverage: 64.07%
+fandango:INFO: ServerB: <response_rcpt_to_B> '503 Error: need MAIL command\r\n'
+fandango:INFO: Current coverage: 65.70%
+fandango:INFO: ClientB: <request_data> 'DATA\r\n'
+fandango:INFO: Current coverage: 66.97%
+fandango:INFO: ServerB: <response_data_B> '503 Error: need RCPT command\r\n'
+fandango:INFO: Current coverage: 68.60%
+fandango:INFO: ClientB: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
+fandango:INFO: Current coverage: 69.87%
+fandango:INFO: ServerB: <response_emailB_sent> '500 Error: command "SUBJECT:" not recognized\r\n'
+fandango:INFO: Current coverage: 71.51%
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/grammar.fan
+================================================================================
+Metamorphic Test: SMTP State Reset (RFC 5321)
+A: Complete SMTP transaction on connection A
+B: Same SMTP transaction after RSET on connection B
+Relation: RSET must fully reset server state (same responses)
+================================================================================
+Stopping connection 1 and starting connection 2[VIOLATION] MAIL FROM after RSET failed: Response code mismatch
+  Connection A (normal MAIL FROM): 250 - 250 OK
+  Connection B (MAIL FROM after RSET): 503 - 503 5.5.1 Sender already specified
+  Expected: Server should accept MAIL FROM identically after RSET
+[VIOLATION] MAIL FROM after RSET failed: Response code mismatch
+  Connection A (normal MAIL FROM): 250 - 250 OK
+  Connection B (MAIL FROM after RSET): 503 - 503 5.5.1 Sender already specified
+  Expected: Server should accept MAIL FROM identically after RSET
+[VIOLATION] MAIL FROM after RSET failed: Response code mismatch
+  Connection A (normal MAIL FROM): 250 - 250 OK
+  Connection B (MAIL FROM after RSET): 503 - 503 5.5.1 Sender already specified
+  Expected: Server should accept MAIL FROM identically after RSET
+[VIOLATION] MAIL FROM after RSET failed: Response code mismatch
+  Connection A (normal MAIL FROM): 250 - 250 OK
+  Connection B (MAIL FROM after RSET): 503 - 503 5.5.1 Sender already specified
+  Expected: Server should accept MAIL FROM identically after RSET
+[VIOLATION] MAIL FROM after RSET failed: Response code mismatch
+  Connection A (normal MAIL FROM): 250 - 250 OK
+  Connection B (MAIL FROM after RSET): 503 - 503 5.5.1 Sender already specified
+  Expected: Server should accept MAIL FROM identically after RSET
+[VIOLATION] MAIL FROM after RSET failed: Response code mismatch
+  Connection A (normal MAIL FROM): 250 - 250 OK
+  Connection B (MAIL FROM after RSET): 503 - 503 5.5.1 Sender already specified
+  Expected: Server should accept MAIL FROM identically after RSET
+[VIOLATION] MAIL FROM after RSET failed: Response code mismatch
+  Connection A (normal MAIL FROM): 250 - 250 OK
+  Connection B (MAIL FROM after RSET): 503 - 503 5.5.1 Sender already specified
+  Expected: Server should accept MAIL FROM identically after RSET
+[VIOLATION] MAIL FROM after RSET failed: Response code mismatch
+  Connection A (normal MAIL FROM): 250 - 250 OK
+  Connection B (MAIL FROM after RSET): 503 - 503 5.5.1 Sender already specified
+  Expected: Server should accept MAIL FROM identically after RSET
+[VIOLATION] MAIL FROM after RSET failed: Response code mismatch
+  Connection A (normal MAIL FROM): 250 - 250 OK
+  Connection B (MAIL FROM after RSET): 503 - 503 5.5.1 Sender already specified
+  Expected: Server should accept MAIL FROM identically after RSET
+[VIOLATION] MAIL FROM after RSET failed: Response code mismatch
+  Connection A (normal MAIL FROM): 250 - 250 OK
+  Connection B (MAIL FROM after RSET): 503 - 503 5.5.1 Sender already specified
+  Expected: Server should accept MAIL FROM identically after RSET
+[VIOLATION] MAIL FROM after RSET failed: Response code mismatch
+  Connection A (normal MAIL FROM): 250 - 250 OK
+  Connection B (MAIL FROM after RSET): 503 - 503 5.5.1 Sender already specified
+  Expected: Server should accept MAIL FROM identically after RSET
+[VIOLATION] MAIL FROM after RSET failed: Response code mismatch
+  Connection A (normal MAIL FROM): 250 - 250 OK
+  Connection B (MAIL FROM after RSET): 503 - 503 5.5.1 Sender already specified
+  Expected: Server should accept MAIL FROM identically after RSET
+[VIOLATION] State reset failed: Response code mismatch
+  Connection A (normal): 250 - 250 OK
+  Connection B (after RSET): 500 - 500 Error: command "SUBJECT:" not recognized
+  Expected: Server should respond identically after RSET
+[VIOLATION] MAIL FROM after RSET failed: Response code mismatch
+  Connection A (normal MAIL FROM): 250 - 250 OK
+  Connection B (MAIL FROM after RSET): 503 - 503 5.5.1 Sender already specified
+  Expected: Server should accept MAIL FROM identically after RSET
+[VIOLATION] MAIL FROM after RSET failed: Response code mismatch
+  Connection A (normal MAIL FROM): 250 - 250 OK
+  Connection B (MAIL FROM after RSET): 503 - 503 5.5.1 Sender already specified
+  Expected: Server should accept MAIL FROM identically after RSET
+Traceback (most recent call last):
+  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 189, in <module>
+    main()
+  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 185, in main
+    run_fandango(grammar_path, log_file_path)
+  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 111, in run_fandango
+    for solution in fandango.generate(mode=FuzzingMode.IO):
+  File "/Users/i7949486/Downloads/docker/fandango/src/fandango/evolution/algorithm.py", line 375, in generate
+    yield from self._generate_io(max_generations=max_generations)
+  File "/Users/i7949486/Downloads/docker/fandango/src/fandango/evolution/algorithm.py", line 661, in _generate_io
+    forecast, packet_tree = parse_next_remote_packet(
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/i7949486/Downloads/docker/fandango/src/fandango/io/packetparser.py", line 49, in parse_next_remote_packet
+    raise FandangoValueError(
+fandango.errors.FandangoValueError: Unexpected party sent message. Expected: ClientB. Received: {'ServerB'}. Messages: [('ServerB', 'ClientB', b'500 Error: bad syntax\r\n500 Error: command "THIS" not recognized\r\n500 Error: command "." not recognized\r\n')]
