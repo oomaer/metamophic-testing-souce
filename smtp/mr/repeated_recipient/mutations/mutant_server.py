@@ -39,6 +39,12 @@ class MutatedHandler:
         self.duplicate_detected = False  # For M48
         print(f"[ServerB-8027] 🧬 Mutation: {mutation_id}")
 
+    async def handle_MAIL(self, server, session, envelope, address, mail_options):
+        """Reset per-transaction state on new MAIL FROM."""
+        self.duplicate_detected = False
+        envelope.mail_from = address
+        return '250 OK'
+
     async def handle_RCPT(self, server, session, envelope, address, rcpt_options):
         """Handle RCPT with mutations."""
 

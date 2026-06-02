@@ -1,0 +1,78 @@
+[96m================================================================================[0m
+[1m[96m FTP REDUNDANT RNFR - ALL TEST CASES[0m
+[96m================================================================================[0m
+
+[1mMetamorphic Relation (MR):[0m
+  Multiple RNFR commands before RNTO should work correctly.
+  The last RNFR determines which file/directory to rename.
+  Both normal (1 RNFR) and redundant (multiple RNFR) should succeed identically.
+
+Total test cases: [92m[1m2[0m
+
+[96m[1mTest Case #1[0m
+[2m--------------------------------------------------------------------------------[0m
+  [1mSession A (Normal rename):[0m
+    1. [2mUSER/PASS[0m    → Login
+    2. [93mMKD[0m       testdir_a → Create directory
+    3. [94mRNFR[0m      testdir_a → Mark for rename (1x)
+    4. [92mRNTO[0m      renamed_a → Rename to target
+    5. [96mEPSV[0m        → Enter passive mode
+    6. [96mLIST[0m        → Verify renamed directory exists
+    7. [93mRMD[0m       renamed_a → Cleanup
+    8. [2mQUIT[0m        → Disconnect
+
+  [1mSession B (Redundant RNFR):[0m
+    1. [2mUSER/PASS[0m    → Login
+    2. [93mMKD[0m       testdir_b → Create directory
+    3. [94mRNFR[0m      testdir_b → Mark for rename (3x redundant)
+    4. [92mRNTO[0m      renamed_b → Rename to target
+    5. [96mEPSV[0m        → Enter passive mode
+    6. [96mLIST[0m        → Verify renamed directory exists
+    7. [93mRMD[0m       renamed_b → Cleanup
+    8. [2mQUIT[0m        → Disconnect
+
+  [1mMetamorphic Relation:[0m
+    • Both RNTO operations should return same status code
+    • Both LIST outputs should show renamed directories
+    • Last RNFR in Session B determines file to rename
+
+[92m[1m  ✓ Result: PASS - Redundant RNFR handled correctly[0m
+
+[96m[1mTest Case #2[0m
+[2m--------------------------------------------------------------------------------[0m
+  [1mSession A (Normal rename):[0m
+    1. [2mUSER/PASS[0m    → Login
+    2. [93mMKD[0m       testdir_a → Create directory
+    3. [94mRNFR[0m      testdir_a → Mark for rename (1x)
+    4. [92mRNTO[0m      renamed_a → Rename to target
+    5. [96mEPSV[0m        → Enter passive mode
+    6. [96mLIST[0m        → Verify renamed directory exists
+    7. [93mRMD[0m       renamed_a → Cleanup
+    8. [2mQUIT[0m        → Disconnect
+
+  [1mSession B (Redundant RNFR):[0m
+    1. [2mUSER/PASS[0m    → Login
+    2. [93mMKD[0m       testdir_b → Create directory
+    3. [94mRNFR[0m      testdir_b → Mark for rename (2x redundant)
+    4. [92mRNTO[0m      renamed_b → Rename to target
+    5. [96mEPSV[0m        → Enter passive mode
+    6. [96mLIST[0m        → Verify renamed directory exists
+    7. [93mRMD[0m       renamed_b → Cleanup
+    8. [2mQUIT[0m        → Disconnect
+
+  [1mMetamorphic Relation:[0m
+    • Both RNTO operations should return same status code
+    • Both LIST outputs should show renamed directories
+    • Last RNFR in Session B determines file to rename
+
+[92m[1m  ✓ Result: PASS - Redundant RNFR handled correctly[0m
+
+[96m================================================================================[0m
+[1m[96m SUMMARY[0m
+[96m================================================================================[0m
+
+Total test cases:  [1m2[0m
+Passed:            [92m[1m2[0m
+Failed:            [92m0[0m
+
+RFC 959 Compliance: [92m[1mVERIFIED[0m

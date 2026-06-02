@@ -67,7 +67,7 @@ def main():
         print("Running Fandango metamorphic tests...")
         print()
         result = subprocess.run(
-            [sys.executable, str(script_dir / 'script.py')],
+            [sys.executable, str(script_dir / 'script.py'), 'test_output.log'],
             cwd=str(script_dir),
             timeout=300
         )

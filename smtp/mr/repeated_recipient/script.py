@@ -95,7 +95,7 @@ def run_fandango(grammar_path, log_file_path):
         grammar=grammar,
         constraints=constraints,
         logger_level=LoggerLevel.INFO,
-        diversity_k=20,
+        diversity_k=50,
     )
 
     solutions = []
@@ -179,7 +179,14 @@ def run_fandango(grammar_path, log_file_path):
 def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     grammar_path = os.path.join(script_dir, "grammar.fan")
-    log_file_path = os.path.join(script_dir, "test_output.log")
+
+    # Accept optional log file path as CLI argument (default: test_output.log)
+    log_file_name = sys.argv[1] if len(sys.argv) > 1 else "test_output.log"
+    log_file_path = os.path.join(script_dir, log_file_name)
+
+    # Ensure parent directory exists
+    os.makedirs(os.path.dirname(log_file_path), exist_ok=True)
+
     run_fandango(grammar_path, log_file_path)
 
 
