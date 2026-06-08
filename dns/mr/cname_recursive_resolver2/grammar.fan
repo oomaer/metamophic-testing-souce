@@ -49,4 +49,4 @@ from struct import pack
 <label_len_octet> ::= <byte>
 
 
-where all(bytes(<i>.<forward_query>) == bytes(<i>.<upstream_query>) for <i> in *<request_forwarding>)
+where all(bytes(<i>.<upstream_query>) == bytes(<i>.<forward_query>) for <i> in *<request_forwarding>)
