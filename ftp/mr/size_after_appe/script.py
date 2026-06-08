@@ -174,7 +174,8 @@ def run_fandango(grammar_path, log_file_path):
 def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     grammar_path = os.path.join(script_dir, "grammar.fan")
-    log_file_path = os.path.join(script_dir, "test_output.log")
+    log_file_name = sys.argv[1] if len(sys.argv) > 1 else "test_output.log"
+    log_file_path = os.path.join(script_dir, log_file_name)
     run_fandango(grammar_path, log_file_path)
 
 

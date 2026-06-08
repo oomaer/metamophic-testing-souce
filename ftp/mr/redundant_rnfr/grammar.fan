@@ -65,26 +65,30 @@ include("../ftp-utils.fan")
 # Session B: Redundant RNFR
 # =============================================================================
 
-<session_B> ::= <ServerB:ClientB:welcome> <ClientB:ServerB:user_cmd> <ServerB:ClientB:user_ok> <ClientB:ServerB:pass_cmd> <ServerB:ClientB:pass_ok> <create_dir_B> <redundant_rename_B> <cleanup_B> <ClientB:ServerB:quit_cmd> <ServerB:ClientB:quit_ok>
+<session_B> ::= <ServerB:ClientB:welcome> <ClientB:ServerB:user_cmd> <ServerB:ClientB:user_ok> <ClientB:ServerB:pass_cmd> <ServerB:ClientB:pass_ok> <create_dirs_B> <redundant_rename_B> <cleanup_B> <ClientB:ServerB:quit_cmd> <ServerB:ClientB:quit_ok>
 
-# Create directory
-<create_dir_B> ::= <ClientB:ServerB:mkd_B> <ServerB:ClientB:mkd_ok_B>
-<mkd_B> ::= "MKD " <dir_name_B> "\r\n"
-<mkd_ok_B> ::= "257 " <text> "\r\n"
+# Create multiple directories for testing "last RNFR wins"
+<create_dirs_B> ::= <ClientB:ServerB:mkd_B1> <ServerB:ClientB:mkd_ok_B1> <ClientB:ServerB:mkd_B2> <ServerB:ClientB:mkd_ok_B2>
+<mkd_B1> ::= "MKD " <dir_name_B1> "\r\n"
+<mkd_B2> ::= "MKD " <dir_name_B2> "\r\n"
+<mkd_ok_B1> ::= "257 " <text> "\r\n"
+<mkd_ok_B2> ::= "257 " <text> "\r\n"
 
-# Redundant RNFR: multiple RNFR → single RNTO → LIST to verify
+# Redundant RNFR: multiple RNFR with DIFFERENT targets → single RNTO → LIST to verify
 <redundant_rename_B> ::= <redundant_rnfr_path> <ClientB:ServerB:rnto_B> <ServerB:ClientB:rnto_response_B> <verify_list_B>
 
 <redundant_rnfr_path> ::= <double_rnfr> | <triple_rnfr>
 
-# Path 1: Double RNFR
-<double_rnfr> ::= <ClientB:ServerB:rnfr_B> <ServerB:ClientB:rnfr_response_B> <ClientB:ServerB:rnfr_B> <ServerB:ClientB:rnfr_response_B>
+# Path 1: Double RNFR - different targets (last one wins)
+<double_rnfr> ::= <ClientB:ServerB:rnfr_B1> <ServerB:ClientB:rnfr_ok_B1> <ClientB:ServerB:rnfr_B2> <ServerB:ClientB:rnfr_ok_B2>
 
-# Path 2: Triple RNFR
-<triple_rnfr> ::= <ClientB:ServerB:rnfr_B> <ServerB:ClientB:rnfr_response_B> <ClientB:ServerB:rnfr_B> <ServerB:ClientB:rnfr_response_B> <ClientB:ServerB:rnfr_B> <ServerB:ClientB:rnfr_response_B>
+# Path 2: Triple RNFR - different targets (last one wins)
+<triple_rnfr> ::= <ClientB:ServerB:rnfr_B1> <ServerB:ClientB:rnfr_ok_B1> <ClientB:ServerB:rnfr_B2> <ServerB:ClientB:rnfr_ok_B2> <ClientB:ServerB:rnfr_B2> <ServerB:ClientB:rnfr_ok_B2>
 
-<rnfr_B> ::= "RNFR " <dir_name_B> "\r\n"
-<rnfr_response_B> ::= r"[0-9]{3} " <text> "\r\n"
+<rnfr_B1> ::= "RNFR " <dir_name_B1> "\r\n"
+<rnfr_B2> ::= "RNFR " <dir_name_B2> "\r\n"
+<rnfr_ok_B1> ::= "350 " <text> "\r\n"
+<rnfr_ok_B2> ::= "350 " <text> "\r\n"
 <rnto_B> ::= "RNTO " <target_name_B> "\r\n"
 <rnto_response_B> ::= r"[0-9]{3} " <text> "\r\n"
 
@@ -107,10 +111,14 @@ include("../ftp-utils.fan")
 <close_data_B> ::= "Data socket closed.\r\n"
 <list_status_B> ::= r"[0-9]{3} " <text> "\r\n" (r"[0-9]{3} " <text> "\r\n")?
 
-# Cleanup: remove renamed directory
-<cleanup_B> ::= <ClientB:ServerB:rmd_B> <ServerB:ClientB:rmd_ok_B>
-<rmd_B> ::= "RMD " <target_name_B> "\r\n"
-<rmd_ok_B> ::= "250 " <text> "\r\n"
+# Cleanup: remove both created directories (not the renamed one, it doesn't exist after failed rename)
+<cleanup_B> ::= <ClientB:ServerB:rmd_B1> <ServerB:ClientB:rmd_response_B1> <ClientB:ServerB:rmd_B2> <ServerB:ClientB:rmd_response_B2> <ClientB:ServerB:rmd_target> <ServerB:ClientB:rmd_response_target>
+<rmd_B1> ::= "RMD " <dir_name_B1> "\r\n"
+<rmd_B2> ::= "RMD " <dir_name_B2> "\r\n"
+<rmd_target> ::= "RMD " <target_name_B> "\r\n"
+<rmd_response_B1> ::= r"[0-9]{3} " <text> "\r\n"
+<rmd_response_B2> ::= r"[0-9]{3} " <text> "\r\n"
+<rmd_response_target> ::= r"[0-9]{3} " <text> "\r\n"
 
 # =============================================================================
 # Directory Names (fixed per session to ensure consistency)
@@ -119,7 +127,9 @@ include("../ftp-utils.fan")
 <dir_name_A> ::= "testdir_a"
 <target_name_A> ::= "renamed_a"
 
-<dir_name_B> ::= "testdir_b"
+# Session B uses two different source directories
+<dir_name_B1> ::= "testdir_b1"
+<dir_name_B2> ::= "testdir_b2"
 <target_name_B> ::= "renamed_b"
 
 # =============================================================================
@@ -140,9 +150,9 @@ include("../ftp-utils.fan")
 # Metamorphic Constraint
 # =============================================================================
 
-where validateRename(<rnto_response_A>, <rnto_response_B>, <list_data_A>, <list_data_B>, <target_name_A>, <target_name_B>)
+where validateRename(<rnto_response_A>, <rnto_response_B>, <list_data_A>, <list_data_B>, <target_name_A>, <target_name_B>, <dir_name_B1>, <dir_name_B2>)
 
-def validateRename(responseA, responseB, listA, listB, targetA, targetB):
+def validateRename(responseA, responseB, listA, listB, targetA, targetB, dirB1, dirB2):
     codeA = str(responseA)[:3]
     codeB = str(responseB)[:3]
 
@@ -156,11 +166,17 @@ def validateRename(responseA, responseB, listA, listB, targetA, targetB):
     targetA_found = str(targetA) in listStrA
     targetB_found = str(targetB) in listStrB
 
+    # For "last RNFR wins", the LAST RNFR was for dirB2
+    # So dirB1 should still exist (not renamed), dirB2 should NOT exist (was renamed)
+    dirB1_still_exists = str(dirB1) in listStrB  # Should be True
+    dirB2_was_renamed = str(dirB2) not in listStrB  # Should be True (file gone because renamed)
+
     # Both checks must pass
-    if codes_match and targetA_found and targetB_found:
+    if codes_match and targetA_found and targetB_found and dirB1_still_exists and dirB2_was_renamed:
         print("[PASS] Redundant RNFR handled correctly")
         print("  RNTO codes: A=" + codeA + ", B=" + codeB)
         print("  Directory verified: A=" + str(targetA) + ", B=" + str(targetB))
+        print("  Last RNFR wins: " + str(dirB2) + " was renamed, " + str(dirB1) + " still exists")
     else:
         print("[VIOLATION] Redundant RNFR validation failed")
         if not codes_match:
@@ -173,5 +189,12 @@ def validateRename(responseA, responseB, listA, listB, targetA, targetB):
         if not targetB_found:
             print("  Target directory '" + str(targetB) + "' NOT found in Session B LIST")
             print("    LIST response: " + listStrB[:100])
+        if not dirB1_still_exists:
+            print("  ERROR: '" + str(dirB1) + "' should still exist but was not found in LIST")
+            print("    LIST response: " + listStrB[:150])
+        if not dirB2_was_renamed:
+            print("  ERROR: '" + str(dirB2) + "' should have been renamed but still exists in LIST")
+            print("    This violates 'last RNFR wins' - wrong directory was renamed!")
+            print("    LIST response: " + listStrB[:150])
 
     return True

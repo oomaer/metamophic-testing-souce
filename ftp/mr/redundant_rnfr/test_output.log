@@ -9,355 +9,80 @@ fandango:INFO: ---------- Initializing FANDANGO algorithm ----------
 fandango:INFO: Generating (additional) initial population (size: 100)...
 fandango:WARNING: Could not generate a full population of unique individuals. Population size reduced to 1.
 fandango:INFO: Initial population generated in 0.01 seconds
-fandango:INFO: Current coverage: 0.13%
+fandango:INFO: Current coverage: 0.11%
 fandango:INFO: ServerA -> ClientA: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
-fandango:INFO: Current coverage: 2.42%
+fandango:INFO: Current coverage: 1.93%
 fandango:INFO: ClientA -> ServerA: <user_cmd> 'USER user\r\n'
-fandango:INFO: Current coverage: 3.36%
+fandango:INFO: Current coverage: 2.68%
 fandango:INFO: ServerA -> ClientA: <user_ok> '331 Username ok, send password.\r\n'
-fandango:INFO: Current coverage: 5.91%
+fandango:INFO: Current coverage: 4.72%
 fandango:INFO: ClientA -> ServerA: <pass_cmd> 'PASS 12345\r\n'
-fandango:INFO: Current coverage: 6.85%
+fandango:INFO: Current coverage: 5.47%
 fandango:INFO: ServerA -> ClientA: <pass_ok> '230 Login successful.\r\n'
-fandango:INFO: Current coverage: 8.99%
+fandango:INFO: Current coverage: 7.19%
 fandango:INFO: ClientA -> ServerA: <mkd_A> 'MKD testdir_a\r\n'
-fandango:INFO: Current coverage: 12.48%
+fandango:INFO: Current coverage: 9.98%
 fandango:INFO: ServerA -> ClientA: <mkd_ok_A> '257 "/testdir_a" directory created.\r\n'
-fandango:INFO: Current coverage: 15.17%
+fandango:INFO: Current coverage: 12.12%
 fandango:INFO: ClientA -> ServerA: <rnfr_A> 'RNFR testdir_a\r\n'
-fandango:INFO: Current coverage: 18.26%
+fandango:INFO: Current coverage: 14.59%
 fandango:INFO: ServerA -> ClientA: <rnfr_ok_A> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 20.94%
+fandango:INFO: Current coverage: 16.74%
 fandango:INFO: ClientA -> ServerA: <rnto_A> 'RNTO renamed_a\r\n'
-fandango:INFO: Current coverage: 24.03%
+fandango:INFO: Current coverage: 19.21%
 fandango:INFO: ServerA -> ClientA: <rnto_response_A> '250 Renaming ok.\r\n'
-fandango:INFO: Current coverage: 26.71%
+fandango:INFO: Current coverage: 21.35%
 fandango:INFO: ClientA -> ServerA: <epsv_cmd_A> 'EPSV\r\n'
-fandango:INFO: Current coverage: 29.26%
-fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||50179|).\r\n'
-fandango:INFO: Current coverage: 33.29%
+fandango:INFO: Current coverage: 23.39%
+fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||64861|).\r\n'
+fandango:INFO: Current coverage: 26.61%
 fandango:INFO: ClientA -> ServerA: <list_cmd_A> 'LIST\r\n'
-fandango:INFO: Current coverage: 35.30%
-fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Mar 09 13:20 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Mar 09 13:20 source.txt\r\n'
-fandango:INFO: Current coverage: 37.32%
+fandango:INFO: Current coverage: 28.22%
+fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Jun 07 18:27 renamed_a\r\n'
+fandango:INFO: Current coverage: 29.83%
 fandango:INFO: SocketControlServerA: <close_data_A> 'Data socket closed.\r\n'
-fandango:INFO: Current coverage: 38.66%
+fandango:INFO: Current coverage: 30.90%
 fandango:INFO: ServerA -> ClientA: <list_status_A> '125 Data connection already open. Transfer starting.\r\n226 Transfer complete.\r\n'
-fandango:INFO: Current coverage: 41.34%
+fandango:INFO: Current coverage: 33.05%
 fandango:INFO: ClientA -> ServerA: <rmd_A> 'RMD renamed_a\r\n'
-fandango:INFO: Current coverage: 44.43%
+fandango:INFO: Current coverage: 35.52%
 fandango:INFO: ServerA -> ClientA: <rmd_ok_A> '250 Directory removed.\r\n'
-fandango:INFO: Current coverage: 47.11%
+fandango:INFO: Current coverage: 37.66%
 fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
-fandango:INFO: Current coverage: 48.05%
+fandango:INFO: Current coverage: 38.41%
 fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
-fandango:INFO: Current coverage: 50.20%
+fandango:INFO: Current coverage: 40.13%
 fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
-fandango:INFO: Current coverage: 50.74%
+fandango:INFO: Current coverage: 40.56%
 fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
-fandango:INFO: Current coverage: 52.08%
+fandango:INFO: Current coverage: 41.63%
 fandango:INFO: ClientB -> ServerB: <user_cmd> 'USER user\r\n'
-fandango:INFO: Current coverage: 52.62%
+fandango:INFO: Current coverage: 42.06%
 fandango:INFO: ServerB -> ClientB: <user_ok> '331 Username ok, send password.\r\n'
-fandango:INFO: Current coverage: 53.96%
+fandango:INFO: Current coverage: 43.13%
 fandango:INFO: ClientB -> ServerB: <pass_cmd> 'PASS 12345\r\n'
-fandango:INFO: Current coverage: 54.50%
+fandango:INFO: Current coverage: 43.56%
 fandango:INFO: ServerB -> ClientB: <pass_ok> '230 Login successful.\r\n'
-fandango:INFO: Current coverage: 55.84%
-fandango:INFO: ClientB -> ServerB: <mkd_B> 'MKD testdir_b\r\n'
-fandango:INFO: Current coverage: 59.19%
-fandango:INFO: ServerB -> ClientB: <mkd_ok_B> '257 "/testdir_b" directory created.\r\n'
-fandango:INFO: Current coverage: 61.74%
-fandango:INFO: ClientB -> ServerB: <rnfr_B> 'RNFR testdir_b\r\n'
-fandango:INFO: Current coverage: 66.04%
-fandango:INFO: ServerB -> ClientB: <rnfr_response_B> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 68.72%
-fandango:INFO: ClientB -> ServerB: <rnfr_B> 'RNFR testdir_b\r\n'
-fandango:INFO: Current coverage: 68.72%
-fandango:INFO: ServerB -> ClientB: <rnfr_response_B> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 68.72%
-fandango:INFO: ClientB -> ServerB: <rnfr_B> 'RNFR testdir_b\r\n'
-fandango:INFO: Current coverage: 68.72%
-fandango:INFO: ServerB -> ClientB: <rnfr_response_B> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 68.72%
+fandango:INFO: Current coverage: 44.64%
+fandango:INFO: ClientB -> ServerB: <mkd_B1> 'MKD testdir_b1\r\n'
+fandango:INFO: Current coverage: 47.32%
+fandango:INFO: ServerB -> ClientB: <mkd_ok_B1> '257 "/testdir_b1" directory created.\r\n'
+fandango:INFO: Current coverage: 49.36%
+fandango:INFO: ClientB -> ServerB: <mkd_B2> 'MKD testdir_b2\r\n'
+fandango:INFO: Current coverage: 51.72%
+fandango:INFO: ServerB -> ClientB: <mkd_ok_B2> '257 "/testdir_b2" directory created.\r\n'
+fandango:INFO: Current coverage: 53.76%
+fandango:INFO: ClientB -> ServerB: <rnfr_B1> 'RNFR testdir_b1\r\n'
+fandango:INFO: Current coverage: 57.19%
+fandango:INFO: ServerB -> ClientB: <rnfr_ok_B1> '350 Ready for destination name.\r\n'
+fandango:INFO: Current coverage: 59.33%
+fandango:INFO: ClientB -> ServerB: <rnfr_B2> 'RNFR testdir_b2\r\n'
+fandango:INFO: Current coverage: 61.48%
+fandango:INFO: ServerB -> ClientB: <rnfr_ok_B2> '350 Ready for destination name.\r\n'
+fandango:INFO: Current coverage: 63.63%
 fandango:INFO: ClientB -> ServerB: <rnto_B> 'RNTO renamed_b\r\n'
-fandango:INFO: Current coverage: 71.68%
+fandango:INFO: Current coverage: 65.99%
 fandango:INFO: ServerB -> ClientB: <rnto_response_B> '250 Renaming ok.\r\n'
-fandango:INFO: Current coverage: 74.23%
+fandango:INFO: Current coverage: 68.03%
 fandango:INFO: ClientB -> ServerB: <epsv_cmd_B> 'EPSV\r\n'
-fandango:INFO: Current coverage: 76.64%
-fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||50182|).\r\n'
-fandango:INFO: Current coverage: 80.27%
-fandango:INFO: ClientB -> ServerB: <list_cmd_B> 'LIST\r\n'
-fandango:INFO: Current coverage: 82.15%
-fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Mar 09 13:20 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Mar 09 13:20 source.txt\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-fandango:INFO: Current coverage: 84.03%
-fandango:INFO: SocketControlServerB: <close_data_B> 'Data socket closed.\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-fandango:INFO: Current coverage: 85.23%
-fandango:INFO: ServerB -> ClientB: <list_status_B> '125 Data connection already open. Transfer starting.\r\n226 Transfer complete.\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-fandango:INFO: Current coverage: 87.92%
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-fandango:INFO: ClientB -> ServerB: <rmd_B> 'RMD renamed_b\r\n'
-fandango:INFO: Current coverage: 90.87%
-fandango:INFO: ServerB -> ClientB: <rmd_ok_B> '250 Directory removed.\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-fandango:INFO: Current coverage: 93.42%
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-fandango:INFO: ClientB -> ServerB: <quit_cmd> 'QUIT\r\n'
-fandango:INFO: Current coverage: 93.96%
-fandango:INFO: ServerB -> ClientB: <quit_ok> '221 Goodbye.\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-fandango:INFO: Current coverage: 95.30%
-
-================================================================================
-TEST CASE #1
-================================================================================
-
---------------------------------------------------------------------------------
-fandango:INFO: Starting new protocol run.
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerA -> ClientA: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ClientA -> ServerA: <user_cmd> 'USER user\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerA -> ClientA: <user_ok> '331 Username ok, send password.\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ClientA -> ServerA: <pass_cmd> 'PASS 12345\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerA -> ClientA: <pass_ok> '230 Login successful.\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ClientA -> ServerA: <mkd_A> 'MKD testdir_a\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerA -> ClientA: <mkd_ok_A> '257 "/testdir_a" directory created.\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ClientA -> ServerA: <rnfr_A> 'RNFR testdir_a\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerA -> ClientA: <rnfr_ok_A> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ClientA -> ServerA: <rnto_A> 'RNTO renamed_a\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerA -> ClientA: <rnto_response_A> '250 Renaming ok.\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ClientA -> ServerA: <epsv_cmd_A> 'EPSV\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||50185|).\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ClientA -> ServerA: <list_cmd_A> 'LIST\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Mar 09 13:20 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Mar 09 13:20 source.txt\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: SocketControlServerA: <close_data_A> 'Data socket closed.\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerA -> ClientA: <list_status_A> '125 Data connection already open. Transfer starting.\r\n226 Transfer complete.\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ClientA -> ServerA: <rmd_A> 'RMD renamed_a\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerA -> ClientA: <rmd_ok_A> '250 Directory removed.\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
-fandango:INFO: Current coverage: 95.30%
-Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ClientB -> ServerB: <user_cmd> 'USER user\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerB -> ClientB: <user_ok> '331 Username ok, send password.\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ClientB -> ServerB: <pass_cmd> 'PASS 12345\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerB -> ClientB: <pass_ok> '230 Login successful.\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ClientB -> ServerB: <mkd_B> 'MKD testdir_b\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerB -> ClientB: <mkd_ok_B> '257 "/testdir_b" directory created.\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ClientB -> ServerB: <rnfr_B> 'RNFR testdir_b\r\n'
-fandango:INFO: Current coverage: 97.99%
-fandango:INFO: ServerB -> ClientB: <rnfr_response_B> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-fandango:INFO: ClientB -> ServerB: <rnfr_B> 'RNFR testdir_b\r\n'
-fandango:INFO: Current coverage: 95.30%
-fandango:INFO: ServerB -> ClientB: <rnfr_response_B> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-fandango:INFO: ClientB -> ServerB: <rnto_B> 'RNTO renamed_b\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB -> ClientB: <rnto_response_B> '250 Renaming ok.\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-fandango:INFO: ClientB -> ServerB: <epsv_cmd_B> 'EPSV\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||50188|).\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-fandango:INFO: ClientB -> ServerB: <list_cmd_B> 'LIST\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Mar 09 13:20 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Mar 09 13:20 source.txt\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: SocketControlServerB: <close_data_B> 'Data socket closed.\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB -> ClientB: <list_status_B> '125 Data connection already open. Transfer starting.\r\n226 Transfer complete.\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-fandango:INFO: ClientB -> ServerB: <rmd_B> 'RMD renamed_b\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB -> ClientB: <rmd_ok_B> '250 Directory removed.\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-fandango:INFO: ClientB -> ServerB: <quit_cmd> 'QUIT\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB -> ClientB: <quit_ok> '221 Goodbye.\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-fandango:INFO: Current coverage: 100.00%
-
-================================================================================
-TEST CASE #2
-================================================================================
-
---------------------------------------------------------------------------------
-fandango:INFO: Full coverage reached, stopping evolution.
-================================================================================
-SUMMARY
-================================================================================
-Total test cases generated: 2
-Passed: 2
-Violations: 0
-
-All solutions passed - Redundant RNFR handled correctly!
-
-TIMING:
-  Test generation time: 7.04 seconds
-  Total execution time: 7.64 seconds
-  Average time per test: 3.52 seconds
-================================================================================
+fandango:INFO: Current coverage: 69.96%

@@ -1,0 +1,10 @@
+# Mutation testing logs
+logs/
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Results
+mutation_results.txt
