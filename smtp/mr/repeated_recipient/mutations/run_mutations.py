@@ -9,19 +9,19 @@ import sys
 from pathlib import Path
 
 
-# MUTATIONS = ['BASELINE', 'M1', 'M2', 'M10', 'M30', 'M44', 'M48']
-MUTATIONS = ['M44']  # For quick testing, focus on M44 which is a protocol violation
+MUTATIONS = ['M1', 'M2', 'M10', 'M30', 'M44', 'M48']
+# MUTATIONS = ['M44']  # For quick testing, focus on M44 which is a protocol violation
 
 # MUTATIONS = ['M48']
 
 MUTATION_DESCRIPTIONS = {
-    'BASELINE': 'Clean baseline - accepts all duplicates (RFC compliant)',
-    # 'M1': 'STRICT_DUPLICATE_REJECT - Reject all duplicates with 550',
-    # 'M2': 'ACCEPT_FIRST_N_DUPLICATES - Accept first 2, reject 3rd+',
-    # 'M10': 'REJECT_FIRST_DUPLICATE_ONLY - Reject 2nd occurrence, accept 3rd+',
-    # 'M30': 'PLUS_ADDRESSING_BUG - Treats user+tag1 and user+tag2 as duplicates',
+    # 'BASELINE': 'Clean baseline - accepts all duplicates (RFC compliant)',
+    'M1': 'STRICT_DUPLICATE_REJECT - Reject all duplicates with 550',
+    'M2': 'ACCEPT_FIRST_N_DUPLICATES - Accept first 2, reject 3rd+',
+    'M10': 'REJECT_FIRST_DUPLICATE_ONLY - Reject 2nd occurrence, accept 3rd+',
+    'M30': 'PLUS_ADDRESSING_BUG - Treats user+tag1 and user+tag2 as duplicates',
     'M44': 'MULTIPLE_RESPONSE_LINES - Send multiple 250 responses (protocol violation)',
-    # 'M48': 'REJECT_ALL_AFTER_DUPLICATE - After duplicate, reject all subsequent RCPT',
+    'M48': 'REJECT_ALL_AFTER_DUPLICATE - After duplicate, reject all subsequent RCPT',
 }
 
 
@@ -76,17 +76,40 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
             universal_newlines=True
         )
 
-        # Capture output while displaying in real-time
+        # Capture output while displaying in real-time. Stop the test as soon
+        # as any failure signal appears — either a metamorphic-relation
+        # [VIOLATION] print, or a Fandango parse crash. This is what "detected"
+        # means for this MR, so there's nothing to gain by running further.
+        #
+        # SIGKILL (not SIGTERM) — script.py runs Fandango's blocking socket I/O
+        # in C, which swallows SIGTERM for minutes at a time. And we break the
+        # OUTER loop, not just the inner marker loop, otherwise readline() keeps
+        # draining buffered child output for as long as the child stays alive.
+        FAILURE_MARKERS = ('[VIOLATION]', 'FandangoFailedError', 'FandangoValueError')
         output_lines = []
+        early_stop = False
+        early_stop_marker = None
         while True:
             line = process.stdout.readline()
             if not line and process.poll() is not None:
                 break
-            if line:
-                print(line, end='')  # Print to console in real-time
-                output_lines.append(line)
+            if not line:
+                continue
+            print(line, end='')  # Print to console in real-time
+            output_lines.append(line)
+            hit = next((m for m in FAILURE_MARKERS if m in line), None)
+            if hit is not None:
+                early_stop = True
+                early_stop_marker = hit
+                print(f"\n[EARLY STOP] Detected {hit!r} — killing test.")
+                process.kill()
+                break
 
-        process.wait(timeout=120)
+        try:
+            process.wait(timeout=10)
+        except subprocess.TimeoutExpired:
+            process.kill()
+            process.wait()
         full_output = ''.join(output_lines)
 
         end_time = time.time()
@@ -97,6 +120,8 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
             f.write(f"Mutation: {mutation_id}\n")
             f.write(f"Description: {MUTATION_DESCRIPTIONS.get(mutation_id, 'Unknown')}\n")
             f.write(f"Duration: {format_duration(duration)}\n")
+            if early_stop:
+                f.write(f"Early stop: {early_stop_marker}\n")
             f.write("="*80 + "\n\n")
             f.write(full_output)
 
@@ -106,6 +131,8 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
 
         print(f"\n{'='*80}")
         print(f"✓ Test completed in {format_duration(duration)}")
+        if early_stop:
+            print(f"  Stopped early on: {early_stop_marker}")
         print(f"  Passes: {passes}")
         print(f"  Violations: {violations}")
         print(f"  Log saved: {log_file.name}")
@@ -116,7 +143,8 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
             'duration': duration,
             'passes': passes,
             'violations': violations,
-            'detected': violations > 0,
+            'detected': violations > 0 or early_stop,
+            'early_stop': early_stop_marker,
             'log_file': log_file.name
         }
 

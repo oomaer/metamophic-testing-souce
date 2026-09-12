@@ -1,159 +1,80 @@
-==========================================================================================
- MUTATION TESTING RESULTS — Repeated Recipient MR (RFC 5321)
-==========================================================================================
+SMTP REPEATED RECIPIENT - MUTATION TESTING RESULTS
+================================================================================
 
-OVERVIEW
-------------------------------------------------------------------------------------------
-  Total mutants:   6
-  Killed:          5
-  Survived:        1
-  Mutation score:  5/6 (83.3%)
-  Total time:      29m 19.99s
+Date: 2026-07-05 15:23:58
+Total Duration: 6m 40.30s
+Detection Rate: 5/6 (83.3%)
 
-SUMMARY TABLE
-------------------------------------------------------------------------------------------
-Mutant   Tests   Violations   Killed    Duration     Description
-------------------------------------------------------------------------------------------
-M1       6       5            YES       3m 0.67s     STRICT_DUPLICATE_REJECT - Reject all duplicates with 550
-M10      8       7            YES       3m 55.10s    REJECT_FIRST_DUPLICATE_ONLY - Reject 2nd occurrence, accept 3rd+
-M2       11      6            YES       5m 40.74s    ACCEPT_FIRST_N_DUPLICATES - Accept first 2, reject 3rd+
-M30      8       7            YES       4m 10.00s    PLUS_ADDRESSING_BUG - Treats user+tag1 and user+tag2 as duplicates
-M44      10      0            NO        4m 58.77s    MULTIPLE_RESPONSE_LINES - Send multiple 250 responses (protocol violation)
-M48      16      9            YES       7m 34.71s    REJECT_ALL_AFTER_DUPLICATE - After duplicate, reject all subsequent RCPT
-------------------------------------------------------------------------------------------
+Mutation     Description                                        Detected   P    V   
+--------------------------------------------------------------------------------
+M1           STRICT_DUPLICATE_REJECT - Reject all duplicates... YES        0    0   
+M2           ACCEPT_FIRST_N_DUPLICATES - Accept first 2, rej... NO         22   0   
+M10          REJECT_FIRST_DUPLICATE_ONLY - Reject 2nd occurr... YES        0    0   
+M30          PLUS_ADDRESSING_BUG - Treats user+tag1 and user... YES        3    0   
+M44          MULTIPLE_RESPONSE_LINES - Send multiple 250 res... YES        0    0   
+M48          REJECT_ALL_AFTER_DUPLICATE - After duplicate, r... YES        0    0   
 
-DETAILED RESULTS PER MUTANT
-==========================================================================================
+================================================================================
+DETAILED RESULTS
+================================================================================
 
-Mutant:      M1
+Mutation: M1
 Description: STRICT_DUPLICATE_REJECT - Reject all duplicates with 550
-Killed:      YES
-Test cases:  6
-Violations:  5
-Duration:    3m 0.67s
+Detected: YES
+Passes: 0
+Violations: 0
+Duration: 20.63s
+Log: log_M1.txt
 
-  Violations per test case:
-    solution1: (280 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x280)
-    solution3: (7 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x7)
-    solution4: (279 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x279)
-    solution5: (12 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x12)
-    solution6: (9 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x9)
+--------------------------------------------------------------------------------
 
-------------------------------------------------------------------------------------------
-
-Mutant:      M10
-Description: REJECT_FIRST_DUPLICATE_ONLY - Reject 2nd occurrence, accept 3rd+
-Killed:      YES
-Test cases:  8
-Violations:  7
-Duration:    3m 55.10s
-
-  Violations per test case:
-    solution1: (112 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x112)
-    solution2: (7 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x7)
-    solution3: (279 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x279)
-    solution5: (279 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x279)
-    solution6: (13 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x13)
-    solution7: (5 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x5)
-    solution8: (2 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x2)
-
-------------------------------------------------------------------------------------------
-
-Mutant:      M2
+Mutation: M2
 Description: ACCEPT_FIRST_N_DUPLICATES - Accept first 2, reject 3rd+
-Killed:      YES
-Test cases:  11
-Violations:  6
-Duration:    5m 40.74s
+Detected: NO
+Passes: 22
+Violations: 0
+Duration: 3m 53.71s
+Log: log_M2.txt
 
-  Violations per test case:
-    solution1: (315 violations)
-      - RCPTTOrejected:550 5.5.1 Too many duplicates of this recipient (x315)
-    solution3: (7 violations)
-      - RCPTTOrejected:550 5.5.1 Too many duplicates of this recipient (x7)
-    solution4: (351 violations)
-      - RCPTTOrejected:550 5.5.1 Too many duplicates of this recipient (x351)
-    solution6: (166 violations)
-      - RCPTTOrejected:550 5.5.1 Too many duplicates of this recipient (x166)
-    solution10: (143 violations)
-      - RCPTTOrejected:550 5.5.1 Too many duplicates of this recipient (x143)
-    solution11: (6 violations)
-      - RCPTTOrejected:550 5.5.1 Too many duplicates of this recipient (x6)
+--------------------------------------------------------------------------------
 
-------------------------------------------------------------------------------------------
+Mutation: M10
+Description: REJECT_FIRST_DUPLICATE_ONLY - Reject 2nd occurrence, accept 3rd+
+Detected: YES
+Passes: 0
+Violations: 0
+Duration: 19.53s
+Log: log_M10.txt
 
-Mutant:      M30
+--------------------------------------------------------------------------------
+
+Mutation: M30
 Description: PLUS_ADDRESSING_BUG - Treats user+tag1 and user+tag2 as duplicates
-Killed:      YES
-Test cases:  8
-Violations:  7
-Duration:    4m 10.00s
+Detected: YES
+Passes: 3
+Violations: 0
+Duration: 41.23s
+Log: log_M30.txt
 
-  Violations per test case:
-    solution1: (315 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient (base address matches) (x315)
-    solution2: (7 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient (base address matches) (x7)
-    solution3: (391 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient (base address matches) (x391)
-    solution4: (12 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient (base address matches) (x12)
-    solution5: (6 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient (base address matches) (x6)
-    solution6: (186 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient (base address matches) (x186)
-    solution7: (13 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient (base address matches) (x13)
+--------------------------------------------------------------------------------
 
-------------------------------------------------------------------------------------------
-
-Mutant:      M44
+Mutation: M44
 Description: MULTIPLE_RESPONSE_LINES - Send multiple 250 responses (protocol violation)
-Killed:      NO
-Test cases:  10
-Violations:  0
-Duration:    4m 58.77s
+Detected: YES
+Passes: 0
+Violations: 0
+Duration: 29.65s
+Log: log_M44.txt
 
-------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
-Mutant:      M48
+Mutation: M48
 Description: REJECT_ALL_AFTER_DUPLICATE - After duplicate, reject all subsequent RCPT
-Killed:      YES
-Test cases:  16
-Violations:  9
-Duration:    7m 34.71s
+Detected: YES
+Passes: 0
+Violations: 0
+Duration: 19.37s
+Log: log_M48.txt
 
-  Violations per test case:
-    solution1: (216 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x216)
-    solution3: (6 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x6)
-    solution4: (171 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x171)
-    solution6: (12 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x12)
-    solution7: (166 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x166)
-    solution8: (5 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x5)
-    solution9: (186 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x186)
-    solution11: (2 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x2)
-    solution12: (3 violations)
-      - RCPTTOrejected:550 5.5.1 Duplicate recipient not allowed (x3)
-
-------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 

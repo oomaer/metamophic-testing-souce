@@ -54,12 +54,12 @@ class MutatedHandler:
                 print(f"[ServerB-8027] ✗ M1: Duplicate rejected: {address}")
                 return '550 5.5.1 Duplicate recipient not allowed'
 
-        # M2: ACCEPT_FIRST_N_DUPLICATES (N=2)
+        # M2: ACCEPT_FIRST_N_DUPLICATES (N=10)
         elif self.mutation_id == 'M2':
             # Count how many times this address already exists
             count = envelope.rcpt_tos.count(address)
-            if count >= 2:  # Already have 2 copies, reject 3rd+
-                print(f"[ServerB-8027] ✗ M2: Too many duplicates (>2): {address}")
+            if count >= 10:  # Already have 10 copies, reject 11th+
+                print(f"[ServerB-8027] ✗ M2: Too many duplicates (>10): {address}")
                 return '550 5.5.1 Too many duplicates of this recipient'
 
         # M10: REJECT_FIRST_DUPLICATE_ONLY

@@ -83,7 +83,8 @@ include ("/Users/i7949486/Downloads/docker/metamorphic-testing/mt-smtp/smtp-util
 # - 452 (too many recipients)
 # - 421 (temporary error)
 # - Any other SMTP response code
-<response_rcpt_to_repeated> ::= r"[2-5][0-9]{2} [^\r\n]+\r\n([2-5][0-9]{2} [^\r\n]+\r\n)*"
+# <response_rcpt_to_repeated> ::= r"[2-5][0-9]{2} [^\r\n]+\r\n([2-5][0-9]{2} [^\r\n]+\r\n)*"
+<response_rcpt_to_repeated> ::=  r"250 [^\r\n]+\r\n"
 
 <request_data> ::= 'DATA\r\n'
 <response_data> ::= r"[2-5][0-9]{2} [^\r\n]+\r\n"
@@ -131,7 +132,7 @@ def validateResponses(responseA, responseB):
     a_success = codeA == '250'
     b_success = codeB == '250'
     
-    if a_success and b_success:
+    if a_success and b_success and codeA == codeB:
         print(f"[PASS] Both succeeded with 250")
     elif a_success and not b_success:
         print(f"[VIOLATION] Single recipient succeeded but repeated recipient failed: {responseB.strip()}")
