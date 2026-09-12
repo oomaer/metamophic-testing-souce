@@ -182,23 +182,6 @@ class SimpleMailbox:
         print(f"DEBUG: Added message UID={uid}, FROM={msg.getHeader('FROM')}")
         return defer.succeed(None)
 
-    def search(self, query, uid=False):
-        """
-        Search messages matching the query.
-
-        Supports: ALL, FROM <string>, SUBJECT <string>, SEEN, UNSEEN, etc.
-        Returns list of sequence numbers (or UIDs if uid=True).
-        """
-        results = []
-
-        for seq_num, msg in enumerate(self.messages, 1):
-            if self._matches_query(msg, query):
-                if uid:
-                    results.append(msg.uid)
-                else:
-                    results.append(seq_num)
-
-        return results
 
     def _matches_query(self, msg: SimpleMessage, query) -> bool:
         """Check if a message matches the search query."""

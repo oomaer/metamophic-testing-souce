@@ -18,7 +18,9 @@ include("grammar-utils.fan")
 
 # === Main Grammar with K-Path Branching ===
 
-<start> ::= <Server:greeting> <login_sequence> <select_inbox> <source_search> <append_sequence> <followup_search>
+<start> ::= <Server:greeting> <login_sequence> <Interaction1> <Interaction2>
+<Interaction1> ::= <select_inbox> <source_search> 
+<Interaction2> ::= <append_sequence> <followup_search>
 
 
 # === Server Greeting ===
@@ -46,38 +48,26 @@ include("grammar-utils.fan")
 <search_response_source> ::= r"\* SEARCH[^\r]*\r\nA003 OK.*\r\n"
 
 
-# === K-Path: Append Sequence Alternatives ===
 <append_sequence> ::= <append_1x> | <append_2x> | <append_3x>
+<append_1x> ::= <append_variant_test>
+<append_2x> ::= <append_variant_test><append_variant_test>
+<append_3x> ::= <append_variant_test><append_variant_test><append_variant_test>
 
-<append_1x> ::= <single_append>
-<append_2x> ::= <single_append><single_append>
-<append_3x> ::= <single_append><single_append><single_append>
 
 
-# === K-Path: Message Variants ===
-<single_append> ::= <append_variant_a> | <append_variant_b> | <append_variant_c>
+<append_variant_test> ::= <StdOut:message_wrapper><Client:append_cmd><Server:append_continue><Client:append_literal><Server:append_response>
+<append_cmd> ::=  "A004 APPEND INBOX () {" <size> "}\r\n"
+<message_wrapper> ::= <message>
+<message> ::= b"From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test "<random_number>"\r\n\r\nBody "<random_number>".\r\n"
+<size> ::= r"\d+"
+<append_literal> ::= <message> "\r\n"
+<random_number> ::= <digit>
+<digit> ::= '1' | '2' | '3' 
+where int(<size>) == len(str(<message>))
 
-<append_variant_a> ::= <Client:append_cmd_a> <Server:append_continue> <Client:append_literal_a> <Server:append_response>
-<append_variant_b> ::= <Client:append_cmd_b> <Server:append_continue> <Client:append_literal_b> <Server:append_response>
-<append_variant_c> ::= <Client:append_cmd_c> <Server:append_continue> <Client:append_literal_c> <Server:append_response>
-
-<append_cmd_a> ::= "A004 APPEND INBOX () {" <size_a> "}\r\n"
-<append_cmd_b> ::= "A004 APPEND INBOX () {" <size_b> "}\r\n"
-<append_cmd_c> ::= "A004 APPEND INBOX () {" <size_c> "}\r\n"
-
-<size_a> ::= r"[0-9]+" := get_size_a()
-<size_b> ::= r"[0-9]+" := get_size_b()
-<size_c> ::= r"[0-9]+" := get_size_c()
 
 <append_continue> ::= r"\+ .*\r\n"
 
-<append_literal_a> ::= <msg_content_a> "\r\n"
-<append_literal_b> ::= <msg_content_b> "\r\n"
-<append_literal_c> ::= <msg_content_c> "\r\n"
-
-<msg_content_a> ::= r"[\s\S]*" := get_msg_a()
-<msg_content_b> ::= r"[\s\S]*" := get_msg_b()
-<msg_content_c> ::= r"[\s\S]*" := get_msg_c()
 
 <append_response> ::= r"(\* [0-9]+ EXISTS\r\n)?A004 OK.*\r\n"
 

@@ -12,7 +12,7 @@ import io
 import logging
 import re
 
-from fandango.evolution.algorithm import Fandango, LoggerLevel
+from fandango.evolution.algorithm import SimpleGeneticAlgorithm, LoggerLevel
 from fandango.language.grammar import FuzzingMode
 from fandango.language.parse.parse import parse
 
@@ -110,11 +110,11 @@ def run_fandango(grammar_path, log_file_path):
     fandango_logger.addHandler(tee_handler)
 
     # Create Fandango instance
-    fandango = Fandango(
+    fandango = SimpleGeneticAlgorithm(
         grammar=grammar,
         constraints=constraints,
         logger_level=LoggerLevel.INFO,
-        diversity_k=5,  # Back to 5 for the simple version
+        diversity_k=10,
     )
 
     solutions = []

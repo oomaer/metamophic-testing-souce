@@ -28,6 +28,7 @@ def format_duration(seconds):
 
 
 def main():
+    number_of_runs = int(sys.argv[1]) if len(sys.argv) > 1 else 1
     script_dir = Path(__file__).parent
     server_path = script_dir / "imap_server.py"
 
@@ -72,12 +73,11 @@ def main():
         # Run the test script
         print("Running Fandango metamorphic tests...")
         print()
-        result = subprocess.run(
-            [sys.executable, str(script_dir / 'script.py'), 'test_output.log'],
-            cwd=str(script_dir),
-            timeout=300
-        )
-
+        for n in range(number_of_runs):
+            result = subprocess.run(
+                [sys.executable, str(script_dir / 'script.py'), f'runs/test_output_{n+1}.log'],
+                cwd=str(script_dir)
+            )
         end_time = time.time()
         duration = end_time - start_time
 
@@ -101,7 +101,7 @@ def main():
             imap_server.kill()
         print("✓ Server stopped")
         print()
-        print("View test results: cat test_output.log")
+        print("View test results: cat runs/test_output.log")
         print("Done")
 
 
