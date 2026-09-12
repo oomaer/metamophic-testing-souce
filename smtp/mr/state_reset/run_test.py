@@ -29,7 +29,7 @@ def format_duration(seconds):
 
 def main():
     script_dir = Path(__file__).parent
-    mutation_server_path = Path("/Users/i7949486/Desktop/uds/thesis/mutation/aiosmtpd/run-test-server.py")
+    mutation_server_path = Path("/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/smtpserver.py")
 
     print("=" * 80)
     print(" SMTP State Reset MR - Test Runner")
@@ -62,15 +62,17 @@ def main():
 
     start_time = time.time()
 
+    number_of_runs = int(sys.argv[1]) if len(sys.argv) > 1 else 1
     try:
         # Run the test script in a subprocess
         print("Running Fandango metamorphic tests...")
         print()
-        result = subprocess.run(
-            [sys.executable, str(script_dir / 'script.py')],
-            cwd=str(script_dir),
-            timeout=300
-        )
+        for run in range(number_of_runs):
+            print(f"Run {run + 1}/{number_of_runs}")
+            result = subprocess.run(
+                [sys.executable, str(script_dir / 'script.py'), f'runs/test_output_{run + 1}.log'],
+                cwd=str(script_dir),
+            )
 
         end_time = time.time()
         duration = end_time - start_time

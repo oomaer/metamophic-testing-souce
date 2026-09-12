@@ -36,28 +36,37 @@ include ("/Users/i7949486/Downloads/docker/metamorphic-testing/mt-smtp/smtp-util
 <exchange_login_valid_B> ::= <ClientB:request_auth><ServerB:response_auth_expect_user><ClientB:request_auth_user><ServerB:response_auth_expect_pass><ClientB:request_auth_pass><ServerB:response_auth_success><state_logged_in_B>
 
 # Reset can happen at different points in the transaction
-<reset_path_B> ::= <reset_after_mail_from_B> | <reset_after_rcpt_to_B> | <reset_after_invalid_mail_from_B> | <reset_after_invalid_rcpt_to_B>
+<reset_path_B> ::= <reset_after_mail_from_B> | <reset_after_rcpt_to_B> | <reset_with_mult_rcpt_to_B> | <reset_after_invalid_mail_from_B> | <reset_after_invalid_rcpt_to_B> | <double_reset_after_mail_from_B>
 
 # Path 1: Reset immediately after MAIL FROM
-<reset_after_mail_from_B> ::= <ClientB:request_mail_from><ServerB:response_mail_from><exchange_reset_B>
+<reset_after_mail_from_B> ::= <exchange_mail_from><exchange_reset_B>
+
+<double_reset_after_mail_from_B> ::= <exchange_mail_from><exchange_reset_B><exchange_mail_from><exchange_reset_B>
 
 # Path 2: Reset after RCPT TO
-<reset_after_rcpt_to_B> ::= <ClientB:request_mail_from><ServerB:response_mail_from><ClientB:request_rcpt_to><ServerB:response_rcpt_to><exchange_reset_B>
+<reset_after_rcpt_to_B> ::= <exchange_mail_from><exchange_rcpt_to><exchange_reset_B>
+
+#path 2b: Reset after multiple RCPT TO commands
+<reset_with_mult_rcpt_to_B> ::= <exchange_mail_from><exchange_rcpt_to><exchange_rcpt_to><exchange_reset_B> \
+                        | <exchange_mail_from><exchange_rcpt_to><exchange_rcpt_to><exchange_rcpt_to><exchange_reset_B> \ 
+                        | <exchange_mail_from><exchange_rcpt_to><exchange_rcpt_to>+<exchange_reset_B>
 
 # Path 3: Reset after invalid MAIL FROM (error recovery)
 <reset_after_invalid_mail_from_B> ::= <ClientB:request_invalid_mail_from><ServerB:response_invalid_mail_from><exchange_reset_B>
 
 # Path 4: Reset after invalid RCPT TO (error recovery)
-<reset_after_invalid_rcpt_to_B> ::= <ClientB:request_mail_from><ServerB:response_mail_from><ClientB:request_invalid_rcpt_to><ServerB:response_invalid_rcpt_to><exchange_reset_B>
+<reset_after_invalid_rcpt_to_B> ::= <exchange_mail_from><ClientB:request_invalid_rcpt_to><ServerB:response_invalid_rcpt_to><exchange_reset_B>
 
 # Note: Cannot RSET after DATA's 354 response - server is in "data receiving mode" expecting email content
 
+<exchange_mail_from> ::= <ClientB:request_mail_from><ServerB:response_mail_from_B>
+<exchange_rcpt_to> ::= <ClientB:request_rcpt_to><ServerB:response_rcpt_to_B>
 # RSET command to clear buffers and reset state
 <exchange_reset_B> ::= <ClientB:request_rset><ServerB:response_rset>
 
 # Complete mail transaction after reset (should work identically to A)
 # Use permissive response patterns to catch mutations that return errors
-<exchange_send_email_B> ::= <ClientB:request_mail_from><ServerB:response_mail_from_B><ClientB:request_rcpt_to><ServerB:response_rcpt_to_B><ClientB:request_data><ServerB:response_data_B><ClientB:email_content><ServerB:response_emailB_sent>
+<exchange_send_email_B> ::= <exchange_mail_from><exchange_rcpt_to><ClientB:request_data><ServerB:response_data_B><ClientB:email_content><ServerB:response_emailB_sent>
 
 <exchange_quit_B> ::= <ClientB:request_quit><ServerB:response_quit>
 

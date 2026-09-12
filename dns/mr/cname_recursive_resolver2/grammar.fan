@@ -4,49 +4,48 @@ include("grammar-utils.fan")
 from struct import pack
 
 
-<start> ::= <ClientA:query_direct><request_forwarding><AuthoritativeServer:auth_response><MimClient:receive_response> 
 
-<request_forwarding> ::= <MimServer:upstream_query> <MimClient:forward_query>
-# DNS message patterns
-<upstream_query> ::= <dns_message>
-<forward_query> ::= <dns_message>
-<auth_response> ::= <dns_message>
-<receive_response> ::= <dns_message>
-<forward_response> ::= <dns_message>
-<final_response> ::= <dns_message>
-<dns_message> ::= r"[\x00-\xff]+"
+<start> ::= <ClientA:query_recursive_server> <request_forwarding><response_forwarding><ServerA:recusrive_server_response>
+<request_forwarding> ::= <ServerA:MimServer:intercept_upstream_request><MimClient:ServerB:forward_upstream_request>
+<response_forwarding> ::= <ServerB:MimClient:response_chased><MimServer:ServerA:forward_response_chased>
 
 
+<query_recursive_server> ::= <header><dns_question>
 
-<query_direct> ::= <header_req_direct> <question_direct>
+# Grammar-side view of every message on the wire — opaque bytes constrained by
+# what real dnslib actually sends. Responses and forwarded slots share this.
+<intercept_upstream_request>   ::= <dns_message>
+<forward_response_chased>   ::= <dns_message>
+<response_chased>  ::= <dns_message>
+<recusrive_server_response>  ::= <dns_message>
+<forward_upstream_request>    ::= <dns_message>
+<dns_message>      ::= rb"[\x00-\xff]+"
 
-# Header
-<header_req_direct> ::= <h_id_direct> 0 <h_opcode_standard> 0 0 1 0 0 0 0 <h_rcode_noerror> <qd_count> 0{16} 0{16} 0{16}
-
-<h_id_direct> ::= <byte><byte>
-<h_opcode_standard> ::= 0 0 0 0
-<h_rcode_noerror> ::= 0 0 0 0
+# DNS header (12 bytes): random ID, standard query, one question, no answers.
+<header> ::= <byte>{2} 0 0{4} 0 0 1 0 0 0 0 0{4} <qd_count> 0{16} 0{16} 0{16}
 <qd_count> ::= <byte>{2} := pack(">H", 1)
 
-# Question
-<question_direct> ::= <q_name_direct> <q_type_direct> <rr_class>
+# Question section — differs only in which name-generator supplies the qname.
+<dns_question>  ::= <qname><qtype_a> <rr_class_in>
 
-<q_name_direct> ::= <q_name_written_direct> 0{8}
-<q_name_written_direct> ::= (<label_len_octet> <byte>{byte_to_int(b'\x00' + bytes(<label_len_octet>))})+ := gen_cname_domain()
+<qname> ::= <qname_1> | <qname_2> | <qname_3> | <qname_4> | <qname_5>
+<qname_1> ::= <byte>+ := encode_qname('test.local')
+<qname_2> ::= <byte>+ := encode_qname('example.local')
+<qname_3> ::= <byte>+ := encode_qname('example2.local')
+<qname_4> ::= <byte>+ := encode_qname('example3.local')
+<qname_5> ::= <byte>+ := encode_qname('example4.local')
 
-# Query types
-<q_type_direct> ::= <q_type_a>
-<q_type_a> ::= 0{15} 1                    # A = 1
-<q_type_aaaa> ::= 0{11} 1 1 1 0 0         # AAAA = 28
-<q_type_txt> ::= 0{11} 1 0 0 0 0          # TXT = 16
-<rr_class> ::= 0{15} 1  # IN class
+# QTYPE = A (1), QCLASS = IN (1). Only these are exercised in this MR.
+<qtype_a>      ::= 0{15} 1
+<rr_class_in>  ::= 0{15} 1
 
-
-# === Basic Types ===
-
-<bit> ::= 0 | 1
-<byte> ::= <bit>{8}
-<label_len_octet> ::= <byte>
+# Basic types
+<bit>              ::= 0 | 1
+<byte>             ::= <bit>{8}
 
 
-where all(bytes(<i>.<upstream_query>) == bytes(<i>.<forward_query>) for <i> in *<request_forwarding>)
+where all(bytes(<i>.<forward_upstream_request>) == bytes(<i>.<intercept_upstream_request>) for <i> in *<request_forwarding>)
+where all(bytes(<i>.<forward_response_chased>) == bytes(<i>.<response_chased>) for <i> in *<response_forwarding>)
+
+where validateResponses(<response_chased>, <recusrive_server_response>)
+where validateUpstreamRequestEqual(<query_recursive_server>, <intercept_upstream_request>)

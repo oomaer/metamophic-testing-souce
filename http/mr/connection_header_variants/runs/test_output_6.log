@@ -1,0 +1,162 @@
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/http/mr/connection_header_variants/grammar.fan
+================================================================================
+Metamorphic Test: Connection Header Variants (RFC 7230)
+A: HTTP request with 'Connection: keep-alive'
+B: HTTP request with 'Connection: close'
+Relation: Response body and status code must be identical
+================================================================================
+fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
+fandango:INFO: Current coverage: 0.15%
+fandango:INFO: ClientA: <req_data_html_ka> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Mozilla/5.0\r\nAccept: text/html\r\nConnection: keep-alive\r\n\r\n'
+fandango:INFO: Current coverage: 8.07%
+fandango:INFO: ServerA: <resp_A_dh> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:20 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n21\r\n{"data":"test data","status":200}\r\n0\r\n\r\n'
+fandango:INFO: Current coverage: 10.31%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 11.66%
+fandango:INFO: ClientB: <req_data_html_cl> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Mozilla/5.0\r\nAccept: text/html\r\nConnection: close\r\n\r\n'
+fandango:INFO: Current coverage: 17.49%
+fandango:INFO: ServerB: <resp_B_dh> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:21 GMT\r\nConnection: close\r\nTransfer-Encoding: chunked\r\n\r\n21\r\n{"data":"test data","status":200}\r\n0\r\n\r\n'
+[PASS] Connection header invariance holds: status=200
+fandango:INFO: Current coverage: 19.28%
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 19.28%
+fandango:INFO: ClientA: <req_data_html_ka> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Mozilla/5.0\r\nAccept: text/html\r\nConnection: keep-alive\r\n\r\n'
+fandango:INFO: Current coverage: 19.28%
+fandango:INFO: ServerA: <resp_A_dh> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:22 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n21\r\n{"data":"test data","status":200}\r\n0\r\n\r\n'
+fandango:INFO: Current coverage: 19.28%
+Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 19.28%
+fandango:INFO: ClientB: <req_data_html_cl> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Mozilla/5.0\r\nAccept: text/html\r\nConnection: close\r\n\r\n'
+fandango:INFO: Current coverage: 19.28%
+fandango:INFO: ServerB: <resp_B_dh> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:23 GMT\r\nConnection: close\r\nTransfer-Encoding: chunked\r\n\r\n21\r\n{"data":"test data","status":200}\r\n0\r\n\r\n'
+[PASS] Connection header invariance holds: status=200
+fandango:INFO: Current coverage: 19.28%
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 19.28%
+fandango:INFO: ClientA: <req_data_html_ka> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Mozilla/5.0\r\nAccept: text/html\r\nConnection: keep-alive\r\n\r\n'
+fandango:INFO: Current coverage: 19.28%
+fandango:INFO: ServerA: <resp_A_dh> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:24 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n21\r\n{"data":"test data","status":200}\r\n0\r\n\r\n'
+fandango:INFO: Current coverage: 19.28%
+Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 19.28%
+fandango:INFO: ClientB: <req_data_html_cl> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Mozilla/5.0\r\nAccept: text/html\r\nConnection: close\r\n\r\n'
+fandango:INFO: Current coverage: 19.28%
+fandango:INFO: ServerB: <resp_B_dh> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:26 GMT\r\nConnection: close\r\nTransfer-Encoding: chunked\r\n\r\n21\r\n{"data":"test data","status":200}\r\n0\r\n\r\n'
+[PASS] Connection header invariance holds: status=200
+fandango:INFO: Current coverage: 19.28%
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 19.28%
+fandango:INFO: ClientA: <req_data_json_ka> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: TestClient/2.0\r\nAccept: application/json\r\nConnection: keep-alive\r\n\r\n'
+fandango:INFO: Current coverage: 26.01%
+fandango:INFO: ServerA: <resp_A_dj> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:27 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n21\r\n{"data":"test data","status":200}\r\n0\r\n\r\n'
+fandango:INFO: Current coverage: 27.80%
+Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 28.70%
+fandango:INFO: ClientB: <req_data_json_cl> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: TestClient/2.0\r\nAccept: application/json\r\nConnection: close\r\n\r\n'
+fandango:INFO: Current coverage: 34.08%
+fandango:INFO: ServerB: <resp_B_dj> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:28 GMT\r\nConnection: close\r\nTransfer-Encoding: chunked\r\n\r\n21\r\n{"data":"test data","status":200}\r\n0\r\n\r\n'
+[PASS] Connection header invariance holds: status=200
+fandango:INFO: Current coverage: 35.87%
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 35.87%
+fandango:INFO: ClientA: <req_data_html_ka> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Mozilla/5.0\r\nAccept: text/html\r\nConnection: keep-alive\r\n\r\n'
+fandango:INFO: Current coverage: 35.87%
+fandango:INFO: ServerA: <resp_A_dh> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:29 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n21\r\n{"data":"test data","status":200}\r\n0\r\n\r\n'
+fandango:INFO: Current coverage: 35.87%
+Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 35.87%
+fandango:INFO: ClientB: <req_data_html_cl> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Mozilla/5.0\r\nAccept: text/html\r\nConnection: close\r\n\r\n'
+fandango:INFO: Current coverage: 35.87%
+fandango:INFO: ServerB: <resp_B_dh> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:30 GMT\r\nConnection: close\r\nTransfer-Encoding: chunked\r\n\r\n21\r\n{"data":"test data","status":200}\r\n0\r\n\r\n'
+[PASS] Connection header invariance holds: status=200
+fandango:INFO: Current coverage: 35.87%
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 35.87%
+fandango:INFO: ClientA: <req_data_html_ka> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Mozilla/5.0\r\nAccept: text/html\r\nConnection: keep-alive\r\n\r\n'
+fandango:INFO: Current coverage: 35.87%
+fandango:INFO: ServerA: <resp_A_dh> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:31 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n21\r\n{"data":"test data","status":200}\r\n0\r\n\r\n'
+fandango:INFO: Current coverage: 35.87%
+Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 35.87%
+fandango:INFO: ClientB: <req_data_html_cl> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Mozilla/5.0\r\nAccept: text/html\r\nConnection: close\r\n\r\n'
+fandango:INFO: Current coverage: 35.87%
+fandango:INFO: ServerB: <resp_B_dh> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:32 GMT\r\nConnection: close\r\nTransfer-Encoding: chunked\r\n\r\n21\r\n{"data":"test data","status":200}\r\n0\r\n\r\n'
+[PASS] Connection header invariance holds: status=200
+fandango:INFO: Current coverage: 35.87%
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 35.87%
+fandango:INFO: ClientA: <req_data_ka> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nAccept: */*\r\nConnection: keep-alive\r\n\r\n'
+fandango:INFO: Current coverage: 42.60%
+fandango:INFO: ServerA: <resp_A_data> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:33 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n21\r\n{"data":"test data","status":200}\r\n0\r\n\r\n'
+fandango:INFO: Current coverage: 44.39%
+Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 45.29%
+fandango:INFO: ClientB: <req_data_cl> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nAccept: */*\r\nConnection: close\r\n\r\n'
+fandango:INFO: Current coverage: 50.67%
+fandango:INFO: ServerB: <resp_B_data> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:34 GMT\r\nConnection: close\r\nTransfer-Encoding: chunked\r\n\r\n21\r\n{"data":"test data","status":200}\r\n0\r\n\r\n'
+[PASS] Connection header invariance holds: status=200
+fandango:INFO: Current coverage: 52.47%
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 52.47%
+fandango:INFO: ClientA: <req_root_ka> 'GET / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nAccept: */*\r\nConnection: keep-alive\r\n\r\n'
+fandango:INFO: Current coverage: 58.74%
+fandango:INFO: ServerA: <resp_A> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:36 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n22\r\n{"message":"Success","status":200}\r\n0\r\n\r\n'
+fandango:INFO: Current coverage: 60.54%
+Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 61.43%
+fandango:INFO: ClientB: <req_root_cl> 'GET / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nAccept: */*\r\nConnection: close\r\n\r\n'
+fandango:INFO: Current coverage: 66.82%
+fandango:INFO: ServerB: <resp_B> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:37 GMT\r\nConnection: close\r\nTransfer-Encoding: chunked\r\n\r\n22\r\n{"message":"Success","status":200}\r\n0\r\n\r\n'
+[PASS] Connection header invariance holds: status=200
+fandango:INFO: Current coverage: 68.61%
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 68.61%
+fandango:INFO: ClientA: <req_root_html_ka> 'GET / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Mozilla/5.0\r\nAccept: text/html\r\nConnection: keep-alive\r\n\r\n'
+fandango:INFO: Current coverage: 74.44%
+fandango:INFO: ServerA: <resp_A_rh> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:38 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n22\r\n{"message":"Success","status":200}\r\n0\r\n\r\n'
+fandango:INFO: Current coverage: 76.23%
+Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 77.13%
+fandango:INFO: ClientB: <req_root_html_cl> 'GET / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Mozilla/5.0\r\nAccept: text/html\r\nConnection: close\r\n\r\n'
+fandango:INFO: Current coverage: 82.51%
+fandango:INFO: ServerB: <resp_B_rh> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:39 GMT\r\nConnection: close\r\nTransfer-Encoding: chunked\r\n\r\n22\r\n{"message":"Success","status":200}\r\n0\r\n\r\n'
+[PASS] Connection header invariance holds: status=200
+fandango:INFO: Current coverage: 84.30%
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 84.30%
+fandango:INFO: ClientA: <req_root_json_ka> 'GET / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: TestClient/2.0\r\nAccept: application/json\r\nConnection: keep-alive\r\n\r\n'
+fandango:INFO: Current coverage: 90.13%
+fandango:INFO: ServerA: <resp_A_rj> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:40 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n22\r\n{"message":"Success","status":200}\r\n0\r\n\r\n'
+fandango:INFO: Current coverage: 91.93%
+Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 92.83%
+fandango:INFO: ClientB: <req_root_json_cl> 'GET / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: TestClient/2.0\r\nAccept: application/json\r\nConnection: close\r\n\r\n'
+fandango:INFO: Current coverage: 98.21%
+fandango:INFO: ServerB: <resp_B_rj> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Mon, 17 Aug 2026 08:52:41 GMT\r\nConnection: close\r\nTransfer-Encoding: chunked\r\n\r\n22\r\n{"message":"Success","status":200}\r\n0\r\n\r\n'
+[PASS] Connection header invariance holds: status=200
+fandango:INFO: Current coverage: 100.00%
+--------------------------------------------------------------------------------
+fandango:INFO: Full coverage reached, stopping evolution.
+================================================================================
+SUMMARY
+================================================================================
+Total test cases generated: 10
+Passed: 10
+Violations: 0
+
+All solutions passed - Connection header invariance holds!
+
+TIMING:
+  Test generation time: 22.16 seconds
+  Total execution time: 22.62 seconds
+  Average time per test: 2.22 seconds
+================================================================================

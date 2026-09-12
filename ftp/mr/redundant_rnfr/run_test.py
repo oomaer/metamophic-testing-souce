@@ -6,7 +6,6 @@ Manages FTP server lifecycle using pyftpdlib with venv.
 """
 
 import subprocess
-import os
 import sys
 import time
 import shutil
@@ -34,27 +33,18 @@ def setup_test_files(data_dir, server_name):
 
 def main():
     script_dir = Path(__file__).parent
-    ftp_root = script_dir.parent.parent  # ftp/ directory
-    pyftpdlib_path = Path("/Users/i7949486/Desktop/uds/thesis/mutation/pyftpdlib")
-    venv_python = pyftpdlib_path / "venv" / "bin" / "python"
-
-    # Create separate data directories for each server
-    data_dir_a = ftp_root / "data" / "server_a"
-    data_dir_b = ftp_root / "data" / "server_b"
+    data_dir_a = script_dir / "data/server_a"
+    data_dir_b = script_dir / "data/server_b"
 
     print("=" * 80)
     print(" FTP Redundant RNFR MR - Test Runner")
     print("=" * 80)
     print()
 
-    # Check if venv exists
-    if not venv_python.exists():
-        print(f"Error: venv python not found at {venv_python}")
-        sys.exit(1)
 
     # Kill any existing FTP servers
     print("Cleaning up any existing FTP servers...")
-    subprocess.run(['pkill', '-f', 'temp_server'], capture_output=True)
+    subprocess.run(['pkill', '-f', 'ftp_server'], capture_output=True)
     time.sleep(1)
 
     # Create/clean data directories
@@ -70,56 +60,21 @@ def main():
     print(f"  Server A data: {data_dir_a}")
     print(f"  Server B data: {data_dir_b}")
 
-    # Create server scripts
-    server_a_script = script_dir / "temp_server_a.py"
-    server_a_script.write_text(f'''#!/usr/bin/env python3
-import sys
-sys.path.insert(0, "{pyftpdlib_path}")
-from pyftpdlib.authorizers import DummyAuthorizer
-from pyftpdlib.handlers import FTPHandler
-from pyftpdlib.servers import FTPServer
-
-authorizer = DummyAuthorizer()
-authorizer.add_user("user", "12345", "{data_dir_a}", perm="elradfmwMT")
-handler = FTPHandler
-handler.authorizer = authorizer
-server = FTPServer(("127.0.0.1", 2121), handler)
-print("Server A started on port 2121")
-server.serve_forever()
-''')
-
-    server_b_script = script_dir / "temp_server_b.py"
-    server_b_script.write_text(f'''#!/usr/bin/env python3
-import sys
-sys.path.insert(0, "{pyftpdlib_path}")
-from pyftpdlib.authorizers import DummyAuthorizer
-from pyftpdlib.handlers import FTPHandler
-from pyftpdlib.servers import FTPServer
-
-authorizer = DummyAuthorizer()
-authorizer.add_user("user", "12345", "{data_dir_b}", perm="elradfmwMT")
-handler = FTPHandler
-handler.authorizer = authorizer
-server = FTPServer(("127.0.0.1", 2122), handler)
-print("Server B started on port 2122")
-server.serve_forever()
-''')
+    ftp_server_script = script_dir.parent / "ftp_server.py"
 
     # Start FTP servers
     print("Starting FTP server A on port 2121...")
     server_a = subprocess.Popen(
-        [str(venv_python), str(server_a_script)],
+        [sys.executable, str(ftp_server_script), "--server", "a", "--data-dir", str(data_dir_a)],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
-        cwd=str(data_dir_a)
     )
 
     print("Starting FTP server B on port 2122...")
     server_b = subprocess.Popen(
-        [str(venv_python), str(server_b_script)],
+        [sys.executable, str(ftp_server_script), "--server", "b", "--data-dir", str(data_dir_b)],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
-        cwd=str(data_dir_b)
     )
 
     time.sleep(2)
@@ -128,15 +83,17 @@ server.serve_forever()
 
     start_time = time.time()
 
+    number_of_runs = int(sys.argv[1]) if len(sys.argv) > 1 else 1
     try:
         # Run the test script in a subprocess
         print("Running Fandango metamorphic tests...")
         print()
-        result = subprocess.run(
-            [sys.executable, str(script_dir / 'script.py')],
-            cwd=str(script_dir),
-            timeout=300
-        )
+        for n in range(number_of_runs):
+            print(f"Run {n + 1}/{number_of_runs}...")
+            result = subprocess.run(
+                [sys.executable, str(script_dir / 'script.py'), f'runs2/test_output_{n+1}.log'],
+                cwd=str(script_dir),
+            )
 
         end_time = time.time()
         duration = end_time - start_time
@@ -162,11 +119,6 @@ server.serve_forever()
         except:
             server_a.kill()
             server_b.kill()
-
-        # Clean up temporary server scripts
-        for f in [server_a_script, server_b_script]:
-            if f.exists():
-                f.unlink()
 
         print("Servers stopped")
         print("Done")

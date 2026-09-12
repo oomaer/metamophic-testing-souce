@@ -15,12 +15,14 @@ from pathlib import Path
 
 PYFTPDLIB_PATH = Path("/Users/i7949486/Desktop/uds/thesis/mutation/pyftpdlib")
 VENV_PYTHON = PYFTPDLIB_PATH / "venv" / "bin" / "python"
-MUTATIONS = ["BASELINE", "M1", "M2", "M5", "M6"]
+MUTATIONS = ["BASELINE", "M1", "M2", "M3", "M4", "M5", "M6"]
 
 MUTATION_DESCRIPTIONS = {
     "BASELINE": "Clean baseline - normal RNFR/RNTO behavior",
     "M1": "FIRST_RNFR_WINS - Only first RNFR is stored; subsequent ignored",
     "M2": "REJECT_REDUNDANT_RNFR - Second RNFR returns 503 error",
+    "M3": "SILENT_STATE_CLEAR - RNTO renames first RNFR's target (state cleared to first, not last)",
+    "M4": "RNFR_OK_WRONG_CODE - RNFR returns 250 instead of 350",
     "M5": "RENAME_WRONG_TARGET - RNTO renames completely random/wrong directory",
     "M6": "WRONG_RNTO_SUCCESS_CODE - RNTO returns 200 instead of 250",
 }
@@ -66,11 +68,12 @@ class MutatedFTPHandler(FTPHandler):
         self._rnfr_count = 0
         self._first_rnfr_target = None
         self._rnfr_called = False
+        self._m3_first_rnfr = None
 
     def ftp_RNFR(self, path):
         """
         Rename from - marks source file for rename.
-        Mutations M1, M2, M3 modify this behavior.
+        Mutations M1, M2, M3, M4 modify this behavior.
         """
         if self.mutation_id == "M1":
             # M1: FIRST_RNFR_WINS - Only first RNFR is stored
@@ -95,24 +98,37 @@ class MutatedFTPHandler(FTPHandler):
             return super().ftp_RNFR(path)
 
         elif self.mutation_id == "M3":
-            # M3: CLEAR_STATE_ON_RNFR - Each RNFR clears pending state
-            # Only clear if this is NOT the first RNFR
-            if hasattr(self, '_rnfr_count'):
-                self._rnfr_count += 1
+            # M3: SILENT_STATE_CLEAR - remember the FIRST RNFR; on every subsequent
+            # RNFR, respond 350 but overwrite the pending rename source back to the
+            # first target. RNTO then renames the first, not the last -> violates
+            # "last RNFR wins" and MR should catch it via dirB1/dirB2 checks.
+            result = super().ftp_RNFR(path)
+            if self._m3_first_rnfr is None:
+                self._m3_first_rnfr = self.fs.rnfr
+                print(f"[M3] Captured first RNFR target: {self._m3_first_rnfr}")
             else:
-                self._rnfr_count = 1
+                # Silently revert pending source to the first RNFR's target
+                print(f"[M3] Silently reverting pending RNFR source "
+                      f"{self.fs.rnfr!r} -> {self._m3_first_rnfr!r}")
+                self.fs.rnfr = self._m3_first_rnfr
+            return result
 
-            if self._rnfr_count > 1:
-                # Second or later RNFR - clear state to simulate the bug
-                print(f"[M3] Clearing RNFR state on redundant call #{self._rnfr_count}")
-                self.fs.rnfr = None
-                # Respond as if it worked, but don't actually set state
-                self.respond("350 Ready for destination name.")
+        elif self.mutation_id == "M4":
+            # M4: RNFR_OK_WRONG_CODE - respond with 250 instead of 350. The grammar's
+            # <rnfr_ok> is pinned to <resp_350>, so this shows up as a parse mismatch.
+            # We still set fs.rnfr so RNTO can proceed (otherwise RNTO would 503 and
+            # mask the mutation with a different symptom).
+            try:
+                if not self.fs.lexists(self.fs.ftp2fs(path)):
+                    self.respond(f"550 No such file or directory.")
+                    return
+                self.fs.rnfr = path
+                self.respond("250 Ready for destination name.")
+                print(f"[M4] Returned 250 instead of 350 for RNFR: {path}")
+                return path
+            except (OSError, IOError) as err:
+                self.respond(f"550 {err}")
                 return
-            else:
-                # First RNFR - process normally
-                print(f"[M3] Processing first RNFR: {path}")
-                return super().ftp_RNFR(path)
 
         else:
             # BASELINE or other mutations

@@ -1,4 +1,4 @@
-from fandango.evolution.algorithm import Fandango, LoggerLevel
+from fandango.evolution.algorithm import SimpleGeneticAlgorithm, LoggerLevel
 from fandango.language.grammar import FuzzingMode
 from fandango.language.parse.parse import parse
 import os
@@ -45,6 +45,7 @@ class LoggerTeeHandler(logging.Handler):
         msg = self.format(record)
         self.log_file.write(msg + '\n')
         self.log_file.flush()
+        self.console_handler.emit(record)
 
 
 def format_duration(seconds):
@@ -91,10 +92,11 @@ def run_fandango(grammar_path, log_file_path):
     tee_handler.setFormatter(logging.Formatter('%(name)s:%(levelname)s: %(message)s'))
     fandango_logger.addHandler(tee_handler)
 
-    fandango = Fandango(
+    fandango = SimpleGeneticAlgorithm(
         grammar=grammar,
         constraints=constraints,
         logger_level=LoggerLevel.INFO,
+        diversity_k=10
     )
 
     solutions = []
@@ -178,7 +180,11 @@ def run_fandango(grammar_path, log_file_path):
 def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     grammar_path = os.path.join(script_dir, "grammar.fan")
-    log_file_path = os.path.join(script_dir, "test_output.log")
+    if len(sys.argv) > 1:
+        log_file_path = os.path.join(script_dir, sys.argv[1])
+        os.makedirs(os.path.dirname(log_file_path), exist_ok=True)
+    else:
+        log_file_path = os.path.join(script_dir, "test_output.log")
     run_fandango(grammar_path, log_file_path)
 
 

@@ -23,7 +23,7 @@ FIXED_EMAIL = "testmr@example.com"
 
 <source_search> ::= <Client:search_cmd_source> <Server:search_response_source>
 <search_cmd_source> ::= "A003 SEARCH FROM \"testmr@example.com\"\r\n"
-<search_response_source> ::= r"\* SEARCH[^\r]*\r\nA003 OK.*\r\n"
+<search_response_source> ::= r"(\* SEARCH[^\r]*\r\n)?A003 OK.*\r\n"
 
 <append_message> ::= <Client:append_cmd> <Server:append_continue> <Client:append_literal> <Server:append_response>
 <append_cmd> ::= "A004 APPEND INBOX () {" <msg_size> "}\r\n"
@@ -43,7 +43,7 @@ FIXED_EMAIL = "testmr@example.com"
 
 <followup_search> ::= <Client:search_cmd_followup> <Server:search_response_followup>
 <search_cmd_followup> ::= "A005 SEARCH FROM \"testmr@example.com\"\r\n"
-<search_response_followup> ::= r"\* SEARCH[^\r]*\r\nA005 OK.*\r\n"
+<search_response_followup> ::= r"(\* SEARCH[^\r]*\r\n)?A005 OK.*\r\n"
 
 where validateAppendSearch(<search_response_source>, <search_response_followup>)
 

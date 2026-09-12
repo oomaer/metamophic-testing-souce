@@ -79,8 +79,9 @@ class MutatedHandler:
                 print(f"[ServerB-8027] M3: MAIL rejected - not authenticated")
                 return '530 5.7.1 Authentication required'
 
-        # M1 and M7: Check for nested MAIL command (sender not cleared by RSET)
-        if self.mutation_id in ('M1', 'M7'):
+        # M1, M5, and M7: Check for nested MAIL command (sender not cleared by RSET)
+        # M5 relies on the same guard because the 2nd+ RSET no-ops and leaves mail_from_set=True.
+        if self.mutation_id in ('M1', 'M5', 'M7'):
             if state['mail_from_set']:
                 print(f"[ServerB-8027] {self.mutation_id}: MAIL rejected - sender already specified")
                 return '503 5.5.1 Sender already specified'

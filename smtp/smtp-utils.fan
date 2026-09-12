@@ -118,3 +118,4 @@ def validateResponse(responseA: str, responseB: str) -> bool:
     else:
         print(f"✗ Responses differ: {codeA} {extendedCodeA} vs {codeB} {extendedCodeB}")
         return False
+

@@ -1,5 +1,5 @@
 
-include ("/Users/i7949486/Desktop/uds/thesis/metamophic-testing/mt-http/MRs/http-utils.fan")
+include ("./http-utils.fan")
 
 # Range Request Reconstruction Metamorphic Relation (RFC 7233)
 #
@@ -8,7 +8,7 @@ include ("/Users/i7949486/Desktop/uds/thesis/metamophic-testing/mt-http/MRs/http
 # Relation: Concatenated B must exactly equal A's body
 #
 # Content size is 998 bytes
-
+content_size = 998
 <start> ::= <test_case>
 
 # ============================================================================
@@ -22,86 +22,27 @@ include ("/Users/i7949486/Desktop/uds/thesis/metamophic-testing/mt-http/MRs/http
 # Common interaction pattern - A always gets full content
 <InteractionA> ::= <ClientA:req_full><ServerA:response_full>
 
-# ============================================================================
-# Test Cases - 9 different split points for k-path coverage
-# ============================================================================
-<test_case> ::= <test_50> | <test_100> | <test_200> | <test_300> | <test_500> | <test_600> | <test_800> | <test_900> | <test_950>
+<test_case> ::= <InteractionA> <ChangeConnection> <InteractionB>
+<InteractionB> ::=  <ClientB:req_p1><ServerB:resp_p1><ClientB:req_p2><ServerB:resp_p2>
+<req_p1> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-" <req_1_size> "\r\n\r\n"
+<req_p2> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=" <req_2_size> "-\r\n\r\n"
+<req_1_size> ::= <range_bound_digit>
+<req_2_size> ::= r'\d+'
+<range_bound_digit> ::= <digit_without_0> <range_bound_digit2> | <digit_without_0>
+<range_bound_digit2> ::= <digit> <range_bound_digit3> | <digit>
+<range_bound_digit3> ::= <digit>
+<digit> ::= '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' |'8' | '9'
+<digit_without_0> ::= '1' | '2' | '3' | '4' | '5' | '6' | '7' |'8' | '9'
+<resp_p1> ::= <response_partial>
+<resp_p2> ::= <response_partial>
 
-# Split at byte 50 (very early)
-<test_50> ::= <InteractionA> <ChangeConnection> <ClientB:req_p1_50><ServerB:resp_p1_50><ClientB:req_p2_50><ServerB:resp_p2_50>
-<req_p1_50> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-49\r\n\r\n"
-<req_p2_50> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=50-\r\n\r\n"
-<resp_p1_50> ::= <response_partial>
-<resp_p2_50> ::= <response_partial>
-
-# Split at byte 100
-<test_100> ::= <InteractionA> <ChangeConnection> <ClientB:req_p1_100><ServerB:resp_p1_100><ClientB:req_p2_100><ServerB:resp_p2_100>
-<req_p1_100> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-99\r\n\r\n"
-<req_p2_100> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=100-\r\n\r\n"
-<resp_p1_100> ::= <response_partial>
-<resp_p2_100> ::= <response_partial>
-
-# Split at byte 200
-<test_200> ::= <InteractionA> <ChangeConnection> <ClientB:req_p1_200><ServerB:resp_p1_200><ClientB:req_p2_200><ServerB:resp_p2_200>
-<req_p1_200> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-199\r\n\r\n"
-<req_p2_200> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=200-\r\n\r\n"
-<resp_p1_200> ::= <response_partial>
-<resp_p2_200> ::= <response_partial>
-
-# Split at byte 300
-<test_300> ::= <InteractionA> <ChangeConnection> <ClientB:req_p1_300><ServerB:resp_p1_300><ClientB:req_p2_300><ServerB:resp_p2_300>
-<req_p1_300> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-299\r\n\r\n"
-<req_p2_300> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=300-\r\n\r\n"
-<resp_p1_300> ::= <response_partial>
-<resp_p2_300> ::= <response_partial>
-
-# Split at byte 500 (middle)
-<test_500> ::= <InteractionA> <ChangeConnection> <ClientB:req_p1_500><ServerB:resp_p1_500><ClientB:req_p2_500><ServerB:resp_p2_500>
-<req_p1_500> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-499\r\n\r\n"
-<req_p2_500> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=500-\r\n\r\n"
-<resp_p1_500> ::= <response_partial>
-<resp_p2_500> ::= <response_partial>
-
-# Split at byte 600
-<test_600> ::= <InteractionA> <ChangeConnection> <ClientB:req_p1_600><ServerB:resp_p1_600><ClientB:req_p2_600><ServerB:resp_p2_600>
-<req_p1_600> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-599\r\n\r\n"
-<req_p2_600> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=600-\r\n\r\n"
-<resp_p1_600> ::= <response_partial>
-<resp_p2_600> ::= <response_partial>
-
-# Split at byte 800
-<test_800> ::= <InteractionA> <ChangeConnection> <ClientB:req_p1_800><ServerB:resp_p1_800><ClientB:req_p2_800><ServerB:resp_p2_800>
-<req_p1_800> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-799\r\n\r\n"
-<req_p2_800> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=800-\r\n\r\n"
-<resp_p1_800> ::= <response_partial>
-<resp_p2_800> ::= <response_partial>
-
-# Split at byte 900
-<test_900> ::= <InteractionA> <ChangeConnection> <ClientB:req_p1_900><ServerB:resp_p1_900><ClientB:req_p2_900><ServerB:resp_p2_900>
-<req_p1_900> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-899\r\n\r\n"
-<req_p2_900> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=900-\r\n\r\n"
-<resp_p1_900> ::= <response_partial>
-<resp_p2_900> ::= <response_partial>
-
-# Split at byte 950 (very late)
-<test_950> ::= <InteractionA> <ChangeConnection> <ClientB:req_p1_950><ServerB:resp_p1_950><ClientB:req_p2_950><ServerB:resp_p2_950>
-<req_p1_950> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-949\r\n\r\n"
-<req_p2_950> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=950-\r\n\r\n"
-<resp_p1_950> ::= <response_partial>
-<resp_p2_950> ::= <response_partial>
+where int(<req_2_size>) == int(<req_1_size>) + 1
+where int(<req_1_size>) < content_size - 1
 
 # ============================================================================
 # Validation
 # ============================================================================
-where validateRangeReconstruction(<response_full>, <resp_p1_50>, <resp_p2_50>)
-where validateRangeReconstruction(<response_full>, <resp_p1_100>, <resp_p2_100>)
-where validateRangeReconstruction(<response_full>, <resp_p1_200>, <resp_p2_200>)
-where validateRangeReconstruction(<response_full>, <resp_p1_300>, <resp_p2_300>)
-where validateRangeReconstruction(<response_full>, <resp_p1_500>, <resp_p2_500>)
-where validateRangeReconstruction(<response_full>, <resp_p1_600>, <resp_p2_600>)
-where validateRangeReconstruction(<response_full>, <resp_p1_800>, <resp_p2_800>)
-where validateRangeReconstruction(<response_full>, <resp_p1_900>, <resp_p2_900>)
-where validateRangeReconstruction(<response_full>, <resp_p1_950>, <resp_p2_950>)
+where validateRangeReconstruction(<response_full>, <resp_p1>, <resp_p2>)
 
 
 def validateRangeReconstruction(response_full, response_part1, response_part2):

@@ -1,0 +1,4 @@
+logs/
+mutation_results.txt
+mutation_test_output.log
+__pycache__/

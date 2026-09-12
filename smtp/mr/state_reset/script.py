@@ -1,11 +1,12 @@
-from fandango.evolution.algorithm import Fandango, LoggerLevel
-from fandango.language.grammar import FuzzingMode
-from fandango.language.parse.parse import parse
 import os
 import io
 import sys
 import time
 import logging
+
+from fandango.evolution.algorithm import SimpleGeneticAlgorithm, LoggerLevel
+from fandango.language.grammar import FuzzingMode
+from fandango.language.parse.parse import parse
 
 
 class TeeStream:
@@ -91,10 +92,11 @@ def run_fandango(grammar_path, log_file_path):
     tee_handler.setFormatter(logging.Formatter('%(name)s:%(levelname)s: %(message)s'))
     fandango_logger.addHandler(tee_handler)
 
-    fandango = Fandango(
+    fandango = SimpleGeneticAlgorithm(
         grammar=grammar,
         constraints=constraints,
         logger_level=LoggerLevel.INFO,
+        diversity_k=20
     )
 
     solutions = []
@@ -181,7 +183,8 @@ def run_fandango(grammar_path, log_file_path):
 def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     grammar_path = os.path.join(script_dir, "grammar.fan")
-    log_file_path = os.path.join(script_dir, "test_output.log")
+    log_file_name = sys.argv[1] if len(sys.argv) > 1 else "test_output.log"
+    log_file_path = os.path.join(script_dir, log_file_name)
     run_fandango(grammar_path, log_file_path)
 
 

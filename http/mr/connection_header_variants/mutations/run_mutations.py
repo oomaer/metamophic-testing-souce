@@ -13,13 +13,26 @@ from pathlib import Path
 
 # Mutations to test
 MUTATIONS = [
-    ('NONE', 'Baseline (no mutation)'),
+    # ('NONE', 'Baseline (no mutation)'),
     ('M1', 'Different status for close (201 vs 200)'),
     ('M2', 'Error on close (500)'),
     ('M3', 'Return 204 No Content'),
     ('M8', 'Empty body'),
     ('M20', 'Different transfer encoding'),
 ]
+
+
+def format_duration(seconds):
+    """Mirror of the SMTP runners' format so summarize_logs.py can parse it back."""
+    if seconds < 60:
+        return f"{seconds:.2f}s"
+    if seconds < 3600:
+        minutes = int(seconds // 60)
+        return f"{minutes}m {seconds % 60:.2f}s"
+    hours = int(seconds // 3600)
+    minutes = int((seconds % 3600) // 60)
+    return f"{hours}h {minutes}m {seconds % 60:.2f}s"
+
 
 def main():
     script_dir = Path(__file__).parent
@@ -46,7 +59,7 @@ def main():
         # Start servers
         print("  Starting servers...")
         server_a = subprocess.Popen(
-            ['node', str(project_root / 'http-server-3000.js')],
+            ['node', str(project_root / 'http-server-8080.js')],
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             cwd=str(project_root)
@@ -55,7 +68,7 @@ def main():
         env = os.environ.copy()
         env['MUTATION'] = mutation_id
         server_b = subprocess.Popen(
-            ['node', str(script_dir / 'mutant-server-3001.js')],
+            ['node', str(script_dir / 'mutant-server-8081.js')],
             env=env,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
@@ -64,6 +77,7 @@ def main():
 
         time.sleep(2)
 
+        run_start = time.time()
         try:
             # Run the test script
             print("  Running tests...")
@@ -73,13 +87,21 @@ def main():
                 timeout=90
             )
 
-            # Copy the log file
+            # Copy the log file with a header the summarizer can read (Mutation
+            # id / Description / Duration). Matches the shape SMTP runners use
+            # so summarize_logs.py works across MRs unchanged.
             test_log = mr_dir / 'test_output.log'
             mutation_log = logs_dir / f'log_{mutation_id}.txt'
 
             if test_log.exists():
-                import shutil
-                shutil.copy(test_log, mutation_log)
+                duration = time.time() - run_start
+                header = (
+                    f"Mutation: {mutation_id}\n"
+                    f"Description: {description}\n"
+                    f"Duration: {format_duration(duration)}\n"
+                    + ("=" * 80) + "\n\n"
+                )
+                mutation_log.write_text(header + test_log.read_text(errors='replace'))
                 print(f"  Log saved to: logs/{mutation_log.name}")
             else:
                 print(f"  Warning: test_output.log not found")

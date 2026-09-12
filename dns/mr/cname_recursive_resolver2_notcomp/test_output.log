@@ -1,0 +1,43 @@
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/dns/mr/cname_recursive_resolver2/grammar.fan
+================================================================================
+Metamorphic Relation: CNAME Resolution Equivalence (Architecture 1)
+
+Setup:
+  Server A (:5053, --zone target) authoritative for test.local.
+                                  test.local. A 192.168.1.1, 192.168.1.2
+  Server B (:5054, --zone alias)  authoritative for example.local.
+                                  example.local. CNAME test.local.
+
+Test flow:
+  ClientA → ServerA:  A test.local.           (direct baseline)
+  ClientB → ServerB:  A example.local.        (alias query, grammar-generated)
+       (grammar forwarding: ServerB's response bytes → ClientC's forward_query)
+  ClientC → ServerA:  A test.local. (chased)  (built from ServerB's CNAME response)
+  Relation: A-records from ClientC == A-records from ClientA
+================================================================================
+fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
+fandango:INFO: Current coverage: 0.42%
+fandango:INFO: ClientA: <query_direct_target> "b'\\xa7_\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x04test\\x05local\\x00\\x00\\x01\\x00\\x01'"
+fandango:INFO: Current coverage: 41.67%
+fandango:INFO: ServerA: <response_direct> '§_\x85\x80\x00\x01\x00\x02\x00\x00\x00\x00\x04test\x05local\x00\x00\x01\x00\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02'
+fandango:INFO: Current coverage: 45.42%
+fandango:INFO: ClientB: <query_alias> "b'\\x07\\xa1\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x07example\\x05local\\x00\\x00\\x01\\x00\\x01'"
+fandango:INFO: Current coverage: 88.75%
+
+Error during generation: Unexpected party sent message. Expected: MimServer. Received: {'ServerB', 'ClientB'}. Messages: [('ClientB', 'MimServer', b'\x07'), ('ClientB', 'MimServer', b'\xa1'), ('ClientB', 'MimServer', b'\x01'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x01'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x07'), ('ClientB', 'MimServer', b'e'), ('ClientB', 'MimServer', b'x'), ('ClientB', 'MimServer', b'a'), ('ClientB', 'MimServer', b'm'), ('ClientB', 'MimServer', b'p'), ('ClientB', 'MimServer', b'l'), ('ClientB', 'MimServer', b'e'), ('ClientB', 'MimServer', b'\x05'), ('ClientB', 'MimServer', b'l'), ('ClientB', 'MimServer', b'o'), ('ClientB', 'MimServer', b'c'), ('ClientB', 'MimServer', b'a'), ('ClientB', 'MimServer', b'l'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x01'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x01'), ('ServerB', 'ClientB', b'\x07'), ('ServerB', 'ClientB', b'\xa1'), ('ServerB', 'ClientB', b'\x85'), ('ServerB', 'ClientB', b'\x83'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x01'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x07'), ('ServerB', 'ClientB', b'e'), ('ServerB', 'ClientB', b'x'), ('ServerB', 'ClientB', b'a'), ('ServerB', 'ClientB', b'm'), ('ServerB', 'ClientB', b'p'), ('ServerB', 'ClientB', b'l'), ('ServerB', 'ClientB', b'e'), ('ServerB', 'ClientB', b'\x05'), ('ServerB', 'ClientB', b'l'), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b'c'), ('ServerB', 'ClientB', b'a'), ('ServerB', 'ClientB', b'l'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x01'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x01')]
+
+Error during generation: Unexpected party sent message. Expected: MimServer. Received: {'ServerB', 'ClientB'}. Messages: [('ClientB', 'MimServer', b'\x07'), ('ClientB', 'MimServer', b'\xa1'), ('ClientB', 'MimServer', b'\x01'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x01'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x07'), ('ClientB', 'MimServer', b'e'), ('ClientB', 'MimServer', b'x'), ('ClientB', 'MimServer', b'a'), ('ClientB', 'MimServer', b'm'), ('ClientB', 'MimServer', b'p'), ('ClientB', 'MimServer', b'l'), ('ClientB', 'MimServer', b'e'), ('ClientB', 'MimServer', b'\x05'), ('ClientB', 'MimServer', b'l'), ('ClientB', 'MimServer', b'o'), ('ClientB', 'MimServer', b'c'), ('ClientB', 'MimServer', b'a'), ('ClientB', 'MimServer', b'l'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x01'), ('ClientB', 'MimServer', b'\x00'), ('ClientB', 'MimServer', b'\x01'), ('ServerB', 'ClientB', b'\x07'), ('ServerB', 'ClientB', b'\xa1'), ('ServerB', 'ClientB', b'\x85'), ('ServerB', 'ClientB', b'\x83'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x01'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x07'), ('ServerB', 'ClientB', b'e'), ('ServerB', 'ClientB', b'x'), ('ServerB', 'ClientB', b'a'), ('ServerB', 'ClientB', b'm'), ('ServerB', 'ClientB', b'p'), ('ServerB', 'ClientB', b'l'), ('ServerB', 'ClientB', b'e'), ('ServerB', 'ClientB', b'\x05'), ('ServerB', 'ClientB', b'l'), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b'c'), ('ServerB', 'ClientB', b'a'), ('ServerB', 'ClientB', b'l'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x01'), ('ServerB', 'ClientB', b'\x00'), ('ServerB', 'ClientB', b'\x01')]
+
+================================================================================
+SUMMARY
+================================================================================
+Total test cases generated: 0
+Passed: 0
+Violations: 0
+
+All solutions passed! Recursive resolution is working correctly.
+
+TIMING:
+  Test generation time: 11.28 seconds
+  Total execution time: 12.51 seconds
+================================================================================

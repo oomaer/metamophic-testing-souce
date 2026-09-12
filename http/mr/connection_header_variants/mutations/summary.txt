@@ -1,0 +1,24 @@
+CONNECTION HEADER VARIANTS (RFC 7230) - MUTATION LOG SUMMARY
+================================================================================
+
+Logs scanned: 5  (source: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/http/mr/connection_header_variants/mutations/logs)
+Total time (sum of per-log Duration headers): 2m 20.72s
+
+Legend:
+  Cases     = total 'TEST CASE #N' markers seen in the log
+  FirstFail = first test case that produced a failure (VIOLATION or PARSE_ERROR)
+  Pass/Viol = raw [PASS] / [VIOLATION] line counts
+  ParseErr  = FandangoFailedError / FandangoValueError occurrences
+  Killed    = run ended in a Python traceback with no SUMMARY block written
+  Detection = VIOLATION (constraint), PARSE_ERROR (grammar mismatch), BOTH, or NONE
+  Duration* = one or more logs had no parseable duration header
+
+Mutation  Name                                     Cases  FirstFail       Pass  Viol  ParseErr  Killed  Detection  Duration 
+----------------------------------------------------------------------------------------------------------------------------
+M1        Different status for close (201 vs 200)  1      #1 (VIOLATION)  0     24    0         no      VIOLATION  29.01s   
+M2        Error on close (500)                     1      #1 (VIOLATION)  0     26    0         no      VIOLATION  29.42s   
+M3        Return 204 No Content                    1      #1 (VIOLATION)  0     20    0         no      VIOLATION  22.85s   
+M8        Empty body                               1      #1 (VIOLATION)  0     22    0         no      VIOLATION  25.13s   
+M20       Different transfer encoding              1      -               15    0     0         no      NONE       34.31s   
+----------------------------------------------------------------------------------------------------------------------------
+TOTAL     5 mutations                              5      -               15    92    0         0/5     -          2m 20.72s

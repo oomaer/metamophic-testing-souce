@@ -7,12 +7,14 @@ import time
 from pathlib import Path
 
 
-MUTATIONS = ["BASELINE", "M1", "M2", "M5", "M6"]
+MUTATIONS = ["BASELINE", "M1", "M2", "M3", "M4", "M5", "M6"]
 
 MUTATION_DESCRIPTIONS = {
     "BASELINE": "Clean baseline - normal RNFR/RNTO behavior",
     "M1": "FIRST_RNFR_WINS - Only first RNFR is stored; subsequent ignored",
     "M2": "REJECT_REDUNDANT_RNFR - Second RNFR returns 503 error",
+    "M3": "SILENT_STATE_CLEAR - RNTO renames first RNFR's target (state cleared to first, not last)",
+    "M4": "RNFR_OK_WRONG_CODE - RNFR returns 250 instead of 350",
     "M5": "RENAME_WRONG_TARGET - RNTO renames completely random/wrong directory",
     "M6": "WRONG_RNTO_SUCCESS_CODE - RNTO returns 200 instead of 250",
 }

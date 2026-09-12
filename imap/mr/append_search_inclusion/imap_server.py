@@ -10,7 +10,6 @@ Based on Twisted IMAP4 server.
 """
 
 import argparse
-import re
 import time
 from io import BytesIO
 from typing import Optional
@@ -89,7 +88,12 @@ class SimpleMessage:
             return self._headers
         if negate:
             return {k: v for k, v in self._headers.items() if k not in [n.upper() for n in names]}
-        return {k: self._headers.get(k.upper(), '') for k in names}
+        headers = {}
+        for name in names:
+            lookup_name = name.decode('utf-8') if isinstance(name, bytes) else name
+            value = self._headers.get(lookup_name.upper(), '')
+            headers[name] = value.encode('utf-8')
+        return headers
 
     def getBodyFile(self):
         return BytesIO(self.body)
@@ -145,7 +149,14 @@ class SimpleMailbox:
         return self.uidnext
 
     def fetch(self, messages, uid):
-        """Fetch messages - returns iterator of (seq, message) tuples."""
+        """Fetch messages as (seq, message) tuples."""
+        if hasattr(messages, 'last'):
+            last = max((msg.uid for msg in self.messages), default=0) if uid else len(self.messages)
+            try:
+                messages.last = last
+            except ValueError:
+                pass
+
         result = []
         for seq_num, msg in enumerate(self.messages, 1):
             if uid:
@@ -154,7 +165,7 @@ class SimpleMailbox:
             else:
                 if seq_num in messages:
                     result.append((seq_num, msg))
-        return iter(result)
+        return result
 
     def addMessage(self, message, flags=(), date=None):
         """Add a message to the mailbox."""
@@ -182,61 +193,6 @@ class SimpleMailbox:
         print(f"DEBUG: Added message UID={uid}, FROM={msg.getHeader('FROM')}")
         return defer.succeed(None)
 
-
-    def _matches_query(self, msg: SimpleMessage, query) -> bool:
-        """Check if a message matches the search query."""
-        if isinstance(query, bytes):
-            query = query.decode('utf-8')
-
-        if isinstance(query, str):
-            query = query.strip().upper()
-
-            if query == 'ALL':
-                return True
-            elif query == 'SEEN':
-                return '\\Seen' in msg.flags
-            elif query == 'UNSEEN':
-                return '\\Seen' not in msg.flags
-            elif query == 'FLAGGED':
-                return '\\Flagged' in msg.flags
-            elif query == 'UNFLAGGED':
-                return '\\Flagged' not in msg.flags
-            elif query == 'DELETED':
-                return '\\Deleted' in msg.flags
-            elif query == 'UNDELETED':
-                return '\\Deleted' not in msg.flags
-
-        # Handle tuple/list queries like ('FROM', 'address')
-        if isinstance(query, (list, tuple)):
-            if len(query) >= 2:
-                criterion = query[0]
-                if isinstance(criterion, bytes):
-                    criterion = criterion.decode('utf-8')
-                criterion = criterion.upper()
-
-                value = query[1]
-                if isinstance(value, bytes):
-                    value = value.decode('utf-8')
-
-                if criterion == 'FROM':
-                    from_header = msg.getHeader('FROM') or ''
-                    # Case-insensitive substring match
-                    return value.lower() in from_header.lower()
-                elif criterion == 'SUBJECT':
-                    subject = msg.getHeader('SUBJECT') or ''
-                    return value.lower() in subject.lower()
-                elif criterion == 'TO':
-                    to_header = msg.getHeader('TO') or ''
-                    return value.lower() in to_header.lower()
-                elif criterion == 'BODY':
-                    body = msg.body.decode('utf-8', errors='replace')
-                    return value.lower() in body.lower()
-                elif criterion == 'TEXT':
-                    # Search both headers and body
-                    text = msg.body.decode('utf-8', errors='replace')
-                    return value.lower() in text.lower()
-
-        return False
 
     def store(self, messages, flags, mode, uid):
         """Store flags for messages."""
@@ -318,7 +274,7 @@ class IMAPRealm:
 
 
 class CustomIMAP4Server(imap4.IMAP4Server):
-    """Custom IMAP4 Server with SEARCH support."""
+    """IMAP4 server with debug logging."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -331,95 +287,6 @@ class CustomIMAP4Server(imap4.IMAP4Server):
     def sendLine(self, line):
         print(f"<<< {line.decode('utf-8', errors='replace') if isinstance(line, bytes) else line}")
         super().sendLine(line)
-
-    def do_SEARCH(self, tag, query, uid=False):
-        """Handle SEARCH command."""
-        if self.mbox is None:
-            self.sendNegativeResponse(tag, b'No mailbox selected')
-            return
-
-        # Parse the query
-        query_parts = self._parse_search_query(query)
-        print(f"DEBUG: SEARCH query={query}, parsed={query_parts}")
-
-        # Perform search
-        if hasattr(self.mbox, 'search'):
-            results = self.mbox.search(query_parts, uid=uid)
-        else:
-            results = []
-
-        # Send results
-        if results:
-            result_str = ' '.join(str(r) for r in results)
-            self.sendUntaggedResponse(f'SEARCH {result_str}'.encode('utf-8'))
-        else:
-            self.sendUntaggedResponse(b'SEARCH')
-
-        self.sendPositiveResponse(tag, b'SEARCH completed')
-
-    def _parse_search_query(self, query):
-        """Parse SEARCH query string into structured format."""
-        # Twisted's arg_searchkeys returns a list of tokens
-        if isinstance(query, list):
-            # Join list back to string for parsing, or handle directly
-            if len(query) >= 2:
-                criterion = query[0]
-                if isinstance(criterion, bytes):
-                    criterion = criterion.decode('utf-8')
-                criterion = criterion.upper()
-
-                if criterion == 'FROM':
-                    value = query[1]
-                    if isinstance(value, bytes):
-                        value = value.decode('utf-8')
-                    return ('FROM', value)
-                elif criterion == 'SUBJECT':
-                    value = query[1]
-                    if isinstance(value, bytes):
-                        value = value.decode('utf-8')
-                    return ('SUBJECT', value)
-                elif criterion == 'TO':
-                    value = query[1]
-                    if isinstance(value, bytes):
-                        value = value.decode('utf-8')
-                    return ('TO', value)
-            elif len(query) == 1:
-                item = query[0]
-                if isinstance(item, bytes):
-                    item = item.decode('utf-8')
-                return item.upper()
-
-            # Fallback: join and parse as string
-            query = ' '.join(q.decode('utf-8') if isinstance(q, bytes) else str(q) for q in query)
-
-        if isinstance(query, bytes):
-            query = query.decode('utf-8')
-
-        query = query.strip()
-
-        # Handle FROM "string" pattern
-        from_match = re.match(r'FROM\s+"([^"]+)"', query, re.IGNORECASE)
-        if from_match:
-            return ('FROM', from_match.group(1))
-
-        from_match = re.match(r'FROM\s+(\S+)', query, re.IGNORECASE)
-        if from_match:
-            return ('FROM', from_match.group(1))
-
-        # Handle SUBJECT "string" pattern
-        subj_match = re.match(r'SUBJECT\s+"([^"]+)"', query, re.IGNORECASE)
-        if subj_match:
-            return ('SUBJECT', subj_match.group(1))
-
-        # Handle simple keywords
-        if query.upper() in ['ALL', 'SEEN', 'UNSEEN', 'FLAGGED', 'UNFLAGGED', 'DELETED', 'UNDELETED']:
-            return query.upper()
-
-        return query
-
-    # Make SEARCH available in select state
-    select_SEARCH = (do_SEARCH, imap4.IMAP4Server.arg_searchkeys)
-    auth_SEARCH = (do_SEARCH, imap4.IMAP4Server.arg_searchkeys)
 
 
 class IMAP4ServerFactory(protocol.ServerFactory):

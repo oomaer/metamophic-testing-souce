@@ -1,5 +1,5 @@
 
-include ("/Users/i7949486/Desktop/uds/thesis/metamophic-testing/mt-http/MRs/http-utils.fan")
+include ("./http-utils.fan")
 
 # Connection Header Variants Metamorphic Relation (RFC 7230)
 # Tests that Connection header does not affect response content

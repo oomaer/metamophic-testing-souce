@@ -1,77 +1,78 @@
 Mutation: M4
 Description: RSET_RETURNS_ERROR - RSET returns 500 error
-Duration: 18.25s
+Duration: 19.56s
 ================================================================================
 
 fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
-fandango:INFO: Generating (additional) initial population (size: 100)...
-fandango:WARNING: Could not generate a full population of unique individuals. Population size reduced to 1.
-fandango:INFO: Initial population generated in 0.01 seconds
-fandango:INFO: Current coverage: 0.18%
+fandango:INFO: Current coverage: 0.09%
 fandango:INFO: ServerA: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
-fandango:INFO: Current coverage: 1.81%
+fandango:INFO: Current coverage: 0.92%
 fandango:INFO: ClientA: <request_ehlo> 'EHLO localhost\r\n'
-fandango:INFO: Current coverage: 3.09%
+fandango:INFO: Current coverage: 1.57%
 fandango:INFO: ServerA: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
-fandango:INFO: Current coverage: 4.36%
+fandango:INFO: Current coverage: 2.22%
 fandango:INFO: ClientA: <request_auth> 'AUTH LOGIN\r\n'
-fandango:INFO: Current coverage: 7.44%
+fandango:INFO: Current coverage: 3.88%
 fandango:INFO: ServerA: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
-fandango:INFO: Current coverage: 9.26%
+fandango:INFO: Current coverage: 4.89%
 fandango:INFO: ClientA: <request_auth_user> 'dGhlX3VzZXI=\r\n'
-fandango:INFO: Current coverage: 11.07%
+fandango:INFO: Current coverage: 5.91%
 fandango:INFO: ServerA: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
-fandango:INFO: Current coverage: 12.70%
+fandango:INFO: Current coverage: 6.83%
 fandango:INFO: ClientA: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
-fandango:INFO: Current coverage: 14.52%
+fandango:INFO: Current coverage: 7.85%
 fandango:INFO: ServerA: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
-fandango:INFO: Current coverage: 16.33%
+fandango:INFO: Current coverage: 8.86%
 fandango:INFO: ClientA: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 19.96%
+fandango:INFO: Current coverage: 11.27%
 fandango:INFO: ServerA: <response_mail_from> '250 OK\r\n'
-fandango:INFO: Current coverage: 21.78%
+fandango:INFO: Current coverage: 12.65%
 fandango:INFO: ClientA: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
-fandango:INFO: Current coverage: 23.59%
+fandango:INFO: Current coverage: 14.04%
 fandango:INFO: ServerA: <response_rcpt_to> '250 OK\r\n'
-fandango:INFO: Current coverage: 25.23%
+fandango:INFO: Current coverage: 15.33%
 fandango:INFO: ClientA: <request_data> 'DATA\r\n'
-fandango:INFO: Current coverage: 27.04%
+fandango:INFO: Current coverage: 16.71%
 fandango:INFO: ServerA: <response_data> '354 End data with <CR><LF>.<CR><LF>\r\n'
-fandango:INFO: Current coverage: 28.86%
+fandango:INFO: Current coverage: 18.10%
 fandango:INFO: ClientA: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
-fandango:INFO: Current coverage: 30.67%
+fandango:INFO: Current coverage: 19.48%
 fandango:INFO: ServerA: <response_emailA_sent> '250 OK\r\n'
-fandango:INFO: Current coverage: 32.30%
+fandango:INFO: Current coverage: 20.78%
 fandango:INFO: ClientA: <request_quit> 'QUIT\r\n'
-fandango:INFO: Current coverage: 35.03%
+fandango:INFO: Current coverage: 22.71%
 fandango:INFO: ServerA: <response_quit> '221 Bye\r\n'
-fandango:INFO: Current coverage: 36.84%
+fandango:INFO: Current coverage: 24.10%
 fandango:INFO: StdOut: <ChangeConnection> 'Stopping connection 1 and starting connection 2'
-fandango:INFO: Current coverage: 37.75%
+fandango:INFO: Current coverage: 24.56%
 fandango:INFO: ServerB: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
-fandango:INFO: Current coverage: 38.84%
+fandango:INFO: Current coverage: 25.12%
 fandango:INFO: ClientB: <request_ehlo> 'EHLO localhost\r\n'
-fandango:INFO: Current coverage: 39.56%
+fandango:INFO: Current coverage: 25.48%
 fandango:INFO: ServerB: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
-fandango:INFO: Current coverage: 40.29%
+fandango:INFO: Current coverage: 25.85%
 fandango:INFO: ClientB: <request_auth> 'AUTH LOGIN\r\n'
-fandango:INFO: Current coverage: 42.83%
+fandango:INFO: Current coverage: 27.24%
 fandango:INFO: ServerB: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
-fandango:INFO: Current coverage: 44.10%
+fandango:INFO: Current coverage: 27.98%
 fandango:INFO: ClientB: <request_auth_user> 'dGhlX3VzZXI=\r\n'
-fandango:INFO: Current coverage: 45.37%
+fandango:INFO: Current coverage: 28.72%
 fandango:INFO: ServerB: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
-fandango:INFO: Current coverage: 46.64%
+fandango:INFO: Current coverage: 29.46%
 fandango:INFO: ClientB: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
-fandango:INFO: Current coverage: 47.91%
+fandango:INFO: Current coverage: 30.19%
 fandango:INFO: ServerB: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
-fandango:INFO: Current coverage: 49.18%
+fandango:INFO: Current coverage: 30.93%
 fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 53.18%
-fandango:INFO: ServerB: <response_mail_from> '250 OK\r\n'
-fandango:INFO: Current coverage: 54.45%
+fandango:INFO: Current coverage: 34.81%
+fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
+fandango:INFO: Current coverage: 36.57%
+fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
+fandango:INFO: Current coverage: 38.78%
+fandango:INFO: ServerB: <response_rcpt_to_B> '250 OK\r\n'
+fandango:INFO: Current coverage: 40.44%
 fandango:INFO: ClientB: <request_rset> 'RSET\r\n'
-fandango:INFO: Current coverage: 57.17%
+fandango:INFO: Current coverage: 42.94%
 Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/grammar.fan
 ================================================================================
 Metamorphic Test: SMTP State Reset (RFC 5321)
@@ -79,18 +80,25 @@ A: Complete SMTP transaction on connection A
 B: Same SMTP transaction after RSET on connection B
 Relation: RSET must fully reset server state (same responses)
 ================================================================================
-Stopping connection 1 and starting connection 2Traceback (most recent call last):
-  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 189, in <module>
+Stopping connection 1 and starting connection 2[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+Traceback (most recent call last):
+  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 191, in <module>
     main()
-  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 185, in main
+  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 187, in main
     run_fandango(grammar_path, log_file_path)
-  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 111, in run_fandango
+  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 113, in run_fandango
     for solution in fandango.generate(mode=FuzzingMode.IO):
-  File "/Users/i7949486/Downloads/docker/fandango/src/fandango/evolution/algorithm.py", line 375, in generate
+  File "/Users/i7949486/Desktop/me/s/fandango/src/fandango/evolution/algorithm/simple.py", line 390, in generate
     yield from self._generate_io(max_generations=max_generations)
-  File "/Users/i7949486/Downloads/docker/fandango/src/fandango/evolution/algorithm.py", line 661, in _generate_io
+  File "/Users/i7949486/Desktop/me/s/fandango/src/fandango/evolution/algorithm/simple.py", line 681, in _generate_io
     forecast, packet_tree = parse_next_remote_packet(
                             ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/i7949486/Downloads/docker/fandango/src/fandango/io/packetparser.py", line 172, in parse_next_remote_packet
+  File "/Users/i7949486/Desktop/me/s/fandango/src/fandango/io/packetparser.py", line 160, in parse_next_remote_packet
     raise FandangoFailedError(
-fandango.errors.FandangoFailedError: (FandangoFailedError(...), "Could not parse received message fragments into predicted NonTerminals.\nIncompletely parsed NonTerminals:\nApplicable NonTerminals: <response_rset>\nReceived messages: [('ServerB', 'ClientB', b'500 5.5.1 Command not recognized\\r\\n')]")
+fandango.errors.FandangoFailedError: Could not parse received message fragments into predicted NonTerminals.
+Incompletely parsed NonTerminals:
+Applicable NonTerminals: <response_rset>
+Received messages: [('ServerB', 'ClientB', b'5'), ('ServerB', 'ClientB', b'0'), ('ServerB', 'ClientB', b'0'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'5'), ('ServerB', 'ClientB', b'.'), ('ServerB', 'ClientB', b'5'), ('ServerB', 'ClientB', b'.'), ('ServerB', 'ClientB', b'1'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'C'), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b'm'), ('ServerB', 'ClientB', b'm'), ('ServerB', 'ClientB', b'a'), ('ServerB', 'ClientB', b'n'), ('ServerB', 'ClientB', b'd'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'n'), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b't'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'r'), ('ServerB', 'ClientB', b'e'), ('ServerB', 'ClientB', b'c'), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b'g'), ('ServerB', 'ClientB', b'n'), ('ServerB', 'ClientB', b'i'), ('ServerB', 'ClientB', b'z'), ('ServerB', 'ClientB', b'e'), ('ServerB', 'ClientB', b'd'), ('ServerB', 'ClientB', b'\r'), ('ServerB', 'ClientB', b'\n')]

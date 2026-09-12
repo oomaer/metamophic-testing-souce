@@ -1,0 +1,24 @@
+SMTP STATE RESET - MUTATION LOG SUMMARY
+================================================================================
+
+Logs scanned: 5  (source: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/mutations/logs)
+Total time (sum of per-log Duration headers): 5m 3.70s
+
+Legend:
+  Cases     = total 'TEST CASE #N' markers seen in the log
+  FirstFail = first test case that produced a failure (VIOLATION or PARSE_ERROR)
+  Pass/Viol = raw [PASS] / [VIOLATION] line counts
+  ParseErr  = FandangoFailedError / FandangoValueError occurrences
+  Killed    = run ended in a Python traceback with no SUMMARY block written
+  Detection = VIOLATION (constraint), PARSE_ERROR (grammar mismatch), BOTH, or NONE
+  Duration* = one or more logs had no parseable duration header
+
+Mutation  Name                                                            Cases  FirstFail         Pass  Viol  ParseErr  Killed  Detection    Duration 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+M1        INCOMPLETE_SENDER_RESET - RSET does not clear MAIL FROM buffer  3      #3 (VIOLATION)    25    8     1         YES     BOTH         1m 21.85s
+M3        RSET_CLEARS_AUTH - RSET incorrectly clears authentication       1      #1 (VIOLATION)    0     8     1         YES     BOTH         32.91s   
+M4        RSET_RETURNS_ERROR - RSET returns 500 error                     1      #1 (PARSE_ERROR)  4     0     1         YES     PARSE_ERROR  19.56s   
+M5        RSET_PARTIAL_STATE_CLEAR - Only first RSET works per session    5      #5 (VIOLATION)    117   8     1         YES     BOTH         2m 16.19s
+M7        RSET_NOOP - RSET returns 250 but does nothing                   1      #1 (VIOLATION)    11    8     1         YES     BOTH         33.19s   
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL     5 mutations                                                     11     -                 157   32    5         5/5     -            5m 3.70s 

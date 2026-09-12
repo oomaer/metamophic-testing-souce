@@ -1,0 +1,39 @@
+DNS CNAME Recursive Resolver 2 - Mutation Candidates
+
+Implemented mutations:
+
+BASELINE
+  Clean recursive resolver behavior. The resolver forwards the client's
+  question upstream and returns the upstream response unchanged.
+
+M1 - REWRITE_QNAME_TO_TARGET
+  Before forwarding upstream, rewrite the question name to test.local.
+  Expected detection: validateUpstreamRequestEqual reports a qname mismatch.
+
+M2 - REWRITE_QTYPE_AAAA
+  Before forwarding upstream, rewrite the question type from A to AAAA.
+  Expected detection: validateUpstreamRequestEqual reports a qtype mismatch.
+
+M3 - REWRITE_QCLASS_CH
+  Before forwarding upstream, rewrite the question class from IN to CH.
+  Expected detection: validateUpstreamRequestEqual reports a qclass mismatch.
+
+M4 - DROP_A_RECORDS
+  After receiving the upstream response, remove all A records from answer,
+  authority, and additional sections.
+  Expected detection: validateResponses reports missing chased A records.
+
+M5 - WRONG_A_RECORDS
+  After receiving the upstream response, replace all A records with
+  10.10.10.10.
+  Expected detection: validateResponses reports different A-record sets.
+
+M6 - MISSING_ONE_A_RECORD
+  After receiving the upstream response, keep only the first A record and drop
+  any remaining A records.
+  Expected detection: validateResponses reports an incomplete A-record set.
+
+M7 - EXTRA_A_RECORD
+  After receiving the upstream response, add an extra fake A record
+  192.168.1.99.
+  Expected detection: validateResponses reports an extra A record.

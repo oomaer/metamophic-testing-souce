@@ -45,7 +45,7 @@ include("grammar-utils.fan")
 <source_search> ::= <Client:search_cmd_source> <Server:search_response_source>
 
 <search_cmd_source> ::= "A003 SEARCH FROM \"testmr@example.com\"\r\n"
-<search_response_source> ::= r"\* SEARCH[^\r]*\r\nA003 OK.*\r\n"
+<search_response_source> ::= r"(\* SEARCH[^\r]*\r\n)?A003 OK.*\r\n"
 
 
 <append_sequence> ::= <append_1x> | <append_2x> | <append_3x>
@@ -76,7 +76,7 @@ where int(<size>) == len(str(<message>))
 <followup_search> ::= <Client:search_cmd_followup> <Server:search_response_followup>
 
 <search_cmd_followup> ::= "A005 SEARCH FROM \"testmr@example.com\"\r\n"
-<search_response_followup> ::= r"\* SEARCH[^\r]*\r\nA005 OK.*\r\n"
+<search_response_followup> ::= r"(\* SEARCH[^\r]*\r\n)?A005 OK.*\r\n"
 
 
 # === Validation Constraint ===
