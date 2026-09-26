@@ -15,8 +15,8 @@ include ("./http-utils.fan")
 # Shared Elements
 # ============================================================================
 <req_full> ::= "GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n"
-<response_full> ::= r"HTTP/1\.1 200 OK\r\n(?:[A-Za-z0-9-]+: [^\r\n]*\r\n)*\r\n[\s\S]+"
-<response_partial> ::= r"HTTP/1\.1 206 Partial Content\r\n(?:[A-Za-z0-9-]+: [^\r\n]*\r\n)*\r\n[\s\S]+"
+<response_full> ::= "HTTP/1.1 200 OK" "\r\n" (r"[A-Za-z0-9-]+" ": " (r"[^\r\n]+")? "\r\n")* "\r\n" r"[\s\S]+"
+<response_partial> ::= "HTTP/1.1 206 Partial Content" "\r\n" (r"[A-Za-z0-9-]+" ": " (r"[^\r\n]+")? "\r\n")* "\r\n" r"[\s\S]+"
 <ChangeConnection> ::= r".*" := changeConnection()
 
 # Common interaction pattern - A always gets full content

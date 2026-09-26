@@ -24,14 +24,14 @@
 <stor_transfer_A> ::= <ClientA:ServerA:stor_cmd_A> <ServerA:ClientA:stor_ready_A> <ClientDataA:ServerDataA:file_data_A> <SocketControlClientA:close_data_A> <ServerA:ClientA:stor_complete_A>
 
 <stor_cmd_A> ::= "STOR " <file_name> "\r\n"
-<stor_ready_A> ::= r"1[0-9]{2} " <text> "\r\n"
+<stor_ready_A> ::= r"1[0-9]{2}" " " <text> "\r\n"
 <file_data_A> ::= <file_data>
 <close_data_A> ::= "Data socket closed.\r\n"
-<stor_complete_A> ::= r"2[0-9]{2} " <text> "\r\n"
+<stor_complete_A> ::= r"2[0-9]{2}" " " <text> "\r\n"
 
 <size_check_A> ::= <ClientA:ServerA:size_cmd_A> <ServerA:ClientA:size_response_A>
 <size_cmd_A> ::= "SIZE " <file_name> "\r\n"
-<size_response_A> ::= r"[0-9]{3} " <size_value_A> "\r\n"
+<size_response_A> ::= r"[0-9]{3}" " " <size_value_A> "\r\n"
 <size_value_A> ::= r"[0-9]+"
 
 <session_B> ::= <ServerB:ClientB:welcome> <authentication_seq_B><set_binary_B> <store_file_B> <append_sequence_B> <size_after_B> <ClientB:ServerB:quit_cmd> <ServerB:ClientB:quit_ok>
@@ -46,9 +46,9 @@
 <stor_transfer_B> ::= <ClientB:ServerB:stor_cmd_B> <ServerB:ClientB:stor_ready_B> <ClientDataB:ServerDataB:file_data_B> <SocketControlClientB:close_data> <ServerB:ClientB:stor_complete_B>
 
 <stor_cmd_B> ::= "STOR " <file_name> "\r\n"
-<stor_ready_B> ::= r"1[0-9]{2} " <text> "\r\n"
+<stor_ready_B> ::= r"1[0-9]{2}" " " <text> "\r\n"
 <file_data_B> ::= <file_data>
-<stor_complete_B> ::= r"2[0-9]{2} " <text> "\r\n"
+<stor_complete_B> ::= r"2[0-9]{2}" " " <text> "\r\n"
 
 <append_sequence_B> ::= <single_append> | <double_append> | <triple_append>
 
@@ -74,16 +74,16 @@
 <appe_transfer_3> ::= <ClientB:ServerB:appe_cmd> <ServerB:ClientB:appe_start> <ClientDataB:ServerDataB:append_data_3> <SocketControlClientB:close_data> <ServerB:ClientB:appe_done>
 
 <appe_cmd> ::= "APPE " <file_name> "\r\n"
-<appe_start> ::= r"1[0-9]{2} " <text> "\r\n"
+<appe_start> ::= r"1[0-9]{2}" " " <text> "\r\n"
 <append_data_1> ::= r"[A-Za-z0-9]{10,50}"
 <append_data_2> ::= r"[A-Za-z0-9]{20,100}"
 <append_data_3> ::= r"[A-Za-z0-9]{30,150}"
 <close_data> ::= "Data socket closed.\r\n"
-<appe_done> ::= r"2[0-9]{2} " <text> "\r\n"
+<appe_done> ::= r"2[0-9]{2}" " " <text> "\r\n"
 
 <size_after_B> ::= <ClientB:ServerB:size_cmd_after> <ServerB:ClientB:size_response_after>
 <size_cmd_after> ::= "SIZE " <file_name> "\r\n"
-<size_response_after> ::= r"[0-9]{3} " <size_value_after> "\r\n"
+<size_response_after> ::= r"[0-9]{3}" " " <size_value_after> "\r\n"
 <size_value_after> ::= r"[0-9]+"
 
 <welcome>  ::= "220 " r".*" "\r\n"

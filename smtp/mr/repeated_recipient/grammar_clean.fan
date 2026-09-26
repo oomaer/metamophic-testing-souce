@@ -26,35 +26,35 @@
 <rcpt_plus_B> ::= <single_rcpt_B><ClientB:rcpt_plus><ServerB:response_rcpt_to_repeated>
 
 <request_ehlo> ::= 'EHLO localhost\r\n'
-<response_ehlo> ::= r"250-[^\r\n]+\r\n(250-[^\r\n]+\r\n)*250 [^\r\n]+\r\n"
-<response_setup> ::= r"220 \S+ [^\r\n]+\r\n"
+<response_ehlo> ::= ("250-" r"[^\r\n]+" "\r\n")+ "250 " r"[^\r\n]+" "\r\n"
+<response_setup> ::= "220 " r"\S+" " " r"[^\r\n]+" "\r\n"
 
 <request_auth> ::= 'AUTH LOGIN\r\n'
-<response_auth_expect_user> ::= r"334 [A-Za-z0-9+/=]+\r\n"
+<response_auth_expect_user> ::= "334 " r"[A-Za-z0-9+/=]+" "\r\n"
 <request_auth_user> ::= '<user>\r\n'
-<response_auth_expect_pass> ::= r"334 [A-Za-z0-9+/=]+\r\n"
+<response_auth_expect_pass> ::= "334 " r"[A-Za-z0-9+/=]+" "\r\n"
 <request_auth_pass> ::= '<pass>\r\n'
-<response_auth_success> ::= r"235 [^\r\n]+\r\n"
+<response_auth_success> ::= "235 " r"[^\r\n]+" "\r\n"
 
 <request_mail_from> ::= 'MAIL FROM:<sender@example.com>\r\n'
-<response_mail_from> ::= r"250 [^\r\n]+\r\n"
+<response_mail_from> ::= "250 " r"[^\r\n]+" "\r\n"
 
 <request_rcpt_to> ::= <rcpt_simple>
 <rcpt_simple> ::= 'RCPT TO:<recipient@example.com>\r\n'
 <rcpt_plus> ::= 'RCPT TO:<recipient+tag@example.com>\r\n'
 
-<response_rcpt_to> ::= r"250 [^\r\n]+\r\n"
-<response_rcpt_to_repeated> ::= r"[2-5][0-9]{2} [^\r\n]+\r\n([2-5][0-9]{2} [^\r\n]+\r\n)*"
+<response_rcpt_to> ::= "250 " r"[^\r\n]+" "\r\n"
+<response_rcpt_to_repeated> ::= (r"[2-5][0-9]{2}" " " r"[^\r\n]+" "\r\n")+
 
 <request_data> ::= 'DATA\r\n'
-<response_data> ::= r"[2-5][0-9]{2} [^\r\n]+\r\n"
+<response_data> ::= r"[2-5][0-9]{2}" " " r"[^\r\n]+" "\r\n"
 
 <email_content> ::= 'Subject: Metamorphic Test\r\n\r\nTesting repeated recipient behavior.\r\n.\r\n'
-<response_emailA_sent> ::= r"250 [^\r\n]+\r\n"
-<response_emailB_sent> ::= r"[2-5][0-9]{2} [^\r\n]+\r\n"
+<response_emailA_sent> ::= "250 " r"[^\r\n]+" "\r\n"
+<response_emailB_sent> ::= r"[2-5][0-9]{2}" " " r"[^\r\n]+" "\r\n"
 
 <request_quit> ::= 'QUIT\r\n'
-<response_quit> ::= r"221 [^\r\n]+\r\n"
+<response_quit> ::= "221 " r"[^\r\n]+" "\r\n"
 
 where validateResponses(<response_emailA_sent>, <response_emailB_sent>) and validateRcptResponse(<response_rcpt_to>) and validateRcptResponse(<response_rcpt_to_repeated>)
 

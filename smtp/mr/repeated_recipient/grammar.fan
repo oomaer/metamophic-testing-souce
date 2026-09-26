@@ -82,7 +82,7 @@ include ("/Users/i7949486/Downloads/docker/metamorphic-testing/mt-smtp/smtp-util
 # - 452 (too many recipients)
 # - 421 (temporary error)
 # - Any other SMTP response code
-# <response_rcpt_to_repeated> ::= r"[2-5][0-9]{2} [^\r\n]+\r\n([2-5][0-9]{2} [^\r\n]+\r\n)*"
+# <response_rcpt_to_repeated> ::= (r"[2-5][0-9]{2}" " " r"[^\r\n]+" "\r\n")+
 <response_rcpt_to_repeated> ::= "250 " r"[^\r\n]+" "\r\n"
 
 <request_data> ::= 'DATA\r\n'

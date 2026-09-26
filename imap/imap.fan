@@ -28,4 +28,4 @@ include("imap-utils.fan")
 <select_mailbox> ::= <Client:Server:SELECT_CMD><Server:Client:SELECT_RESPONSE>
 
 <SELECT_CMD>      ::= <tag> " SELECT testmailbox\r\n"
-<SELECT_RESPONSE> ::= r"(\* .+\r\n)*A[0-9]{3} OK .+\r\n"
+<SELECT_RESPONSE> ::= ("* " r"."+ "\r\n")* "A" r"[0-9]{3}" " OK " r"."+ "\r\n"

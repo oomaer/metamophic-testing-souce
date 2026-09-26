@@ -16,7 +16,7 @@ include ("./http-utils.fan")
 # For Content-Length: reads exact bytes specified
 # For chunked: reads until 0\r\n\r\n
 # For empty (204): just headers and empty line
-<response> ::= r"HTTP/1\.1 [0-9]{3} [^\r\n]*\r\n(?:[^\r\n]+\r\n)*\r\n(?:[0-9a-fA-F]+\r\n[\s\S]*?0\r\n\r\n|[^\r\n]*)?"
+<response> ::= "HTTP/1.1 " r"[0-9]{3}" " " (r"[^\r\n]+")? "\r\n" (r"[^\r\n]+" "\r\n")* "\r\n" (r"[0-9a-fA-F]+" "\r\n" r"[\s\S]"* "0\r\n\r\n" | (r"[^\r\n]+")?)?
 <ChangeConnection> ::= r".*" := changeConnection()
 
 # Request templates - only Connection header differs between A and B

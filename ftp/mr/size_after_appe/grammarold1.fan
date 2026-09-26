@@ -43,15 +43,15 @@ include("../../ftp-utils.fan")
 
 <stor_cmd_A> ::= "STOR " <file_name>"\r\n"
 
-<stor_ready_A> ::= r"150 " <text> "\r\n"
+<stor_ready_A> ::= "150 " <text> "\r\n"
 
 <file_data_A> ::= <file_data>
 
-<stor_complete_A> ::= r"226 " <text> "\r\n"
+<stor_complete_A> ::= "226 " <text> "\r\n"
 
 <size_check_A> ::= <ClientA:ServerA:size_cmd_A> <ServerA:ClientA:size_response_A>
 <size_cmd_A> ::= "SIZE test_file.txt\r\n"
-<size_response_A> ::= r"[0-9]{3} " <size_value_A> "\r\n"
+<size_response_A> ::= r"[0-9]{3}" " " <size_value_A> "\r\n"
 <size_value_A> ::= r"[0-9]+"
 
 # =============================================================================
@@ -68,7 +68,7 @@ include("../../ftp-utils.fan")
 # SIZE before any appends
 <size_before_B> ::= <ClientB:ServerB:size_cmd_before> <ServerB:ClientB:size_response_before>
 <size_cmd_before> ::= "SIZE test_file.txt\r\n"
-<size_response_before> ::= r"[0-9]{3} " <size_value_before> "\r\n"
+<size_response_before> ::= r"[0-9]{3}" " " <size_value_before> "\r\n"
 <size_value_before> ::= r"[0-9]+"
 
 # K-path variations: single, double, or triple append
@@ -105,19 +105,19 @@ include("../../ftp-utils.fan")
 <appe_transfer_3> ::= <ClientB:ServerB:appe_cmd> <ServerB:ClientB:appe_start> <ClientDataB:ServerDataB:append_data_3> <SocketControlClientB:close_data> <ServerB:ClientB:appe_done>
 
 <appe_cmd> ::= "APPE test_file.txt\r\n"
-<appe_start> ::= r"1[0-9]{2} " <text> "\r\n"
+<appe_start> ::= r"1[0-9]{2}" " " <text> "\r\n"
 <append_data_1> ::= r"[A-Za-z0-9]{10,50}"
 <append_data_2> ::= r"[A-Za-z0-9]{20,100}"
 <append_data_3> ::= r"[A-Za-z0-9]{30,150}"
 <close_data> ::= "Data socket closed.\r\n"
-<appe_done> ::= r"2[0-9]{2} " <text> "\r\n"
+<appe_done> ::= r"2[0-9]{2}" " " <text> "\r\n"
 
 # -----------------------------------------------------------------------------
 # SIZE after all appends
 # -----------------------------------------------------------------------------
 <size_after_B> ::= <ClientB:ServerB:size_cmd_after> <ServerB:ClientB:size_response_after>
 <size_cmd_after> ::= "SIZE test_file.txt\r\n"
-<size_response_after> ::= r"[0-9]{3} " <size_value_after> "\r\n"
+<size_response_after> ::= r"[0-9]{3}" " " <size_value_after> "\r\n"
 <size_value_after> ::= r"[0-9]+"
 
 # =============================================================================

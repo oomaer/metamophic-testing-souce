@@ -24,28 +24,28 @@ include("grammar-utils.fan")
 
 
 # === Server Greeting ===
-<greeting> ::= r"\* OK.*\r\n"
+<greeting> ::= "* OK" r"."* "\r\n"
 
 
 # === Login Sequence ===
 <login_sequence> ::= <Client:login_cmd> <Server:login_response>
 
 <login_cmd> ::= "A001 LOGIN testuser testpass\r\n"
-<login_response> ::= r"A001 OK.*\r\n"
+<login_response> ::= "A001 OK" r"."* "\r\n"
 
 
 # === Select INBOX ===
 <select_inbox> ::= <Client:select_cmd> <Server:select_response>
 
 <select_cmd> ::= "A002 SELECT INBOX\r\n"
-<select_response> ::= r"(\* (FLAGS|EXISTS|RECENT|OK|[0-9]+).*\r\n)*A002 OK.*\r\n"
+<select_response> ::= ("* " ("FLAGS" | "EXISTS" | "RECENT" | "OK" | r"[0-9]+") r"."* "\r\n")* "A002 OK" r"."* "\r\n"
 
 
 # === Source Search (before APPENDs) ===
 <source_search> ::= <Client:search_cmd_source> <Server:search_response_source>
 
 <search_cmd_source> ::= "A003 SEARCH FROM \"testmr@example.com\"\r\n"
-<search_response_source> ::= r"(\* SEARCH[^\r]*\r\n)?A003 OK.*\r\n"
+<search_response_source> ::= ("* SEARCH" (r"[^\r]+")? "\r\n")? "A003 OK" r"."* "\r\n"
 
 
 <append_sequence> ::= <append_1x> | <append_2x> | <append_3x>
@@ -66,17 +66,17 @@ include("grammar-utils.fan")
 where int(<size>) == len(str(<message>))
 
 
-<append_continue> ::= r"\+ .*\r\n"
+<append_continue> ::= "+ " r"."* "\r\n"
 
 
-<append_response> ::= r"(\* [0-9]+ EXISTS\r\n)?A004 OK.*\r\n"
+<append_response> ::= ("* " r"[0-9]+" " EXISTS" "\r\n")? "A004 OK" r"."* "\r\n"
 
 
 # === Follow-up Search (after APPENDs) ===
 <followup_search> ::= <Client:search_cmd_followup> <Server:search_response_followup>
 
 <search_cmd_followup> ::= "A005 SEARCH FROM \"testmr@example.com\"\r\n"
-<search_response_followup> ::= r"(\* SEARCH[^\r]*\r\n)?A005 OK.*\r\n"
+<search_response_followup> ::= ("* SEARCH" (r"[^\r]+")? "\r\n")? "A005 OK" r"."* "\r\n"
 
 
 # === Validation Constraint ===

@@ -29,11 +29,11 @@ where str(<header_order2>) == get_mutation(<header_order1>)
 <response1> ::= <status_line> <headers_resp> "\r\n" <chunked_body>
 <status_line> ::= "HTTP/1.1 200 OK\r\n"
 
-<headers_resp> ::= r"([\w-]+: .*\r\n)*" := "Content-Type: application/json\r\n"
+<headers_resp> ::= (r"[\w-]+" ": " r"."* "\r\n")* := "Content-Type: application/json\r\n"
 
 <chunked_body> ::= <chunk_size> <json_data> <terminator>
-<chunk_size> ::= r"[0-9a-fA-F]+\r\n" := "22\r\n"
-<json_data> ::= r"\{.*\}\r\n" := '{"message":"Success","status":200}\r\n'
+<chunk_size> ::= r"[0-9a-fA-F]+" "\r\n" := "22\r\n"
+<json_data> ::= "{" r"."* "}" "\r\n" := '{"message":"Success","status":200}\r\n'
 <terminator> ::= "0\r\n\r\n"
 
 # where <headers_order_1> != <headers_order_2>
