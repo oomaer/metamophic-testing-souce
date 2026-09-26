@@ -6,72 +6,72 @@ B: Multiple RCPT TO with SAME address (repeated recipient)
 Relation: Both should succeed with identical response codes
 ================================================================================
 fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
-fandango:INFO: Current coverage: 0.11%
+fandango:INFO: Current coverage: 0.13%
 fandango:INFO: ServerA: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
-fandango:INFO: Current coverage: 1.15%
+fandango:INFO: Current coverage: 1.27%
 fandango:INFO: ClientA: <request_ehlo> 'EHLO localhost\r\n'
-fandango:INFO: Current coverage: 1.95%
+fandango:INFO: Current coverage: 2.15%
 fandango:INFO: ServerA: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
-fandango:INFO: Current coverage: 2.76%
+fandango:INFO: Current coverage: 3.04%
 fandango:INFO: ClientA: <request_auth> 'AUTH LOGIN\r\n'
-fandango:INFO: Current coverage: 4.83%
+fandango:INFO: Current coverage: 5.32%
 fandango:INFO: ServerA: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
-fandango:INFO: Current coverage: 6.09%
+fandango:INFO: Current coverage: 6.72%
 fandango:INFO: ClientA: <request_auth_user> 'dGhlX3VzZXI=\r\n'
-fandango:INFO: Current coverage: 7.36%
+fandango:INFO: Current coverage: 8.11%
 fandango:INFO: ServerA: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
-fandango:INFO: Current coverage: 8.51%
+fandango:INFO: Current coverage: 9.38%
 fandango:INFO: ClientA: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
-fandango:INFO: Current coverage: 9.77%
+fandango:INFO: Current coverage: 10.77%
 fandango:INFO: ServerA: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
-fandango:INFO: Current coverage: 11.03%
+fandango:INFO: Current coverage: 12.17%
 fandango:INFO: ClientA: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 14.02%
+fandango:INFO: Current coverage: 15.46%
 fandango:INFO: ServerA: <response_mail_from> '250 OK\r\n'
-fandango:INFO: Current coverage: 15.75%
+fandango:INFO: Current coverage: 17.36%
 fandango:INFO: ClientA: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
-fandango:INFO: Current coverage: 18.51%
+fandango:INFO: Current coverage: 20.41%
 fandango:INFO: ServerA: <response_rcpt_to> '250 OK\r\n'
-fandango:INFO: Current coverage: 20.11%
+fandango:INFO: Current coverage: 22.18%
 fandango:INFO: ClientA: <request_data> 'DATA\r\n'
-fandango:INFO: Current coverage: 21.84%
+fandango:INFO: Current coverage: 24.08%
 fandango:INFO: ServerA: <response_data> '354 End data with <CR><LF>.<CR><LF>\r\n'
-fandango:INFO: Current coverage: 23.56%
+fandango:INFO: Current coverage: 25.98%
 fandango:INFO: ClientA: <email_content> 'Subject: Metamorphic Test\r\n\r\nTesting repeated recipient behavior.\r\n.\r\n'
-fandango:INFO: Current coverage: 25.29%
-fandango:INFO: ServerA: <response_emailA_sent> '250 OK\r\n'
-fandango:INFO: Current coverage: 26.90%
+fandango:INFO: Current coverage: 27.88%
+fandango:INFO: ServerA: <response_emailA_sent> "250 OK sender@example.com ['recipient@example.com']\r\n"
+fandango:INFO: Current coverage: 29.66%
 fandango:INFO: ClientA: <request_quit> 'QUIT\r\n'
-fandango:INFO: Current coverage: 29.31%
+fandango:INFO: Current coverage: 32.32%
 fandango:INFO: ServerA: <response_quit> '221 Bye\r\n'
-fandango:INFO: Current coverage: 31.03%
+fandango:INFO: Current coverage: 34.22%
 fandango:INFO: StdOut: <ChangeConnection> 'Stopping connection 1 and starting connection 2'
-fandango:INFO: Current coverage: 31.61%
+fandango:INFO: Current coverage: 34.85%
 fandango:INFO: ServerB: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
-fandango:INFO: Current coverage: 32.30%
+fandango:INFO: Current coverage: 35.61%
 fandango:INFO: ClientB: <request_ehlo> 'EHLO localhost\r\n'
-fandango:INFO: Current coverage: 32.76%
+fandango:INFO: Current coverage: 36.12%
 fandango:INFO: ServerB: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
-fandango:INFO: Current coverage: 33.22%
+fandango:INFO: Current coverage: 36.63%
 fandango:INFO: ClientB: <request_auth> 'AUTH LOGIN\r\n'
-fandango:INFO: Current coverage: 34.94%
+fandango:INFO: Current coverage: 38.53%
 fandango:INFO: ServerB: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
-fandango:INFO: Current coverage: 35.86%
-fandango:INFO: ClientB: <request_auth_user> 'dGhlX3VzZXI=\r\n'
-fandango:INFO: Current coverage: 36.78%
-fandango:INFO: ServerB: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
-fandango:INFO: Current coverage: 37.70%
-fandango:INFO: ClientB: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
-fandango:INFO: Current coverage: 38.62%
-fandango:INFO: ServerB: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
 fandango:INFO: Current coverage: 39.54%
+fandango:INFO: ClientB: <request_auth_user> 'dGhlX3VzZXI=\r\n'
+fandango:INFO: Current coverage: 40.56%
+fandango:INFO: ServerB: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
+fandango:INFO: Current coverage: 41.57%
+fandango:INFO: ClientB: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
+fandango:INFO: Current coverage: 42.59%
+fandango:INFO: ServerB: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
+fandango:INFO: Current coverage: 43.60%
 fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 42.18%
+fandango:INFO: Current coverage: 46.51%
 fandango:INFO: ServerB: <response_mail_from> '250 OK\r\n'
-fandango:INFO: Current coverage: 43.56%
+fandango:INFO: Current coverage: 48.04%
 fandango:INFO: ClientB: <rcpt_simple> 'RCPT TO:<recipient@example.com>\r\n'
-fandango:INFO: Current coverage: 48.28%
+fandango:INFO: Current coverage: 53.23%
 fandango:INFO: ServerB: <response_rcpt_to_repeated> '250 OK\r\n'
-fandango:INFO: Current coverage: 50.46%
+fandango:INFO: Current coverage: 55.64%
 fandango:INFO: ClientB: <rcpt_simple> 'RCPT TO:<recipient@example.com>\r\n'
-fandango:INFO: Current coverage: 53.79%
+fandango:INFO: Current coverage: 59.32%

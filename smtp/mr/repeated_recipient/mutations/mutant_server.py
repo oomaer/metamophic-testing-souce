@@ -28,7 +28,7 @@ class BaselineHandler:
 
     async def handle_DATA(self, server, session, envelope):
         print(f"[ServerA-8026] 📧 Message from {envelope.mail_from} to {envelope.rcpt_tos}")
-        return '250 OK'
+        return f"250 OK {envelope.mail_from} {envelope.rcpt_tos}"
 
 
 class MutatedHandler:
@@ -70,29 +70,13 @@ class MutatedHandler:
                 return '550 5.5.1 Duplicate recipient not allowed'
             # 3rd, 4th, etc. are allowed (logic bug!)
 
-        # M30: PLUS_ADDRESSING_BUG
+        # M30: DUPLICATE_DELIVERS_TO_WRONG_RECIPIENT
         elif self.mutation_id == 'M30':
-            # Bug: Treats user+tag1@example.com and user+tag2@example.com as duplicates
-            # When they should be treated as the same user (user@example.com)
-
-            # Check if current address or any existing address has plus-addressing
-            def normalize_address(addr):
-                """Normalize address by removing plus-tag"""
-                local, domain = addr.split('@')
-                if '+' in local:
-                    # Remove everything from + onwards
-                    local = local.split('+')[0]
-                return f"{local}@{domain}"
-
-            normalized_current = normalize_address(address)
-
-            # Check if normalized version already exists
-            for existing in envelope.rcpt_tos:
-                normalized_existing = normalize_address(existing)
-                if normalized_current == normalized_existing:
-                    # Bug: Overly strict - rejects user+tag2 if user+tag1 already exists
-                    print(f"[ServerB-8027] ✗ M30: Plus-addressing duplicate: {address} (normalized: {normalized_current})")
-                    return '550 5.5.1 Duplicate recipient (base address matches)'
+            if address in envelope.rcpt_tos:
+                wrong_recipient = 'unexpected-recipient@example.com'
+                envelope.rcpt_tos.append(wrong_recipient)
+                print(f"[ServerB-8027] ✗ M30: Duplicate {address} recorded as {wrong_recipient}")
+                return '250 OK'
 
         # M44: MULTIPLE_RESPONSE_LINES
         elif self.mutation_id == 'M44':
@@ -126,10 +110,10 @@ class MutatedHandler:
         if not envelope.rcpt_tos:
             print(f"[ServerB-8027] ✗ No recipients, but accepting email content anyway")
             # Accept the email content, return error after
-            return '554 5.5.1 Error: No valid recipients'
+            return f"554 5.5.1 Error: No valid recipients {envelope.mail_from} {envelope.rcpt_tos}"
 
         print(f"[ServerB-8027] 📧 Message from {envelope.mail_from} to {envelope.rcpt_tos}")
-        return '250 OK'
+        return f"250 OK {envelope.mail_from} {envelope.rcpt_tos}"
 
 
 def start_server(port, handler, mutation_id=None):

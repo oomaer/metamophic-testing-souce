@@ -26,11 +26,34 @@ python run_test.py
 ```
 
 This will:
-1. Kill any existing test servers
-2. Start SMTP servers on ports 8026 and 8027
+1. Check that ports 8026 and 8027 are available
+2. Start fresh SMTP servers and wait for their greetings
 3. Run the metamorphic tests
 4. Display summary with violations/passes
-5. Clean up servers automatically
+5. Stop and wait for both server processes, including on failure or interruption
+
+For ten consecutive runs:
+```bash
+python run_test.py 10
+```
+
+Each run gets a new pair of server processes and a separate Fandango process.
+Test logs are saved to `runs/test_output_N.log`. Server output is suppressed.
+Use `--output-dir PATH` to keep a separate batch, and `--timeout SECONDS` to
+change the per-run limit (default: 300 seconds). The runner stops with a nonzero
+exit status if startup or a test fails. It does not kill existing listeners.
+
+Within each test case, `ConnectionControl` switches from A to B when Fandango
+executes the control step. Opening B inside a grammar generator can let its
+greeting arrive before that step is committed, causing an intermittent
+`Unexpected party sent message. Expected: StdOut. Received: {'ServerB'}` error.
+Fandango resets the parties between test cases; `script.py` closes them when
+the run ends, including on errors.
+
+Run the connection-ordering and process-cleanup regression checks with:
+```bash
+python -m unittest discover -s . -p test_lifecycle.py -v
+```
 
 ### Manual Run
 If you want to run just the test script (servers must be running):
@@ -53,10 +76,10 @@ This creates `all_test_cases.txt` with:
 ### Start Servers Manually
 ```bash
 # Terminal 1 - Server A (port 8026)
-python /Users/i7949486/Desktop/uds/thesis/mutation/aiosmtpd/run-test-server.py -p 8026
+python ../../smtpserver.py -p 8026
 
 # Terminal 2 - Server B (port 8027)
-python /Users/i7949486/Desktop/uds/thesis/mutation/aiosmtpd/run-test-server.py -p 8027
+python ../../smtpserver.py -p 8027
 ```
 
 ## Output

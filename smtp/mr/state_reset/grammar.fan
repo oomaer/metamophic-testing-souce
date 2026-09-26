@@ -1,17 +1,17 @@
 
-include ("/Users/i7949486/Downloads/docker/metamorphic-testing/mt-smtp/smtp-utils.fan")
+include ("../../smtp-utils.fan")
 
 # State Reset Invariance Test (RFC 5321)
 # A: Normal flow - EHLO → AUTH → MAIL FROM → RCPT TO → DATA → QUIT
 # B: Reset flow  - Can RSET at any state and continue from MAIL FROM
 # Relation: Outcome of B's final MAIL FROM sequence must match A's outcome
 
-<start> ::= <Interation1> <ChangeConnection> <Interation2> 
+<start> ::= <Interation1> <ConnectionControl:ChangeConnection> <Interation2>
 
 # 1. Setup Phase: Connect and EHLO
 <Interation1> ::= <ServerA:response_setup><ClientA:request_ehlo><ServerA:response_ehlo><state_logged_out_A>
 <Interation2> ::= <ServerB:response_setup><ClientB:request_ehlo><ServerB:response_ehlo><state_logged_out_B>
-<ChangeConnection> ::= r".*" := changeConnection()
+<ChangeConnection> ::= "start connection B"
 
 # 2. Login Phase: Move from Logged Out to Logged In
 <state_logged_out_A> ::= <exchange_login_valid_A>
@@ -73,56 +73,79 @@ include ("/Users/i7949486/Downloads/docker/metamorphic-testing/mt-smtp/smtp-util
 # --- Static Definitions ---
 
 <request_ehlo> ::= 'EHLO localhost\r\n'
-<response_ehlo> ::= r"250-.+\r\n(250-.+\r\n)*250 .+\r\n"
-<response_setup> ::= r"220 .+\r\n"
+<response_ehlo> ::= <response_ehlo_continuation>+ "250 " r".+" "\r\n"
+<response_ehlo_continuation> ::= "250-" r".+" "\r\n"
+<response_setup> ::= "220 " r".+" "\r\n"
 
 <request_auth> ::= 'AUTH LOGIN\r\n'
-<response_auth_expect_user> ::= r"334 [A-Za-z0-9+/=]+\r\n"  # Base64 encoded username prompt
+<response_auth_expect_user> ::= "334 " r"[A-Za-z0-9+/=]+" "\r\n"  # Base64 encoded username prompt
 <request_auth_user> ::= 'dGhlX3VzZXI=\r\n'             # "the_user"
-<response_auth_expect_pass> ::= r"334 [A-Za-z0-9+/=]+\r\n"  # Base64 encoded password prompt
+<response_auth_expect_pass> ::= "334 " r"[A-Za-z0-9+/=]+" "\r\n"  # Base64 encoded password prompt
 <request_auth_pass> ::= 'dGhlX3Bhc3N3b3Jk\r\n'         # "the_password"
-<response_auth_success> ::= r"235 .+\r\n"
+<response_auth_success> ::= "235 " r".+" "\r\n"
 
 # Email sending commands
 <request_mail_from> ::= 'MAIL FROM:<sender@example.com>\r\n'
-<response_mail_from> ::= r"250 .+\r\n"
+<response_mail_from> ::= "250 " r".+" "\r\n"
 
 # Permissive response for post-RSET MAIL FROM in Connection B (catches mutations)
-<response_mail_from_B> ::= r"[2-5][0-9]{2} .+\r\n"
+<response_mail_from_B> ::= r"[2-5][0-9]{2}" " " r".+" "\r\n"
 
 <request_rcpt_to> ::= 'RCPT TO:<recipient@example.com>\r\n'
-<response_rcpt_to> ::= r"250 .+\r\n"
+<response_rcpt_to> ::= "250 " r".+" "\r\n"
 
 # Permissive response for post-RSET RCPT TO in Connection B (catches cascade errors)
-<response_rcpt_to_B> ::= r"[2-5][0-9]{2} .+\r\n"
+<response_rcpt_to_B> ::= r"[2-5][0-9]{2}" " " r".+" "\r\n"
 
 # Invalid email commands (for error recovery testing)
 <request_invalid_mail_from> ::= 'MAIL FROM:<invalid@>\r\n'
-<response_invalid_mail_from> ::= r"[45][0-9]{2} .+\r\n"  # Accepts 4xx or 5xx error codes
+<response_invalid_mail_from> ::= r"[45][0-9]{2}" " " r".+" "\r\n"  # Accepts 4xx or 5xx error codes
 
 <request_invalid_rcpt_to> ::= 'RCPT TO:<invalid@>\r\n'
-<response_invalid_rcpt_to> ::= r"[45][0-9]{2} .+\r\n"  # Accepts 4xx or 5xx error codes
+<response_invalid_rcpt_to> ::= r"[45][0-9]{2}" " " r".+" "\r\n"  # Accepts 4xx or 5xx error codes
 
 <request_data> ::= 'DATA\r\n'
-<response_data> ::= r"354 .+\r\n"
+<response_data> ::= "354 " r".+" "\r\n"
 
 # Permissive response for post-RSET DATA in Connection B (catches cascade errors)
-<response_data_B> ::= r"[2-5][0-9]{2} .+\r\n"
+<response_data_B> ::= r"[2-5][0-9]{2}" " " r".+" "\r\n"
 
 <email_content> ::= 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
-<response_emailA_sent> ::= r"250 .+\r\n"
-<response_emailB_sent> ::= r"[2-5][0-9]{2} .+\r\n"  # Permissive for Connection B
+<response_emailA_sent> ::= "250 " r".+" "\r\n"
+<response_emailB_sent> ::= r"[2-5][0-9]{2}" " " r".+" "\r\n"  # Permissive for Connection B
 
 # RSET command
 <request_rset> ::= 'RSET\r\n'
-<response_rset> ::= r"250 .+\r\n"
+<response_rset> ::= "250 " r".+" "\r\n"
 
 <request_quit> ::= 'QUIT\r\n'
-<response_quit> ::= r"221 .+\r\n"
+<response_quit> ::= "221 " r".+" "\r\n"
 
 
 where validateResponses(<response_emailA_sent>, <response_emailB_sent>)
 where validateMailFrom(<response_mail_from>, <response_mail_from_B>)
+
+
+class ConnectionControl(FandangoParty):
+    """Switch sockets only when Fandango executes this protocol step.
+
+    A grammar generator can run before its packet is committed. Opening B
+    there races its SMTP greeting against the pending control packet.
+    """
+
+    def __init__(self):
+        super().__init__(connection_mode=ConnectionMode.CONNECT)
+
+    def send(self, message, recipient):
+        if str(message) != "start connection B":
+            raise ValueError(f"Unknown connection command: {message}")
+        changeConnection()
+
+    def start(self):
+        pass
+
+    def stop(self):
+        pass
 
 
 def validateMailFrom(responseA, responseB):
@@ -149,6 +172,13 @@ def validateMailFrom(responseA, responseB):
     return True
 
 
+def normalizeResponse(response):
+    response = str(response)
+    if response.startswith("b'") or response.startswith('b"'):
+        response = response[2:-1]
+    return response.replace("\\r", "\r").replace("\\n", "\n").strip()
+
+
 def validateResponses(responseA, responseB):
     """
     Validate that RSET properly resets server state.
@@ -156,11 +186,21 @@ def validateResponses(responseA, responseB):
 
     Returns True always to continue execution (violations are logged via print).
     """
-    # Extract response codes (first 3 digits) and compare
-    codeA = str(responseA)[:3]
-    codeB = str(responseB)[:3]
+    responseA = normalizeResponse(responseA)
+    responseB = normalizeResponse(responseB)
+    codeA = responseA[:3]
+    codeB = responseB[:3]
 
-    if codeA == codeB:
+    if codeA == codeB == '250':
+        detailsA = responseA[7:].strip()
+        detailsB = responseB[7:].strip()
+        if not all('[' in details and details.endswith(']') for details in (detailsA, detailsB)):
+            print(f"[VIOLATION] Missing sender/recipient metadata: A={responseA}, B={responseB}")
+        elif detailsA != detailsB:
+            print(f"[VIOLATION] State reset failed: Sender/recipients mismatch: A={detailsA}, B={detailsB}")
+        else:
+            print("[PASS] State reset successful: Same response code, sender and recipients")
+    elif codeA == codeB:
         print("[PASS] State reset successful: Response codes match (A: " + codeA + ", B: " + codeB + ")")
     else:
         print("[VIOLATION] State reset failed: Response code mismatch")

@@ -1,6 +1,6 @@
 Mutation: M4
 Description: RSET_RETURNS_ERROR - RSET returns 500 error
-Duration: 19.56s
+Duration: 20.69s
 ================================================================================
 
 fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
@@ -37,7 +37,7 @@ fandango:INFO: ServerA: <response_data> '354 End data with <CR><LF>.<CR><LF>\r\n
 fandango:INFO: Current coverage: 18.10%
 fandango:INFO: ClientA: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
 fandango:INFO: Current coverage: 19.48%
-fandango:INFO: ServerA: <response_emailA_sent> '250 OK\r\n'
+fandango:INFO: ServerA: <response_emailA_sent> "250 OK sender@example.com ['recipient@example.com']\r\n"
 fandango:INFO: Current coverage: 20.78%
 fandango:INFO: ClientA: <request_quit> 'QUIT\r\n'
 fandango:INFO: Current coverage: 22.71%
@@ -71,6 +71,10 @@ fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
 fandango:INFO: Current coverage: 38.78%
 fandango:INFO: ServerB: <response_rcpt_to_B> '250 OK\r\n'
 fandango:INFO: Current coverage: 40.44%
+fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
+fandango:INFO: Current coverage: 40.44%
+fandango:INFO: ServerB: <response_rcpt_to_B> '250 OK\r\n'
+fandango:INFO: Current coverage: 40.44%
 fandango:INFO: ClientB: <request_rset> 'RSET\r\n'
 fandango:INFO: Current coverage: 42.94%
 Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/grammar.fan
@@ -84,19 +88,21 @@ Stopping connection 1 and starting connection 2[PASS] MAIL FROM after RSET: Resp
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 Traceback (most recent call last):
-  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 191, in <module>
+  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 192, in <module>
     main()
-  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 187, in main
+  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 188, in main
     run_fandango(grammar_path, log_file_path)
   File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 113, in run_fandango
     for solution in fandango.generate(mode=FuzzingMode.IO):
-  File "/Users/i7949486/Desktop/me/s/fandango/src/fandango/evolution/algorithm/simple.py", line 390, in generate
+  File "/Users/i7949486/Desktop/me/test2/pacakge/src/fandango/evolution/algorithm/simple.py", line 390, in generate
     yield from self._generate_io(max_generations=max_generations)
-  File "/Users/i7949486/Desktop/me/s/fandango/src/fandango/evolution/algorithm/simple.py", line 681, in _generate_io
+  File "/Users/i7949486/Desktop/me/test2/pacakge/src/fandango/evolution/algorithm/simple.py", line 681, in _generate_io
     forecast, packet_tree = parse_next_remote_packet(
                             ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/i7949486/Desktop/me/s/fandango/src/fandango/io/packetparser.py", line 160, in parse_next_remote_packet
+  File "/Users/i7949486/Desktop/me/test2/pacakge/src/fandango/io/packetparser.py", line 160, in parse_next_remote_packet
     raise FandangoFailedError(
 fandango.errors.FandangoFailedError: Could not parse received message fragments into predicted NonTerminals.
 Incompletely parsed NonTerminals:

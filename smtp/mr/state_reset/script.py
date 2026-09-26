@@ -5,6 +5,7 @@ import time
 import logging
 
 from fandango.evolution.algorithm import SimpleGeneticAlgorithm, LoggerLevel
+from fandango.io import FandangoIO
 from fandango.language.grammar import FuzzingMode
 from fandango.language.parse.parse import parse
 
@@ -64,10 +65,21 @@ def format_duration(seconds):
 
 
 def run_fandango(grammar_path, log_file_path):
-    start_time = time.time()
+    os.makedirs(os.path.dirname(os.path.abspath(log_file_path)), exist_ok=True)
+    with open(log_file_path, 'w') as log_file:
+        try:
+            _run_fandango(grammar_path, log_file)
+        finally:
+            # Close sockets/listener threads on success, parser failure or interrupt.
+            # Do not reset_parties() here: that would open a new connection A.
+            io_instance = FandangoIO.instance()
+            for party in list(io_instance.parties.values()):
+                party.stop()
+    print(f"\nLog saved to: {log_file_path}")
 
-    # Open log file
-    log_file = open(log_file_path, 'w')
+
+def _run_fandango(grammar_path, log_file):
+    start_time = time.time()
 
     def log_print(*args, **kwargs):
         """Print to both console and log file."""
@@ -90,14 +102,14 @@ def run_fandango(grammar_path, log_file_path):
     fandango_logger = logging.getLogger('fandango')
     tee_handler = LoggerTeeHandler(log_file)
     tee_handler.setFormatter(logging.Formatter('%(name)s:%(levelname)s: %(message)s'))
-    fandango_logger.addHandler(tee_handler)
 
     fandango = SimpleGeneticAlgorithm(
         grammar=grammar,
         constraints=constraints,
         logger_level=LoggerLevel.INFO,
-        diversity_k=20
+        diversity_k=10
     )
+    fandango_logger.addHandler(tee_handler)
 
     solutions = []
     violations = {}
@@ -175,9 +187,6 @@ def run_fandango(grammar_path, log_file_path):
         log_print(f"  Average time per test: {format_duration(generation_duration / len(solutions))}")
 
     log_print("=" * 80)
-
-    log_file.close()
-    print(f"\nLog saved to: {log_file_path}")
 
 
 def main():

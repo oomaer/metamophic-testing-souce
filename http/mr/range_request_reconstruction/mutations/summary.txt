@@ -1,0 +1,31 @@
+RANGE REQUEST RECONSTRUCTION (RFC 7233) - MUTATION LOG SUMMARY
+================================================================================
+
+Logs scanned: 12  (source: /Users/i7949486/Desktop/me/test/http/mr/range_request_reconstruction/mutations/logs)
+Total time (sum of per-log Duration headers): 6m 19.14s
+
+Legend:
+  Cases     = total 'TEST CASE #N' markers seen in the log
+  FirstFail = first test case that produced a failure (VIOLATION or PARSE_ERROR)
+  Pass/Viol = raw [PASS] / [VIOLATION] line counts
+  ParseErr  = FandangoFailedError / FandangoValueError occurrences
+  Killed    = run ended in a Python traceback with no SUMMARY block written
+  Detection = VIOLATION (constraint), PARSE_ERROR (grammar mismatch), BOTH, or NONE
+  Duration* = one or more logs had no parseable duration header
+
+Mutation  Name                                                             Cases  FirstFail       Pass  Viol  ParseErr  Killed  Detection  Duration 
+----------------------------------------------------------------------------------------------------------------------------------------------------
+M1        Inclusive/exclusive end confusion (drops last byte per part)     11     #1 (VIOLATION)  0     22    0         no      VIOLATION  46.55s   
+M2        Naive regex parser: bytes=k- treated as bytes=k-k                10     #1 (VIOLATION)  0     20    0         no      VIOLATION  38.55s   
+M3        Content-Length reflects full file, not chunk                     11     #1 (VIOLATION)  0     22    0         no      VIOLATION  44.54s   
+M4        Case-sensitive Range header lookup (misses every request)        0      #1 (VIOLATION)  0     2     2         no      BOTH       2.41s    
+M5        Off-by-one on open-ended range (last byte missing)               9      #1 (VIOLATION)  0     18    0         no      VIOLATION  36.71s   
+M6        URL-keyed cache ignores Range header                             9      #1 (VIOLATION)  0     18    0         no      VIOLATION  34.09s   
+M7        Buffer overrun: appends 2 stray bytes to every partial response  11     #1 (VIOLATION)  0     22    0         no      VIOLATION  44.54s   
+M8        Content-Range header lies; body correct                          10     -               10    0     0         no      NONE       40.17s   
+M9        Returns 200 OK with correct partial slice                        0      #1 (VIOLATION)  0     2     2         no      BOTH       2.55s    
+M10       Keep-alive state leak; stale bytes bleed into next response      11     #1 (VIOLATION)  0     22    0         no      VIOLATION  44.02s   
+M11       Silently drops range requests past a fixed offset threshold      1      #1 (VIOLATION)  1     2     2         no      BOTH       8.83s    
+M12       UTF-8 "safe boundary" rounding truncates end                     9      #1 (VIOLATION)  0     18    0         no      VIOLATION  36.18s   
+----------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL     12 mutations                                                     92     -               11    168   6         0/12    -          6m 19.14s

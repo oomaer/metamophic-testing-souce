@@ -42,7 +42,7 @@ class BaselineHandler:
     async def handle_DATA(self, server, session, envelope):
         """Accept DATA."""
         print(f"[ServerA-8026] DATA from {envelope.mail_from} to {envelope.rcpt_tos}")
-        return '250 OK'
+        return f"250 OK {envelope.mail_from} {envelope.rcpt_tos}"
 
     async def handle_RSET(self, server, session, envelope):
         """RFC-compliant RSET - clears transaction state, keeps auth."""
@@ -103,7 +103,7 @@ class MutatedHandler:
         # Reset mail_from_set after DATA completes (transaction finished)
         state['mail_from_set'] = False
         print(f"[ServerB-8027] DATA from {envelope.mail_from} to {envelope.rcpt_tos}")
-        return '250 OK'
+        return f"250 OK {envelope.mail_from} {envelope.rcpt_tos}"
 
     async def handle_RSET(self, server, session, envelope):
         """RSET with mutations applied."""

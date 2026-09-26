@@ -11,7 +11,7 @@ MUTATION_DESCRIPTIONS = {
     'M1': 'STRICT_DUPLICATE_REJECT - Reject all duplicates with 550',
     'M2': 'ACCEPT_FIRST_N_DUPLICATES - Accept first 2, reject 3rd+',
     'M10': 'REJECT_FIRST_DUPLICATE_ONLY - Reject 2nd occurrence, accept 3rd+',
-    'M30': 'PLUS_ADDRESSING_BUG - Treats user+tag1 and user+tag2 as duplicates',
+    'M30': 'DUPLICATE_DELIVERS_TO_WRONG_RECIPIENT - Duplicate RCPT adds unintended recipient',
     'M44': 'MULTIPLE_RESPONSE_LINES - Send multiple 250 responses (protocol violation)',
     'M48': 'REJECT_ALL_AFTER_DUPLICATE - After duplicate, reject all subsequent RCPT',
 }

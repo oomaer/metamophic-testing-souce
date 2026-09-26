@@ -1,6 +1,6 @@
 Mutation: M3
 Description: RSET_CLEARS_AUTH - RSET incorrectly clears authentication
-Duration: 32.91s
+Duration: 32.97s
 ================================================================================
 
 fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
@@ -37,7 +37,7 @@ fandango:INFO: ServerA: <response_data> '354 End data with <CR><LF>.<CR><LF>\r\n
 fandango:INFO: Current coverage: 18.10%
 fandango:INFO: ClientA: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
 fandango:INFO: Current coverage: 19.48%
-fandango:INFO: ServerA: <response_emailA_sent> '250 OK\r\n'
+fandango:INFO: ServerA: <response_emailA_sent> "250 OK sender@example.com ['recipient@example.com']\r\n"
 fandango:INFO: Current coverage: 20.78%
 fandango:INFO: ClientA: <request_quit> 'QUIT\r\n'
 fandango:INFO: Current coverage: 22.71%
@@ -119,7 +119,7 @@ Stopping connection 1 and starting connection 2[VIOLATION] MAIL FROM after RSET 
   Connection B (MAIL FROM after RSET): 530 - 530 5.7.0 Authentication required
   Expected: Server should accept MAIL FROM identically after RSET
 [VIOLATION] State reset failed: Response code mismatch
-  Connection A (normal): 250 - 250 OK
+  Connection A (normal): 250 - 250 OK sender@example.com ['recipient@example.com']
   Connection B (after RSET): 500 - 500 Error: command "SUBJECT:" not recognized
   Expected: Server should respond identically after RSET
 [VIOLATION] MAIL FROM after RSET failed: Response code mismatch
@@ -127,17 +127,17 @@ Stopping connection 1 and starting connection 2[VIOLATION] MAIL FROM after RSET 
   Connection B (MAIL FROM after RSET): 530 - 530 5.7.0 Authentication required
   Expected: Server should accept MAIL FROM identically after RSET
 Traceback (most recent call last):
-  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 191, in <module>
+  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 192, in <module>
     main()
-  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 187, in main
+  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 188, in main
     run_fandango(grammar_path, log_file_path)
   File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/script.py", line 113, in run_fandango
     for solution in fandango.generate(mode=FuzzingMode.IO):
-  File "/Users/i7949486/Desktop/me/s/fandango/src/fandango/evolution/algorithm/simple.py", line 390, in generate
+  File "/Users/i7949486/Desktop/me/test2/pacakge/src/fandango/evolution/algorithm/simple.py", line 390, in generate
     yield from self._generate_io(max_generations=max_generations)
-  File "/Users/i7949486/Desktop/me/s/fandango/src/fandango/evolution/algorithm/simple.py", line 681, in _generate_io
+  File "/Users/i7949486/Desktop/me/test2/pacakge/src/fandango/evolution/algorithm/simple.py", line 681, in _generate_io
     forecast, packet_tree = parse_next_remote_packet(
                             ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/i7949486/Desktop/me/s/fandango/src/fandango/io/packetparser.py", line 46, in parse_next_remote_packet
+  File "/Users/i7949486/Desktop/me/test2/pacakge/src/fandango/io/packetparser.py", line 46, in parse_next_remote_packet
     raise FandangoValueError(
 fandango.errors.FandangoValueError: Unexpected party sent message. Expected: ClientB. Received: {'ServerB'}. Messages: [('ServerB', 'ClientB', b'5'), ('ServerB', 'ClientB', b'0'), ('ServerB', 'ClientB', b'0'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'E'), ('ServerB', 'ClientB', b'r'), ('ServerB', 'ClientB', b'r'), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b'r'), ('ServerB', 'ClientB', b':'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'b'), ('ServerB', 'ClientB', b'a'), ('ServerB', 'ClientB', b'd'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b's'), ('ServerB', 'ClientB', b'y'), ('ServerB', 'ClientB', b'n'), ('ServerB', 'ClientB', b't'), ('ServerB', 'ClientB', b'a'), ('ServerB', 'ClientB', b'x'), ('ServerB', 'ClientB', b'\r'), ('ServerB', 'ClientB', b'\n'), ('ServerB', 'ClientB', b'5'), ('ServerB', 'ClientB', b'0'), ('ServerB', 'ClientB', b'0'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'E'), ('ServerB', 'ClientB', b'r'), ('ServerB', 'ClientB', b'r'), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b'r'), ('ServerB', 'ClientB', b':'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'c'), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b'm'), ('ServerB', 'ClientB', b'm'), ('ServerB', 'ClientB', b'a'), ('ServerB', 'ClientB', b'n'), ('ServerB', 'ClientB', b'd'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'"'), ('ServerB', 'ClientB', b'T'), ('ServerB', 'ClientB', b'H'), ('ServerB', 'ClientB', b'I'), ('ServerB', 'ClientB', b'S'), ('ServerB', 'ClientB', b'"'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'n'), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b't'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'r'), ('ServerB', 'ClientB', b'e'), ('ServerB', 'ClientB', b'c'), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b'g'), ('ServerB', 'ClientB', b'n'), ('ServerB', 'ClientB', b'i'), ('ServerB', 'ClientB', b'z'), ('ServerB', 'ClientB', b'e'), ('ServerB', 'ClientB', b'd'), ('ServerB', 'ClientB', b'\r'), ('ServerB', 'ClientB', b'\n'), ('ServerB', 'ClientB', b'5'), ('ServerB', 'ClientB', b'0'), ('ServerB', 'ClientB', b'0'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'E'), ('ServerB', 'ClientB', b'r'), ('ServerB', 'ClientB', b'r'), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b'r'), ('ServerB', 'ClientB', b':'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'c'), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b'm'), ('ServerB', 'ClientB', b'm'), ('ServerB', 'ClientB', b'a'), ('ServerB', 'ClientB', b'n'), ('ServerB', 'ClientB', b'd'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'"'), ('ServerB', 'ClientB', b'.'), ('ServerB', 'ClientB', b'"'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'n'), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b't'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'r'), ('ServerB', 'ClientB', b'e'), ('ServerB', 'ClientB', b'c'), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b'g'), ('ServerB', 'ClientB', b'n'), ('ServerB', 'ClientB', b'i'), ('ServerB', 'ClientB', b'z'), ('ServerB', 'ClientB', b'e'), ('ServerB', 'ClientB', b'd'), ('ServerB', 'ClientB', b'\r'), ('ServerB', 'ClientB', b'\n')]

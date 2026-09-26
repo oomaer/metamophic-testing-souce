@@ -1,92 +1,115 @@
-==========================================================================================
- MUTATION TESTING RESULTS - FTP Redundant RNFR MR
-==========================================================================================
+IMAP APPEND+SEARCH - MUTATION TESTING RESULTS
+================================================================================
 
-Total mutants:   4
-Killed:          3
-Survived:        1
-Mutation score:  3/4 (75.0%)
-Total time:      4m 40.75s
+Date: 2026-09-12 17:19:37
+Total Duration: 12m 26.57s
+Detection Rate: 5/8 (62.5%)
 
-Mutant     Tests   Passes   Violations   Killed    Duration   Description
-------------------------------------------------------------------------------------------
-BASELINE   0       0        0            N/A       0.00s      Clean baseline - normal RNFR/RNTO behavior
-M1         7       0        7            YES       1m 6.82s   FIRST_RNFR_WINS - Only first RNFR is stored; subsequent ignored
-M2         8       0        8            YES       1m 18.49s  REJECT_REDUNDANT_RNFR - Second RNFR returns 503 error
-M5         7       0        7            YES       1m 8.68s   RENAME_WRONG_TARGET - RNTO renames completely random/wrong directory
-M6         7       7        0            NO        1m 6.76s   WRONG_RNTO_SUCCESS_CODE - RNTO returns 200 instead of 250
+Mutation     Description                                        Detected   P    V   
+--------------------------------------------------------------------------------
+BASELINE     Clean baseline - Twisted default SEARCH over no... N/A        19   0   
+M1           NO_STORE_ON_APPEND - APPEND succeeds but messag... YES        0    38  
+M2           DELAYED_VISIBILITY - APPENDed messages become v... YES        0    14  
+M3           PARTIAL_STORE_ON_APPEND - Only stores every 2nd... YES        3    8   
+M4           WRONG_HEADER_PARSE - Parses FROM header incorre... YES        0    12  
+M5           DUPLICATE_STORE_ENTRY - Creates 2 stored messag... YES        0    18  
+M6           CASE_SENSITIVE_FROM_SEARCH - SEARCH FROM is cas... NO         6    0   
+M7           EXACT_FROM_MATCH_ONLY - SEARCH FROM requires ex... NO         0    0   
+M8           STALE_SEARCH_SNAPSHOT - SEARCH uses a stale mai... NO         0    0   
 
-DETAILED VIOLATIONS
-==========================================================================================
+================================================================================
+DETAILED RESULTS
+================================================================================
 
 Mutation: BASELINE
-Description: Clean baseline - normal RNFR/RNTO behavior
-  No violations recorded.
+Description: Clean baseline - Twisted default SEARCH over normal mailbox state
+Detected: N/A (baseline)
+Passes: 19
+Violations: 0
+Duration: 2m 49.53s
+Log: log_BASELINE.txt
 
-------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 Mutation: M1
-Description: FIRST_RNFR_WINS - Only first RNFR is stored; subsequent ignored
-  solution1: 1 violation(s)
-    - [VIOLATION] Expected 1 after 1 append(s), got 0
-  solution2: 1 violation(s)
-    - [VIOLATION] Expected 2 after 2 append(s), got 0
-  solution3: 1 violation(s)
-    - [VIOLATION] Expected 1 after 1 append(s), got 0
-  solution4: 1 violation(s)
-    - [VIOLATION] Expected 3 after 3 append(s), got 0
-  solution5: 1 violation(s)
-    - [VIOLATION] Expected 1 after 1 append(s), got 0
-  solution6: 1 violation(s)
-    - [VIOLATION] Expected 3 after 3 append(s), got 0
-  solution7: 1 violation(s)
-    - [VIOLATION] Expected 2 after 2 append(s), got 0
+Description: NO_STORE_ON_APPEND - APPEND succeeds but message is not stored
+Detected: YES
+Passes: 0
+Violations: 38
+Duration: 3m 17.11s
+Log: log_M1.txt
 
-------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 Mutation: M2
-Description: REJECT_REDUNDANT_RNFR - Second RNFR returns 503 error
-  solution1: 1 violation(s)
-    - [VIOLATION] Expected 1 after 1 append(s), got 0
-  solution2: 1 violation(s)
-    - [VIOLATION] Expected 1 after 1 append(s), got 0
-  solution3: 1 violation(s)
-    - [VIOLATION] Expected 1 after 1 append(s), got 0
-  solution4: 1 violation(s)
-    - [VIOLATION] Expected 3 after 3 append(s), got 0
-  solution5: 1 violation(s)
-    - [VIOLATION] Expected 2 after 2 append(s), got 0
-  solution6: 1 violation(s)
-    - [VIOLATION] Expected 3 after 3 append(s), got 0
-  solution7: 1 violation(s)
-    - [VIOLATION] Expected 2 after 2 append(s), got 0
-  solution8: 1 violation(s)
-    - [VIOLATION] Expected 3 after 3 append(s), got 0
+Description: DELAYED_VISIBILITY - APPENDed messages become visible only after re-SELECT
+Detected: YES
+Passes: 0
+Violations: 14
+Duration: 1m 3.11s
+Log: log_M2.txt
 
-------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+Mutation: M3
+Description: PARTIAL_STORE_ON_APPEND - Only stores every 2nd message
+Detected: YES
+Passes: 3
+Violations: 8
+Duration: 1m 7.43s
+Log: log_M3.txt
+
+--------------------------------------------------------------------------------
+
+Mutation: M4
+Description: WRONG_HEADER_PARSE - Parses FROM header incorrectly
+Detected: YES
+Passes: 0
+Violations: 12
+Duration: 55.44s
+Log: log_M4.txt
+
+--------------------------------------------------------------------------------
 
 Mutation: M5
-Description: RENAME_WRONG_TARGET - RNTO renames completely random/wrong directory
-  solution1: 1 violation(s)
-    - [VIOLATION] Expected 3 after 3 append(s), got 6
-  solution2: 1 violation(s)
-    - [VIOLATION] Expected 1 after 1 append(s), got 2
-  solution3: 1 violation(s)
-    - [VIOLATION] Expected 2 after 2 append(s), got 4
-  solution4: 1 violation(s)
-    - [VIOLATION] Expected 3 after 3 append(s), got 6
-  solution5: 1 violation(s)
-    - [VIOLATION] Expected 1 after 1 append(s), got 2
-  solution6: 1 violation(s)
-    - [VIOLATION] Expected 1 after 1 append(s), got 2
-  solution7: 1 violation(s)
-    - [VIOLATION] Expected 2 after 2 append(s), got 4
+Description: DUPLICATE_STORE_ENTRY - Creates 2 stored messages per APPEND
+Detected: YES
+Passes: 0
+Violations: 18
+Duration: 1m 18.37s
+Log: log_M5.txt
 
-------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 Mutation: M6
-Description: WRONG_RNTO_SUCCESS_CODE - RNTO returns 200 instead of 250
-  No violations recorded.
+Description: CASE_SENSITIVE_FROM_SEARCH - SEARCH FROM is case-sensitive
+Detected: NO
+Passes: 6
+Violations: 0
+Duration: 55.46s
+Log: log_M6.txt
 
-------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+Mutation: M7
+Description: EXACT_FROM_MATCH_ONLY - SEARCH FROM requires exact header equality
+Detected: NO
+Passes: 0
+Violations: 0
+Duration: 0.00s
+Log: log_M7.txt
+Error: SERVER_FAILED
+
+--------------------------------------------------------------------------------
+
+Mutation: M8
+Description: STALE_SEARCH_SNAPSHOT - SEARCH uses a stale mailbox snapshot
+Detected: NO
+Passes: 0
+Violations: 0
+Duration: 0.00s
+Log: log_M8.txt
+Error: SERVER_FAILED
+
+--------------------------------------------------------------------------------
 

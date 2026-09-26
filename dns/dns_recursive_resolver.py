@@ -28,9 +28,6 @@ import os
 import time
 import argparse
 
-# Add dnslib to path (same pattern as dns_server.py)
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'dnslib'))
-
 from dnslib.server import DNSServer, DNSLogger
 from dnslib.proxy import ProxyResolver
 

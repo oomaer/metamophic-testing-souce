@@ -106,11 +106,13 @@ To test with different mutants, edit the `mutant_id` in:
 ```
 
 Available mutants:
-- `NONE` - Baseline (correct behavior)
-- `STRICT_DUP_REJECT` - Rejects duplicate recipients
-- `CASE_INSENSITIVE_REJECT` - Case-insensitive duplicate checking
-- `MAX_RCPT_LIMIT_2` - Enforces max 2 recipients
-- `REVERSE_LOGIC` - Inverted acceptance logic
+- `BASELINE` - Baseline behavior
+- `M1` - Reject all duplicate recipients
+- `M2` - Accept first N duplicates, then reject later duplicates
+- `M10` - Reject only the first duplicate recipient
+- `M30` - Accept duplicate RCPT but add an unintended recipient
+- `M44` - Send multiple response lines for duplicate recipients
+- `M48` - Reject all later recipients after a duplicate
 
 ## Troubleshooting
 
