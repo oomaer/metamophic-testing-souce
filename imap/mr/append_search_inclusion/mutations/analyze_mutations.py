@@ -1,19 +1,23 @@
 #!/usr/bin/env python3
-"""Analyze FTP Redundant RNFR mutation logs."""
+"""Analyze IMAP Append+Search mutation logs."""
 
 import re
 from pathlib import Path
 
 
 MUTATION_DESCRIPTIONS = {
-    "BASELINE": "Clean baseline - normal RNFR/RNTO behavior",
-    "M1": "FIRST_RNFR_WINS - Only first RNFR is stored; subsequent ignored",
-    "M2": "REJECT_REDUNDANT_RNFR - Second RNFR returns 503 error",
-    "M5": "RENAME_WRONG_TARGET - RNTO renames completely random/wrong directory",
-    "M6": "WRONG_RNTO_SUCCESS_CODE - RNTO returns 200 instead of 250",
+    "BASELINE": "Clean baseline - Twisted default SEARCH over normal mailbox state",
+    "M1": "NO_STORE_ON_APPEND - APPEND succeeds but message is not stored",
+    "M2": "DELAYED_VISIBILITY - APPENDed messages become visible only after re-SELECT",
+    "M3": "PARTIAL_STORE_ON_APPEND - Only stores every 2nd message",
+    "M4": "WRONG_HEADER_PARSE - Parses FROM header incorrectly",
+    "M5": "DUPLICATE_STORE_ENTRY - Creates 2 stored messages per APPEND",
+    "M6": "CASE_SENSITIVE_FROM_SEARCH - SEARCH FROM is case-sensitive",
+    "M7": "EXACT_FROM_MATCH_ONLY - SEARCH FROM requires exact header equality",
+    "M8": "STALE_SEARCH_SNAPSHOT - SEARCH uses a stale mailbox snapshot",
 }
 
-MUTATIONS = ["BASELINE", "M1", "M2", "M5", "M6"]
+MUTATIONS = ["BASELINE", "M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8"]
 
 
 def parse_duration_to_seconds(duration_str):
@@ -117,7 +121,7 @@ def main():
     score = killed_count / total_mutations * 100 if total_mutations else 0
 
     print("=" * 90)
-    print(" MUTATION TESTING SUMMARY - FTP Redundant RNFR MR")
+    print(" MUTATION TESTING SUMMARY - IMAP Append+Search MR")
     print("=" * 90)
     print()
     print(f"{'Mutant':<10} {'Tests':<7} {'Passes':<8} {'Violations':<12} {'Killed':<9} {'Duration':<10} Description")
@@ -136,7 +140,7 @@ def main():
     results_file = mutations_dir / "mutation_results.txt"
     with open(results_file, "w") as handle:
         handle.write("=" * 90 + "\n")
-        handle.write(" MUTATION TESTING RESULTS - FTP Redundant RNFR MR\n")
+        handle.write(" MUTATION TESTING RESULTS - IMAP Append+Search MR\n")
         handle.write("=" * 90 + "\n\n")
         handle.write(f"Total mutants:   {total_mutations}\n")
         handle.write(f"Killed:          {killed_count}\n")
