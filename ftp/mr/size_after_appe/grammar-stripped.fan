@@ -85,7 +85,6 @@
 <size_cmd_after> ::= "SIZE " <file_name> "\r\n"
 <size_response_after> ::= r"[0-9]{3}" " " <size_value_after> "\r\n"
 <size_value_after> ::= r"[0-9]+"
-
 <welcome>  ::= "220 " r".*" "\r\n"
 <user_cmd> ::= "USER user\r\n"
 <user_ok>  ::= "331 " <text> "\r\n"
@@ -95,4 +94,5 @@
 <quit_ok>  ::= "221 " <text> "\r\n"
 
 <text> ::= r'[\x20-\x7E]+'
+
 where validateSizeAfterAPPE(<size_value_A>, <size_value_after>, <append_data_1>, <append_data_2>, <append_data_3>)

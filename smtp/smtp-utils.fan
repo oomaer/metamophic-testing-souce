@@ -48,6 +48,28 @@ class ServerB(NetworkParty):
         super().receive(message, "ClientB")
 
 
+class ConnectionControl(FandangoParty):
+    """Switch sockets only when Fandango executes this protocol step.
+
+    A grammar generator can run before its packet is committed. Opening B
+    there races its SMTP greeting against the pending control packet.
+    """
+
+    def __init__(self):
+        super().__init__(connection_mode=ConnectionMode.CONNECT)
+
+    def send(self, message, recipient):
+        if str(message) != "start connection B":
+            raise ValueError(f"Unknown connection command: {message}")
+        changeConnection()
+
+    def start(self):
+        pass
+
+    def stop(self):
+        pass
+
+
 class DummyParty(NetworkParty):
     def __init__(self):
         super().__init__(

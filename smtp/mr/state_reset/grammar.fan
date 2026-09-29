@@ -126,28 +126,6 @@ where validateResponses(<response_emailA_sent>, <response_emailB_sent>)
 where validateMailFrom(<response_mail_from>, <response_mail_from_B>)
 
 
-class ConnectionControl(FandangoParty):
-    """Switch sockets only when Fandango executes this protocol step.
-
-    A grammar generator can run before its packet is committed. Opening B
-    there races its SMTP greeting against the pending control packet.
-    """
-
-    def __init__(self):
-        super().__init__(connection_mode=ConnectionMode.CONNECT)
-
-    def send(self, message, recipient):
-        if str(message) != "start connection B":
-            raise ValueError(f"Unknown connection command: {message}")
-        changeConnection()
-
-    def start(self):
-        pass
-
-    def stop(self):
-        pass
-
-
 def validateMailFrom(responseA, responseB):
     """
     Validate that MAIL FROM works identically after RSET.

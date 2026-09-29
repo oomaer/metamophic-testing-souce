@@ -1,5 +1,5 @@
 
-include ("/Users/i7949486/Downloads/docker/metamorphic-testing/mt-smtp/smtp-utils.fan")
+include ("../../smtp-utils.fan")
 
 # Repeated Recipient Invariance Test (RFC 5321)
 # A: Normal flow - Send email with ONE RCPT TO (single recipient)
@@ -7,12 +7,12 @@ include ("/Users/i7949486/Downloads/docker/metamorphic-testing/mt-smtp/smtp-util
 # Relation: Both should succeed with identical response codes
 # Per RFC 5321: Duplicate recipients should be handled gracefully (ignored or accepted)
 
-<start> ::= <Interation1> <ChangeConnection> <Interation2> 
+<start> ::= <Interation1> <ConnectionControl:ChangeConnection> <Interation2>
 
 # 1. Setup Phase: Connect and EHLO
 <Interation1> ::= <ServerA:response_setup><ClientA:request_ehlo><ServerA:response_ehlo><state_logged_out_A>
 <Interation2> ::= <ServerB:response_setup><ClientB:request_ehlo><ServerB:response_ehlo><state_logged_out_B>
-<ChangeConnection> ::= r".*" := changeConnection()
+<ChangeConnection> ::= "start connection B"
 
 # 2. Login Phase: Move from Logged Out to Logged In
 <state_logged_out_A> ::= <exchange_login_valid_A>
