@@ -1,5 +1,26 @@
 Metamorphic testing
 
+Run in Docker
+
+With Docker running, build the image from this folder:
+
+```sh
+docker build -t metamorphic-testing .
+```
+
+Run both scripts, setting the number of timing repetitions with `--runs`:
+
+```sh
+docker run --rm -v "/absolute/path/to/results:/results" metamorphic-testing --runs 10
+```
+
+Replace `/absolute/path/to/results` with the folder where you want the output.
+The container runs `run_all_tests.py` first, then `run_all_mutations.py`.
+Reports and logs are saved under `timing_results/` and `mutation_results/`
+inside your chosen folder. `--runs` controls the timing repetitions; mutations
+use their configured mutation lists. Add `--retry 2` to change the number of
+retries for each failed timing MR (default: 3; `--retry 0` disables retries).
+
 Setup for another computer
 
 Use Python 3.12 (the experiments were checked with Python 3.12.0) on macOS
@@ -58,8 +79,11 @@ Raw logs are saved beside the report in `MR<number>_<protocol>_<name>/runs/`;
 folders remain intact. A failed runner or missing timing summary is reported as
 incomplete, without a mean/SD, and the command exits with a nonzero status.
 Other MRs continue. 
-If a run fails with `IndexError: list index out of range`, run the same command
-again. 
+A timing MR that fails is retried up to three more times by default. Use
+`--retry 2` for two retries or `--retry 0` to disable retries. Only the final
+attempt's logs and timings are kept. If all attempts fail, the runner reports
+"Failed after N retries" and continues to the next MR. Cancellation is not
+retried. An optional `--timeout` applies separately to each attempt. 
 
 Useful options:
 

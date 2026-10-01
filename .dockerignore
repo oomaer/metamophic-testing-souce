@@ -1,0 +1,16 @@
+.git
+.DS_Store
+**/.DS_Store
+**/__pycache__
+**/*.pyc
+**/.venv
+**/venv
+timing_results
+mutation_results
+results
+**/runs
+**/logs
+**/server_logs
+**/*.log
+ftp/data
+ftp/mr/**/data

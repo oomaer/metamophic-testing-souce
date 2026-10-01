@@ -92,6 +92,88 @@ class TimingTests(unittest.TestCase):
             self.assertEqual((root / 'smtp/mr/repeated_recipient/runs/test_output_99.log').read_text(),
                              'old results')
 
+    def test_failed_mr_recovers_and_keeps_only_successful_attempt(self):
+        script = """import os
+from pathlib import Path
+output = Path(os.environ['MR_RUNS_DIR'])
+count = output.parent / 'attempt_count'
+attempt = int(count.read_text()) + 1 if count.exists() else 1
+count.write_text(str(attempt))
+print(f'attempt {attempt}')
+for run in range(1, 3):
+    (output / f'test_output_{run}.log').write_text(
+        f'Test generation time: {attempt} seconds\\nAverage time per test: {attempt} seconds\\n')
+raise SystemExit(1 if attempt < 3 else 0)
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.make_project(root, script)
+            with patch.object(runner, 'ROOT', root), redirect_stdout(io.StringIO()) as console:
+                result = runner.run_mr('smtp', 1, 'repeated_recipient', 2,
+                                       root / 'batch', threading.Event(), retry=2)
+            self.assertEqual(result['errors'], [])
+            self.assertEqual(result['rows'], [(1, 3, 3), (2, 3, 3)])
+            self.assertEqual(result['runner_log'].read_text(), 'attempt 3\n')
+            self.assertNotIn('FAILED', console.getvalue())
+            self.assertEqual((result['runner_log'].parent / 'attempt_count').read_text(), '3')
+
+    def test_retry_limits_and_default(self):
+        script = """import os
+from pathlib import Path
+count = Path(os.environ['MR_RUNS_DIR']).parent / 'attempt_count'
+count.write_text(str(int(count.read_text()) + 1 if count.exists() else 1))
+raise SystemExit(2)
+"""
+        for retry in [0, 2, None]:
+            with self.subTest(retry=retry), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                self.make_project(root, script)
+                options = {} if retry is None else {'retry': retry}
+                expected = 3 if retry is None else retry
+                with patch.object(runner, 'ROOT', root), redirect_stdout(io.StringIO()) as console:
+                    result = runner.run_mr('smtp', 1, 'repeated_recipient', 1,
+                                           root / 'batch', threading.Event(), **options)
+                self.assertEqual((result['runner_log'].parent / 'attempt_count').read_text(),
+                                 str(expected + 1))
+                self.assertIn(f'Failed after {expected} retries', result['errors'])
+                self.assertIn(f'FAILED after {expected} retries', console.getvalue())
+
+    def test_retry_discards_stale_timing_summaries(self):
+        script = """import os
+from pathlib import Path
+output = Path(os.environ['MR_RUNS_DIR'])
+count = output.parent / 'attempt_count'
+attempt = int(count.read_text()) + 1 if count.exists() else 1
+count.write_text(str(attempt))
+text = 'Test generation time: 1 seconds\\nAverage time per test: 1 seconds\\n'
+(output / 'test_output_1.log').write_text(text)
+if attempt == 1:
+    (output / 'test_output_2.log').write_text(text)
+raise SystemExit(1 if attempt == 1 else 0)
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.make_project(root, script)
+            with patch.object(runner, 'ROOT', root), redirect_stdout(io.StringIO()):
+                result = runner.run_mr('smtp', 1, 'repeated_recipient', 2,
+                                       root / 'batch', threading.Event(), retry=2)
+            self.assertEqual(len(result['rows']), 1)
+            self.assertTrue(any(error.startswith('Run 2:') for error in result['errors']))
+            self.assertEqual((result['runner_log'].parent / 'attempt_count').read_text(), '3')
+
+    def test_cancellation_is_not_retried(self):
+        cancel = threading.Event()
+
+        def cancelled(*args):
+            cancel.set()
+            return {'errors': ['Cancelled'], 'wall': 0}
+
+        with patch.object(runner, '_run_mr_attempt', side_effect=cancelled) as attempt, redirect_stdout(io.StringIO()):
+            result = runner.run_mr('smtp', 1, 'repeated_recipient', 1,
+                                   Path('unused'), cancel, retry=3)
+        attempt.assert_called_once()
+        self.assertEqual(result['errors'], ['Cancelled'])
+
     def test_failure_timeout_and_missing_logs_are_not_success(self):
         scripts = ['raise SystemExit(2)', 'import time; time.sleep(10)', 'pass']
         with tempfile.TemporaryDirectory() as directory:

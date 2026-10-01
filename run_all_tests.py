@@ -60,17 +60,16 @@ def stop_process_group(process):
     process.wait()
 
 
-def run_mr(protocol, number, name, runs, batch_dir, cancel, timeout=None):
+def _run_mr_attempt(protocol, number, name, runs, batch_dir, cancel, timeout=None):
     output_dir = batch_dir / f"MR{number}_{protocol}_{name}"
     logs_dir = output_dir / "runs"
-    logs_dir.mkdir(parents=True)
+    logs_dir.mkdir(parents=True, exist_ok=True)
     runner_log = output_dir / "runner.log"
     result = dict(number=number, protocol=protocol, name=name, rows=[], errors=[],
                   wall=0.0, runner_log=runner_log)
     if cancel.is_set():
         result["errors"].append("Cancelled before starting")
         return result
-    print(f"Starting MR{number}: {protocol.upper()} / {name}", flush=True)
     start = time.monotonic()
     process = None
     try:
@@ -114,14 +113,38 @@ def run_mr(protocol, number, name, runs, batch_dir, cancel, timeout=None):
             result["rows"].append((run, generation, average))
         except (OSError, ValueError) as error:
             result["errors"].append(f"Run {run}: {error}")
+    return result
+
+
+def run_mr(protocol, number, name, runs, batch_dir, cancel, timeout=None, retry=3):
+    """Retry a failed MR, keeping only the final attempt's output."""
+    if retry < 0:
+        raise ValueError("retry must be nonnegative")
+    print(f"Starting MR{number}: {protocol.upper()} / {name}", flush=True)
+    started = time.monotonic()
+    for attempt in range(retry + 1):
+        if attempt and not cancel.is_set():
+            # Do not let a previous attempt's timing summaries fill gaps in
+            # the next attempt. Server cleanup has already completed.
+            logs_dir = batch_dir / f"MR{number}_{protocol}_{name}" / "runs"
+            for run in range(1, runs + 1):
+                (logs_dir / f"test_output_{run}.log").unlink(missing_ok=True)
+        result = _run_mr_attempt(protocol, number, name, runs, batch_dir, cancel, timeout)
+        if not result["errors"] or cancel.is_set():
+            break
+    result["wall"] = time.monotonic() - started
     status = "FAILED" if result["errors"] else "OK"
+    if result["errors"] and attempt == retry and not cancel.is_set():
+        label = "retry" if retry == 1 else "retries"
+        result["errors"].append(f"Failed after {retry} {label}")
+        status = f"FAILED after {retry} {label}"
     print(f"Finished MR{number}: {status} ({result['wall']:.2f}s)", flush=True)
     return result
 
 
-def run_protocol(protocol, runs, batch_dir, cancel, timeout):
+def run_protocol(protocol, runs, batch_dir, cancel, timeout, retry=3):
     # One worker owns a protocol; its MRs can never overlap.
-    return [run_mr(protocol, number, name, runs, batch_dir, cancel, timeout)
+    return [run_mr(protocol, number, name, runs, batch_dir, cancel, timeout, retry)
             for number, name in PROTOCOL_MRS[protocol]]
 
 
@@ -132,7 +155,7 @@ def write_report(path, results, runs, workers, elapsed):
         "All timings below are in seconds.",
         "Mean and sample SD are calculated across the per-run average times per test",
         "(the same metric as extract_avg_time_and_sd.py; SD is 0 for one run).",
-        "MR wall time includes server startup and cleanup. Parallel work can affect timings.",
+        "MR wall time includes server startup, cleanup and any retries. Parallel work can affect timings.",
         "OK means the runner exited successfully and all requested timing summaries exist.",
     ]
     for result in sorted(results, key=lambda item: item["number"]):
@@ -157,16 +180,18 @@ def write_report(path, results, runs, workers, elapsed):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("runs", type=int, nargs="?", default=10)
+    parser.add_argument("--retry", type=int, default=3,
+                        help="Additional attempts for a failed MR (default: 3; 0 disables retries)")
     parser.add_argument("--workers", type=int, choices=range(1, 6), default=5,
                         help="Parallel protocols (default: 5; use 1 for serial timing)")
     parser.add_argument("--protocols", nargs="+", choices=PROTOCOL_MRS, default=list(PROTOCOL_MRS))
     parser.add_argument("--output-dir", type=Path, default=ROOT / "timing_results",
                         help="Parent for a new timestamped batch directory")
     parser.add_argument("--timeout", type=float,
-                        help="Optional maximum seconds for each MR's entire runner")
+                        help="Optional maximum seconds for each attempt of an MR runner")
     args = parser.parse_args()
-    if args.runs < 1 or (args.timeout is not None and args.timeout <= 0):
-        parser.error("runs and timeout must be positive")
+    if args.runs < 1 or args.retry < 0 or (args.timeout is not None and args.timeout <= 0):
+        parser.error("runs and timeout must be positive; retry must be nonnegative")
     protocols = list(dict.fromkeys(args.protocols))
     workers = min(args.workers, len(protocols))
     batch_dir = args.output_dir.expanduser().resolve() / datetime.now().strftime("%Y%m%d_%H%M%S_%f")
@@ -178,7 +203,7 @@ def main():
     results = []
     interrupted = False
     with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures = [pool.submit(run_protocol, protocol, args.runs, batch_dir, cancel, args.timeout)
+        futures = [pool.submit(run_protocol, protocol, args.runs, batch_dir, cancel, args.timeout, args.retry)
                    for protocol in protocols]
         try:
             for future in as_completed(futures):
