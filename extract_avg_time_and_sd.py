@@ -1,67 +1,83 @@
-import sys
+"""Extract per-run average test times, their mean, and sample SD in seconds."""
+
+import argparse
 import re
 import statistics
 from pathlib import Path
 
+
+def parse_duration(value):
+    """Handle the seconds, minutes, and hours formats emitted by script.py."""
+    match = re.fullmatch(
+        r"\s*(?:(\d+)h\s*)?(?:(\d+)m\s*)?(\d+(?:\.\d+)?)\s*(?:seconds?|s)?\s*",
+        value,
+    )
+    if not match:
+        raise ValueError(f"Invalid duration: {value!r}")
+    hours, minutes, seconds = match.groups()
+    return int(hours or 0) * 3600 + int(minutes or 0) * 60 + float(seconds)
+
+
+def parse_time(file_path, label="Average time per test"):
+    content = Path(file_path).read_text(encoding="utf-8", errors="replace")
+    match = re.search(rf"{re.escape(label)}:[ \t]*([^\r\n]+)", content)
+    return parse_duration(match.group(1)) if match else None
+
+
 def parse_avg_time(file_path):
-    """Extracts the numeric average time per test in seconds from a log file."""
-    with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
-        content = f.read()
+    return parse_time(file_path)
 
-    # Matches numeric value (integers or floats) after "Average time per test:"
-    match = re.search(r"Average time per test:\s*([\d.]+)", content)
-    if match:
-        return float(match.group(1))
-    return None
 
-def generate_latex_row(folder_path, output_file="summary_report.txt", mr_label="MR-1"):
+def log_sort_key(path):
+    # Natural ordering: test_output_2.log precedes test_output_10.log.
+    return [int(part) if part.isdigit() else part for part in re.split(r"(\d+)", path.name)]
+
+
+def collect_avg_times(folder_path):
     folder = Path(folder_path)
-    
     if not folder.is_dir():
-        print(f"Error: Directory '{folder_path}' does not exist.")
-        sys.exit(1)
+        raise NotADirectoryError(f"Directory does not exist: {folder}")
+    files = sorted(
+        (p for p in folder.iterdir() if p.is_file() and p.suffix in (".log", ".txt")),
+        key=log_sort_key,
+    )
+    return [(path, value) for path in files if (value := parse_avg_time(path)) is not None]
 
-    # Find and sort all log/txt files
-    log_files = sorted([f for f in folder.iterdir() if f.is_file() and f.suffix in ('.log', '.txt')])
 
-    avg_times = []
-    for f in log_files:
-        time_val = parse_avg_time(f)
-        if time_val is not None:
-            avg_times.append(time_val)
+def mean_and_sd(values):
+    return statistics.mean(values), statistics.stdev(values) if len(values) > 1 else 0.0
 
-    if not avg_times:
-        print(f"No valid log files with average times found in '{folder_path}'.")
-        sys.exit(0)
 
-    # Compute Mean and Standard Deviation (SD)
-    mean_val = statistics.mean(avg_times)
-    sd_val = statistics.stdev(avg_times) if len(avg_times) > 1 else 0.0
-
-    # Format row: MR-1 & file1_val & file2_val & ... & mean & SD \\
-    formatted_times = [f"{v:.2f}" for v in avg_times]
-    formatted_mean = f"{mean_val:.2f}"
-    formatted_sd = f"{sd_val:.2f}"
-
-    columns = [mr_label] + formatted_times + [formatted_mean, formatted_sd]
-    latex_row = " & ".join(columns) + r" \\"
-
-    # Append row to output file
-    out_path = Path(output_file)
-    with open(out_path, 'a', encoding='utf-8') as f:
-        f.write(latex_row + "\n")
-
-    print("Generated Row:")
+def generate_latex_row(folder_path, output_file="summary_report.txt", mr_label="MR-1", mr_name=None):
+    rows = collect_avg_times(folder_path)
+    if not rows:
+        raise ValueError(f"No valid log files with average times found in '{folder_path}'.")
+    values = [value for _, value in rows]
+    mean, sd = mean_and_sd(values)
+    label = f"{mr_label} ({mr_name})" if mr_name else mr_label
+    latex_row = " & ".join([label] + [f"{v:.2f}" for v in values + [mean, sd]]) + r" \\"
+    with Path(output_file).open("a", encoding="utf-8") as output:
+        output.write(latex_row + "\n")
     print(latex_row)
-    print(f"\nAppended successfully to: {out_path.resolve()}")
+    print(f"Appended successfully to: {Path(output_file).resolve()}")
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("folder", type=Path)
+    parser.add_argument("output", nargs="?", default="summary_report.txt")
+    parser.add_argument("mr_label", nargs="?", default="MR-1", help="Legacy MR label")
+    parser.add_argument("--mr-number", type=int)
+    parser.add_argument("--mr-name")
+    args = parser.parse_args()
+    if args.mr_number is not None and args.mr_number < 1:
+        parser.error("MR number must be positive")
+    label = f"MR-{args.mr_number}" if args.mr_number is not None else args.mr_label
+    try:
+        generate_latex_row(args.folder, args.output, label, args.mr_name)
+    except (OSError, ValueError) as error:
+        parser.exit(1, f"Error: {error}\n")
+
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python parse_logs.py /path/to/folder [output_file.txt] [MR_LABEL]")
-        sys.exit(1)
-
-    folder_arg = sys.argv[1]
-    out_arg = sys.argv[2] if len(sys.argv) > 2 else "summary_report.txt"
-    mr_arg = sys.argv[3] if len(sys.argv) > 3 else "MR-1"
-
-    generate_latex_row(folder_arg, out_arg, mr_arg)
+    main()

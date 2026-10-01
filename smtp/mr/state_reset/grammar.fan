@@ -1,11 +1,6 @@
 
 include ("../../smtp-utils.fan")
 
-# State Reset Invariance Test (RFC 5321)
-# A: Normal flow - EHLO → AUTH → MAIL FROM → RCPT TO → DATA → QUIT
-# B: Reset flow  - Can RSET at any state and continue from MAIL FROM
-# Relation: Outcome of B's final MAIL FROM sequence must match A's outcome
-
 <start> ::= <Interation1> <ConnectionControl:ChangeConnection> <Interation2>
 
 # 1. Setup Phase: Connect and EHLO
@@ -17,10 +12,8 @@ include ("../../smtp-utils.fan")
 <state_logged_out_A> ::= <exchange_login_valid_A>
 <state_logged_out_B> ::= <exchange_login_valid_B>
 
-# 3. Logged In State: Send email then quit
-# A: Normal flow
+
 <state_logged_in_A> ::= <exchange_send_email_A><exchange_quit_A>
-# B: Reset flow - can reset at any point, then complete transaction
 <state_logged_in_B> ::= <reset_path_B><exchange_send_email_B><exchange_quit_B>
 
 # --- Detailed Exchanges for A (Normal Flow) ---
@@ -133,8 +126,8 @@ def validateMailFrom(responseA, responseB):
 
     This catches mutations like:
     - M1: INCOMPLETE_SENDER_RESET (503 Sender already specified)
-    - M3: RSET_CLEARS_AUTH (530 Authentication required)
-    - M7: RSET_NOOP (503 Nested MAIL command)
+    - M2: RSET_CLEARS_AUTH (530 Authentication required)
+    - M5: RSET_NOOP (503 Nested MAIL command)
     """
     codeA = str(responseA)[:3]
     codeB = str(responseB)[:3]

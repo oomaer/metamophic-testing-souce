@@ -1,31 +1,11 @@
-"""
-IMAP Metamorphic Relation: Append Then Search (K-Path Version)
-
-MR: After appending N messages with specific search criteria, searching for
-    that criteria should return exactly N more results than before.
-
-K-Paths:
-  - append_1x: Single append (+1)
-  - append_2x: Two appends (+2)
-  - append_3x: Three appends (+3)
-
-Each append uses message variants (msg_a, msg_b, msg_c) to create
-additional k-path branches through content variation.
-"""
-
 include("grammar-utils.fan")
 
-
-# === Main Grammar with K-Path Branching ===
 
 <start> ::= <Server:greeting> <login_sequence> <Interaction1> <Interaction2>
 <Interaction1> ::= <select_inbox> <source_search> 
 <Interaction2> ::= <append_sequence> <followup_search>
 
 
-# === Server Greeting ===
-# End each response with a literal CRLF so the streaming parser can finish
-# immediately. Keep alternatives inside regexes to avoid unreachable k-paths.
 <greeting> ::= r"\* OK[^\r\n]*" "\r\n"
 
 
@@ -77,7 +57,7 @@ where int(<size>) == len(str(<message>))
 # === Follow-up Search (after APPENDs) ===
 <followup_search> ::= <Client:search_cmd_followup> <Server:search_response_followup>
 
-<search_cmd_followup> ::= "A005 SEARCH FROM \"testmr@example.com\"\r\n"
+<search_cmd_followup> ::= "A005 SEARCH FROM \"TESTMR@EXAMPLE.COM\"\r\n"
 <search_response_followup> ::= r"(\* SEARCH[^\r]*\r\n)?A005 OK[^\r\n]*" "\r\n"
 
 

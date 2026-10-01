@@ -151,6 +151,8 @@ def _run_fandango(grammar_path, log_file):
 
             if solution_violations:
                 violations[f"solution{solution_index + 1}"] = solution_violations
+                print("Stopping after the first test with a violation.")
+                break
 
             print("-" * 80)
     finally:

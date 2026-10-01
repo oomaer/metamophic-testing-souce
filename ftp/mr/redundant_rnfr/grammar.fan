@@ -15,9 +15,9 @@ include("./ftp-utils.fan")
 #
 # =============================================================================
 
-<start> ::= <session_A> <ChangeConnection> <session_B>
+<start> ::= <session_A> <ConnectionControl:ChangeConnection> <session_B>
 
-<ChangeConnection> ::= r".*" := changeConnection()
+<ChangeConnection> ::= "start connection B"
 
 # =============================================================================
 # Session A: Normal Rename
@@ -53,7 +53,7 @@ include("./ftp-utils.fan")
 <list_exchange_A> ::= <ClientA:ServerA:list_cmd_A> <list_transfer_A>
 <list_cmd_A> ::= "LIST\r\n"
 <list_transfer_A> ::= <ServerDataA:ClientDataA:list_data_A> <SocketControlServerA:close_data_A> <ServerA:ClientA:list_status_A>
-<list_data_A> ::= r"[\s\S]+"
+<list_data_A> ::= r"[\s\S]+" 
 <close_data_A> ::= "Data socket closed.\r\n"
 <list_status_A> ::= <resp_125> <resp_226>
 

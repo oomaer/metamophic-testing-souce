@@ -1,0 +1,50 @@
+Mutation: M7
+Description: Buffer overrun: appends 2 stray bytes to every partial response
+Duration: 5.06s
+================================================================================
+
+fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
+fandango:INFO: Current coverage: 0.26%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 3.93%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:25 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 6.28%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 8.12%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-94\r\n\r\n'
+fandango:INFO: Current coverage: 25.65%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 97\r\nContent-Range: bytes 0-94/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:27 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut la\x00\x00'
+fandango:INFO: Current coverage: 29.58%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=95-\r\n\r\n'
+fandango:INFO: Current coverage: 36.13%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 905\r\nContent-Range: bytes 95-997/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:28 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nbore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.\x00\x00'
+fandango:INFO: Current coverage: 39.27%
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/http/mr/range_request_reconstruction/grammar.fan
+================================================================================
+Metamorphic Test: Range Request Reconstruction (RFC 7233)
+A: Full GET request (complete content)
+B: Two partial GET requests with Range headers, concatenated
+Relation: Concatenated partial responses must equal full response body
+================================================================================
+Switching from connection A to connection B[VIOLATION] Range reconstruction FAILED
+  Full: 998, Part1: 97, Part2: 905
+  Reconstructed: 1002 bytes
+Stopping after the first test with a violation.
+================================================================================
+SUMMARY
+================================================================================
+Total test cases generated: 1
+Passed: 0
+Violations: 1
+
+Violations per solution:
+  solution1:
+    - [VIOLATION] Range reconstruction FAILED
+
+TIMING:
+  Test generation time: 3.95 seconds
+  Total execution time: 4.48 seconds
+  Average time per test: 3.95 seconds
+================================================================================
+
+Log saved to: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/http/mr/range_request_reconstruction/test_output.log

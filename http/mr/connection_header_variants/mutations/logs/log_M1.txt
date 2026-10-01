@@ -1,0 +1,45 @@
+Mutation: M1
+Description: Different status for close (201 vs 200)
+================================================================================
+
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/http/mr/connection_header_variants/grammar.fan
+================================================================================
+Metamorphic Test: Connection Header Variants (RFC 7230)
+A: HTTP request with 'Connection: keep-alive'
+B: HTTP request with 'Connection: close'
+Relation: Response body and status code must be identical
+================================================================================
+fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
+fandango:INFO: Current coverage: 0.10%
+fandango:INFO: ClientA: <req_data_html_ka> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Mozilla/5.0\r\nAccept: text/html\r\nConnection: keep-alive\r\n\r\n'
+fandango:INFO: Current coverage: 5.30%
+fandango:INFO: ServerA: <resp_A_dh> 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nDate: Tue, 29 Sep 2026 14:38:18 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n21\r\n{"data":"test data","status":200}\r\n0\r\n\r\n'
+fandango:INFO: Current coverage: 10.89%
+Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 11.78%
+fandango:INFO: ClientB: <req_data_html_cl> 'GET /data HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Mozilla/5.0\r\nAccept: text/html\r\nConnection: close\r\n\r\n'
+fandango:INFO: Current coverage: 15.60%
+fandango:INFO: ServerB: <resp_B_dh> 'HTTP/1.1 201 Created\r\nContent-Type: application/json\r\nContent-Length: 33\r\nDate: Tue, 29 Sep 2026 14:38:19 GMT\r\nConnection: close\r\n\r\n{"data":"test data","status":200}'
+[VIOLATION] Status codes differ: keep-alive=200, close=201
+fandango:INFO: Current coverage: 19.14%
+Stopping after the first test with a violation.
+================================================================================
+SUMMARY
+================================================================================
+Total test cases generated: 1
+Passed: 0
+Violations: 1
+
+Violations per solution:
+  solution1:
+    - [VIOLATION] Status codes differ: keep-alive=200, close=201
+
+TIMING:
+  Test generation time: 2.41 seconds
+  Total execution time: 2.86 seconds
+  Average time per test: 2.41 seconds
+================================================================================
+
+Log saved to: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/http/mr/connection_header_variants/test_output.log
+
+Duration: 3.29s

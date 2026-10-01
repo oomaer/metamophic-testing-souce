@@ -1,0 +1,106 @@
+Mutation: M2
+Description: REJECT_REDUNDANT_RNFR - Second RNFR returns 503 error
+Duration: 3.27s
+================================================================================
+
+fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
+fandango:INFO: Current coverage: 0.07%
+fandango:INFO: ServerA: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
+fandango:INFO: Current coverage: 2.13%
+fandango:INFO: ClientA: <user_cmd> 'USER user\r\n'
+fandango:INFO: Current coverage: 2.75%
+fandango:INFO: ServerA: <user_ok> '331 Username ok, send password.\r\n'
+fandango:INFO: Current coverage: 4.20%
+fandango:INFO: ClientA: <pass_cmd> 'PASS 12345\r\n'
+fandango:INFO: Current coverage: 4.82%
+fandango:INFO: ServerA: <pass_ok> '230 Login successful.\r\n'
+fandango:INFO: Current coverage: 6.27%
+fandango:INFO: ClientA -> ServerA: <mkd_A> 'MKD testdir_a\r\n'
+fandango:INFO: Current coverage: 8.13%
+fandango:INFO: ServerA -> ClientA: <mkd_ok_A> '257 "/testdir_a" directory created.\r\n'
+fandango:INFO: Current coverage: 10.19%
+fandango:INFO: ClientA -> ServerA: <rnfr_A> 'RNFR testdir_a\r\n'
+fandango:INFO: Current coverage: 11.85%
+fandango:INFO: ServerA -> ClientA: <rnfr_ok_A> '350 Ready for destination name.\r\n'
+fandango:INFO: Current coverage: 13.91%
+fandango:INFO: ClientA -> ServerA: <rnto_A> 'RNTO renamed_a\r\n'
+fandango:INFO: Current coverage: 15.56%
+fandango:INFO: ServerA -> ClientA: <rnto_response_A> '250 Renaming ok.\r\n'
+fandango:INFO: Current coverage: 17.63%
+fandango:INFO: ClientA -> ServerA: <epsv_cmd_A> 'EPSV\r\n'
+fandango:INFO: Current coverage: 19.15%
+fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||49390|).\r\n'
+fandango:INFO: Current coverage: 22.18%
+fandango:INFO: ClientA -> ServerA: <list_cmd_A> 'LIST\r\n'
+fandango:INFO: Current coverage: 23.42%
+fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 14:51 renamed_a\r\n'
+fandango:INFO: Current coverage: 24.86%
+fandango:INFO: SocketControlServerA: <close_data_A> 'Data socket closed.\r\n'
+fandango:INFO: Current coverage: 25.90%
+fandango:INFO: ServerA -> ClientA: <list_status_A> '125 Data connection already open. Transfer starting.\r\n226 Transfer complete.\r\n'
+fandango:INFO: Current coverage: 32.02%
+fandango:INFO: ClientA -> ServerA: <rmd_A> 'RMD renamed_a\r\n'
+fandango:INFO: Current coverage: 33.68%
+fandango:INFO: ServerA -> ClientA: <rmd_ok_A> '250 Directory removed.\r\n'
+fandango:INFO: Current coverage: 35.33%
+fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
+fandango:INFO: Current coverage: 35.81%
+fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
+fandango:INFO: Current coverage: 36.91%
+fandango:INFO: ConnectionControl: <ChangeConnection> 'start connection B'
+fandango:INFO: Current coverage: 37.26%
+fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
+fandango:INFO: Current coverage: 38.64%
+fandango:INFO: ClientB -> ServerB: <user_cmd> 'USER user\r\n'
+fandango:INFO: Current coverage: 39.05%
+fandango:INFO: ServerB -> ClientB: <user_ok> '331 Username ok, send password.\r\n'
+fandango:INFO: Current coverage: 40.08%
+fandango:INFO: ClientB -> ServerB: <pass_cmd> 'PASS 12345\r\n'
+fandango:INFO: Current coverage: 40.50%
+fandango:INFO: ServerB -> ClientB: <pass_ok> '230 Login successful.\r\n'
+fandango:INFO: Current coverage: 41.18%
+fandango:INFO: ClientB: <mkd_B1> 'MKD testdir_b1\r\n'
+fandango:INFO: Current coverage: 43.60%
+fandango:INFO: ServerB: <mkd_ok> '257 "/testdir_b1" directory created.\r\n'
+fandango:INFO: Current coverage: 45.66%
+fandango:INFO: ClientB: <mkd_B2> 'MKD testdir_b2\r\n'
+fandango:INFO: Current coverage: 47.87%
+fandango:INFO: ServerB: <mkd_ok> '257 "/testdir_b2" directory created.\r\n'
+fandango:INFO: Current coverage: 49.52%
+fandango:INFO: ClientB: <mkd_B3> 'MKD testdir_b3\r\n'
+fandango:INFO: Current coverage: 51.72%
+fandango:INFO: ServerB: <mkd_ok> '257 "/testdir_b3" directory created.\r\n'
+fandango:INFO: Current coverage: 53.37%
+fandango:INFO: ClientB: <rnfr_B1> 'RNFR testdir_b1\r\n'
+fandango:INFO: Current coverage: 56.27%
+fandango:INFO: ServerB: <rnfr_ok> '350 Ready for destination name.\r\n'
+fandango:INFO: Current coverage: 58.75%
+fandango:INFO: ClientB: <rnfr_B1> 'RNFR testdir_b1\r\n'
+fandango:INFO: Current coverage: 60.81%
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/ftp/mr/redundant_rnfr/grammar.fan
+================================================================================
+Metamorphic Test: FTP Redundant RNFR (RFC 959)
+A: Normal rename (RNFR → RNTO)
+B: Redundant RNFR (RNFR → RNFR → RNTO)
+Relation: Both should succeed - last RNFR determines file to rename
+================================================================================
+Traceback (most recent call last):
+  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/ftp/mr/redundant_rnfr/script.py", line 207, in <module>
+    main()
+  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/ftp/mr/redundant_rnfr/script.py", line 203, in main
+    run_fandango(grammar_path, log_file_path)
+  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/ftp/mr/redundant_rnfr/script.py", line 80, in run_fandango
+    _run_fandango(grammar_path, log_file)
+  File "/Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/ftp/mr/redundant_rnfr/script.py", line 131, in _run_fandango
+    for solution in fandango.generate(mode=FuzzingMode.IO):
+  File "/Users/i7949486/Desktop/me/test2/pacakge/src/fandango/evolution/algorithm/simple.py", line 390, in generate
+    yield from self._generate_io(max_generations=max_generations)
+  File "/Users/i7949486/Desktop/me/test2/pacakge/src/fandango/evolution/algorithm/simple.py", line 681, in _generate_io
+    forecast, packet_tree = parse_next_remote_packet(
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/i7949486/Desktop/me/test2/pacakge/src/fandango/io/packetparser.py", line 160, in parse_next_remote_packet
+    raise FandangoFailedError(
+fandango.errors.FandangoFailedError: Could not parse received message fragments into predicted NonTerminals.
+Incompletely parsed NonTerminals:
+Applicable NonTerminals: <rnfr_ok>
+Received messages: [('ServerB', 'ClientB', b'5'), ('ServerB', 'ClientB', b'0'), ('ServerB', 'ClientB', b'3'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'B'), ('ServerB', 'ClientB', b'a'), ('ServerB', 'ClientB', b'd'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b's'), ('ServerB', 'ClientB', b'e'), ('ServerB', 'ClientB', b'q'), ('ServerB', 'ClientB', b'u'), ('ServerB', 'ClientB', b'e'), ('ServerB', 'ClientB', b'n'), ('ServerB', 'ClientB', b'c'), ('ServerB', 'ClientB', b'e'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b'f'), ('ServerB', 'ClientB', b' '), ('ServerB', 'ClientB', b'c'), ('ServerB', 'ClientB', b'o'), ('ServerB', 'ClientB', b'm'), ('ServerB', 'ClientB', b'm'), ('ServerB', 'ClientB', b'a'), ('ServerB', 'ClientB', b'n'), ('ServerB', 'ClientB', b'd'), ('ServerB', 'ClientB', b's'), ('ServerB', 'ClientB', b'.'), ('ServerB', 'ClientB', b'\r'), ('ServerB', 'ClientB', b'\n')]

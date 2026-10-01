@@ -29,7 +29,9 @@ def format_duration(seconds):
 
 def main():
     number_of_runs = int(sys.argv[1]) if len(sys.argv) > 1 else 1
-    script_dir = Path(__file__).parent
+    script_dir = Path(__file__).resolve().parent
+    output_dir = Path(os.environ.get("MR_RUNS_DIR", script_dir / "runs")).resolve()
+    output_dir.mkdir(parents=True, exist_ok=True)
     server_path = script_dir / "imap_server.py"
 
     print("=" * 80)
@@ -75,8 +77,9 @@ def main():
         print()
         for n in range(number_of_runs):
             result = subprocess.run(
-                [sys.executable, str(script_dir / 'script.py'), f'runs/test_output_{n+1}.log'],
-                cwd=str(script_dir)
+                [sys.executable, str(script_dir / 'script.py'), str(output_dir / f'test_output_{n+1}.log')],
+                cwd=str(script_dir),
+                check=True,
             )
         end_time = time.time()
         duration = end_time - start_time
@@ -106,4 +109,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

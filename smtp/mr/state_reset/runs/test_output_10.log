@@ -1,4 +1,4 @@
-Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/mr/state_reset/grammar.fan
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/smtp/mr/state_reset/grammar.fan
 ================================================================================
 Metamorphic Test: SMTP State Reset (RFC 5321)
 A: Complete SMTP transaction on connection A
@@ -64,71 +64,46 @@ fandango:INFO: ClientB: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
 fandango:INFO: Current coverage: 29.88%
 fandango:INFO: ServerB: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
 fandango:INFO: Current coverage: 30.85%
-fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 33.41%
-fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 36.28%
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
-fandango:INFO: Current coverage: 37.74%
-fandango:INFO: ServerB: <response_rcpt_to_B> '250 OK\r\n'
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 40.49%
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
-fandango:INFO: Current coverage: 40.49%
-fandango:INFO: ServerB: <response_rcpt_to_B> '250 OK\r\n'
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 40.49%
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: ClientB: <request_invalid_mail_from> 'MAIL FROM:<invalid@>\r\n'
+fandango:INFO: Current coverage: 32.99%
+fandango:INFO: ServerB: <response_invalid_mail_from> '553 5.1.3 Error: malformed address\r\n'
+fandango:INFO: Current coverage: 35.55%
 fandango:INFO: ClientB: <request_rset> 'RSET\r\n'
-fandango:INFO: Current coverage: 42.13%
+fandango:INFO: Current coverage: 37.20%
 fandango:INFO: ServerB: <response_rset> '250 OK\r\n'
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 44.33%
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 39.39%
 fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 45.79%
+fandango:INFO: Current coverage: 41.04%
 fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 47.62%
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 43.54%
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
-fandango:INFO: Current coverage: 48.72%
+fandango:INFO: Current coverage: 44.82%
 fandango:INFO: ServerB: <response_rcpt_to_B> '250 OK\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 50.55%
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 47.26%
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_data> 'DATA\r\n'
-fandango:INFO: Current coverage: 51.28%
+fandango:INFO: Current coverage: 47.99%
 fandango:INFO: ServerB: <response_data_B> '354 End data with <CR><LF>.<CR><LF>\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 53.41%
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 50.12%
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
-fandango:INFO: Current coverage: 54.15%
+fandango:INFO: Current coverage: 50.85%
 fandango:INFO: ServerB: <response_emailB_sent> "250 OK sender@example.com ['recipient@example.com']\r\n"
 [PASS] State reset successful: Same response code, sender and recipients
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 56.28%
+fandango:INFO: Current coverage: 52.99%
 [PASS] State reset successful: Same response code, sender and recipients
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_quit> 'QUIT\r\n'
-fandango:INFO: Current coverage: 57.38%
+fandango:INFO: Current coverage: 54.09%
 fandango:INFO: ServerB: <response_quit> '221 Bye\r\n'
 [PASS] State reset successful: Same response code, sender and recipients
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 
 ================================================================================
 TEST CASE #1
@@ -136,123 +111,93 @@ TEST CASE #1
 
 --------------------------------------------------------------------------------
 fandango:INFO: Starting new protocol run.
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_ehlo> 'EHLO localhost\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_auth> 'AUTH LOGIN\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_auth_user> 'dGhlX3VzZXI=\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_mail_from> '250 OK\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_rcpt_to> '250 OK\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_data> 'DATA\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_data> '354 End data with <CR><LF>.<CR><LF>\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_emailA_sent> "250 OK sender@example.com ['recipient@example.com']\r\n"
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_quit> 'QUIT\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_quit> '221 Bye\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ConnectionControl: <ChangeConnection> 'start connection B'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientB: <request_ehlo> 'EHLO localhost\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientB: <request_auth> 'AUTH LOGIN\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientB: <request_auth_user> 'dGhlX3VzZXI=\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientB: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
-fandango:INFO: Current coverage: 58.84%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
-fandango:INFO: Current coverage: 58.84%
-fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 60.55%
-fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
-fandango:INFO: Current coverage: 62.68%
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: ClientB: <request_invalid_rcpt_to> 'RCPT TO:<invalid@>\r\n'
-fandango:INFO: Current coverage: 63.72%
-fandango:INFO: ServerB: <response_invalid_rcpt_to> '553 5.1.3 Error: malformed address\r\n'
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 66.22%
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 55.55%
+fandango:INFO: ClientB: <request_invalid_mail_from> 'MAIL FROM:<invalid@>\r\n'
+fandango:INFO: Current coverage: 55.55%
+fandango:INFO: ServerB: <response_invalid_mail_from> '553 5.1.3 Error: malformed address\r\n'
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientB: <request_rset> 'RSET\r\n'
-fandango:INFO: Current coverage: 67.50%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_rset> '250 OK\r\n'
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 69.21%
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 69.21%
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_rcpt_to_B> '250 OK\r\n'
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 69.21%
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientB: <request_data> 'DATA\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_data_B> '354 End data with <CR><LF>.<CR><LF>\r\n'
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 69.21%
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientB: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_emailB_sent> "250 OK sender@example.com ['recipient@example.com']\r\n"
-[PASS] State reset successful: Same response code, sender and recipients
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 69.21%
-[PASS] State reset successful: Same response code, sender and recipients
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientB: <request_quit> 'QUIT\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_quit> '221 Bye\r\n'
-[PASS] State reset successful: Same response code, sender and recipients
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 
 ================================================================================
 TEST CASE #2
@@ -260,121 +205,124 @@ TEST CASE #2
 
 --------------------------------------------------------------------------------
 fandango:INFO: Starting new protocol run.
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_ehlo> 'EHLO localhost\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_auth> 'AUTH LOGIN\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_auth_user> 'dGhlX3VzZXI=\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_mail_from> '250 OK\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_rcpt_to> '250 OK\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_data> 'DATA\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_data> '354 End data with <CR><LF>.<CR><LF>\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_emailA_sent> "250 OK sender@example.com ['recipient@example.com']\r\n"
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientA: <request_quit> 'QUIT\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerA: <response_quit> '221 Bye\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ConnectionControl: <ChangeConnection> 'start connection B'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientB: <request_ehlo> 'EHLO localhost\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientB: <request_auth> 'AUTH LOGIN\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientB: <request_auth_user> 'dGhlX3VzZXI=\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientB: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ServerB: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 55.55%
 fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 70.91%
+fandango:INFO: Current coverage: 57.26%
 fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
-fandango:INFO: Current coverage: 73.05%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 59.39%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
-fandango:INFO: Current coverage: 69.21%
+fandango:INFO: Current coverage: 60.67%
 fandango:INFO: ServerB: <response_rcpt_to_B> '250 OK\r\n'
-fandango:INFO: Current coverage: 76.46%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 62.80%
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_rset> 'RSET\r\n'
-fandango:INFO: Current coverage: 77.74%
+fandango:INFO: Current coverage: 64.09%
 fandango:INFO: ServerB: <response_rset> '250 OK\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerB: <response_rcpt_to_B> '250 OK\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_data> 'DATA\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerB: <response_data_B> '354 End data with <CR><LF>.<CR><LF>\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerB: <response_emailB_sent> "250 OK sender@example.com ['recipient@example.com']\r\n"
 [PASS] State reset successful: Same response code, sender and recipients
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 [PASS] State reset successful: Same response code, sender and recipients
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_quit> 'QUIT\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerB: <response_quit> '221 Bye\r\n'
 [PASS] State reset successful: Same response code, sender and recipients
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 
 ================================================================================
 TEST CASE #3
@@ -382,117 +330,127 @@ TEST CASE #3
 
 --------------------------------------------------------------------------------
 fandango:INFO: Starting new protocol run.
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerA: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ClientA: <request_ehlo> 'EHLO localhost\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerA: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ClientA: <request_auth> 'AUTH LOGIN\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerA: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ClientA: <request_auth_user> 'dGhlX3VzZXI=\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerA: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ClientA: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerA: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ClientA: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerA: <response_mail_from> '250 OK\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ClientA: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerA: <response_rcpt_to> '250 OK\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ClientA: <request_data> 'DATA\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerA: <response_data> '354 End data with <CR><LF>.<CR><LF>\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ClientA: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerA: <response_emailA_sent> "250 OK sender@example.com ['recipient@example.com']\r\n"
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ClientA: <request_quit> 'QUIT\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerA: <response_quit> '221 Bye\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ConnectionControl: <ChangeConnection> 'start connection B'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerB: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ClientB: <request_ehlo> 'EHLO localhost\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerB: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ClientB: <request_auth> 'AUTH LOGIN\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerB: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ClientB: <request_auth_user> 'dGhlX3VzZXI=\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerB: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ClientB: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ServerB: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
-fandango:INFO: Current coverage: 79.45%
+fandango:INFO: Current coverage: 65.79%
 fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 81.16%
+fandango:INFO: Current coverage: 67.50%
 fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
-fandango:INFO: Current coverage: 83.29%
+fandango:INFO: Current coverage: 69.63%
+fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
+fandango:INFO: Current coverage: 70.91%
+fandango:INFO: ServerB: <response_rcpt_to_B> '250 OK\r\n'
+fandango:INFO: Current coverage: 65.79%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
+fandango:INFO: Current coverage: 73.05%
+fandango:INFO: ServerB: <response_rcpt_to_B> '250 OK\r\n'
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 73.05%
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_rset> 'RSET\r\n'
-fandango:INFO: Current coverage: 84.57%
+fandango:INFO: Current coverage: 74.33%
 fandango:INFO: ServerB: <response_rset> '250 OK\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerB: <response_rcpt_to_B> '250 OK\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_data> 'DATA\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerB: <response_data_B> '354 End data with <CR><LF>.<CR><LF>\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerB: <response_emailB_sent> "250 OK sender@example.com ['recipient@example.com']\r\n"
 [PASS] State reset successful: Same response code, sender and recipients
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 [PASS] State reset successful: Same response code, sender and recipients
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_quit> 'QUIT\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerB: <response_quit> '221 Bye\r\n'
 [PASS] State reset successful: Same response code, sender and recipients
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 
 ================================================================================
 TEST CASE #4
@@ -500,108 +458,269 @@ TEST CASE #4
 
 --------------------------------------------------------------------------------
 fandango:INFO: Starting new protocol run.
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerA: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ClientA: <request_ehlo> 'EHLO localhost\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerA: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ClientA: <request_auth> 'AUTH LOGIN\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerA: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ClientA: <request_auth_user> 'dGhlX3VzZXI=\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerA: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ClientA: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerA: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ClientA: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerA: <response_mail_from> '250 OK\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ClientA: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerA: <response_rcpt_to> '250 OK\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ClientA: <request_data> 'DATA\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerA: <response_data> '354 End data with <CR><LF>.<CR><LF>\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ClientA: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerA: <response_emailA_sent> "250 OK sender@example.com ['recipient@example.com']\r\n"
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ClientA: <request_quit> 'QUIT\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerA: <response_quit> '221 Bye\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ConnectionControl: <ChangeConnection> 'start connection B'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerB: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ClientB: <request_ehlo> 'EHLO localhost\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerB: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ClientB: <request_auth> 'AUTH LOGIN\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerB: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ClientB: <request_auth_user> 'dGhlX3VzZXI=\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerB: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ClientB: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
-fandango:INFO: Current coverage: 86.28%
+fandango:INFO: Current coverage: 76.04%
 fandango:INFO: ServerB: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
-fandango:INFO: Current coverage: 86.28%
-fandango:INFO: ClientB: <request_invalid_mail_from> 'MAIL FROM:<invalid@>\r\n'
+fandango:INFO: Current coverage: 76.04%
+fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
+fandango:INFO: Current coverage: 77.74%
+fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
+fandango:INFO: Current coverage: 79.88%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: ClientB: <request_rset> 'RSET\r\n'
+fandango:INFO: Current coverage: 81.16%
+fandango:INFO: ServerB: <response_rset> '250 OK\r\n'
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 82.87%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 82.87%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: ClientB: <request_rset> 'RSET\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerB: <response_rset> '250 OK\r\n'
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 82.87%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 82.87%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerB: <response_rcpt_to_B> '250 OK\r\n'
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 82.87%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: ClientB: <request_data> 'DATA\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerB: <response_data_B> '354 End data with <CR><LF>.<CR><LF>\r\n'
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 82.87%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: ClientB: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerB: <response_emailB_sent> "250 OK sender@example.com ['recipient@example.com']\r\n"
+[PASS] State reset successful: Same response code, sender and recipients
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 82.87%
+[PASS] State reset successful: Same response code, sender and recipients
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: ClientB: <request_quit> 'QUIT\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerB: <response_quit> '221 Bye\r\n'
+[PASS] State reset successful: Same response code, sender and recipients
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: Current coverage: 82.87%
+
+================================================================================
+TEST CASE #5
+================================================================================
+
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerA: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ClientA: <request_ehlo> 'EHLO localhost\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerA: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ClientA: <request_auth> 'AUTH LOGIN\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerA: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ClientA: <request_auth_user> 'dGhlX3VzZXI=\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerA: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ClientA: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerA: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ClientA: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerA: <response_mail_from> '250 OK\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ClientA: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerA: <response_rcpt_to> '250 OK\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ClientA: <request_data> 'DATA\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerA: <response_data> '354 End data with <CR><LF>.<CR><LF>\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ClientA: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerA: <response_emailA_sent> "250 OK sender@example.com ['recipient@example.com']\r\n"
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ClientA: <request_quit> 'QUIT\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerA: <response_quit> '221 Bye\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ConnectionControl: <ChangeConnection> 'start connection B'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerB: <response_setup> '220 GX245T7R26 Python SMTP 1.4.6\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ClientB: <request_ehlo> 'EHLO localhost\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerB: <response_ehlo> '250-GX245T7R26\r\n250-SIZE 33554432\r\n250-8BITMIME\r\n250-SMTPUTF8\r\n250-AUTH LOGIN PLAIN\r\n250 HELP\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ClientB: <request_auth> 'AUTH LOGIN\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerB: <response_auth_expect_user> '334 VXNlciBOYW1lAA==\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ClientB: <request_auth_user> 'dGhlX3VzZXI=\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerB: <response_auth_expect_pass> '334 UGFzc3dvcmQA\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ClientB: <request_auth_pass> 'dGhlX3Bhc3N3b3Jk\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ServerB: <response_auth_success> '235 2.7.0 Authentication successful\r\n'
+fandango:INFO: Current coverage: 82.87%
+fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
+fandango:INFO: Current coverage: 84.57%
+fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
+fandango:INFO: Current coverage: 82.87%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+fandango:INFO: ClientB: <request_invalid_rcpt_to> 'RCPT TO:<invalid@>\r\n'
 fandango:INFO: Current coverage: 87.74%
-fandango:INFO: ServerB: <response_invalid_mail_from> '553 5.1.3 Error: malformed address\r\n'
+fandango:INFO: ServerB: <response_invalid_rcpt_to> '553 5.1.3 Error: malformed address\r\n'
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: Current coverage: 90.18%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_rset> 'RSET\r\n'
 fandango:INFO: Current coverage: 91.46%
 fandango:INFO: ServerB: <response_rset> '250 OK\r\n'
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: Current coverage: 93.17%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
 fandango:INFO: Current coverage: 93.17%
 fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: Current coverage: 93.17%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
 fandango:INFO: Current coverage: 93.17%
 fandango:INFO: ServerB: <response_rcpt_to_B> '250 OK\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: Current coverage: 93.17%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_data> 'DATA\r\n'
 fandango:INFO: Current coverage: 93.17%
 fandango:INFO: ServerB: <response_data_B> '354 End data with <CR><LF>.<CR><LF>\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: Current coverage: 93.17%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
 fandango:INFO: Current coverage: 93.17%
 fandango:INFO: ServerB: <response_emailB_sent> "250 OK sender@example.com ['recipient@example.com']\r\n"
 [PASS] State reset successful: Same response code, sender and recipients
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: Current coverage: 93.17%
 [PASS] State reset successful: Same response code, sender and recipients
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_quit> 'QUIT\r\n'
 fandango:INFO: Current coverage: 93.17%
 fandango:INFO: ServerB: <response_quit> '221 Bye\r\n'
 [PASS] State reset successful: Same response code, sender and recipients
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: Current coverage: 93.17%
 
 ================================================================================
-TEST CASE #5
+TEST CASE #6
 ================================================================================
 
 --------------------------------------------------------------------------------
@@ -669,36 +788,18 @@ fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
 fandango:INFO: Current coverage: 94.88%
 fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
 fandango:INFO: Current coverage: 93.17%
+[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_rset> 'RSET\r\n'
-fandango:INFO: Current coverage: 93.17%
+fandango:INFO: Current coverage: 98.29%
 fandango:INFO: ServerB: <response_rset> '250 OK\r\n'
 fandango:INFO: Current coverage: 100.00%
 fandango:INFO: Full coverage reached. Guiding to end of tree.
-fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
-fandango:INFO: Current coverage: 93.17%
-fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: ClientB: <request_rset> 'RSET\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB: <response_rset> '250 OK\r\n'
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_mail_from> 'MAIL FROM:<sender@example.com>\r\n'
 fandango:INFO: Current coverage: 100.00%
 fandango:INFO: ServerB: <response_mail_from_B> '250 OK\r\n'
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: Current coverage: 100.00%
 fandango:INFO: Full coverage reached. Guiding to end of tree.
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_rcpt_to> 'RCPT TO:<recipient@example.com>\r\n'
@@ -706,10 +807,8 @@ fandango:INFO: Current coverage: 100.00%
 fandango:INFO: ServerB: <response_rcpt_to_B> '250 OK\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: Current coverage: 100.00%
 fandango:INFO: Full coverage reached. Guiding to end of tree.
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_data> 'DATA\r\n'
@@ -717,10 +816,8 @@ fandango:INFO: Current coverage: 100.00%
 fandango:INFO: ServerB: <response_data_B> '354 End data with <CR><LF>.<CR><LF>\r\n'
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: Current coverage: 100.00%
 fandango:INFO: Full coverage reached. Guiding to end of tree.
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <email_content> 'Subject: Test Email\r\n\r\nThis is a test email.\r\n.\r\n'
@@ -729,11 +826,9 @@ fandango:INFO: ServerB: <response_emailB_sent> "250 OK sender@example.com ['reci
 [PASS] State reset successful: Same response code, sender and recipients
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: Current coverage: 100.00%
 fandango:INFO: Full coverage reached. Guiding to end of tree.
 [PASS] State reset successful: Same response code, sender and recipients
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: ClientB: <request_quit> 'QUIT\r\n'
@@ -742,11 +837,10 @@ fandango:INFO: ServerB: <response_quit> '221 Bye\r\n'
 [PASS] State reset successful: Same response code, sender and recipients
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 [PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
-[PASS] MAIL FROM after RSET: Response codes match (A: 250, B: 250)
 fandango:INFO: Current coverage: 100.00%
 
 ================================================================================
-TEST CASE #6
+TEST CASE #7
 ================================================================================
 
 --------------------------------------------------------------------------------
@@ -754,14 +848,14 @@ fandango:INFO: Full coverage reached, stopping evolution.
 ================================================================================
 SUMMARY
 ================================================================================
-Total test cases generated: 6
+Total test cases generated: 7
 Passed: 6
 Violations: 0
 
 All solutions passed - SMTP RSET works correctly!
 
 TIMING:
-  Test generation time: 11.95 seconds
-  Total execution time: 12.81 seconds
-  Average time per test: 1.99 seconds
+  Test generation time: 15.38 seconds
+  Total execution time: 16.22 seconds
+  Average time per test: 2.20 seconds
 ================================================================================

@@ -65,6 +65,7 @@ def format_duration(seconds):
 def run_fandango(grammar_path, log_file_path):
     start_time = time.time()
 
+    os.makedirs(os.path.dirname(os.path.abspath(log_file_path)), exist_ok=True)
     log_file = open(log_file_path, 'w')
 
     def log_print(*args, **kwargs):
@@ -131,6 +132,8 @@ def run_fandango(grammar_path, log_file_path):
 
             if solution_violations:
                 violations[f"solution{solution_index + 1}"] = solution_violations
+                print("Stopping after the first test with a violation.")
+                break
 
             print("-" * 80)
     finally:

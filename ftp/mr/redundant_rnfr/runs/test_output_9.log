@@ -1,4 +1,4 @@
-Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/ftp/mr/redundant_rnfr/grammar.fan
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/ftp/mr/redundant_rnfr/grammar.fan
 ================================================================================
 Metamorphic Test: FTP Redundant RNFR (RFC 959)
 A: Normal rename (RNFR → RNTO)
@@ -31,11 +31,11 @@ fandango:INFO: ServerA -> ClientA: <rnto_response_A> '250 Renaming ok.\r\n'
 fandango:INFO: Current coverage: 17.63%
 fandango:INFO: ClientA -> ServerA: <epsv_cmd_A> 'EPSV\r\n'
 fandango:INFO: Current coverage: 19.15%
-fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||50194|).\r\n'
+fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||60004|).\r\n'
 fandango:INFO: Current coverage: 22.18%
 fandango:INFO: ClientA -> ServerA: <list_cmd_A> 'LIST\r\n'
 fandango:INFO: Current coverage: 23.42%
-fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Aug 17 14:23 source.txt\r\n'
+fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:22 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\n'
 fandango:INFO: Current coverage: 24.86%
 fandango:INFO: SocketControlServerA: <close_data_A> 'Data socket closed.\r\n'
 fandango:INFO: Current coverage: 25.90%
@@ -49,7 +49,7 @@ fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
 fandango:INFO: Current coverage: 35.81%
 fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
 fandango:INFO: Current coverage: 36.91%
-fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: ConnectionControl: <ChangeConnection> 'start connection B'
 fandango:INFO: Current coverage: 37.26%
 fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
 fandango:INFO: Current coverage: 38.64%
@@ -73,29 +73,25 @@ fandango:INFO: ClientB: <mkd_B3> 'MKD testdir_b3\r\n'
 fandango:INFO: Current coverage: 51.72%
 fandango:INFO: ServerB: <mkd_ok> '257 "/testdir_b3" directory created.\r\n'
 fandango:INFO: Current coverage: 53.37%
-fandango:INFO: ClientB: <rnfr_B2> 'RNFR testdir_b2\r\n'
+fandango:INFO: ClientB: <rnfr_B1> 'RNFR testdir_b1\r\n'
 fandango:INFO: Current coverage: 56.27%
 fandango:INFO: ServerB: <rnfr_ok> '350 Ready for destination name.\r\n'
 fandango:INFO: Current coverage: 58.75%
-fandango:INFO: ClientB: <rnfr_B1> 'RNFR testdir_b1\r\n'
-fandango:INFO: Current coverage: 61.16%
-fandango:INFO: ServerB: <rnfr_ok> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 63.22%
 fandango:INFO: ClientB: <rnfr_B2> 'RNFR testdir_b2\r\n'
-fandango:INFO: Current coverage: 64.94%
+fandango:INFO: Current coverage: 60.81%
 fandango:INFO: ServerB: <rnfr_ok> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 64.94%
+fandango:INFO: Current coverage: 60.81%
 fandango:INFO: ClientB -> ServerB: <rnto_B> 'RNTO renamed_b\r\n'
-fandango:INFO: Current coverage: 66.53%
+fandango:INFO: Current coverage: 62.40%
 fandango:INFO: ServerB -> ClientB: <rnto_response_B> '250 Renaming ok.\r\n'
-fandango:INFO: Current coverage: 68.18%
+fandango:INFO: Current coverage: 64.05%
 fandango:INFO: ClientB -> ServerB: <epsv_cmd_B> 'EPSV\r\n'
-fandango:INFO: Current coverage: 69.63%
-fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||50197|).\r\n'
-fandango:INFO: Current coverage: 72.45%
+fandango:INFO: Current coverage: 65.50%
+fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||60010|).\r\n'
+fandango:INFO: Current coverage: 68.32%
 fandango:INFO: ClientB -> ServerB: <list_cmd_B> 'LIST\r\n'
-fandango:INFO: Current coverage: 73.62%
-fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Aug 17 14:23 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 testdir_b3\r\n'
+fandango:INFO: Current coverage: 69.49%
+fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:22 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:22 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:22 testdir_b3\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -128,23 +124,7 @@ fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i794948
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 75.00%
+fandango:INFO: Current coverage: 70.87%
 fandango:INFO: SocketControlServerB: <close_data_B> 'Data socket closed.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -178,23 +158,7 @@ fandango:INFO: SocketControlServerB: <close_data_B> 'Data socket closed.\r\n'
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 75.96%
+fandango:INFO: Current coverage: 71.83%
 fandango:INFO: ServerB -> ClientB: <list_status_B> '125 Data connection already open. Transfer starting.\r\n226 Transfer complete.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -228,47 +192,7 @@ fandango:INFO: ServerB -> ClientB: <list_status_B> '125 Data connection already 
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 81.27%
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
+fandango:INFO: Current coverage: 77.13%
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -318,7 +242,7 @@ fandango:INFO: Current coverage: 81.27%
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
 fandango:INFO: ClientB -> ServerB: <rmd_B1> 'RMD testdir_b1\r\n'
-fandango:INFO: Current coverage: 82.85%
+fandango:INFO: Current coverage: 78.72%
 fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -368,55 +292,7 @@ fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 84.50%
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
+fandango:INFO: Current coverage: 80.37%
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -490,7 +366,7 @@ fandango:INFO: Current coverage: 84.50%
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
 fandango:INFO: ClientB -> ServerB: <rmd_B2> 'RMD testdir_b2\r\n'
-fandango:INFO: Current coverage: 85.88%
+fandango:INFO: Current coverage: 81.75%
 fandango:INFO: ServerB -> ClientB: <rmd_response> '550 No such file or directory.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -564,55 +440,7 @@ fandango:INFO: ServerB -> ClientB: <rmd_response> '550 No such file or directory
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 87.67%
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
+fandango:INFO: Current coverage: 83.54%
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -686,7 +514,7 @@ fandango:INFO: Current coverage: 87.67%
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
 fandango:INFO: ClientB -> ServerB: <rmd_B3> 'RMD testdir_b3\r\n'
-fandango:INFO: Current coverage: 89.05%
+fandango:INFO: Current coverage: 84.92%
 fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -760,79 +588,7 @@ fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 89.05%
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
+fandango:INFO: Current coverage: 84.92%
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -978,7 +734,7 @@ fandango:INFO: Current coverage: 89.05%
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
 fandango:INFO: ClientB -> ServerB: <rmd_target> 'RMD renamed_b\r\n'
-fandango:INFO: Current coverage: 90.43%
+fandango:INFO: Current coverage: 86.29%
 fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -1124,103 +880,7 @@ fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 90.43%
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
+fandango:INFO: Current coverage: 86.29%
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -1366,7 +1026,7 @@ fandango:INFO: Current coverage: 90.43%
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
 fandango:INFO: ClientB -> ServerB: <quit_cmd> 'QUIT\r\n'
-fandango:INFO: Current coverage: 90.70%
+fandango:INFO: Current coverage: 86.57%
 fandango:INFO: ServerB -> ClientB: <quit_ok> '221 Goodbye.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -1512,55 +1172,7 @@ fandango:INFO: ServerB -> ClientB: <quit_ok> '221 Goodbye.\r\n'
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 
 ================================================================================
 TEST CASE #1
@@ -1568,92 +1180,96 @@ TEST CASE #1
 
 --------------------------------------------------------------------------------
 fandango:INFO: Starting new protocol run.
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerA: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientA: <user_cmd> 'USER user\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerA: <user_ok> '331 Username ok, send password.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientA: <pass_cmd> 'PASS 12345\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerA: <pass_ok> '230 Login successful.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientA -> ServerA: <mkd_A> 'MKD testdir_a\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerA -> ClientA: <mkd_ok_A> '257 "/testdir_a" directory created.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientA -> ServerA: <rnfr_A> 'RNFR testdir_a\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerA -> ClientA: <rnfr_ok_A> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientA -> ServerA: <rnto_A> 'RNTO renamed_a\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerA -> ClientA: <rnto_response_A> '250 Renaming ok.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientA -> ServerA: <epsv_cmd_A> 'EPSV\r\n'
-fandango:INFO: Current coverage: 91.39%
-fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||50202|).\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
+fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||60015|).\r\n'
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientA -> ServerA: <list_cmd_A> 'LIST\r\n'
-fandango:INFO: Current coverage: 91.39%
-fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Aug 17 14:23 source.txt\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
+fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:22 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\n'
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: SocketControlServerA: <close_data_A> 'Data socket closed.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerA -> ClientA: <list_status_A> '125 Data connection already open. Transfer starting.\r\n226 Transfer complete.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientA -> ServerA: <rmd_A> 'RMD renamed_a\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerA -> ClientA: <rmd_ok_A> '250 Directory removed.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
-fandango:INFO: Current coverage: 91.39%
-Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
+fandango:INFO: ConnectionControl: <ChangeConnection> 'start connection B'
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientB -> ServerB: <user_cmd> 'USER user\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerB -> ClientB: <user_ok> '331 Username ok, send password.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientB -> ServerB: <pass_cmd> 'PASS 12345\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerB -> ClientB: <pass_ok> '230 Login successful.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientB: <mkd_B1> 'MKD testdir_b1\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerB: <mkd_ok> '257 "/testdir_b1" directory created.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientB: <mkd_B2> 'MKD testdir_b2\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerB: <mkd_ok> '257 "/testdir_b2" directory created.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientB: <mkd_B3> 'MKD testdir_b3\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerB: <mkd_ok> '257 "/testdir_b3" directory created.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 87.26%
+fandango:INFO: ClientB: <rnfr_B3> 'RNFR testdir_b3\r\n'
+fandango:INFO: Current coverage: 89.67%
+fandango:INFO: ServerB: <rnfr_ok> '350 Ready for destination name.\r\n'
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientB: <rnfr_B1> 'RNFR testdir_b1\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB: <rnfr_ok> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientB: <rnfr_B2> 'RNFR testdir_b2\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB: <rnfr_ok> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientB -> ServerB: <rnto_B> 'RNTO renamed_b\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB -> ClientB: <rnto_response_B> '250 Renaming ok.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientB -> ServerB: <epsv_cmd_B> 'EPSV\r\n'
-fandango:INFO: Current coverage: 91.39%
-fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||50205|).\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
+fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||60020|).\r\n'
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientB -> ServerB: <list_cmd_B> 'LIST\r\n'
-fandango:INFO: Current coverage: 91.39%
-fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Aug 17 14:23 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 testdir_b3\r\n'
+fandango:INFO: Current coverage: 91.74%
+fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:22 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:22 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:22 testdir_b3\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -1686,7 +1302,7 @@ fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i794948
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: SocketControlServerB: <close_data_B> 'Data socket closed.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -1720,7 +1336,7 @@ fandango:INFO: SocketControlServerB: <close_data_B> 'Data socket closed.\r\n'
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB -> ClientB: <list_status_B> '125 Data connection already open. Transfer starting.\r\n226 Transfer complete.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -1754,7 +1370,7 @@ fandango:INFO: ServerB -> ClientB: <list_status_B> '125 Data connection already 
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -1804,7 +1420,7 @@ fandango:INFO: Current coverage: 91.39%
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
 fandango:INFO: ClientB -> ServerB: <rmd_B1> 'RMD testdir_b1\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -1854,7 +1470,7 @@ fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -1928,7 +1544,7 @@ fandango:INFO: Current coverage: 91.39%
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
 fandango:INFO: ClientB -> ServerB: <rmd_B2> 'RMD testdir_b2\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB -> ClientB: <rmd_response> '550 No such file or directory.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -2002,7 +1618,7 @@ fandango:INFO: ServerB -> ClientB: <rmd_response> '550 No such file or directory
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -2076,7 +1692,7 @@ fandango:INFO: Current coverage: 91.39%
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
 fandango:INFO: ClientB -> ServerB: <rmd_B3> 'RMD testdir_b3\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -2150,7 +1766,7 @@ fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -2296,7 +1912,7 @@ fandango:INFO: Current coverage: 91.39%
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
 fandango:INFO: ClientB -> ServerB: <rmd_target> 'RMD renamed_b\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -2442,7 +2058,7 @@ fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -2588,7 +2204,7 @@ fandango:INFO: Current coverage: 91.39%
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
 fandango:INFO: ClientB -> ServerB: <quit_cmd> 'QUIT\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB -> ClientB: <quit_ok> '221 Goodbye.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -2734,7 +2350,7 @@ fandango:INFO: ServerB -> ClientB: <quit_ok> '221 Goodbye.\r\n'
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 
 ================================================================================
 TEST CASE #2
@@ -2742,96 +2358,99 @@ TEST CASE #2
 
 --------------------------------------------------------------------------------
 fandango:INFO: Starting new protocol run.
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerA: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientA: <user_cmd> 'USER user\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerA: <user_ok> '331 Username ok, send password.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientA: <pass_cmd> 'PASS 12345\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerA: <pass_ok> '230 Login successful.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientA -> ServerA: <mkd_A> 'MKD testdir_a\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerA -> ClientA: <mkd_ok_A> '257 "/testdir_a" directory created.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientA -> ServerA: <rnfr_A> 'RNFR testdir_a\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerA -> ClientA: <rnfr_ok_A> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientA -> ServerA: <rnto_A> 'RNTO renamed_a\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerA -> ClientA: <rnto_response_A> '250 Renaming ok.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientA -> ServerA: <epsv_cmd_A> 'EPSV\r\n'
-fandango:INFO: Current coverage: 91.39%
-fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||50208|).\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
+fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||60025|).\r\n'
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientA -> ServerA: <list_cmd_A> 'LIST\r\n'
-fandango:INFO: Current coverage: 91.39%
-fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Aug 17 14:23 source.txt\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
+fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:22 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\n'
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: SocketControlServerA: <close_data_A> 'Data socket closed.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerA -> ClientA: <list_status_A> '125 Data connection already open. Transfer starting.\r\n226 Transfer complete.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientA -> ServerA: <rmd_A> 'RMD renamed_a\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerA -> ClientA: <rmd_ok_A> '250 Directory removed.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
-fandango:INFO: Current coverage: 91.39%
-Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
+fandango:INFO: ConnectionControl: <ChangeConnection> 'start connection B'
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientB -> ServerB: <user_cmd> 'USER user\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB -> ClientB: <user_ok> '331 Username ok, send password.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientB -> ServerB: <pass_cmd> 'PASS 12345\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB -> ClientB: <pass_ok> '230 Login successful.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientB: <mkd_B1> 'MKD testdir_b1\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB: <mkd_ok> '257 "/testdir_b1" directory created.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientB: <mkd_B2> 'MKD testdir_b2\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB: <mkd_ok> '257 "/testdir_b2" directory created.\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientB: <mkd_B3> 'MKD testdir_b3\r\n'
-fandango:INFO: Current coverage: 91.39%
+fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB: <mkd_ok> '257 "/testdir_b3" directory created.\r\n'
-fandango:INFO: Current coverage: 91.39%
-fandango:INFO: ClientB: <rnfr_B3> 'RNFR testdir_b3\r\n'
+fandango:INFO: Current coverage: 91.74%
+fandango:INFO: ClientB: <rnfr_B1> 'RNFR testdir_b1\r\n'
 fandango:INFO: Current coverage: 93.80%
 fandango:INFO: ServerB: <rnfr_ok> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientB: <rnfr_B1> 'RNFR testdir_b1\r\n'
+fandango:INFO: Current coverage: 91.74%
+fandango:INFO: ClientB: <rnfr_B3> 'RNFR testdir_b3\r\n'
 fandango:INFO: Current coverage: 95.87%
 fandango:INFO: ServerB: <rnfr_ok> '350 Ready for destination name.\r\n'
 fandango:INFO: Current coverage: 95.87%
 fandango:INFO: ClientB: <rnfr_B2> 'RNFR testdir_b2\r\n'
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 97.93%
 fandango:INFO: ServerB: <rnfr_ok> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Full coverage reached. Guiding to end of tree.
 fandango:INFO: ClientB -> ServerB: <rnto_B> 'RNTO renamed_b\r\n'
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
 fandango:INFO: ServerB -> ClientB: <rnto_response_B> '250 Renaming ok.\r\n'
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Full coverage reached. Guiding to end of tree.
 fandango:INFO: ClientB -> ServerB: <epsv_cmd_B> 'EPSV\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||50211|).\r\n'
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||60030|).\r\n'
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Full coverage reached. Guiding to end of tree.
 fandango:INFO: ClientB -> ServerB: <list_cmd_B> 'LIST\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Aug 17 14:23 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 testdir_b3\r\n'
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:22 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:22 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:22 testdir_b3\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -2864,7 +2483,7 @@ fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i794948
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
 fandango:INFO: SocketControlServerB: <close_data_B> 'Data socket closed.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -2898,7 +2517,7 @@ fandango:INFO: SocketControlServerB: <close_data_B> 'Data socket closed.\r\n'
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
 fandango:INFO: ServerB -> ClientB: <list_status_B> '125 Data connection already open. Transfer starting.\r\n226 Transfer complete.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -2932,7 +2551,8 @@ fandango:INFO: ServerB -> ClientB: <list_status_B> '125 Data connection already 
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Full coverage reached. Guiding to end of tree.
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -2982,7 +2602,7 @@ fandango:INFO: Current coverage: 95.87%
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
 fandango:INFO: ClientB -> ServerB: <rmd_B1> 'RMD testdir_b1\r\n'
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
 fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -3032,7 +2652,8 @@ fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Full coverage reached. Guiding to end of tree.
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -3106,7 +2727,7 @@ fandango:INFO: Current coverage: 95.87%
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
 fandango:INFO: ClientB -> ServerB: <rmd_B2> 'RMD testdir_b2\r\n'
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
 fandango:INFO: ServerB -> ClientB: <rmd_response> '550 No such file or directory.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -3180,7 +2801,8 @@ fandango:INFO: ServerB -> ClientB: <rmd_response> '550 No such file or directory
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Full coverage reached. Guiding to end of tree.
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -3254,7 +2876,7 @@ fandango:INFO: Current coverage: 95.87%
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
 fandango:INFO: ClientB -> ServerB: <rmd_B3> 'RMD testdir_b3\r\n'
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
 fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -3328,7 +2950,8 @@ fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Full coverage reached. Guiding to end of tree.
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -3474,7 +3097,7 @@ fandango:INFO: Current coverage: 95.87%
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
 fandango:INFO: ClientB -> ServerB: <rmd_target> 'RMD renamed_b\r\n'
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
 fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -3620,7 +3243,8 @@ fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Full coverage reached. Guiding to end of tree.
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -3766,7 +3390,7 @@ fandango:INFO: Current coverage: 95.87%
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
 fandango:INFO: ClientB -> ServerB: <quit_cmd> 'QUIT\r\n'
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
 fandango:INFO: ServerB -> ClientB: <quit_ok> '221 Goodbye.\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
@@ -3912,1565 +3536,10 @@ fandango:INFO: ServerB -> ClientB: <quit_ok> '221 Goodbye.\r\n'
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
   Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 95.87%
+fandango:INFO: Current coverage: 100.00%
 
 ================================================================================
 TEST CASE #3
-================================================================================
-
---------------------------------------------------------------------------------
-fandango:INFO: Starting new protocol run.
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerA: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientA: <user_cmd> 'USER user\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerA: <user_ok> '331 Username ok, send password.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientA: <pass_cmd> 'PASS 12345\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerA: <pass_ok> '230 Login successful.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientA -> ServerA: <mkd_A> 'MKD testdir_a\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerA -> ClientA: <mkd_ok_A> '257 "/testdir_a" directory created.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientA -> ServerA: <rnfr_A> 'RNFR testdir_a\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerA -> ClientA: <rnfr_ok_A> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientA -> ServerA: <rnto_A> 'RNTO renamed_a\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerA -> ClientA: <rnto_response_A> '250 Renaming ok.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientA -> ServerA: <epsv_cmd_A> 'EPSV\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||50215|).\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientA -> ServerA: <list_cmd_A> 'LIST\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Aug 17 14:23 source.txt\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: SocketControlServerA: <close_data_A> 'Data socket closed.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerA -> ClientA: <list_status_A> '125 Data connection already open. Transfer starting.\r\n226 Transfer complete.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientA -> ServerA: <rmd_A> 'RMD renamed_a\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerA -> ClientA: <rmd_ok_A> '250 Directory removed.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
-fandango:INFO: Current coverage: 95.87%
-Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientB -> ServerB: <user_cmd> 'USER user\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerB -> ClientB: <user_ok> '331 Username ok, send password.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientB -> ServerB: <pass_cmd> 'PASS 12345\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerB -> ClientB: <pass_ok> '230 Login successful.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientB: <mkd_B1> 'MKD testdir_b1\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerB: <mkd_ok> '257 "/testdir_b1" directory created.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientB: <mkd_B2> 'MKD testdir_b2\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerB: <mkd_ok> '257 "/testdir_b2" directory created.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientB: <mkd_B3> 'MKD testdir_b3\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerB: <mkd_ok> '257 "/testdir_b3" directory created.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientB: <rnfr_B1> 'RNFR testdir_b1\r\n'
-fandango:INFO: Current coverage: 97.93%
-fandango:INFO: ServerB: <rnfr_ok> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ClientB: <rnfr_B1> 'RNFR testdir_b1\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB: <rnfr_ok> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-fandango:INFO: ClientB: <rnfr_B2> 'RNFR testdir_b2\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB: <rnfr_ok> '350 Ready for destination name.\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-fandango:INFO: ClientB -> ServerB: <rnto_B> 'RNTO renamed_b\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB -> ClientB: <rnto_response_B> '250 Renaming ok.\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-fandango:INFO: ClientB -> ServerB: <epsv_cmd_B> 'EPSV\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||50225|).\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-fandango:INFO: ClientB -> ServerB: <list_cmd_B> 'LIST\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Aug 17 14:23 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 17 14:23 testdir_b3\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: SocketControlServerB: <close_data_B> 'Data socket closed.\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB -> ClientB: <list_status_B> '125 Data connection already open. Transfer starting.\r\n226 Transfer complete.\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: ClientB -> ServerB: <rmd_B1> 'RMD testdir_b1\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: ClientB -> ServerB: <rmd_B2> 'RMD testdir_b2\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB -> ClientB: <rmd_response> '550 No such file or directory.\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: ClientB -> ServerB: <rmd_B3> 'RMD testdir_b3\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: ClientB -> ServerB: <rmd_target> 'RMD renamed_b\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB -> ClientB: <rmd_response> '250 Directory removed.\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: ClientB -> ServerB: <quit_cmd> 'QUIT\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB -> ClientB: <quit_ok> '221 Goodbye.\r\n'
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-[PASS] Redundant RNFR handled correctly
-  RNTO codes: A=250, B=250
-  Directory verified: A=renamed_a, B=renamed_b
-  Last RNFR wins: testdir_b2 was renamed, testdir_b1 still exists
-fandango:INFO: Current coverage: 100.00%
-
-================================================================================
-TEST CASE #4
 ================================================================================
 
 --------------------------------------------------------------------------------
@@ -5478,14 +3547,14 @@ fandango:INFO: Full coverage reached, stopping evolution.
 ================================================================================
 SUMMARY
 ================================================================================
-Total test cases generated: 4
-Passed: 4
+Total test cases generated: 3
+Passed: 3
 Violations: 0
 
 All solutions passed - Redundant RNFR handled correctly!
 
 TIMING:
-  Test generation time: 17.18 seconds
-  Total execution time: 17.95 seconds
-  Average time per test: 4.29 seconds
+  Test generation time: 12.67 seconds
+  Total execution time: 13.43 seconds
+  Average time per test: 4.22 seconds
 ================================================================================

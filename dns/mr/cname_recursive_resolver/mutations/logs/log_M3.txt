@@ -1,0 +1,120 @@
+Mutation: M3
+Description: REWRITE_QCLASS_CH - Forward CH instead of IN
+Duration: 5.29s
+================================================================================
+
+fandango:WARNING: <start>: Number of bits (136..288) may not be a multiple of eight
+fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
+fandango:INFO: Current coverage: 0.39%
+fandango:INFO: ClientA: <query_recursive_server> "b'vd\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x08example4\\x05local\\x00\\x00\\x01\\x00\\x01'"
+fandango:INFO: Current coverage: 42.25%
+fandango:INFO: ServerA -> MimServer: <intercept_upstream_request> 'vd\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x08example4\x05local\x00\x00\x01\x00\x03'
+fandango:INFO: Current coverage: 47.67%
+fandango:INFO: MimClient -> ServerB: <forward_upstream_request> 'vd\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x08example4\x05local\x00\x00\x01\x00\x03'
+fandango:INFO: Current coverage: 51.16%
+fandango:INFO: ServerB -> MimClient: <response_chased> 'vd\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example4\x05local\x00\x00\x01\x00\x03\x08example4\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+fandango:INFO: Current coverage: 55.43%
+fandango:INFO: MimServer -> ServerA: <forward_response_chased> 'vd\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example4\x05local\x00\x00\x01\x00\x03\x08example4\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+fandango:INFO: Current coverage: 58.91%
+fandango:INFO: ServerA: <recusrive_server_response> 'vd\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example4\x05local\x00\x00\x01\x00\x03\x08example4\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+fandango:INFO: Current coverage: 61.24%
+================================================================================
+CNAME Resolution Equivalence Test (Architecture 1)
+================================================================================
+
+Make sure both authoritative servers are running:
+  Server A (alias zone):  python dns/dns_server.py --zone alias  -p 5053
+  Server B (target zone): python dns/dns_server.py --zone target -p 5054
+
+Or use run_test.py which launches both automatically.
+
+Starting test...
+
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/dns/mr/cname_recursive_resolver/grammar.fan
+================================================================================
+Metamorphic Relation: CNAME Resolution Equivalence (Architecture 1)
+
+Setup:
+  Server A (:5053, --zone target) authoritative for test.local.
+                                  test.local. A 192.168.1.1, 192.168.1.2
+  Server B (:5054, --zone alias)  authoritative for example.local.
+                                  example.local. CNAME test.local.
+
+Test flow:
+  ClientA → ServerA:  A test.local.           (direct baseline)
+  ClientB → ServerB:  A example.local.        (alias query, grammar-generated)
+       (grammar forwarding: ServerB's response bytes → ClientC's forward_query)
+  ClientC → ServerA:  A test.local. (chased)  (built from ServerB's CNAME response)
+  Relation: A-records from ClientC == A-records from ClientA
+================================================================================
+reciveing None b'vd\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x08example4\x05local\x00\x00\x01\x00\x03'
+[DEBUG]clientquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=3
+[VIOLATION]Upstream-requestequality:resolverrewrotethequestion
+client:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+upstream:qname=b'\x08example4\x05local\x00'qtype=1qclass=3
+[DEBUG]clientquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=3
+[VIOLATION]Upstream-requestequality:resolverrewrotethequestion
+client:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+upstream:qname=b'\x08example4\x05local\x00'qtype=1qclass=3
+[DEBUG]clientquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=3
+[VIOLATION]Upstream-requestequality:resolverrewrotethequestion
+client:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+upstream:qname=b'\x08example4\x05local\x00'qtype=1qclass=3
+[DEBUG]clientquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=3
+[VIOLATION]Upstream-requestequality:resolverrewrotethequestion
+client:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+upstream:qname=b'\x08example4\x05local\x00'qtype=1qclass=3
+[DEBUG]clientquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=3
+[VIOLATION]Upstream-requestequality:resolverrewrotethequestion
+client:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+upstream:qname=b'\x08example4\x05local\x00'qtype=1qclass=3
+[DEBUG]clientquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=3
+[VIOLATION]Upstream-requestequality:resolverrewrotethequestion
+client:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+upstream:qname=b'\x08example4\x05local\x00'qtype=1qclass=3
+sendingggggg ServerA b'vd\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example4\x05local\x00\x00\x01\x00\x03\x08example4\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04\xc0\xa8\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04\xc0\xa8\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r\xb8\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+[DEBUG]chasedA-records:['192.168.1.1', '192.168.1.2']
+[DEBUG]directA-records:['192.168.1.1', '192.168.1.2']
+[PASS]CNAMEequivalence:Arecordsmatch['192.168.1.1', '192.168.1.2']
+[DEBUG]clientquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=3
+[VIOLATION]Upstream-requestequality:resolverrewrotethequestion
+client:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+upstream:qname=b'\x08example4\x05local\x00'qtype=1qclass=3
+
+================================================================================
+TEST CASE #1
+================================================================================
+
+Stopping after the first test with a violation.
+
+================================================================================
+SUMMARY
+================================================================================
+Total test cases generated: 1
+Passed: 1
+Violations: 1
+
+Violations per solution:
+  solution1:
+    - [VIOLATION]Upstream-requestequality:resolverrewrotethequestion
+    - [VIOLATION]Upstream-requestequality:resolverrewrotethequestion
+    - [VIOLATION]Upstream-requestequality:resolverrewrotethequestion
+    - [VIOLATION]Upstream-requestequality:resolverrewrotethequestion
+    - [VIOLATION]Upstream-requestequality:resolverrewrotethequestion
+    - [VIOLATION]Upstream-requestequality:resolverrewrotethequestion
+    - [VIOLATION]Upstream-requestequality:resolverrewrotethequestion
+
+TIMING:
+  Test generation time: 3.51 seconds
+  Total execution time: 4.93 seconds
+  Average time per test: 3.51 seconds
+================================================================================
+
+Log saved to: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/dns/mr/cname_recursive_resolver/mutations/mutation_test_output.log

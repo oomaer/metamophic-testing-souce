@@ -36,7 +36,7 @@ class MutatedHandler:
 
     def __init__(self, mutation_id='BASELINE'):
         self.mutation_id = mutation_id
-        self.duplicate_detected = False  # For M48
+        self.duplicate_detected = False  # For M6
         print(f"[ServerB-8027] 🧬 Mutation: {mutation_id}")
 
     async def handle_MAIL(self, server, session, envelope, address, mail_options):
@@ -62,41 +62,41 @@ class MutatedHandler:
                 print(f"[ServerB-8027] ✗ M2: Too many duplicates (>10): {address}")
                 return '550 5.5.1 Too many duplicates of this recipient'
 
-        # M10: REJECT_FIRST_DUPLICATE_ONLY
-        elif self.mutation_id == 'M10':
+        # M3: REJECT_FIRST_DUPLICATE_ONLY
+        elif self.mutation_id == 'M3':
             count = envelope.rcpt_tos.count(address)
             if count == 1:  # This is the SECOND occurrence (first duplicate)
-                print(f"[ServerB-8027] ✗ M10: Rejecting first duplicate: {address}")
+                print(f"[ServerB-8027] ✗ M3: Rejecting first duplicate: {address}")
                 return '550 5.5.1 Duplicate recipient not allowed'
             # 3rd, 4th, etc. are allowed (logic bug!)
 
-        # M30: DUPLICATE_DELIVERS_TO_WRONG_RECIPIENT
-        elif self.mutation_id == 'M30':
+        # M4: DUPLICATE_DELIVERS_TO_WRONG_RECIPIENT
+        elif self.mutation_id == 'M4':
             if address in envelope.rcpt_tos:
                 wrong_recipient = 'unexpected-recipient@example.com'
                 envelope.rcpt_tos.append(wrong_recipient)
-                print(f"[ServerB-8027] ✗ M30: Duplicate {address} recorded as {wrong_recipient}")
+                print(f"[ServerB-8027] ✗ M4: Duplicate {address} recorded as {wrong_recipient}")
                 return '250 OK'
 
-        # M44: MULTIPLE_RESPONSE_LINES
-        elif self.mutation_id == 'M44':
+        # M5: MULTIPLE_RESPONSE_LINES
+        elif self.mutation_id == 'M5':
             if address in envelope.rcpt_tos:
                 # Protocol violation: Send multiple 250 responses
-                print(f"[ServerB-8027] ✗ M44: Sending multiple response lines")
+                print(f"[ServerB-8027] ✗ M5: Sending multiple response lines")
                 # Note: aiosmtpd might not allow this easily, so we simulate with enhanced response
                 envelope.rcpt_tos.append(address)
                 return '250 OK\r\n250 Duplicate accepted'
 
-        # M48: REJECT_ALL_AFTER_DUPLICATE
-        elif self.mutation_id == 'M48':
+        # M6: REJECT_ALL_AFTER_DUPLICATE
+        elif self.mutation_id == 'M6':
             # State corruption: Once a duplicate is detected, reject ALL subsequent RCPT
             if address in envelope.rcpt_tos:
-                print(f"[ServerB-8027] ✗ M48: Duplicate detected, poisoning session: {address}")
+                print(f"[ServerB-8027] ✗ M6: Duplicate detected, poisoning session: {address}")
                 self.duplicate_detected = True
                 return '550 5.5.1 Duplicate recipient not allowed'
             elif self.duplicate_detected:
                 # Even unique addresses are rejected after duplicate was found
-                print(f"[ServerB-8027] ✗ M48: Session poisoned, rejecting all: {address}")
+                print(f"[ServerB-8027] ✗ M6: Session poisoned, rejecting all: {address}")
                 return '550 5.5.1 No more recipients allowed after duplicate'
 
         # BASELINE: Accept all (RFC-compliant)
@@ -105,7 +105,7 @@ class MutatedHandler:
         return '250 OK'
 
     async def handle_DATA(self, server, session, envelope):
-        # For M48 and other mutations that reject recipients
+        # For M6 and other mutations that reject recipients
         # If no recipients, still accept DATA content but return error at end
         if not envelope.rcpt_tos:
             print(f"[ServerB-8027] ✗ No recipients, but accepting email content anyway")
@@ -138,7 +138,7 @@ def start_server(port, handler, mutation_id=None):
 def main():
     parser = argparse.ArgumentParser(description='Run mutated SMTP servers for testing')
     parser.add_argument('--mutation', type=str, default='BASELINE',
-                       choices=['BASELINE', 'M1', 'M2', 'M10', 'M30', 'M44', 'M48'],
+                       choices=['BASELINE', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6'],
                        help='Mutation to apply to ServerB')
     parser.add_argument('--port-a', type=int, default=8026, help='ServerA port (baseline)')
     parser.add_argument('--port-b', type=int, default=8027, help='ServerB port (mutated)')

@@ -6,22 +6,26 @@ Run all mutations for Repeated Recipient MR and collect results.
 import subprocess
 import time
 import sys
+import os
 from pathlib import Path
 
 
-MUTATIONS = ['M1', 'M2', 'M10', 'M30', 'M44', 'M48']
-# MUTATIONS = ['M44']  # For quick testing, focus on M44 which is a protocol violation
+OUTPUT_DIR = Path(os.environ.get("MUTATION_OUTPUT_DIR", Path(__file__).resolve().parent)).resolve()
 
-# MUTATIONS = ['M48']
+
+MUTATIONS = ['M1', 'M2', 'M3', 'M4', 'M5', 'M6']
+# MUTATIONS = ['M5']  # For quick testing, focus on M5 which is a protocol violation
+
+# MUTATIONS = ['M6']
 
 MUTATION_DESCRIPTIONS = {
     # 'BASELINE': 'Clean baseline - accepts all duplicates (RFC compliant)',
     'M1': 'STRICT_DUPLICATE_REJECT - Reject all duplicates with 550',
     'M2': 'ACCEPT_FIRST_N_DUPLICATES - Accept first 2, reject 3rd+',
-    'M10': 'REJECT_FIRST_DUPLICATE_ONLY - Reject 2nd occurrence, accept 3rd+',
-    'M30': 'DUPLICATE_DELIVERS_TO_WRONG_RECIPIENT - Duplicate RCPT adds unintended recipient',
-    'M44': 'MULTIPLE_RESPONSE_LINES - Send multiple 250 responses (protocol violation)',
-    'M48': 'REJECT_ALL_AFTER_DUPLICATE - After duplicate, reject all subsequent RCPT',
+    'M3': 'REJECT_FIRST_DUPLICATE_ONLY - Reject 2nd occurrence, accept 3rd+',
+    'M4': 'DUPLICATE_DELIVERS_TO_WRONG_RECIPIENT - Duplicate RCPT adds unintended recipient',
+    'M5': 'MULTIPLE_RESPONSE_LINES - Send multiple 250 responses (protocol violation)',
+    'M6': 'REJECT_ALL_AFTER_DUPLICATE - After duplicate, reject all subsequent RCPT',
 }
 
 
@@ -41,8 +45,8 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
     print(f"{'='*80}\n")
 
     # Create logs directory if it doesn't exist
-    logs_dir = mutations_dir / 'logs'
-    logs_dir.mkdir(exist_ok=True)
+    logs_dir = OUTPUT_DIR / "logs"
+    logs_dir.mkdir(parents=True, exist_ok=True)
 
     log_file = logs_dir / f'log_{mutation_id}.txt'
 
@@ -67,7 +71,7 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
 
         # Run with real-time output to console AND capture for log
         process = subprocess.Popen(
-            [sys.executable, str(parent_dir / 'script.py'), 'mutations/mutation_test_output.log'],
+            [sys.executable, str(parent_dir / 'script.py'), os.devnull],
             cwd=str(parent_dir),
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
@@ -185,7 +189,7 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
 
 
 def main():
-    mutations_dir = Path(__file__).parent
+    mutations_dir = Path(__file__).resolve().parent
     parent_dir = mutations_dir.parent
 
     print("="*80)
@@ -240,47 +244,7 @@ def main():
     print("-"*80)
     print(f"\nDetection rate: {detected_count}/{total_mutations} ({detected_count/total_mutations*100:.1f}%)")
 
-    # Save results
-    results_file = mutations_dir / 'mutation_results.txt'
-    with open(results_file, 'w') as f:
-        f.write("SMTP REPEATED RECIPIENT - MUTATION TESTING RESULTS\n")
-        f.write("="*80 + "\n\n")
-        f.write(f"Date: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
-        f.write(f"Total Duration: {format_duration(total_duration)}\n")
-        f.write(f"Detection Rate: {detected_count}/{total_mutations} ({detected_count/total_mutations*100:.1f}%)\n\n")
-
-        f.write(f"{'Mutation':<12} {'Description':<50} {'Detected':<10} {'P':<4} {'V':<4}\n")
-        f.write("-"*80 + "\n")
-
-        for r in results:
-            if r['mutation'] == 'BASELINE':
-                detected_str = "N/A"
-            else:
-                detected_str = "YES" if r['detected'] else "NO"
-            desc_short = r['description'][:47] + "..." if len(r['description']) > 50 else r['description']
-            f.write(f"{r['mutation']:<12} {desc_short:<50} {detected_str:<10} {r['passes']:<4} {r['violations']:<4}\n")
-
-        f.write("\n" + "="*80 + "\n")
-        f.write("DETAILED RESULTS\n")
-        f.write("="*80 + "\n\n")
-
-        for r in results:
-            f.write(f"Mutation: {r['mutation']}\n")
-            f.write(f"Description: {r['description']}\n")
-            if r['mutation'] == 'BASELINE':
-                f.write(f"Detected: N/A (baseline)\n")
-            else:
-                f.write(f"Detected: {'YES' if r['detected'] else 'NO'}\n")
-            f.write(f"Passes: {r['passes']}\n")
-            f.write(f"Violations: {r['violations']}\n")
-            f.write(f"Duration: {format_duration(r['duration'])}\n")
-            f.write(f"Log: {r['log_file']}\n")
-            if 'error' in r:
-                f.write(f"Error: {r['error']}\n")
-            f.write("\n" + "-"*80 + "\n\n")
-
-    print(f"\n✓ Results saved to: {results_file}")
-    print(f"✓ Individual logs saved to: {mutations_dir / 'logs'}/")
+    print(f"✓ Individual logs saved to: {OUTPUT_DIR / 'logs'}/")
     print("\nDone!")
 
 

@@ -4,12 +4,17 @@ Run all mutations for IMAP Append+Search MR and collect results.
 """
 
 import subprocess
+import re
 import time
 import sys
+import os
 from pathlib import Path
 
 
-MUTATIONS = ['BASELINE', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6']
+OUTPUT_DIR = Path(os.environ.get("MUTATION_OUTPUT_DIR", Path(__file__).resolve().parent)).resolve()
+
+
+MUTATIONS = ['M1', 'M2', 'M3', 'M4', 'M5', 'M6']
 
 MUTATION_DESCRIPTIONS = {
     'BASELINE': 'Clean baseline - normal index behavior',
@@ -37,13 +42,13 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
     print(f"Description: {MUTATION_DESCRIPTIONS.get(mutation_id, 'Unknown')}")
     print(f"{'='*80}\n")
 
-    logs_dir = mutations_dir / 'logs'
-    logs_dir.mkdir(exist_ok=True)
+    logs_dir = OUTPUT_DIR / "logs"
+    logs_dir.mkdir(parents=True, exist_ok=True)
     log_file = logs_dir / f'log_{mutation_id}.txt'
 
     # Kill any existing servers on port 1144
-    subprocess.run(['pkill', '-f', 'mutant_server.py'], capture_output=True)
-    subprocess.run(['pkill', '-f', 'imap_server.py'], capture_output=True)
+    subprocess.run(['pkill', '-f', re.escape(str(mutations_dir / 'mutant_server.py'))], capture_output=True)
+    subprocess.run(['pkill', '-f', re.escape(str(parent_dir / 'imap_server.py'))], capture_output=True)
     time.sleep(1)
 
     # Start mutant server
@@ -81,7 +86,7 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
         print("Running metamorphic test...\n")
 
         process = subprocess.Popen(
-            [sys.executable, str(parent_dir / 'script.py'), 'mutations/mutation_test_output.log'],
+            [sys.executable, str(parent_dir / 'script.py'), os.devnull],
             cwd=str(parent_dir),
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
@@ -167,7 +172,7 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
 
 
 def main():
-    mutations_dir = Path(__file__).parent
+    mutations_dir = Path(__file__).resolve().parent
     parent_dir = mutations_dir.parent
 
     print("="*80)
@@ -222,47 +227,7 @@ def main():
     else:
         print("\nNo mutations tested (only baseline)")
 
-    results_file = mutations_dir / 'mutation_results.txt'
-    with open(results_file, 'w') as f:
-        f.write("IMAP APPEND+SEARCH - MUTATION TESTING RESULTS\n")
-        f.write("="*80 + "\n\n")
-        f.write(f"Date: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
-        f.write(f"Total Duration: {format_duration(total_duration)}\n")
-        if total_mutations > 0:
-            f.write(f"Detection Rate: {detected_count}/{total_mutations} ({detected_count/total_mutations*100:.1f}%)\n\n")
-
-        f.write(f"{'Mutation':<12} {'Description':<50} {'Detected':<10} {'P':<4} {'V':<4}\n")
-        f.write("-"*80 + "\n")
-
-        for r in results:
-            if r['mutation'] == 'BASELINE':
-                detected_str = "N/A"
-            else:
-                detected_str = "YES" if r['detected'] else "NO"
-            desc_short = r['description'][:47] + "..." if len(r['description']) > 50 else r['description']
-            f.write(f"{r['mutation']:<12} {desc_short:<50} {detected_str:<10} {r['passes']:<4} {r['violations']:<4}\n")
-
-        f.write("\n" + "="*80 + "\n")
-        f.write("DETAILED RESULTS\n")
-        f.write("="*80 + "\n\n")
-
-        for r in results:
-            f.write(f"Mutation: {r['mutation']}\n")
-            f.write(f"Description: {r['description']}\n")
-            if r['mutation'] == 'BASELINE':
-                f.write(f"Detected: N/A (baseline)\n")
-            else:
-                f.write(f"Detected: {'YES' if r['detected'] else 'NO'}\n")
-            f.write(f"Passes: {r['passes']}\n")
-            f.write(f"Violations: {r['violations']}\n")
-            f.write(f"Duration: {format_duration(r['duration'])}\n")
-            f.write(f"Log: {r['log_file']}\n")
-            if 'error' in r:
-                f.write(f"Error: {r['error']}\n")
-            f.write("\n" + "-"*80 + "\n\n")
-
-    print(f"\n✓ Results saved to: {results_file}")
-    print(f"✓ Individual logs saved to: {mutations_dir / 'logs'}/")
+    print(f"✓ Individual logs saved to: {OUTPUT_DIR / 'logs'}/")
     print("\nDone!")
 
 

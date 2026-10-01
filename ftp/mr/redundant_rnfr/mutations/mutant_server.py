@@ -16,6 +16,7 @@ from pathlib import Path
 PYFTPDLIB_PATH = Path("/Users/i7949486/Desktop/uds/thesis/mutation/pyftpdlib")
 VENV_PYTHON = PYFTPDLIB_PATH / "venv" / "bin" / "python"
 MUTATIONS = ["BASELINE", "M1", "M2", "M3", "M4", "M5", "M6"]
+# MUTATIONS = ["M3"]
 
 MUTATION_DESCRIPTIONS = {
     "BASELINE": "Clean baseline - normal RNFR/RNTO behavior",
@@ -104,13 +105,14 @@ class MutatedFTPHandler(FTPHandler):
             # "last RNFR wins" and MR should catch it via dirB1/dirB2 checks.
             result = super().ftp_RNFR(path)
             if self._m3_first_rnfr is None:
-                self._m3_first_rnfr = self.fs.rnfr
+                # pyftpdlib keeps the pending rename source on the handler.
+                self._m3_first_rnfr = self._rnfr
                 print(f"[M3] Captured first RNFR target: {self._m3_first_rnfr}")
             else:
                 # Silently revert pending source to the first RNFR's target
                 print(f"[M3] Silently reverting pending RNFR source "
-                      f"{self.fs.rnfr!r} -> {self._m3_first_rnfr!r}")
-                self.fs.rnfr = self._m3_first_rnfr
+                      f"{self._rnfr!r} -> {self._m3_first_rnfr!r}")
+                self._rnfr = self._m3_first_rnfr
             return result
 
         elif self.mutation_id == "M4":
@@ -142,51 +144,33 @@ class MutatedFTPHandler(FTPHandler):
         """
         if self.mutation_id == "M5":
             # M5: RENAME_WRONG_TARGET - Use completely wrong/random source
-            if hasattr(self.fs, 'rnfr') and self.fs.rnfr:
-                original_target = self.fs.rnfr
-                # Use a completely random non-existent source
-                import random
-                wrong_target = f"nonexistent_dir_{random.randint(10000, 99999)}"
+            if self._rnfr:
+                original_target = self._rnfr
+                # pyftpdlib stores the pending source on the handler, as an
+                # absolute filesystem path. Pick a source that cannot exist.
+                wrong_target = os.path.join(self.fs.root, "nonexistent_dir_m5")
+                while self.fs.lexists(wrong_target):
+                    wrong_target += "_"
                 print(f"[M5] Attempting to rename wrong target: {wrong_target} instead of {original_target}")
-                self.fs.rnfr = wrong_target
+                self._rnfr = wrong_target
                 # This will definitely fail with "No such file or directory"
             return super().ftp_RNTO(path)
 
         elif self.mutation_id == "M6":
-            # M6: WRONG_RNTO_SUCCESS_CODE - Return wrong success code
-            print(f"[M6] Processing RNTO, will return wrong code")
-            # Call super to do the actual rename
-            result = super().ftp_RNTO(path)
-            # Override the response (super already sent 250, so send 200 after)
-            # This will cause a response code mismatch
-            # Actually, let's intercept before super() sends response
-            # We need to prevent super from responding and send our own response
+            # Keep pyftpdlib's rename and error handling, replacing only the
+            # successful RNTO reply. Sending 250 first would mask the mutation.
+            original_respond = self.respond
 
-            # Check if we have a pending RNFR
-            line = self.fs.fs2ftp(path)
-            if not self.fs.validpath(path):
-                self.respond(f"553 {line} is not a valid file-system path")
-                return
+            def respond_rnto(response, *args, **kwargs):
+                if response.startswith("250 "):
+                    response = "200 Command okay."
+                return original_respond(response, *args, **kwargs)
 
-            src = self.fs.rnfr
-            if src is None:
-                self.respond("503 Bad sequence of commands: use RNFR first.")
-                return
-
+            self.respond = respond_rnto
             try:
-                # Perform the actual rename
-                src = self.fs.ftp2fs(src)
-                dst = self.fs.ftp2fs(path)
-                self.run_as_current_user(self.fs.rename, src, dst)
-                self.fs.rnfr = None
-
-                # Return WRONG success code (200 instead of 250)
-                self.respond("200 Command okay.")
-                print(f"[M6] Returned 200 instead of 250 for successful RNTO")
-                return path
-            except (OSError, IOError) as err:
-                self.respond(f"550 {err}")
-                return
+                return super().ftp_RNTO(path)
+            finally:
+                self.respond = original_respond
 
         else:
             # BASELINE or other mutations

@@ -7,6 +7,7 @@ Creates test files with known initial size.
 
 import subprocess
 import sys
+import os
 import time
 import shutil
 from pathlib import Path
@@ -39,7 +40,9 @@ def setup_test_files(data_dir, server_name):
 
 
 def main():
-    script_dir = Path(__file__).parent
+    script_dir = Path(__file__).resolve().parent
+    output_dir = Path(os.environ.get("MR_RUNS_DIR", script_dir / "runs")).resolve()
+    output_dir.mkdir(parents=True, exist_ok=True)
     ftp_root = script_dir.parent.parent  # ftp/ directory
     pyftpdlib_path = Path("/Users/i7949486/Desktop/uds/thesis/mutation/pyftpdlib")
     venv_python = pyftpdlib_path / "venv" / "bin" / "python"
@@ -101,8 +104,9 @@ def main():
         for n in range(number_of_runs):
             print(f"Run {n + 1}/{number_of_runs}...")
             result = subprocess.run(
-                [sys.executable, str(script_dir / 'script.py'), f'runs/test_output_{n+1}.log'],
+                [sys.executable, str(script_dir / 'script.py'), str(output_dir / f'test_output_{n+1}.log')],
                 cwd=str(script_dir),
+                check=True,
             )
       
 

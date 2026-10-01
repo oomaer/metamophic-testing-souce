@@ -25,7 +25,9 @@ def format_duration(seconds):
         return f"{hours}h {minutes}m {secs:.2f}s"
 
 def main():
-    script_dir = Path(__file__).parent
+    script_dir = Path(__file__).resolve().parent
+    output_dir = Path(os.environ.get("MR_RUNS_DIR", script_dir / "runs")).resolve()
+    output_dir.mkdir(parents=True, exist_ok=True)
     project_root = script_dir.parent.parent
 
     print("=" * 80)
@@ -64,8 +66,9 @@ def main():
         for run in range(number_of_runs):
             print(f"Run {run + 1}/{number_of_runs}")
             result = subprocess.run(
-                [sys.executable, str(script_dir / 'script.py'), f'runs/test_output_{run + 1}.log'],
+                [sys.executable, str(script_dir / 'script.py'), str(output_dir / f'test_output_{run + 1}.log')],
                 cwd=str(script_dir),
+                check=True,
             )
       
 

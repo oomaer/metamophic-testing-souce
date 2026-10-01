@@ -7,6 +7,7 @@ from pathlib import Path
 import socket
 import subprocess
 import sys
+import os
 import time
 
 
@@ -113,7 +114,7 @@ def main():
     parser.add_argument('runs', type=int, nargs='?', default=1)
     parser.add_argument('--timeout', type=float, default=300,
                         help='Maximum seconds for each Fandango run (default: 300)')
-    parser.add_argument('--output-dir', type=Path, default=script_dir / 'runs')
+    parser.add_argument('--output-dir', type=Path, default=Path(os.environ.get('MR_RUNS_DIR', script_dir / 'runs')))
     args = parser.parse_args()
     if args.runs < 1 or args.timeout <= 0:
         parser.error('runs and timeout must be positive')

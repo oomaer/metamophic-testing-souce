@@ -11,19 +11,22 @@ import sys
 import time
 from pathlib import Path
 
+
+OUTPUT_DIR = Path(os.environ.get("MUTATION_OUTPUT_DIR", Path(__file__).resolve().parent)).resolve()
+
 # Mutations to test
 MUTATIONS = [
     # ('NONE', 'Baseline (no mutation)'),
     ('M1', 'Different status for close (201 vs 200)'),
     ('M2', 'Error on close (500)'),
     ('M3', 'Return 204 No Content'),
-    ('M8', 'Empty body'),
-    ('M20', 'Different transfer encoding'),
+    ('M4', 'Empty body'),
+    ('M5', 'Different transfer encoding'),
 ]
 
 
 def format_duration(seconds):
-    """Mirror of the SMTP runners' format so summarize_logs.py can parse it back."""
+    """Format elapsed time for the mutation log."""
     if seconds < 60:
         return f"{seconds:.2f}s"
     if seconds < 3600:
@@ -34,14 +37,39 @@ def format_duration(seconds):
     return f"{hours}h {minutes}m {seconds % 60:.2f}s"
 
 
+def run_test(mr_dir, mutation_log, mutation_id, description, timeout=90):
+    """Save this run's output even if the test crashes or times out."""
+    run_start = time.time()
+    with mutation_log.open('w') as log:
+        log.write(f"Mutation: {mutation_id}\nDescription: {description}\n")
+        log.write("=" * 80 + "\n\n")
+        log.flush()
+        try:
+            result = subprocess.run(
+                [sys.executable, '-u', str(mr_dir / 'script.py'), os.devnull],
+                cwd=str(mr_dir),
+                stdout=log,
+                stderr=subprocess.STDOUT,
+                timeout=timeout,
+            )
+            if result.returncode:
+                log.write(f"\n[ERROR] Test exited with code {result.returncode}\n")
+        except subprocess.TimeoutExpired:
+            log.write(f"\n[TIMEOUT] Test exceeded {timeout} seconds\n")
+        except Exception as error:
+            log.write(f"\n[ERROR] {error}\n")
+        finally:
+            log.write(f"\nDuration: {format_duration(time.time() - run_start)}\n")
+
+
 def main():
-    script_dir = Path(__file__).parent
+    script_dir = Path(__file__).resolve().parent
     mr_dir = script_dir.parent
     project_root = mr_dir.parent.parent  # mt-http directory
-    logs_dir = script_dir / 'logs'
+    logs_dir = OUTPUT_DIR / "logs"
 
     # Create logs directory if it doesn't exist
-    logs_dir.mkdir(exist_ok=True)
+    logs_dir.mkdir(parents=True, exist_ok=True)
 
     print("=" * 80)
     print(" MUTATION TESTING: Connection Header Variants MR")
@@ -77,41 +105,11 @@ def main():
 
         time.sleep(2)
 
-        run_start = time.time()
         try:
-            # Run the test script
             print("  Running tests...")
-            result = subprocess.run(
-                [sys.executable, str(mr_dir / 'script.py')],
-                cwd=str(mr_dir),
-                timeout=90
-            )
-
-            # Copy the log file with a header the summarizer can read (Mutation
-            # id / Description / Duration). Matches the shape SMTP runners use
-            # so summarize_logs.py works across MRs unchanged.
-            test_log = mr_dir / 'test_output.log'
             mutation_log = logs_dir / f'log_{mutation_id}.txt'
-
-            if test_log.exists():
-                duration = time.time() - run_start
-                header = (
-                    f"Mutation: {mutation_id}\n"
-                    f"Description: {description}\n"
-                    f"Duration: {format_duration(duration)}\n"
-                    + ("=" * 80) + "\n\n"
-                )
-                mutation_log.write_text(header + test_log.read_text(errors='replace'))
-                print(f"  Log saved to: logs/{mutation_log.name}")
-            else:
-                print(f"  Warning: test_output.log not found")
-
-        except subprocess.TimeoutExpired:
-            print(f"  Timeout after 90 seconds")
-
-        except Exception as e:
-            print(f"  Error: {str(e)}")
-
+            run_test(mr_dir, mutation_log, mutation_id, description)
+            print(f"  Log saved to: {mutation_log}")
         finally:
             # Cleanup servers
             server_a.terminate()
@@ -127,7 +125,6 @@ def main():
 
     print("=" * 80)
     print("All mutations completed!")
-    print("Run 'python analyze_mutations.py' to generate results.")
     print("=" * 80)
 
 if __name__ == '__main__':

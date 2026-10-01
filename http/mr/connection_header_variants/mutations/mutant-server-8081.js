@@ -52,16 +52,16 @@ const server = http.createServer((req, res) => {
       return;
     }
 
-    // M8: Empty body
-    if (MUTATION === 'M8' && isCloseConnection) {
+    // M4: Empty body
+    if (MUTATION === 'M4' && isCloseConnection) {
       res.writeHead(200, { 'Content-Type': 'application/json', 'Content-Length': '0' });
       res.end();
       return;
     }
 
-    // M20: Different transfer encoding (chunked vs content-length)
+    // M5: Different transfer encoding (chunked vs content-length)
     // This should NOT be detected - body content is the same
-    if (MUTATION === 'M20' && isCloseConnection) {
+    if (MUTATION === 'M5' && isCloseConnection) {
       res.writeHead(200, {
         'Content-Type': 'application/json',
         'Transfer-Encoding': 'chunked'
@@ -100,15 +100,15 @@ const server = http.createServer((req, res) => {
       return;
     }
 
-    // M8: Empty body
-    if (MUTATION === 'M8' && isCloseConnection) {
+    // M4: Empty body
+    if (MUTATION === 'M4' && isCloseConnection) {
       res.writeHead(200, { 'Content-Type': 'application/json', 'Content-Length': '0' });
       res.end();
       return;
     }
 
-    // M20: Different transfer encoding
-    if (MUTATION === 'M20' && isCloseConnection) {
+    // M5: Different transfer encoding
+    if (MUTATION === 'M5' && isCloseConnection) {
       res.writeHead(200, {
         'Content-Type': 'application/json',
         'Transfer-Encoding': 'chunked'

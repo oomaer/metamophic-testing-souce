@@ -1,18 +1,24 @@
 #!/usr/bin/env python3
 """
-CNAME Recursive Resolver Test Runner
+CNAME Resolution Equivalence Test Runner (Architecture 1)
 
-Tests that querying a recursive resolver (which forwards to an authoritative server)
-returns the same A records as directly querying the authoritative server.
+Tests that resolving a CNAME (via a client-side chase across two
+authoritative servers) yields the same A records as querying the target
+zone directly.
 
 Setup:
-    Server A (port 5053): Authoritative - has all records for test.local
-    Server B (port 5054): Recursive resolver - has CNAME example.local -> test.local
+    Server A (port 5053, --zone alias)  : authoritative for example.local.
+                                          holds  example.local. CNAME test.local.
+    Server B (port 5054, --zone target) : authoritative for test.local.
+                                          holds  test.local. A 192.168.1.1 / 192.168.1.2
 
-Test:
-    Query A: test.local A on Server A (direct)
-    Query B: example.local A on Server B (recursive, forwards to Server A)
-    Relation: Both should return same A records
+Test flow (see grammar.fan):
+    ClientA → ServerA:  A example.local.        → CNAME test.local.
+    ClientB → ServerB:  A test.local. (chased)  → A records          [alias path]
+    ClientC → ServerB:  A test.local. (direct)  → A records          [baseline]
+
+Metamorphic relation:
+    A-records via ClientB  ==  A-records via ClientC
 
 Usage:
     python script.py [log_file_name]
@@ -24,7 +30,7 @@ import time
 import io
 import logging
 
-from fandango.evolution.algorithm import Fandango, LoggerLevel
+from fandango.evolution.algorithm import SimpleGeneticAlgorithm, LoggerLevel
 from fandango.language.grammar import FuzzingMode
 from fandango.language.parse.parse import parse
 
@@ -91,16 +97,20 @@ def run_fandango(grammar_path, log_file_path):
 
     log_print(f"Running Fandango with grammar: {grammar_path}")
     log_print("=" * 80)
-    log_print("Metamorphic Relation: CNAME Recursive Resolver")
+    log_print("Metamorphic Relation: CNAME Resolution Equivalence (Architecture 1)")
     log_print("")
     log_print("Setup:")
-    log_print("  Server A (5053): Authoritative - test.local A -> 192.168.1.1, 192.168.1.2")
-    log_print("  Server B (5054): Recursive resolver - example.local CNAME -> test.local")
+    log_print("  Server A (:5053, --zone target) authoritative for test.local.")
+    log_print("                                  test.local. A 192.168.1.1, 192.168.1.2")
+    log_print("  Server B (:5054, --zone alias)  authoritative for example.local.")
+    log_print("                                  example.local. CNAME test.local.")
     log_print("")
-    log_print("Test:")
-    log_print("  Query A: test.local A on Server A (direct)")
-    log_print("  Query B: example.local A on Server B (recursive)")
-    log_print("  Relation: A records should be identical")
+    log_print("Test flow:")
+    log_print("  ClientA → ServerA:  A test.local.           (direct baseline)")
+    log_print("  ClientB → ServerB:  A example.local.        (alias query, grammar-generated)")
+    log_print("       (grammar forwarding: ServerB's response bytes → ClientC's forward_query)")
+    log_print("  ClientC → ServerA:  A test.local. (chased)  (built from ServerB's CNAME response)")
+    log_print("  Relation: A-records from ClientC == A-records from ClientA")
     log_print("=" * 80)
 
     with open(grammar_path) as f:
@@ -112,7 +122,7 @@ def run_fandango(grammar_path, log_file_path):
     tee_handler.setFormatter(logging.Formatter('%(name)s:%(levelname)s: %(message)s'))
     fandango_logger.addHandler(tee_handler)
 
-    fandango = Fandango(
+    fandango = SimpleGeneticAlgorithm(
         grammar=grammar,
         constraints=constraints,
         logger_level=LoggerLevel.INFO,
@@ -153,6 +163,8 @@ def run_fandango(grammar_path, log_file_path):
 
             if solution_violations:
                 violations[f"solution{solution_index + 1}"] = solution_violations
+                print("Stopping after the first test with a violation.")
+                break
 
             print("-" * 80)
     except Exception as e:
@@ -207,12 +219,14 @@ def main():
     os.makedirs(os.path.dirname(log_file_path), exist_ok=True)
 
     print("=" * 80)
-    print("CNAME Recursive Resolver Test")
+    print("CNAME Resolution Equivalence Test (Architecture 1)")
     print("=" * 80)
     print()
-    print("Make sure servers are running:")
-    print("  Server A (authoritative): python dns/dns_server.py -p 5053")
-    print("  Server B (recursive):     python recursive_server.py -p 5054")
+    print("Make sure both authoritative servers are running:")
+    print("  Server A (alias zone):  python dns/dns_server.py --zone alias  -p 5053")
+    print("  Server B (target zone): python dns/dns_server.py --zone target -p 5054")
+    print()
+    print("Or use run_test.py which launches both automatically.")
     print()
     print("Starting test...")
     print()

@@ -2,12 +2,17 @@
 """Run FTP Redundant RNFR mutations and collect per-mutant logs."""
 
 import subprocess
+import re
 import sys
+import os
 import time
 from pathlib import Path
 
 
-MUTATIONS = ["BASELINE", "M1", "M2", "M3", "M4", "M5", "M6"]
+OUTPUT_DIR = Path(os.environ.get("MUTATION_OUTPUT_DIR", Path(__file__).resolve().parent)).resolve()
+
+
+MUTATIONS = ["M1", "M2", "M3", "M4", "M5", "M6"]
 
 MUTATION_DESCRIPTIONS = {
     "BASELINE": "Clean baseline - normal RNFR/RNTO behavior",
@@ -37,13 +42,12 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
     print(f"Description: {MUTATION_DESCRIPTIONS.get(mutation_id, 'Unknown')}")
     print(f"{'=' * 80}\n")
 
-    logs_dir = mutations_dir / "logs"
-    logs_dir.mkdir(exist_ok=True)
+    logs_dir = OUTPUT_DIR / "logs"
+    logs_dir.mkdir(parents=True, exist_ok=True)
     log_file = logs_dir / f"log_{mutation_id}.txt"
 
     # Kill any existing FTP servers
-    subprocess.run(["pkill", "-9", "-f", "mutant_server.py"], capture_output=True)
-    subprocess.run(["pkill", "-9", "-f", "temp_server"], capture_output=True)
+    subprocess.run(["pkill", "-9", "-f", re.escape(str(mutations_dir / "mutant_server.py"))], capture_output=True)
     time.sleep(1)
 
     server_python = str(VENV_PYTHON) if VENV_PYTHON.exists() else sys.executable
@@ -79,7 +83,7 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
     try:
         print("Running metamorphic test...\n")
         process = subprocess.Popen(
-            [sys.executable, str(parent_dir / "script.py")],
+            [sys.executable, str(parent_dir / "script.py"), os.devnull],
             cwd=str(parent_dir),
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
@@ -170,12 +174,12 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
             server_process.wait(timeout=3)
         except subprocess.TimeoutExpired:
             server_process.kill()
-        subprocess.run(["pkill", "-9", "-f", "mutant_server.py"], capture_output=True)
+        subprocess.run(["pkill", "-9", "-f", re.escape(str(mutations_dir / "mutant_server.py"))], capture_output=True)
         print("FTP servers stopped")
         time.sleep(1)
 
 
-def write_results(results, total_duration, mutations_dir):
+def print_results(results, total_duration):
     detected_count = 0
     total_mutations = 0
 
@@ -205,50 +209,11 @@ def write_results(results, total_duration, mutations_dir):
     score = detected_count / total_mutations * 100 if total_mutations else 0
     print(f"\nMutation Score: {detected_count}/{total_mutations} ({score:.1f}%)")
 
-    results_file = mutations_dir / "mutation_results.txt"
-    with open(results_file, "w") as handle:
-        handle.write("FTP REDUNDANT RNFR - MUTATION TESTING RESULTS\n")
-        handle.write("=" * 80 + "\n\n")
-        handle.write(f"Date: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
-        handle.write(f"Total Duration: {format_duration(total_duration)}\n")
-        handle.write(f"Mutation Score: {detected_count}/{total_mutations} ({score:.1f}%)\n\n")
-        handle.write(f"{'Mutation':<12} {'Description':<55} {'Detected':<10} {'P':<4} {'V':<4}\n")
-        handle.write("-" * 80 + "\n")
-
-        for result in results:
-            detected_str = "N/A" if result["mutation"] == "BASELINE" else ("YES" if result["detected"] else "NO")
-            desc = result["description"]
-            desc_short = desc[:52] + "..." if len(desc) > 55 else desc
-            handle.write(
-                f"{result['mutation']:<12} {desc_short:<55} {detected_str:<10} "
-                f"{result['passes']:<4} {result['violations']:<4}\n"
-            )
-
-        handle.write("\n" + "=" * 80 + "\n")
-        handle.write("DETAILED RESULTS\n")
-        handle.write("=" * 80 + "\n\n")
-
-        for result in results:
-            handle.write(f"Mutation: {result['mutation']}\n")
-            handle.write(f"Description: {result['description']}\n")
-            if result["mutation"] == "BASELINE":
-                handle.write("Detected: N/A (baseline)\n")
-            else:
-                handle.write(f"Detected: {'YES' if result['detected'] else 'NO'}\n")
-            handle.write(f"Passes: {result['passes']}\n")
-            handle.write(f"Violations: {result['violations']}\n")
-            handle.write(f"Duration: {format_duration(result['duration'])}\n")
-            handle.write(f"Log: {result['log_file']}\n")
-            if "error" in result:
-                handle.write(f"Error: {result['error']}\n")
-            handle.write("\n" + "-" * 80 + "\n\n")
-
-    print(f"\nResults saved to: {results_file}")
-    print(f"Individual logs saved to: {mutations_dir / 'logs'}")
+    print(f"Individual logs saved to: {OUTPUT_DIR / 'logs'}")
 
 
 def main():
-    mutations_dir = Path(__file__).parent
+    mutations_dir = Path(__file__).resolve().parent
     parent_dir = mutations_dir.parent
 
     print("=" * 80)
@@ -265,7 +230,7 @@ def main():
         results.append(run_mutation(mutation, mutations_dir, parent_dir))
         time.sleep(1)
 
-    write_results(results, time.time() - start_time, mutations_dir)
+    print_results(results, time.time() - start_time)
     print("\nDone")
 
 

@@ -1,6 +1,6 @@
 const http = require('http');
 
-const port = 3001;
+const port = Number(process.env.PORT || 8081);
 
 // ============================================================================
 // MUTATION TESTING SERVER — Range Request Reconstruction MR
@@ -20,11 +20,11 @@ const MUTATION = process.env.MUTATION || 'NONE';
 
 console.log(`[Mutant Server] Starting with mutation: ${MUTATION}`);
 
-// Large static content — MUST match http-server-3000.js byte-for-byte.
+// Large static content — MUST match http-server-8080.js byte-for-byte.
 const LARGE_CONTENT = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.`;
 
 // ---------------------------------------------------------------------------
-// Range parser (baseline is the same as http-server-3001.js).
+// Range parser (baseline is the same as http-server-8081.js).
 // A couple of mutations swap in a broken variant.
 // ---------------------------------------------------------------------------
 function parseRangeHeader(rangeHeader, totalSize) {
@@ -155,10 +155,10 @@ const server = http.createServer((req, res) => {
         return;
       }
 
-      // ---- M3: Content-Length reflects the FULL file, not the chunk --------
+      // ---- M11: Content-Length reflects the FULL file, not the chunk --------
       // Real nginx-style misconfig. Body is the right slice but the header
       // lies — the client will keep reading beyond EOF or truncate.
-      if (MUTATION === 'M3') {
+      if (MUTATION === 'M11') {
         const chunk = content.slice(start, end + 1);
         res.writeHead(206, {
           'Content-Type': 'text/plain',
@@ -266,9 +266,9 @@ const server = http.createServer((req, res) => {
         return;
       }
 
-      // ---- M11: silently drop the request past a fixed threshold -----------
+      // ---- M3: silently drop the request past a fixed threshold -----------
       // Embedded HTTP stacks with fixed-size buffers do this.
-      if (MUTATION === 'M11' && start > 512) {
+      if (MUTATION === 'M3' && start > 512) {
         res.writeHead(206, {
           'Content-Type': 'text/plain',
           'Content-Length': 0,

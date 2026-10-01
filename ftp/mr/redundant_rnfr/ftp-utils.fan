@@ -154,6 +154,28 @@ class SocketControlClientB(FandangoParty):
         pass
 
 
+class ConnectionControl(FandangoParty):
+    """Switch sockets when the control step is sent, not during generation.
+
+    Opening B during generation lets its FTP greeting arrive before Fandango
+    has committed the connection-switch step.
+    """
+
+    def __init__(self):
+        super().__init__(connection_mode=ConnectionMode.CONNECT)
+
+    def send(self, message: str | bytes, recipient: Optional[str]) -> None:
+        if str(message) != "start connection B":
+            raise ValueError(f"Unknown connection command: {message}")
+        changeConnection()
+
+    def start(self):
+        pass
+
+    def stop(self):
+        pass
+
+
 def changeConnection():
     """Stop connection A and start connection B"""
     clientA = ClientA.instance()

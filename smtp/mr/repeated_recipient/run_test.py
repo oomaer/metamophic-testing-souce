@@ -29,8 +29,10 @@ def format_duration(seconds):
 
 def main():
     number_of_runs = int(sys.argv[1]) if len(sys.argv) > 1 else 1
-    script_dir = Path(__file__).parent
-    mutation_server_path = Path("/Users/i7949486/Desktop/uds/thesis/metamophic-testing/smtp/smtpserver.py")
+    script_dir = Path(__file__).resolve().parent
+    output_dir = Path(os.environ.get("MR_RUNS_DIR", script_dir / "runs")).resolve()
+    output_dir.mkdir(parents=True, exist_ok=True)
+    mutation_server_path = script_dir.parents[1] / "smtpserver.py"
 
     print("=" * 80)
     print(" SMTP Repeated Recipient MR - Test Runner")
@@ -70,8 +72,9 @@ def main():
         for run in range(number_of_runs):
             print(f"Run {run + 1}/{number_of_runs}")
             result = subprocess.run(
-                [sys.executable, str(script_dir / 'script.py'), f'runs/test_output_{run + 1}.log'],
+                [sys.executable, str(script_dir / 'script.py'), str(output_dir / f'test_output_{run + 1}.log')],
                 cwd=str(script_dir),
+                check=True,
             )
 
         end_time = time.time()

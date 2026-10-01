@@ -6,10 +6,10 @@ Port 8026 (ServerA) - baseline behavior
 
 Mutations target RSET command behavior:
 - M1: INCOMPLETE_SENDER_RESET - RSET doesn't clear MAIL FROM buffer
-- M3: RSET_CLEARS_AUTH - RSET incorrectly clears authentication
-- M4: RSET_RETURNS_ERROR - RSET returns 500 error
-- M5: RSET_PARTIAL_STATE_CLEAR - Only first RSET works
-- M7: RSET_NOOP - RSET returns 250 but does nothing
+- M2: RSET_CLEARS_AUTH - RSET incorrectly clears authentication
+- M3: RSET_RETURNS_ERROR - RSET returns 500 error
+- M4: RSET_PARTIAL_STATE_CLEAR - Only first RSET works
+- M5: RSET_NOOP - RSET returns 250 but does nothing
 """
 
 import argparse
@@ -73,15 +73,15 @@ class MutatedHandler:
         """MAIL FROM with mutation-aware state checking."""
         state = self._get_session_state(session)
 
-        # M3: Check if auth was incorrectly cleared by RSET
-        if self.mutation_id == 'M3':
+        # M2: Check if auth was incorrectly cleared by RSET
+        if self.mutation_id == 'M2':
             if not getattr(session, 'authenticated', False):
-                print(f"[ServerB-8027] M3: MAIL rejected - not authenticated")
+                print(f"[ServerB-8027] M2: MAIL rejected - not authenticated")
                 return '530 5.7.1 Authentication required'
 
-        # M1, M5, and M7: Check for nested MAIL command (sender not cleared by RSET)
-        # M5 relies on the same guard because the 2nd+ RSET no-ops and leaves mail_from_set=True.
-        if self.mutation_id in ('M1', 'M5', 'M7'):
+        # M1, M4, and M5: Check for nested MAIL command (sender not cleared by RSET)
+        # M4 relies on the same guard because the 2nd+ RSET no-ops and leaves mail_from_set=True.
+        if self.mutation_id in ('M1', 'M4', 'M5'):
             if state['mail_from_set']:
                 print(f"[ServerB-8027] {self.mutation_id}: MAIL rejected - sender already specified")
                 return '503 5.5.1 Sender already specified'
@@ -109,26 +109,26 @@ class MutatedHandler:
         """RSET with mutations applied."""
         state = self._get_session_state(session)
 
-        # M4: RSET_RETURNS_ERROR - Return error instead of 250
-        if self.mutation_id == 'M4':
-            print(f"[ServerB-8027] M4: RSET returning error")
+        # M3: RSET_RETURNS_ERROR - Return error instead of 250
+        if self.mutation_id == 'M3':
+            print(f"[ServerB-8027] M3: RSET returning error")
             return '500 5.5.1 Command not recognized'
 
-        # M5: RSET_PARTIAL_STATE_CLEAR - Only first RSET works
-        if self.mutation_id == 'M5':
+        # M4: RSET_PARTIAL_STATE_CLEAR - Only first RSET works
+        if self.mutation_id == 'M4':
             state['rset_count'] += 1
             if state['rset_count'] == 1:
                 # First RSET works
                 state['mail_from_set'] = False
-                print(f"[ServerB-8027] M5: First RSET - state cleared")
+                print(f"[ServerB-8027] M4: First RSET - state cleared")
             else:
                 # Subsequent RSETs are no-ops
-                print(f"[ServerB-8027] M5: RSET #{state['rset_count']} - NO-OP (state NOT cleared)")
+                print(f"[ServerB-8027] M4: RSET #{state['rset_count']} - NO-OP (state NOT cleared)")
             return '250 OK'
 
-        # M7: RSET_NOOP - Return 250 but don't reset anything
-        if self.mutation_id == 'M7':
-            print(f"[ServerB-8027] M7: RSET NO-OP (returning 250 but not clearing state)")
+        # M5: RSET_NOOP - Return 250 but don't reset anything
+        if self.mutation_id == 'M5':
+            print(f"[ServerB-8027] M5: RSET NO-OP (returning 250 but not clearing state)")
             # Don't clear mail_from_set
             return '250 OK'
 
@@ -138,11 +138,11 @@ class MutatedHandler:
             print(f"[ServerB-8027] M1: RSET - NOT clearing mail_from_set flag")
             return '250 OK'
 
-        # M3: RSET_CLEARS_AUTH - Incorrectly clear authentication
-        if self.mutation_id == 'M3':
+        # M2: RSET_CLEARS_AUTH - Incorrectly clear authentication
+        if self.mutation_id == 'M2':
             state['mail_from_set'] = False
             session.authenticated = False  # BUG: Should not clear auth
-            print(f"[ServerB-8027] M3: RSET - incorrectly cleared authentication")
+            print(f"[ServerB-8027] M2: RSET - incorrectly cleared authentication")
             return '250 OK'
 
         # BASELINE: Normal RSET behavior
@@ -173,7 +173,7 @@ def start_server(port, handler_class, mutation_id=None):
 def main():
     parser = argparse.ArgumentParser(description='Run mutated SMTP servers for State Reset MR testing')
     parser.add_argument('--mutation', type=str, default='BASELINE',
-                       choices=['BASELINE', 'M1', 'M3', 'M4', 'M5', 'M7'],
+                       choices=['BASELINE', 'M1', 'M2', 'M3', 'M4', 'M5'],
                        help='Mutation to apply to ServerB')
     parser.add_argument('--port-a', type=int, default=8026, help='ServerA port (baseline)')
     parser.add_argument('--port-b', type=int, default=8027, help='ServerB port (mutated)')

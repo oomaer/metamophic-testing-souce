@@ -1,4 +1,4 @@
-Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/ftp/mr/redundant_rnfr/grammar.fan
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/ftp/mr/redundant_rnfr/grammar.fan
 ================================================================================
 Metamorphic Test: FTP Redundant RNFR (RFC 959)
 A: Normal rename (RNFR → RNTO)
@@ -31,11 +31,11 @@ fandango:INFO: ServerA -> ClientA: <rnto_response_A> '250 Renaming ok.\r\n'
 fandango:INFO: Current coverage: 17.63%
 fandango:INFO: ClientA -> ServerA: <epsv_cmd_A> 'EPSV\r\n'
 fandango:INFO: Current coverage: 19.15%
-fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||63438|).\r\n'
+fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||59657|).\r\n'
 fandango:INFO: Current coverage: 22.18%
 fandango:INFO: ClientA -> ServerA: <list_cmd_A> 'LIST\r\n'
 fandango:INFO: Current coverage: 23.42%
-fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Aug 16 10:35 source.txt\r\n'
+fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\n'
 fandango:INFO: Current coverage: 24.86%
 fandango:INFO: SocketControlServerA: <close_data_A> 'Data socket closed.\r\n'
 fandango:INFO: Current coverage: 25.90%
@@ -49,7 +49,7 @@ fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
 fandango:INFO: Current coverage: 35.81%
 fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
 fandango:INFO: Current coverage: 36.91%
-fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: ConnectionControl: <ChangeConnection> 'start connection B'
 fandango:INFO: Current coverage: 37.26%
 fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
 fandango:INFO: Current coverage: 38.64%
@@ -87,11 +87,11 @@ fandango:INFO: ServerB -> ClientB: <rnto_response_B> '250 Renaming ok.\r\n'
 fandango:INFO: Current coverage: 64.05%
 fandango:INFO: ClientB -> ServerB: <epsv_cmd_B> 'EPSV\r\n'
 fandango:INFO: Current coverage: 65.50%
-fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||63441|).\r\n'
+fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||59660|).\r\n'
 fandango:INFO: Current coverage: 68.32%
 fandango:INFO: ClientB -> ServerB: <list_cmd_B> 'LIST\r\n'
 fandango:INFO: Current coverage: 69.49%
-fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Aug 16 10:35 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 testdir_b3\r\n'
+fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 testdir_b3\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -1205,11 +1205,11 @@ fandango:INFO: ServerA -> ClientA: <rnto_response_A> '250 Renaming ok.\r\n'
 fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientA -> ServerA: <epsv_cmd_A> 'EPSV\r\n'
 fandango:INFO: Current coverage: 87.26%
-fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||63444|).\r\n'
+fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||59663|).\r\n'
 fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientA -> ServerA: <list_cmd_A> 'LIST\r\n'
 fandango:INFO: Current coverage: 87.26%
-fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Aug 16 10:35 source.txt\r\n'
+fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\n'
 fandango:INFO: Current coverage: 87.26%
 fandango:INFO: SocketControlServerA: <close_data_A> 'Data socket closed.\r\n'
 fandango:INFO: Current coverage: 87.26%
@@ -1223,7 +1223,7 @@ fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
 fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
 fandango:INFO: Current coverage: 87.26%
-Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: ConnectionControl: <ChangeConnection> 'start connection B'
 fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
 fandango:INFO: Current coverage: 87.26%
@@ -1261,11 +1261,11 @@ fandango:INFO: ServerB -> ClientB: <rnto_response_B> '250 Renaming ok.\r\n'
 fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientB -> ServerB: <epsv_cmd_B> 'EPSV\r\n'
 fandango:INFO: Current coverage: 87.26%
-fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||63447|).\r\n'
+fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||59667|).\r\n'
 fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientB -> ServerB: <list_cmd_B> 'LIST\r\n'
 fandango:INFO: Current coverage: 87.26%
-fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Aug 16 10:35 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 testdir_b3\r\n'
+fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 testdir_b3\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -2379,11 +2379,11 @@ fandango:INFO: ServerA -> ClientA: <rnto_response_A> '250 Renaming ok.\r\n'
 fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientA -> ServerA: <epsv_cmd_A> 'EPSV\r\n'
 fandango:INFO: Current coverage: 87.26%
-fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||63451|).\r\n'
+fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||59670|).\r\n'
 fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ClientA -> ServerA: <list_cmd_A> 'LIST\r\n'
 fandango:INFO: Current coverage: 87.26%
-fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Aug 16 10:35 source.txt\r\n'
+fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\n'
 fandango:INFO: Current coverage: 87.26%
 fandango:INFO: SocketControlServerA: <close_data_A> 'Data socket closed.\r\n'
 fandango:INFO: Current coverage: 87.26%
@@ -2397,7 +2397,7 @@ fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
 fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
 fandango:INFO: Current coverage: 87.26%
-Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: ConnectionControl: <ChangeConnection> 'start connection B'
 fandango:INFO: Current coverage: 87.26%
 fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
 fandango:INFO: Current coverage: 87.26%
@@ -2439,11 +2439,11 @@ fandango:INFO: ServerB -> ClientB: <rnto_response_B> '250 Renaming ok.\r\n'
 fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientB -> ServerB: <epsv_cmd_B> 'EPSV\r\n'
 fandango:INFO: Current coverage: 91.74%
-fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||63454|).\r\n'
+fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||59677|).\r\n'
 fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientB -> ServerB: <list_cmd_B> 'LIST\r\n'
 fandango:INFO: Current coverage: 91.74%
-fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Aug 16 10:35 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 testdir_b3\r\n'
+fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 testdir_b3\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -3557,11 +3557,11 @@ fandango:INFO: ServerA -> ClientA: <rnto_response_A> '250 Renaming ok.\r\n'
 fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientA -> ServerA: <epsv_cmd_A> 'EPSV\r\n'
 fandango:INFO: Current coverage: 91.74%
-fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||63457|).\r\n'
+fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||59681|).\r\n'
 fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ClientA -> ServerA: <list_cmd_A> 'LIST\r\n'
 fandango:INFO: Current coverage: 91.74%
-fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Aug 16 10:35 source.txt\r\n'
+fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\n'
 fandango:INFO: Current coverage: 91.74%
 fandango:INFO: SocketControlServerA: <close_data_A> 'Data socket closed.\r\n'
 fandango:INFO: Current coverage: 91.74%
@@ -3575,7 +3575,7 @@ fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
 fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
 fandango:INFO: Current coverage: 91.74%
-Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: ConnectionControl: <ChangeConnection> 'start connection B'
 fandango:INFO: Current coverage: 91.74%
 fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
 fandango:INFO: Current coverage: 91.74%
@@ -3617,11 +3617,11 @@ fandango:INFO: ServerB -> ClientB: <rnto_response_B> '250 Renaming ok.\r\n'
 fandango:INFO: Current coverage: 95.87%
 fandango:INFO: ClientB -> ServerB: <epsv_cmd_B> 'EPSV\r\n'
 fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||63463|).\r\n'
+fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||59688|).\r\n'
 fandango:INFO: Current coverage: 95.87%
 fandango:INFO: ClientB -> ServerB: <list_cmd_B> 'LIST\r\n'
 fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Aug 16 10:35 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 testdir_b3\r\n'
+fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 testdir_b3\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -5119,11 +5119,11 @@ fandango:INFO: ServerA -> ClientA: <rnto_response_A> '250 Renaming ok.\r\n'
 fandango:INFO: Current coverage: 95.87%
 fandango:INFO: ClientA -> ServerA: <epsv_cmd_A> 'EPSV\r\n'
 fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||63467|).\r\n'
+fandango:INFO: ServerA -> ClientA: <epsv_response_A> '229 Entering extended passive mode (|||59691|).\r\n'
 fandango:INFO: Current coverage: 95.87%
 fandango:INFO: ClientA -> ServerA: <list_cmd_A> 'LIST\r\n'
 fandango:INFO: Current coverage: 95.87%
-fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Aug 16 10:35 source.txt\r\n'
+fandango:INFO: ServerDataA -> ClientDataA: <list_data_A> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 renamed_a\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\n'
 fandango:INFO: Current coverage: 95.87%
 fandango:INFO: SocketControlServerA: <close_data_A> 'Data socket closed.\r\n'
 fandango:INFO: Current coverage: 95.87%
@@ -5137,7 +5137,7 @@ fandango:INFO: ClientA -> ServerA: <quit_cmd> 'QUIT\r\n'
 fandango:INFO: Current coverage: 95.87%
 fandango:INFO: ServerA -> ClientA: <quit_ok> '221 Goodbye.\r\n'
 fandango:INFO: Current coverage: 95.87%
-Switching from connection A to connection Bfandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: ConnectionControl: <ChangeConnection> 'start connection B'
 fandango:INFO: Current coverage: 95.87%
 fandango:INFO: ServerB -> ClientB: <welcome> '220 pyftpdlib 2.2.1 ready.\r\n'
 fandango:INFO: Current coverage: 95.87%
@@ -5182,12 +5182,12 @@ fandango:INFO: Current coverage: 100.00%
 fandango:INFO: Full coverage reached. Guiding to end of tree.
 fandango:INFO: ClientB -> ServerB: <epsv_cmd_B> 'EPSV\r\n'
 fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||63470|).\r\n'
+fandango:INFO: ServerB -> ClientB: <epsv_response_B> '229 Entering extended passive mode (|||59700|).\r\n'
 fandango:INFO: Current coverage: 100.00%
 fandango:INFO: Full coverage reached. Guiding to end of tree.
 fandango:INFO: ClientB -> ServerB: <list_cmd_B> 'LIST\r\n'
 fandango:INFO: Current coverage: 100.00%
-fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Aug 16 10:35 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Aug 16 10:35 testdir_b3\r\n'
+fandango:INFO: ServerDataB -> ClientDataB: <list_data_B> 'drwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 renamed_b\r\n-rw-r--r--   1 i7949486 staff          20 Sep 29 13:20 source.txt\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 testdir_b1\r\ndrwxr-xr-x   2 i7949486 staff          64 Sep 29 13:20 testdir_b3\r\n'
 [PASS] Redundant RNFR handled correctly
   RNTO codes: A=250, B=250
   Directory verified: A=renamed_a, B=renamed_b
@@ -6659,7 +6659,7 @@ Violations: 0
 All solutions passed - Redundant RNFR handled correctly!
 
 TIMING:
-  Test generation time: 21.63 seconds
-  Total execution time: 22.37 seconds
-  Average time per test: 4.33 seconds
+  Test generation time: 21.05 seconds
+  Total execution time: 21.78 seconds
+  Average time per test: 4.21 seconds
 ================================================================================

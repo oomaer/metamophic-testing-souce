@@ -1,283 +1,148 @@
 Mutation: M3
-Description: PARTIAL_STORE_ON_APPEND - Only stores every 2nd message
-Duration: 1m 7.43s
+Description: PARTIAL_INDEX_UPDATE - Only indexes every 2nd message
+Duration: 2.84s
 ================================================================================
 
 fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
-fandango:INFO: Current coverage: 0.18%
+fandango:INFO: Current coverage: 0.16%
 fandango:INFO: Server: <greeting> '* OK [CAPABILITY IMAP4rev1 NAMESPACE IDLE] Twisted IMAP4rev1 Ready\r\n'
-fandango:INFO: Current coverage: 1.05%
+fandango:INFO: Current coverage: 1.47%
 fandango:INFO: Client: <login_cmd> 'A001 LOGIN testuser testpass\r\n'
-fandango:INFO: Current coverage: 2.64%
+fandango:INFO: Current coverage: 2.93%
 fandango:INFO: Server: <login_response> 'A001 OK LOGIN succeeded\r\n'
-fandango:INFO: Current coverage: 3.87%
+fandango:INFO: Current coverage: 4.56%
 fandango:INFO: Client: <select_cmd> 'A002 SELECT INBOX\r\n'
-fandango:INFO: Current coverage: 6.33%
-fandango:INFO: Server: <select_response> '* 0 EXISTS\r\n* 0 RECENT\r\n* FLAGS (\\Seen \\Answered \\Flagged \\Deleted \\Draft \\Recent)\r\n* OK [UIDVALIDITY 1789226088]\r\nA002 OK [READ-WRITE] SELECT successful\r\n'
-fandango:INFO: Current coverage: 7.91%
+fandango:INFO: Current coverage: 6.84%
+fandango:INFO: Server: <select_response> '* 0 EXISTS\r\n* 0 RECENT\r\n* FLAGS (\\Seen \\Answered \\Flagged \\Deleted \\Draft \\Recent)\r\n* OK [UIDVALIDITY 1790692683]\r\nA002 OK [READ-WRITE] SELECT successful\r\n'
+fandango:INFO: Current coverage: 8.96%
 fandango:INFO: Client: <search_cmd_source> 'A003 SEARCH FROM "testmr@example.com"\r\n'
-fandango:INFO: Current coverage: 10.02%
+fandango:INFO: Current coverage: 10.91%
 fandango:INFO: Server: <search_response_source> '* SEARCH\r\nA003 OK SEARCH completed\r\n'
-fandango:INFO: Current coverage: 11.60%
-fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 1\r\n\r\nBody 1.\r\n'
-fandango:INFO: Current coverage: 25.31%
-fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
-fandango:INFO: Current coverage: 31.46%
-fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
-fandango:INFO: Current coverage: 33.74%
-fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 2\r\n\r\nBody 2.\r\n\r\n'
-fandango:INFO: Current coverage: 44.11%
-fandango:INFO: Server: <append_response> '* 1 EXISTS\r\nA004 OK APPEND complete\r\n'
-fandango:INFO: Current coverage: 46.40%
+fandango:INFO: Current coverage: 13.03%
 fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 3\r\n\r\nBody 2.\r\n'
-fandango:INFO: Current coverage: 49.21%
+fandango:INFO: Current coverage: 27.36%
 fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
-fandango:INFO: Current coverage: 49.21%
+fandango:INFO: Current coverage: 33.06%
 fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
-fandango:INFO: Current coverage: 49.21%
-fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 2\r\n\r\nBody 3.\r\n\r\n'
-fandango:INFO: Current coverage: 50.26%
-fandango:INFO: Server: <append_response> '* 2 EXISTS\r\nA004 OK APPEND complete\r\n'
-fandango:INFO: Current coverage: 50.26%
-fandango:INFO: Client: <search_cmd_followup> 'A005 SEARCH FROM "testmr@example.com"\r\n'
-fandango:INFO: Current coverage: 52.37%
-fandango:INFO: Server: <search_response_followup> '* SEARCH 1\r\nA005 OK SEARCH completed\r\n'
-fandango:INFO: Current coverage: 53.95%
-fandango:INFO: Starting new protocol run.
-fandango:INFO: Current coverage: 53.95%
-fandango:INFO: Server: <greeting> '* OK [CAPABILITY IMAP4rev1 NAMESPACE IDLE] Twisted IMAP4rev1 Ready\r\n'
-fandango:INFO: Current coverage: 53.95%
-fandango:INFO: Client: <login_cmd> 'A001 LOGIN testuser testpass\r\n'
-fandango:INFO: Current coverage: 53.95%
-fandango:INFO: Server: <login_response> 'A001 OK LOGIN succeeded\r\n'
-fandango:INFO: Current coverage: 53.95%
-fandango:INFO: Client: <select_cmd> 'A002 SELECT INBOX\r\n'
-fandango:INFO: Current coverage: 53.95%
-fandango:INFO: Server: <select_response> '* 0 EXISTS\r\n* 0 RECENT\r\n* FLAGS (\\Seen \\Answered \\Flagged \\Deleted \\Draft \\Recent)\r\n* OK [UIDVALIDITY 1789226098]\r\nA002 OK [READ-WRITE] SELECT successful\r\n'
-fandango:INFO: Current coverage: 53.95%
-fandango:INFO: Client: <search_cmd_source> 'A003 SEARCH FROM "testmr@example.com"\r\n'
-fandango:INFO: Current coverage: 53.95%
-fandango:INFO: Server: <search_response_source> '* SEARCH\r\nA003 OK SEARCH completed\r\n'
-fandango:INFO: Current coverage: 53.95%
-fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 2\r\n\r\nBody 2.\r\n'
-fandango:INFO: Current coverage: 60.98%
-fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
-fandango:INFO: Current coverage: 53.95%
-fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
-fandango:INFO: Current coverage: 53.95%
-fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 3\r\n\r\nBody 1.\r\n\r\n'
-fandango:INFO: Current coverage: 73.29%
-fandango:INFO: Server: <append_response> '* 1 EXISTS\r\nA004 OK APPEND complete\r\n'
-fandango:INFO: Current coverage: 55.01%
-fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 1\r\n\r\nBody 3.\r\n'
-fandango:INFO: Current coverage: 76.10%
-fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
-fandango:INFO: Current coverage: 55.01%
-fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
-fandango:INFO: Current coverage: 55.01%
-fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 1\r\n\r\nBody 3.\r\n\r\n'
-fandango:INFO: Current coverage: 55.01%
-fandango:INFO: Server: <append_response> '* 2 EXISTS\r\nA004 OK APPEND complete\r\n'
-fandango:INFO: Current coverage: 76.10%
-fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 3\r\n\r\nBody 3.\r\n'
-fandango:INFO: Current coverage: 76.10%
-fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
-fandango:INFO: Current coverage: 76.10%
-fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
-fandango:INFO: Current coverage: 76.10%
-fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 1\r\n\r\nBody 2.\r\n\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Server: <append_response> '* 3 EXISTS\r\nA004 OK APPEND complete\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Client: <search_cmd_followup> 'A005 SEARCH FROM "testmr@example.com"\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Server: <search_response_followup> '* SEARCH 1 3\r\nA005 OK SEARCH completed\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Starting new protocol run.
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Server: <greeting> '* OK [CAPABILITY IMAP4rev1 NAMESPACE IDLE] Twisted IMAP4rev1 Ready\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Client: <login_cmd> 'A001 LOGIN testuser testpass\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Server: <login_response> 'A001 OK LOGIN succeeded\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Client: <select_cmd> 'A002 SELECT INBOX\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Server: <select_response> '* 0 EXISTS\r\n* 0 RECENT\r\n* FLAGS (\\Seen \\Answered \\Flagged \\Deleted \\Draft \\Recent)\r\n* OK [UIDVALIDITY 1789226110]\r\nA002 OK [READ-WRITE] SELECT successful\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Client: <search_cmd_source> 'A003 SEARCH FROM "testmr@example.com"\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Server: <search_response_source> '* SEARCH\r\nA003 OK SEARCH completed\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 2\r\n\r\nBody 3.\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
-fandango:INFO: Current coverage: 88.05%
-fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
-fandango:INFO: Current coverage: 89.46%
-fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 1\r\n\r\nBody 1.\r\n\r\n'
-fandango:INFO: Current coverage: 95.78%
-fandango:INFO: Server: <append_response> '* 1 EXISTS\r\nA004 OK APPEND complete\r\n'
-fandango:INFO: Current coverage: 97.19%
-fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 2\r\n\r\nBody 2.\r\n'
-fandango:INFO: Current coverage: 77.50%
-fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
-fandango:INFO: Current coverage: 77.50%
-fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 3\r\n\r\nBody 1.\r\n\r\n'
-fandango:INFO: Current coverage: 77.50%
-fandango:INFO: Server: <append_response> '* 2 EXISTS\r\nA004 OK APPEND complete\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 2\r\n\r\nBody 1.\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 2\r\n\r\nBody 3.\r\n\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Server: <append_response> '* 3 EXISTS\r\nA004 OK APPEND complete\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Client: <search_cmd_followup> 'A005 SEARCH FROM "testmr@example.com"\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Server: <search_response_followup> '* SEARCH 1 3\r\nA005 OK SEARCH completed\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Starting new protocol run.
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Server: <greeting> '* OK [CAPABILITY IMAP4rev1 NAMESPACE IDLE] Twisted IMAP4rev1 Ready\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Client: <login_cmd> 'A001 LOGIN testuser testpass\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Server: <login_response> 'A001 OK LOGIN succeeded\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Client: <select_cmd> 'A002 SELECT INBOX\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Server: <select_response> '* 0 EXISTS\r\n* 0 RECENT\r\n* FLAGS (\\Seen \\Answered \\Flagged \\Deleted \\Draft \\Recent)\r\n* OK [UIDVALIDITY 1789226122]\r\nA002 OK [READ-WRITE] SELECT successful\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Client: <search_cmd_source> 'A003 SEARCH FROM "testmr@example.com"\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Server: <search_response_source> '* SEARCH\r\nA003 OK SEARCH completed\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 2\r\n\r\nBody 3.\r\n'
-fandango:INFO: Current coverage: 84.53%
-fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
-fandango:INFO: Current coverage: 76.80%
-fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
-fandango:INFO: Current coverage: 89.46%
+fandango:INFO: Current coverage: 36.16%
 fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 2\r\n\r\nBody 1.\r\n\r\n'
-fandango:INFO: Current coverage: 96.49%
+fandango:INFO: Current coverage: 46.58%
 fandango:INFO: Server: <append_response> '* 1 EXISTS\r\nA004 OK APPEND complete\r\n'
-fandango:INFO: Current coverage: 77.50%
-fandango:INFO: Client: <search_cmd_followup> 'A005 SEARCH FROM "testmr@example.com"\r\n'
-fandango:INFO: Current coverage: 97.89%
+fandango:INFO: Current coverage: 49.67%
+fandango:INFO: Client: <search_cmd_followup> 'A005 SEARCH FROM "TESTMR@EXAMPLE.COM"\r\n'
+fandango:INFO: Current coverage: 51.63%
 fandango:INFO: Server: <search_response_followup> '* SEARCH 1\r\nA005 OK SEARCH completed\r\n'
-fandango:INFO: Current coverage: 97.89%
+fandango:INFO: Current coverage: 53.75%
 fandango:INFO: Starting new protocol run.
-fandango:INFO: Current coverage: 97.89%
+fandango:INFO: Current coverage: 53.75%
 fandango:INFO: Server: <greeting> '* OK [CAPABILITY IMAP4rev1 NAMESPACE IDLE] Twisted IMAP4rev1 Ready\r\n'
-fandango:INFO: Current coverage: 97.89%
+fandango:INFO: Current coverage: 53.75%
 fandango:INFO: Client: <login_cmd> 'A001 LOGIN testuser testpass\r\n'
-fandango:INFO: Current coverage: 97.89%
+fandango:INFO: Current coverage: 53.75%
 fandango:INFO: Server: <login_response> 'A001 OK LOGIN succeeded\r\n'
-fandango:INFO: Current coverage: 97.89%
+fandango:INFO: Current coverage: 53.75%
 fandango:INFO: Client: <select_cmd> 'A002 SELECT INBOX\r\n'
-fandango:INFO: Current coverage: 97.89%
-fandango:INFO: Server: <select_response> '* 0 EXISTS\r\n* 0 RECENT\r\n* FLAGS (\\Seen \\Answered \\Flagged \\Deleted \\Draft \\Recent)\r\n* OK [UIDVALIDITY 1789226129]\r\nA002 OK [READ-WRITE] SELECT successful\r\n'
-fandango:INFO: Current coverage: 97.89%
+fandango:INFO: Current coverage: 53.75%
+fandango:INFO: Server: <select_response> '* 0 EXISTS\r\n* 0 RECENT\r\n* FLAGS (\\Seen \\Answered \\Flagged \\Deleted \\Draft \\Recent)\r\n* OK [UIDVALIDITY 1790692684]\r\nA002 OK [READ-WRITE] SELECT successful\r\n'
+fandango:INFO: Current coverage: 53.75%
 fandango:INFO: Client: <search_cmd_source> 'A003 SEARCH FROM "testmr@example.com"\r\n'
-fandango:INFO: Current coverage: 97.89%
+fandango:INFO: Current coverage: 53.75%
 fandango:INFO: Server: <search_response_source> '* SEARCH\r\nA003 OK SEARCH completed\r\n'
-fandango:INFO: Current coverage: 97.89%
-fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 1\r\n\r\nBody 1.\r\n'
-fandango:INFO: Current coverage: 98.59%
-fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
-fandango:INFO: Current coverage: 97.89%
-fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
-fandango:INFO: Current coverage: 97.89%
-fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 1\r\n\r\nBody 3.\r\n\r\n'
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: Server: <append_response> '* 1 EXISTS\r\nA004 OK APPEND complete\r\n'
-fandango:INFO: Current coverage: 98.59%
-fandango:INFO: Client: <search_cmd_followup> 'A005 SEARCH FROM "testmr@example.com"\r\n'
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: Server: <search_response_followup> '* SEARCH 1\r\nA005 OK SEARCH completed\r\n'
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: Starting new protocol run.
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: Server: <greeting> '* OK [CAPABILITY IMAP4rev1 NAMESPACE IDLE] Twisted IMAP4rev1 Ready\r\n'
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: Client: <login_cmd> 'A001 LOGIN testuser testpass\r\n'
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: Server: <login_response> 'A001 OK LOGIN succeeded\r\n'
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: Client: <select_cmd> 'A002 SELECT INBOX\r\n'
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: Server: <select_response> '* 0 EXISTS\r\n* 0 RECENT\r\n* FLAGS (\\Seen \\Answered \\Flagged \\Deleted \\Draft \\Recent)\r\n* OK [UIDVALIDITY 1789226137]\r\nA002 OK [READ-WRITE] SELECT successful\r\n'
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: Client: <search_cmd_source> 'A003 SEARCH FROM "testmr@example.com"\r\n'
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: Server: <search_response_source> '* SEARCH\r\nA003 OK SEARCH completed\r\n'
-fandango:INFO: Current coverage: 99.30%
+fandango:INFO: Current coverage: 53.75%
 fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 1\r\n\r\nBody 3.\r\n'
-fandango:INFO: Current coverage: 99.30%
+fandango:INFO: Current coverage: 54.72%
 fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
-fandango:INFO: Current coverage: 99.30%
+fandango:INFO: Current coverage: 54.72%
 fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 3\r\n\r\nBody 1.\r\n\r\n'
-fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Current coverage: 66.45%
+fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 3\r\n\r\nBody 2.\r\n\r\n'
+fandango:INFO: Current coverage: 55.70%
 fandango:INFO: Server: <append_response> '* 1 EXISTS\r\nA004 OK APPEND complete\r\n'
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: Client: <search_cmd_followup> 'A005 SEARCH FROM "testmr@example.com"\r\n'
-fandango:INFO: Current coverage: 99.30%
+fandango:INFO: Current coverage: 75.24%
+fandango:INFO: Client: <search_cmd_followup> 'A005 SEARCH FROM "TESTMR@EXAMPLE.COM"\r\n'
+fandango:INFO: Current coverage: 55.70%
 fandango:INFO: Server: <search_response_followup> '* SEARCH 1\r\nA005 OK SEARCH completed\r\n'
-fandango:INFO: Current coverage: 99.30%
+fandango:INFO: Current coverage: 55.70%
 fandango:INFO: Starting new protocol run.
-fandango:INFO: Current coverage: 99.30%
+fandango:INFO: Current coverage: 55.70%
 fandango:INFO: Server: <greeting> '* OK [CAPABILITY IMAP4rev1 NAMESPACE IDLE] Twisted IMAP4rev1 Ready\r\n'
-fandango:INFO: Current coverage: 99.30%
+fandango:INFO: Current coverage: 55.70%
 fandango:INFO: Client: <login_cmd> 'A001 LOGIN testuser testpass\r\n'
-fandango:INFO: Current coverage: 99.30%
+fandango:INFO: Current coverage: 55.70%
 fandango:INFO: Server: <login_response> 'A001 OK LOGIN succeeded\r\n'
-fandango:INFO: Current coverage: 99.30%
+fandango:INFO: Current coverage: 55.70%
 fandango:INFO: Client: <select_cmd> 'A002 SELECT INBOX\r\n'
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: Server: <select_response> '* 0 EXISTS\r\n* 0 RECENT\r\n* FLAGS (\\Seen \\Answered \\Flagged \\Deleted \\Draft \\Recent)\r\n* OK [UIDVALIDITY 1789226145]\r\nA002 OK [READ-WRITE] SELECT successful\r\n'
-fandango:INFO: Current coverage: 99.30%
+fandango:INFO: Current coverage: 55.70%
+fandango:INFO: Server: <select_response> '* 0 EXISTS\r\n* 0 RECENT\r\n* FLAGS (\\Seen \\Answered \\Flagged \\Deleted \\Draft \\Recent)\r\n* OK [UIDVALIDITY 1790692684]\r\nA002 OK [READ-WRITE] SELECT successful\r\n'
+fandango:INFO: Current coverage: 55.70%
 fandango:INFO: Client: <search_cmd_source> 'A003 SEARCH FROM "testmr@example.com"\r\n'
-fandango:INFO: Current coverage: 99.30%
+fandango:INFO: Current coverage: 55.70%
 fandango:INFO: Server: <search_response_source> '* SEARCH\r\nA003 OK SEARCH completed\r\n'
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 2\r\n\r\nBody 2.\r\n'
-fandango:INFO: Current coverage: 99.30%
+fandango:INFO: Current coverage: 55.70%
+fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 3\r\n\r\nBody 2.\r\n'
+fandango:INFO: Current coverage: 55.70%
 fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
-fandango:INFO: Current coverage: 99.30%
+fandango:INFO: Current coverage: 55.70%
 fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 1\r\n\r\nBody 2.\r\n\r\n'
-fandango:INFO: Current coverage: 99.30%
+fandango:INFO: Current coverage: 68.08%
+fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 1\r\n\r\nBody 3.\r\n\r\n'
+fandango:INFO: Current coverage: 74.59%
 fandango:INFO: Server: <append_response> '* 1 EXISTS\r\nA004 OK APPEND complete\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 2\r\n\r\nBody 1.\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 2\r\n\r\nBody 1.\r\n\r\n'
-fandango:INFO: Current coverage: 99.30%
-fandango:INFO: Server: <append_response> '* 2 EXISTS\r\nA004 OK APPEND complete\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached. Guiding to end of tree.
-fandango:INFO: Client: <search_cmd_followup> 'A005 SEARCH FROM "testmr@example.com"\r\n'
-fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Current coverage: 76.55%
+fandango:INFO: Client: <search_cmd_followup> 'A005 SEARCH FROM "TESTMR@EXAMPLE.COM"\r\n'
+fandango:INFO: Current coverage: 55.70%
 fandango:INFO: Server: <search_response_followup> '* SEARCH 1\r\nA005 OK SEARCH completed\r\n'
-fandango:INFO: Current coverage: 100.00%
-fandango:INFO: Full coverage reached, stopping evolution.
+fandango:INFO: Current coverage: 55.70%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 55.70%
+fandango:INFO: Server: <greeting> '* OK [CAPABILITY IMAP4rev1 NAMESPACE IDLE] Twisted IMAP4rev1 Ready\r\n'
+fandango:INFO: Current coverage: 55.70%
+fandango:INFO: Client: <login_cmd> 'A001 LOGIN testuser testpass\r\n'
+fandango:INFO: Current coverage: 55.70%
+fandango:INFO: Server: <login_response> 'A001 OK LOGIN succeeded\r\n'
+fandango:INFO: Current coverage: 55.70%
+fandango:INFO: Client: <select_cmd> 'A002 SELECT INBOX\r\n'
+fandango:INFO: Current coverage: 55.70%
+fandango:INFO: Server: <select_response> '* 0 EXISTS\r\n* 0 RECENT\r\n* FLAGS (\\Seen \\Answered \\Flagged \\Deleted \\Draft \\Recent)\r\n* OK [UIDVALIDITY 1790692684]\r\nA002 OK [READ-WRITE] SELECT successful\r\n'
+fandango:INFO: Current coverage: 55.70%
+fandango:INFO: Client: <search_cmd_source> 'A003 SEARCH FROM "testmr@example.com"\r\n'
+fandango:INFO: Current coverage: 55.70%
+fandango:INFO: Server: <search_response_source> '* SEARCH\r\nA003 OK SEARCH completed\r\n'
+fandango:INFO: Current coverage: 55.70%
+fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 3\r\n\r\nBody 1.\r\n'
+fandango:INFO: Current coverage: 62.87%
+fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
+fandango:INFO: Current coverage: 55.70%
+fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
+fandango:INFO: Current coverage: 55.70%
+fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 3\r\n\r\nBody 2.\r\n\r\n'
+fandango:INFO: Current coverage: 74.59%
+fandango:INFO: Server: <append_response> '* 1 EXISTS\r\nA004 OK APPEND complete\r\n'
+fandango:INFO: Current coverage: 76.55%
+fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 2\r\n\r\nBody 2.\r\n'
+fandango:INFO: Current coverage: 77.20%
+fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
+fandango:INFO: Current coverage: 77.20%
+fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
+fandango:INFO: Current coverage: 77.20%
+fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 1\r\n\r\nBody 3.\r\n\r\n'
+fandango:INFO: Current coverage: 77.85%
+fandango:INFO: Server: <append_response> '* 2 EXISTS\r\nA004 OK APPEND complete\r\n'
+fandango:INFO: Current coverage: 77.85%
+fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 1\r\n\r\nBody 3.\r\n'
+fandango:INFO: Current coverage: 77.85%
+fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
+fandango:INFO: Current coverage: 77.85%
+fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
+fandango:INFO: Current coverage: 77.85%
+fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 1\r\n\r\nBody 3.\r\n\r\n'
+fandango:INFO: Current coverage: 77.85%
+fandango:INFO: Server: <append_response> '* 3 EXISTS\r\nA004 OK APPEND complete\r\n'
+fandango:INFO: Current coverage: 77.85%
+fandango:INFO: Client: <search_cmd_followup> 'A005 SEARCH FROM "TESTMR@EXAMPLE.COM"\r\n'
+fandango:INFO: Current coverage: 77.85%
+fandango:INFO: Server: <search_response_followup> '* SEARCH 1 3\r\nA005 OK SEARCH completed\r\n'
+fandango:INFO: Current coverage: 77.85%
 ================================================================================
 IMAP Append+Search Metamorphic Relation Test
 ================================================================================
@@ -301,20 +166,15 @@ Follow-up Test Case:
 Relation: follow-up count == source count + 1
 ================================================================================
 
-Grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/imap/mr/append_search_inclusion/grammar.fan
+Grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/imap/mr/append_search_inclusion/grammar.fan
 
-From: testmr@example.com
-To: test@example.com
-Subject: Test 1
-
-Body 1.
 From: testmr@example.com
 To: test@example.com
 Subject: Test 3
 
 Body 2.
-[DEBUG] Appends: 2, Source: 0, Follow-up: 1
-[VIOLATION] Expected 2 after 2 append(s), got 1
+[DEBUG] Appends: 1, Source: 0, Follow-up: 1
+[PASS] After 1 append(s): 0 -> 1
 
 ================================================================================
 TEST CASE #1
@@ -323,21 +183,11 @@ TEST CASE #1
 --------------------------------------------------------------------------------
 From: testmr@example.com
 To: test@example.com
-Subject: Test 2
-
-Body 2.
-From: testmr@example.com
-To: test@example.com
 Subject: Test 1
 
 Body 3.
-From: testmr@example.com
-To: test@example.com
-Subject: Test 3
-
-Body 3.
-[DEBUG] Appends: 3, Source: 0, Follow-up: 2
-[VIOLATION] Expected 3 after 3 append(s), got 2
+[DEBUG] Appends: 1, Source: 0, Follow-up: 1
+[PASS] After 1 append(s): 0 -> 1
 
 ================================================================================
 TEST CASE #2
@@ -346,21 +196,11 @@ TEST CASE #2
 --------------------------------------------------------------------------------
 From: testmr@example.com
 To: test@example.com
-Subject: Test 2
-
-Body 3.
-From: testmr@example.com
-To: test@example.com
-Subject: Test 2
+Subject: Test 3
 
 Body 2.
-From: testmr@example.com
-To: test@example.com
-Subject: Test 2
-
-Body 1.
-[DEBUG] Appends: 3, Source: 0, Follow-up: 2
-[VIOLATION] Expected 3 after 3 append(s), got 2
+[DEBUG] Appends: 1, Source: 0, Follow-up: 1
+[PASS] After 1 append(s): 0 -> 1
 
 ================================================================================
 TEST CASE #3
@@ -369,43 +209,9 @@ TEST CASE #3
 --------------------------------------------------------------------------------
 From: testmr@example.com
 To: test@example.com
-Subject: Test 2
-
-Body 3.
-[DEBUG] Appends: 1, Source: 0, Follow-up: 1
-[PASS] After 1 append(s): 0 -> 1
-
-================================================================================
-TEST CASE #4
-================================================================================
-
---------------------------------------------------------------------------------
-From: testmr@example.com
-To: test@example.com
-Subject: Test 1
+Subject: Test 3
 
 Body 1.
-[DEBUG] Appends: 1, Source: 0, Follow-up: 1
-[PASS] After 1 append(s): 0 -> 1
-
-================================================================================
-TEST CASE #5
-================================================================================
-
---------------------------------------------------------------------------------
-From: testmr@example.com
-To: test@example.com
-Subject: Test 1
-
-Body 3.
-[DEBUG] Appends: 1, Source: 0, Follow-up: 1
-[PASS] After 1 append(s): 0 -> 1
-
-================================================================================
-TEST CASE #6
-================================================================================
-
---------------------------------------------------------------------------------
 From: testmr@example.com
 To: test@example.com
 Subject: Test 2
@@ -413,39 +219,33 @@ Subject: Test 2
 Body 2.
 From: testmr@example.com
 To: test@example.com
-Subject: Test 2
+Subject: Test 1
 
-Body 1.
-[DEBUG] Appends: 2, Source: 0, Follow-up: 1
-[VIOLATION] Expected 2 after 2 append(s), got 1
+Body 3.
+[DEBUG] Appends: 3, Source: 0, Follow-up: 2
+[VIOLATION] Expected 3 after 3 append(s), got 2
 
 ================================================================================
-TEST CASE #7
+TEST CASE #4
 ================================================================================
 
---------------------------------------------------------------------------------
+Stopping after the first test with a violation.
 
 ================================================================================
 SUMMARY
 ================================================================================
-Total test cases generated: 7
+Total test cases generated: 4
 Passed: 3
-Violations: 4
+Violations: 1
 
 Violations per solution:
-  solution1:
-    - [VIOLATION] Expected 2 after 2 append(s), got 1
-  solution2:
+  solution4:
     - [VIOLATION] Expected 3 after 3 append(s), got 2
-  solution3:
-    - [VIOLATION] Expected 3 after 3 append(s), got 2
-  solution7:
-    - [VIOLATION] Expected 2 after 2 append(s), got 1
 
 TIMING:
-  Test generation time: 1m 6.49s
-  Total execution time: 1m 7.02s
-  Average time per test: 9.50 seconds
+  Test generation time: 1.95 seconds
+  Total execution time: 2.48 seconds
+  Average time per test: 0.49 seconds
 ================================================================================
 
-Log saved to: /Users/i7949486/Desktop/uds/thesis/metamophic-testing/imap/mr/append_search_inclusion/mutations/mutation_test_output.log
+Log saved to: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/imap/mr/append_search_inclusion/mutations/mutation_test_output.log

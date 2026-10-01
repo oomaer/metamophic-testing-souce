@@ -6,10 +6,12 @@ import io
 import sys
 import time
 import logging
+import traceback
+from contextlib import redirect_stderr
 
 
 class TeeStream:
-    """Stream that writes to both original stdout and a file."""
+    """Stream that writes to both the original stream and a file."""
     def __init__(self, original_stdout, log_file):
         self.original = original_stdout
         self.log_file = log_file
@@ -19,6 +21,10 @@ class TeeStream:
         self.original.write(data)
         self.log_file.write(data)
         self.captured.write(data)
+        return len(data)
+
+    def __getattr__(self, name):
+        return getattr(self.original, name)
 
     def flush(self):
         self.original.flush()
@@ -35,17 +41,15 @@ class TeeStream:
 
 
 class LoggerTeeHandler(logging.Handler):
-    """Custom logging handler that writes to both console and file."""
+    """Save Fandango records; its existing handlers keep console output."""
     def __init__(self, log_file):
         super().__init__()
         self.log_file = log_file
-        self.console_handler = logging.StreamHandler()
 
     def emit(self, record):
         msg = self.format(record)
         self.log_file.write(msg + '\n')
         self.log_file.flush()
-        self.console_handler.emit(record)
 
 
 def format_duration(seconds):
@@ -64,10 +68,30 @@ def format_duration(seconds):
 
 
 def run_fandango(grammar_path, log_file_path):
-    start_time = time.time()
+    os.makedirs(os.path.dirname(os.path.abspath(log_file_path)), exist_ok=True)
+    with open(log_file_path, 'w', encoding='utf-8', buffering=1) as log_file:
+        fandango_logger = logging.getLogger('fandango')
+        tee_handler = LoggerTeeHandler(log_file)
+        tee_handler.setFormatter(logging.Formatter('%(name)s:%(levelname)s: %(message)s'))
+        fandango_logger.addHandler(tee_handler)
+        try:
+            with redirect_stderr(TeeStream(sys.stderr, log_file)):
+                try:
+                    _run_fandango(grammar_path, log_file)
+                except BaseException:
+                    # Python prints an uncaught traceback after streams are restored.
+                    # Save it now, then re-raise to preserve the terminal error and exit code.
+                    traceback.print_exc(file=log_file)
+                    raise
+        finally:
+            fandango_logger.removeHandler(tee_handler)
+            tee_handler.close()
 
-    # Open log file
-    log_file = open(log_file_path, 'w')
+    print(f"\nLog saved to: {log_file_path}")
+
+
+def _run_fandango(grammar_path, log_file):
+    start_time = time.time()
 
     def log_print(*args, **kwargs):
         """Print to both console and log file."""
@@ -85,12 +109,6 @@ def run_fandango(grammar_path, log_file_path):
     with open(grammar_path) as f:
         grammar, constraints = parse(f, use_stdlib=False)
     assert grammar is not None
-
-    # Set up logging to capture Fandango output
-    fandango_logger = logging.getLogger('fandango')
-    tee_handler = LoggerTeeHandler(log_file)
-    tee_handler.setFormatter(logging.Formatter('%(name)s:%(levelname)s: %(message)s'))
-    fandango_logger.addHandler(tee_handler)
 
     fandango = SimpleGeneticAlgorithm(
         grammar=grammar,
@@ -136,11 +154,12 @@ def run_fandango(grammar_path, log_file_path):
 
             if solution_violations:
                 violations[f"solution{solution_index + 1}"] = solution_violations
+                print("Stopping after the first test with a violation.")
+                break
 
             print("-" * 80)
     finally:
         sys.stdout = old_stdout
-        fandango_logger.removeHandler(tee_handler)
 
     generation_end = time.time()
     end_time = time.time()
@@ -173,16 +192,12 @@ def run_fandango(grammar_path, log_file_path):
 
     log_print("=" * 80)
 
-    log_file.close()
-    print(f"\nLog saved to: {log_file_path}")
-
 
 def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     grammar_path = os.path.join(script_dir, "grammar.fan")
     if len(sys.argv) > 1:
         log_file_path = os.path.join(script_dir, sys.argv[1])
-        os.makedirs(os.path.dirname(log_file_path), exist_ok=True)
     else:
         log_file_path = os.path.join(script_dir, "test_output.log")
     run_fandango(grammar_path, log_file_path)

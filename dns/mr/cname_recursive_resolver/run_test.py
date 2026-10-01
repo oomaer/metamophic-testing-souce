@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
 """
-DNS CNAME Recursive Resolver MR - Test Runner
+DNS CNAME Resolution Equivalence MR — Test Runner (Recursive Resolver)
 
-Manages DNS server lifecycle and runs the metamorphic relation test.
-- Server A (port 5053): Authoritative server (dns_server.py)
-- Server B (port 5054): Recursive resolver (recursive_server.py)
+Launches an authoritative server plus a recursive resolver forwarding to it:
+  - Server A     (:5053) — dns_server.py --zone all
+                           (authoritative for both example.local. + test.local.)
+  - Recursive R. (:5055) — dns_recursive_resolver.py -u 127.0.0.1:5053
+                           (system under test; forwards every query to Server A)
+
+The MR (see grammar.fan) checks:
+  A-records reached via the recursive resolver
+    ==
+  A-records reached directly from the authoritative server
 """
 
 import subprocess
@@ -15,73 +22,78 @@ from pathlib import Path
 
 
 def format_duration(seconds):
-    """Format duration in human-readable format."""
     if seconds < 60:
         return f"{seconds:.2f}s"
     elif seconds < 3600:
-        minutes = int(seconds // 60)
-        secs = seconds % 60
-        return f"{minutes}m {secs:.2f}s"
+        m = int(seconds // 60); s = seconds % 60
+        return f"{m}m {s:.2f}s"
     else:
-        hours = int(seconds // 3600)
-        minutes = int((seconds % 3600) // 60)
-        secs = seconds % 60
-        return f"{hours}h {minutes}m {secs:.2f}s"
+        h = int(seconds // 3600); m = int((seconds % 3600) // 60); s = seconds % 60
+        return f"{h}h {m}m {s:.2f}s"
 
 
 def main():
-    script_dir = Path(__file__).parent
-    dns_server_path = script_dir.parent.parent / "dns_server.py"
-    recursive_server_path = script_dir / "recursive_server.py"
+    script_dir = Path(__file__).resolve().parent
+    output_dir = Path(os.environ.get("MR_RUNS_DIR", script_dir / "runs")).resolve()
+    output_dir.mkdir(parents=True, exist_ok=True)
+    dns_dir = script_dir.parent.parent
+    dns_server_path = dns_dir / "dns_server.py"
+    recursive_resolver_path = dns_dir / "dns_recursive_resolver.py"
 
     print("=" * 80)
-    print(" DNS CNAME Recursive Resolver MR - Test Runner")
+    print(" DNS CNAME Resolution Equivalence MR — Test Runner (Recursive Resolver)")
     print("=" * 80)
     print()
 
-    # Kill any existing DNS test servers
+    # Kill any existing DNS test servers / resolvers
     print("Cleaning up any existing DNS servers...")
     subprocess.run(['pkill', '-f', 'dns_server.py'], capture_output=True)
-    subprocess.run(['pkill', '-f', 'recursive_server.py'], capture_output=True)
+    subprocess.run(['pkill', '-f', 'dns_recursive_resolver.py'], capture_output=True)
     time.sleep(1)
 
-    # Start Server A (authoritative) on port 5053
-    print("Starting Server A (authoritative) on port 5053...")
-    dns_server_a = subprocess.Popen(
-        [sys.executable, str(dns_server_path), '-p', '5053'],
+    # Server A — authoritative for BOTH zones (alias + target). It holds the
+    # CNAME chain (example.local. -> test.local.) and the A records. Using
+    # --zone all lets one authoritative server chase the CNAME server-side.
+    print("Starting Server A (--zone all) on port 5053...")
+    server_a = subprocess.Popen(
+        [sys.executable, str(dns_server_path), '--zone', 'all', '-p', '5053'],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         cwd=str(dns_server_path.parent)
     )
 
-    # Start Server B (recursive resolver) on port 5054
-    print("Starting Server B (recursive resolver) on port 5054...")
-    dns_server_b = subprocess.Popen(
-        [sys.executable, str(recursive_server_path), '-p', '5054', '-u', '5053'],
+    # Recursive resolver — system under test. Forwards every query it receives
+    # to Server A. This is where mutants will be planted for mutation testing.
+    print("Starting Recursive Resolver on port 5055 (upstream 127.0.0.1:5053)...")
+    recursive_resolver = subprocess.Popen(
+        [sys.executable, str(recursive_resolver_path),
+         '-p', '5055', '-u', '127.0.0.1:5054'],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
-        cwd=str(script_dir)
+        cwd=str(recursive_resolver_path.parent)
     )
 
     time.sleep(2)
-    print("Server A (authoritative): port 5053")
-    print("Server B (recursive):     port 5054 -> upstream 5053")
+    print("Server A          (:5053) — authoritative, zone=all "
+          "(example.local. CNAMEs + test.local. A records)")
+    print("Recursive resolver (:5055) — forwards upstream to 127.0.0.1:5053")
     print()
 
     start_time = time.time()
 
     try:
+        number_of_runs = int(sys.argv[1]) if len(sys.argv) > 1 else 1
         print("Running Fandango metamorphic tests...")
         print()
-        result = subprocess.run(
-            [sys.executable, str(script_dir / 'script.py'), 'test_output.log'],
-            cwd=str(script_dir),
-            timeout=300
-        )
+        for n in range(number_of_runs):
+            subprocess.run(
+                [sys.executable, str(script_dir / 'script.py'), str(output_dir / f'test_output_{n+1}.log')],
+                cwd=str(script_dir),
+                check=True,
+                timeout=300,
+            )
 
-        end_time = time.time()
-        duration = end_time - start_time
-
+        duration = time.time() - start_time
         print()
         print("=" * 80)
         print(f" Test completed in {format_duration(duration)}")
@@ -94,14 +106,14 @@ def main():
     finally:
         print()
         print("Stopping DNS servers...")
-        dns_server_a.terminate()
-        dns_server_b.terminate()
+        server_a.terminate()
+        recursive_resolver.terminate()
         try:
-            dns_server_a.wait(timeout=3)
-            dns_server_b.wait(timeout=3)
-        except:
-            dns_server_a.kill()
-            dns_server_b.kill()
+            server_a.wait(timeout=3)
+            recursive_resolver.wait(timeout=3)
+        except Exception:
+            server_a.kill()
+            recursive_resolver.kill()
         print("Servers stopped")
         print()
         print("View test results: cat test_output.log")

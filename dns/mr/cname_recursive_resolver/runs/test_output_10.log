@@ -1,0 +1,265 @@
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/dns/mr/cname_recursive_resolver/grammar.fan
+================================================================================
+Metamorphic Relation: CNAME Resolution Equivalence (Architecture 1)
+
+Setup:
+  Server A (:5053, --zone target) authoritative for test.local.
+                                  test.local. A 192.168.1.1, 192.168.1.2
+  Server B (:5054, --zone alias)  authoritative for example.local.
+                                  example.local. CNAME test.local.
+
+Test flow:
+  ClientA → ServerA:  A test.local.           (direct baseline)
+  ClientB → ServerB:  A example.local.        (alias query, grammar-generated)
+       (grammar forwarding: ServerB's response bytes → ClientC's forward_query)
+  ClientC → ServerA:  A test.local. (chased)  (built from ServerB's CNAME response)
+  Relation: A-records from ClientC == A-records from ClientA
+================================================================================
+fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
+fandango:INFO: Current coverage: 0.39%
+fandango:INFO: ClientA: <query_recursive_server> "b'~\\xda\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x04test\\x05local\\x00\\x00\\x01\\x00\\x01'"
+reciveing None b'~\xda\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x04test\x05local\x00\x00\x01\x00\x01'
+fandango:INFO: Current coverage: 42.25%
+fandango:INFO: ServerA -> MimServer: <intercept_upstream_request> '~Ú\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x04test\x05local\x00\x00\x01\x00\x01'
+[DEBUG]clientquestion:qname=b'\x04test\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x04test\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: Current coverage: 47.67%
+[DEBUG]clientquestion:qname=b'\x04test\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x04test\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+[DEBUG]clientquestion:qname=b'\x04test\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x04test\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: MimClient -> ServerB: <forward_upstream_request> '~Ú\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x04test\x05local\x00\x00\x01\x00\x01'
+fandango:INFO: Current coverage: 51.16%
+fandango:INFO: ServerB -> MimClient: <response_chased> '~Ú\x85\x80\x00\x01\x00\x02\x00\x00\x00\x00\x04test\x05local\x00\x00\x01\x00\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02'
+[DEBUG]clientquestion:qname=b'\x04test\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x04test\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: Current coverage: 55.43%
+[DEBUG]clientquestion:qname=b'\x04test\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x04test\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+[DEBUG]clientquestion:qname=b'\x04test\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x04test\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+sendingggggg ServerA b'~\xda\x85\x80\x00\x01\x00\x02\x00\x00\x00\x00\x04test\x05local\x00\x00\x01\x00\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04\xc0\xa8\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04\xc0\xa8\x01\x02'
+fandango:INFO: MimServer -> ServerA: <forward_response_chased> '~Ú\x85\x80\x00\x01\x00\x02\x00\x00\x00\x00\x04test\x05local\x00\x00\x01\x00\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02'
+fandango:INFO: Current coverage: 58.91%
+fandango:INFO: ServerA: <recusrive_server_response> '~Ú\x85\x80\x00\x01\x00\x02\x00\x00\x00\x00\x04test\x05local\x00\x00\x01\x00\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02'
+[DEBUG]chasedA-records:['192.168.1.1', '192.168.1.2']
+[DEBUG]directA-records:['192.168.1.1', '192.168.1.2']
+[PASS]CNAMEequivalence:Arecordsmatch['192.168.1.1', '192.168.1.2']
+[DEBUG]clientquestion:qname=b'\x04test\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x04test\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: Current coverage: 61.24%
+
+================================================================================
+TEST CASE #1
+================================================================================
+
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 61.24%
+fandango:INFO: ClientA: <query_recursive_server> "b'\\x86U\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x08example2\\x05local\\x00\\x00\\x01\\x00\\x01'"
+fandango:INFO: Current coverage: 70.93%
+reciveing None b'\x86U\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x08example2\x05local\x00\x00\x01\x00\x01'
+fandango:INFO: ServerA -> MimServer: <intercept_upstream_request> '\x86U\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x08example2\x05local\x00\x00\x01\x00\x01'
+[DEBUG]clientquestion:qname=b'\x08example2\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example2\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: Current coverage: 70.93%
+[DEBUG]clientquestion:qname=b'\x08example2\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example2\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+[DEBUG]clientquestion:qname=b'\x08example2\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example2\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: MimClient -> ServerB: <forward_upstream_request> '\x86U\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x08example2\x05local\x00\x00\x01\x00\x01'
+fandango:INFO: Current coverage: 70.93%
+fandango:INFO: ServerB -> MimClient: <response_chased> '\x86U\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example2\x05local\x00\x00\x01\x00\x01\x08example2\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+[DEBUG]clientquestion:qname=b'\x08example2\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example2\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: Current coverage: 70.93%
+[DEBUG]clientquestion:qname=b'\x08example2\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example2\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+[DEBUG]clientquestion:qname=b'\x08example2\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example2\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+sendingggggg ServerA b'\x86U\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example2\x05local\x00\x00\x01\x00\x01\x08example2\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04\xc0\xa8\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04\xc0\xa8\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r\xb8\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+fandango:INFO: MimServer -> ServerA: <forward_response_chased> '\x86U\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example2\x05local\x00\x00\x01\x00\x01\x08example2\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+fandango:INFO: Current coverage: 70.93%
+fandango:INFO: ServerA: <recusrive_server_response> '\x86U\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example2\x05local\x00\x00\x01\x00\x01\x08example2\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+[DEBUG]chasedA-records:['192.168.1.1', '192.168.1.2']
+[DEBUG]directA-records:['192.168.1.1', '192.168.1.2']
+[PASS]CNAMEequivalence:Arecordsmatch['192.168.1.1', '192.168.1.2']
+[DEBUG]clientquestion:qname=b'\x08example2\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example2\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: Current coverage: 70.93%
+
+================================================================================
+TEST CASE #2
+================================================================================
+
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 70.93%
+fandango:INFO: ClientA: <query_recursive_server> "b'\\xac\\xd5\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x07example\\x05local\\x00\\x00\\x01\\x00\\x01'"
+reciveing None b'\xac\xd5\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x07example\x05local\x00\x00\x01\x00\x01'
+fandango:INFO: Current coverage: 80.62%
+fandango:INFO: ServerA -> MimServer: <intercept_upstream_request> '¬Õ\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x07example\x05local\x00\x00\x01\x00\x01'
+[DEBUG]clientquestion:qname=b'\x07example\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x07example\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: Current coverage: 80.62%
+[DEBUG]clientquestion:qname=b'\x07example\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x07example\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+[DEBUG]clientquestion:qname=b'\x07example\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x07example\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: MimClient -> ServerB: <forward_upstream_request> '¬Õ\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x07example\x05local\x00\x00\x01\x00\x01'
+fandango:INFO: Current coverage: 80.62%
+fandango:INFO: ServerB -> MimClient: <response_chased> '¬Õ\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x07example\x05local\x00\x00\x01\x00\x01\x07example\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+[DEBUG]clientquestion:qname=b'\x07example\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x07example\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: Current coverage: 80.62%
+[DEBUG]clientquestion:qname=b'\x07example\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x07example\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+[DEBUG]clientquestion:qname=b'\x07example\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x07example\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+sendingggggg ServerA b'\xac\xd5\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x07example\x05local\x00\x00\x01\x00\x01\x07example\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04\xc0\xa8\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04\xc0\xa8\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r\xb8\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+fandango:INFO: MimServer -> ServerA: <forward_response_chased> '¬Õ\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x07example\x05local\x00\x00\x01\x00\x01\x07example\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+fandango:INFO: Current coverage: 80.62%
+fandango:INFO: ServerA: <recusrive_server_response> '¬Õ\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x07example\x05local\x00\x00\x01\x00\x01\x07example\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+[DEBUG]chasedA-records:['192.168.1.1', '192.168.1.2']
+[DEBUG]directA-records:['192.168.1.1', '192.168.1.2']
+[PASS]CNAMEequivalence:Arecordsmatch['192.168.1.1', '192.168.1.2']
+[DEBUG]clientquestion:qname=b'\x07example\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x07example\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: Current coverage: 80.62%
+
+================================================================================
+TEST CASE #3
+================================================================================
+
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 80.62%
+fandango:INFO: ClientA: <query_recursive_server> "b'G\\x1b\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x08example4\\x05local\\x00\\x00\\x01\\x00\\x01'"
+fandango:INFO: Current coverage: 90.31%
+reciveing None b'G\x1b\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x08example4\x05local\x00\x00\x01\x00\x01'
+fandango:INFO: ServerA -> MimServer: <intercept_upstream_request> 'G\x1b\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x08example4\x05local\x00\x00\x01\x00\x01'
+[DEBUG]clientquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: Current coverage: 90.31%
+[DEBUG]clientquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+[DEBUG]clientquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: MimClient -> ServerB: <forward_upstream_request> 'G\x1b\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x08example4\x05local\x00\x00\x01\x00\x01'
+fandango:INFO: Current coverage: 90.31%
+fandango:INFO: ServerB -> MimClient: <response_chased> 'G\x1b\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example4\x05local\x00\x00\x01\x00\x01\x08example4\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+[DEBUG]clientquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: Current coverage: 90.31%
+[DEBUG]clientquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+[DEBUG]clientquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+sendingggggg ServerA b'G\x1b\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example4\x05local\x00\x00\x01\x00\x01\x08example4\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04\xc0\xa8\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04\xc0\xa8\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r\xb8\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+fandango:INFO: MimServer -> ServerA: <forward_response_chased> 'G\x1b\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example4\x05local\x00\x00\x01\x00\x01\x08example4\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+fandango:INFO: Current coverage: 90.31%
+fandango:INFO: ServerA: <recusrive_server_response> 'G\x1b\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example4\x05local\x00\x00\x01\x00\x01\x08example4\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+[DEBUG]chasedA-records:['192.168.1.1', '192.168.1.2']
+[DEBUG]directA-records:['192.168.1.1', '192.168.1.2']
+[PASS]CNAMEequivalence:Arecordsmatch['192.168.1.1', '192.168.1.2']
+[DEBUG]clientquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example4\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: Current coverage: 90.31%
+
+================================================================================
+TEST CASE #4
+================================================================================
+
+--------------------------------------------------------------------------------
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 90.31%
+fandango:INFO: ClientA: <query_recursive_server> "b'\\xea`\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x08example3\\x05local\\x00\\x00\\x01\\x00\\x01'"
+reciveing None b'\xea`\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x08example3\x05local\x00\x00\x01\x00\x01'fandango:INFO: Current coverage: 100.00%
+
+fandango:INFO: ServerA -> MimServer: <intercept_upstream_request> 'ê`\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x08example3\x05local\x00\x00\x01\x00\x01'
+[DEBUG]clientquestion:qname=b'\x08example3\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example3\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Full coverage reached. Guiding to end of tree.
+[DEBUG]clientquestion:qname=b'\x08example3\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example3\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+[DEBUG]clientquestion:qname=b'\x08example3\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example3\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: MimClient -> ServerB: <forward_upstream_request> 'ê`\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x08example3\x05local\x00\x00\x01\x00\x01'
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: ServerB -> MimClient: <response_chased> 'ê`\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example3\x05local\x00\x00\x01\x00\x01\x08example3\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+[DEBUG]clientquestion:qname=b'\x08example3\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example3\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Full coverage reached. Guiding to end of tree.
+[DEBUG]clientquestion:qname=b'\x08example3\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example3\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+[DEBUG]clientquestion:qname=b'\x08example3\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example3\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+sendingggggg ServerA b'\xea`\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example3\x05local\x00\x00\x01\x00\x01\x08example3\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04\xc0\xa8\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04\xc0\xa8\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r\xb8\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+fandango:INFO: MimServer -> ServerA: <forward_response_chased> 'ê`\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example3\x05local\x00\x00\x01\x00\x01\x08example3\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: ServerA: <recusrive_server_response> 'ê`\x85\x80\x00\x01\x00\x01\x00\x00\x00\x03\x08example3\x05local\x00\x00\x01\x00\x01\x08example3\x05local\x00\x00\x05\x00\x01\x00\x00\x01,\x00\x0c\x04test\x05local\x00\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x01\x04test\x05local\x00\x00\x01\x00\x01\x00\x00\x01,\x00\x04À¨\x01\x02\x04test\x05local\x00\x00\x1c\x00\x01\x00\x00\x01,\x00\x10 \x01\r¸\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'
+[DEBUG]chasedA-records:['192.168.1.1', '192.168.1.2']
+[DEBUG]directA-records:['192.168.1.1', '192.168.1.2']
+[PASS]CNAMEequivalence:Arecordsmatch['192.168.1.1', '192.168.1.2']
+[DEBUG]clientquestion:qname=b'\x08example3\x05local\x00'qtype=1qclass=1
+[DEBUG]upstreamquestion:qname=b'\x08example3\x05local\x00'qtype=1qclass=1
+[PASS]Upstream-requestequality:questionpreservedonforward
+fandango:INFO: Current coverage: 100.00%
+
+================================================================================
+TEST CASE #5
+================================================================================
+
+--------------------------------------------------------------------------------
+fandango:INFO: Full coverage reached, stopping evolution.
+
+================================================================================
+SUMMARY
+================================================================================
+Total test cases generated: 5
+Passed: 5
+Violations: 0
+
+All solutions passed! Recursive resolution is working correctly.
+
+TIMING:
+  Test generation time: 17.38 seconds
+  Total execution time: 18.78 seconds
+  Average time per test: 3.48 seconds
+================================================================================

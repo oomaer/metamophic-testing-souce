@@ -1,4 +1,4 @@
-include("../../ftp-utils.fan")
+include("./ftp-utils.fan")
 
 # =============================================================================
 # FTP SIZE After APPE - Metamorphic Relation Test (RFC 959/3659)
@@ -21,9 +21,9 @@ include("../../ftp-utils.fan")
 #
 # =============================================================================
 
-<start> ::= <session_A> <ChangeConnection> <session_B>
+<start> ::= <session_A> <ConnectionControl:ChangeConnection> <session_B>
 
-<ChangeConnection> ::= r".*" := changeConnection()
+<ChangeConnection> ::= "start connection B"
 
 <file_data> ::= "hello world"
 <file_name> ::= "test_file.txt"
