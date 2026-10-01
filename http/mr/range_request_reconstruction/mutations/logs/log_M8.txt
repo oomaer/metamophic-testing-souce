@@ -1,0 +1,390 @@
+Mutation: M8
+Description: Content-Range header lies; body correct
+Duration: 1m 18.80s
+================================================================================
+
+fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
+fandango:INFO: Current coverage: 0.26%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 3.93%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:33 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 6.28%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 8.12%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-3\r\n\r\n'
+fandango:INFO: Current coverage: 19.37%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 4\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:35 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLore'
+fandango:INFO: Current coverage: 23.30%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=4-\r\n\r\n'
+fandango:INFO: Current coverage: 29.84%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 994\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:36 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nm ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 32.98%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 32.98%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 32.98%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:37 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 32.98%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 32.98%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-595\r\n\r\n'
+fandango:INFO: Current coverage: 47.91%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 596\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:39 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna feli'
+fandango:INFO: Current coverage: 47.91%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=596-\r\n\r\n'
+fandango:INFO: Current coverage: 47.91%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 402\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:40 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\ns sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 47.91%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 47.91%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 47.91%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:41 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 47.91%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 47.91%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-286\r\n\r\n'
+fandango:INFO: Current coverage: 54.97%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 287\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:42 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate vel'
+fandango:INFO: Current coverage: 54.97%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=287-\r\n\r\n'
+fandango:INFO: Current coverage: 54.97%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 711\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:44 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 54.97%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 54.97%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 54.97%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:45 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 54.97%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 54.97%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-8\r\n\r\n'
+fandango:INFO: Current coverage: 56.81%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 9\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:46 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ips'
+fandango:INFO: Current coverage: 56.81%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=9-\r\n\r\n'
+fandango:INFO: Current coverage: 56.81%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 989\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:47 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\num dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 56.81%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 56.81%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 56.81%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:49 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 56.81%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 56.81%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-467\r\n\r\n'
+fandango:INFO: Current coverage: 63.35%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 468\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:50 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tinc'
+fandango:INFO: Current coverage: 63.35%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=468-\r\n\r\n'
+fandango:INFO: Current coverage: 63.35%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 530\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:51 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 63.35%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 63.35%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 63.35%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:53 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 63.35%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 63.35%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-476\r\n\r\n'
+fandango:INFO: Current coverage: 65.18%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 477\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:54 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lac'
+fandango:INFO: Current coverage: 65.18%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=477-\r\n\r\n'
+fandango:INFO: Current coverage: 65.18%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 521\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:55 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 65.18%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 65.18%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 65.18%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:57 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 65.18%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 65.18%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-307\r\n\r\n'
+fandango:INFO: Current coverage: 67.54%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 308\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:58 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore'
+fandango:INFO: Current coverage: 67.54%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=308-\r\n\r\n'
+fandango:INFO: Current coverage: 67.54%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 690\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:47:59 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\n eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 67.54%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 67.54%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 67.54%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:00 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 67.54%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 67.54%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-19\r\n\r\n'
+fandango:INFO: Current coverage: 69.63%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 20\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:02 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor si'
+fandango:INFO: Current coverage: 69.63%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=20-\r\n\r\n'
+fandango:INFO: Current coverage: 69.63%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 978\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:03 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nt amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 69.63%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 69.63%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 69.63%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:04 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 69.63%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 69.63%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-746\r\n\r\n'
+fandango:INFO: Current coverage: 73.56%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 747\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:06 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor'
+fandango:INFO: Current coverage: 73.56%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=747-\r\n\r\n'
+fandango:INFO: Current coverage: 73.56%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 251\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:07 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\n. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 73.56%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 73.56%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 73.56%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:08 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 73.56%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 73.56%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-92\r\n\r\n'
+fandango:INFO: Current coverage: 77.49%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 93\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:09 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut '
+fandango:INFO: Current coverage: 77.49%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=93-\r\n\r\n'
+fandango:INFO: Current coverage: 77.49%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 905\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:11 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nlabore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 77.49%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 77.49%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 77.49%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:12 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 77.49%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 77.49%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-55\r\n\r\n'
+fandango:INFO: Current coverage: 79.32%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 56\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:13 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit.'
+fandango:INFO: Current coverage: 79.32%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=56-\r\n\r\n'
+fandango:INFO: Current coverage: 79.32%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 942\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:15 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\n Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 79.32%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 79.32%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 79.32%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:16 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 79.32%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 79.32%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-653\r\n\r\n'
+fandango:INFO: Current coverage: 83.51%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 654\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:17 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod g'
+fandango:INFO: Current coverage: 83.51%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=654-\r\n\r\n'
+fandango:INFO: Current coverage: 83.51%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 344\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:19 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 83.51%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 83.51%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 83.51%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:20 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 83.51%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 83.51%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-541\r\n\r\n'
+fandango:INFO: Current coverage: 85.86%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 542\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:21 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo p'
+fandango:INFO: Current coverage: 85.86%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=542-\r\n\r\n'
+fandango:INFO: Current coverage: 85.86%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 456\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:22 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 85.86%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 85.86%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 85.86%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:24 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 85.86%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 85.86%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-259\r\n\r\n'
+fandango:INFO: Current coverage: 87.96%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 260\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:25 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in rep'
+fandango:INFO: Current coverage: 87.96%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=260-\r\n\r\n'
+fandango:INFO: Current coverage: 87.96%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 738\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:26 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nrehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 87.96%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 87.96%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 87.96%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:27 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 87.96%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 87.96%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-43\r\n\r\n'
+fandango:INFO: Current coverage: 89.79%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 44\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:29 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adip'
+fandango:INFO: Current coverage: 89.79%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=44-\r\n\r\n'
+fandango:INFO: Current coverage: 89.79%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 954\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:30 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\niscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 89.79%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 89.79%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 89.79%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:31 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 89.79%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 89.79%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-722\r\n\r\n'
+fandango:INFO: Current coverage: 91.88%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 723\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:33 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis ri'
+fandango:INFO: Current coverage: 91.88%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=723-\r\n\r\n'
+fandango:INFO: Current coverage: 91.88%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 275\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:34 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nsus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 91.88%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 91.88%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 91.88%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:35 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 91.88%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 91.88%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-719\r\n\r\n'
+fandango:INFO: Current coverage: 93.72%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 720\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:37 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis'
+fandango:INFO: Current coverage: 93.72%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=720-\r\n\r\n'
+fandango:INFO: Current coverage: 93.72%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 278\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:38 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\n risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 93.72%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 93.72%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 93.72%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:39 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 93.72%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 93.72%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-480\r\n\r\n'
+fandango:INFO: Current coverage: 95.81%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 481\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:41 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. '
+fandango:INFO: Current coverage: 95.81%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=481-\r\n\r\n'
+fandango:INFO: Current coverage: 95.81%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 517\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:42 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nNulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 95.81%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 95.81%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 95.81%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:43 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 95.81%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 95.81%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-704\r\n\r\n'
+fandango:INFO: Current coverage: 97.91%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 705\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:45 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula.'
+fandango:INFO: Current coverage: 97.91%
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=705-\r\n\r\n'
+fandango:INFO: Current coverage: 97.91%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 293\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:46 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\n Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 97.91%
+fandango:INFO: Starting new protocol run.
+fandango:INFO: Current coverage: 97.91%
+fandango:INFO: ClientA: <req_full> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\n\r\n'
+fandango:INFO: Current coverage: 97.91%
+fandango:INFO: ServerA: <response_full> 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:47 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 97.91%
+fandango:INFO: StdOut: <ChangeConnection> 'Switching from connection A to connection B'
+fandango:INFO: Current coverage: 97.91%
+fandango:INFO: ClientB: <req_p1> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=0-778\r\n\r\n'
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: ServerB: <resp_p1> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 779\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:49 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu temp'
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Full coverage reached. Guiding to end of tree.
+fandango:INFO: ClientB: <req_p2> 'GET /large HTTP/1.1\r\nHost: localhost\r\nUser-Agent: Fandango/1.0\r\nRange: bytes=779-\r\n\r\n'
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: ServerB: <resp_p2> 'HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\r\nContent-Length: 219\r\nContent-Range: bytes 0-99/998\r\nAccept-Ranges: bytes\r\nDate: Tue, 29 Sep 2026 14:48:50 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\n\r\nor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet sed, vulputate eget, feugiat non, arcu.'
+fandango:INFO: Current coverage: 100.00%
+fandango:INFO: Full coverage reached, stopping evolution.
+Running Fandango with grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/http/mr/range_request_reconstruction/grammar.fan
+================================================================================
+Metamorphic Test: Range Request Reconstruction (RFC 7233)
+A: Full GET request (complete content)
+B: Two partial GET requests with Range headers, concatenated
+Relation: Concatenated partial responses must equal full response body
+================================================================================
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=4, part2=994
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=596, part2=402
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=287, part2=711
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=9, part2=989
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=468, part2=530
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=477, part2=521
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=308, part2=690
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=20, part2=978
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=747, part2=251
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=93, part2=905
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=56, part2=942
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=654, part2=344
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=542, part2=456
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=260, part2=738
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=44, part2=954
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=723, part2=275
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=720, part2=278
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=481, part2=517
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=705, part2=293
+--------------------------------------------------------------------------------
+Switching from connection A to connection B[PASS] Range reconstruction: full=998 bytes, part1=779, part2=219
+--------------------------------------------------------------------------------
+================================================================================
+SUMMARY
+================================================================================
+Total test cases generated: 20
+Passed: 20
+Violations: 0
+
+All solutions passed - Range request reconstruction works correctly!
+
+TIMING:
+  Test generation time: 1m 17.85s
+  Total execution time: 1m 18.39s
+  Average time per test: 3.89 seconds
+================================================================================
+
+Log saved to: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/http/mr/range_request_reconstruction/test_output.log

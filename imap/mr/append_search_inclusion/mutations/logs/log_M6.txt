@@ -1,0 +1,93 @@
+Mutation: M6
+Description: CASE_SENSITIVE_SEARCH - SEARCH is case-sensitive
+Duration: 1.34s
+================================================================================
+
+fandango:INFO: ---------- Initializing FANDANGO algorithm ---------- 
+fandango:INFO: Current coverage: 0.16%
+fandango:INFO: Server: <greeting> '* OK [CAPABILITY IMAP4rev1 NAMESPACE IDLE] Twisted IMAP4rev1 Ready\r\n'
+fandango:INFO: Current coverage: 1.47%
+fandango:INFO: Client: <login_cmd> 'A001 LOGIN testuser testpass\r\n'
+fandango:INFO: Current coverage: 2.93%
+fandango:INFO: Server: <login_response> 'A001 OK LOGIN succeeded\r\n'
+fandango:INFO: Current coverage: 4.56%
+fandango:INFO: Client: <select_cmd> 'A002 SELECT INBOX\r\n'
+fandango:INFO: Current coverage: 6.84%
+fandango:INFO: Server: <select_response> '* 0 EXISTS\r\n* 0 RECENT\r\n* FLAGS (\\Seen \\Answered \\Flagged \\Deleted \\Draft \\Recent)\r\n* OK [UIDVALIDITY 1790692710]\r\nA002 OK [READ-WRITE] SELECT successful\r\n'
+fandango:INFO: Current coverage: 8.96%
+fandango:INFO: Client: <search_cmd_source> 'A003 SEARCH FROM "testmr@example.com"\r\n'
+fandango:INFO: Current coverage: 10.91%
+fandango:INFO: Server: <search_response_source> '* SEARCH\r\nA003 OK SEARCH completed\r\n'
+fandango:INFO: Current coverage: 13.03%
+fandango:INFO: StdOut: <message_wrapper> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 1\r\n\r\nBody 2.\r\n'
+fandango:INFO: Current coverage: 27.36%
+fandango:INFO: Client: <append_cmd> 'A004 APPEND INBOX () {76}\r\n'
+fandango:INFO: Current coverage: 33.06%
+fandango:INFO: Server: <append_continue> '+ Ready for 76 octets of data\r\n'
+fandango:INFO: Current coverage: 36.16%
+fandango:INFO: Client: <append_literal> 'From: testmr@example.com\r\nTo: test@example.com\r\nSubject: Test 3\r\n\r\nBody 3.\r\n\r\n'
+fandango:INFO: Current coverage: 45.60%
+fandango:INFO: Server: <append_response> '* 1 EXISTS\r\nA004 OK APPEND complete\r\n'
+fandango:INFO: Current coverage: 48.70%
+fandango:INFO: Client: <search_cmd_followup> 'A005 SEARCH FROM "TESTMR@EXAMPLE.COM"\r\n'
+fandango:INFO: Current coverage: 50.65%
+fandango:INFO: Server: <search_response_followup> '* SEARCH\r\nA005 OK SEARCH completed\r\n'
+fandango:INFO: Current coverage: 52.77%
+================================================================================
+IMAP Append+Search Metamorphic Relation Test
+================================================================================
+
+Make sure imap_server.py is running on port 1144:
+  python imap_server.py
+
+Starting test...
+
+================================================================================
+IMAP Metamorphic Relation: Append Then Search
+================================================================================
+
+Source Test Case:
+  SEARCH FROM 'unique-mr-test@example.com' → 0 results
+
+Follow-up Test Case:
+  APPEND message with From: unique-mr-test@example.com
+  SEARCH FROM 'unique-mr-test@example.com' → 1 result
+
+Relation: follow-up count == source count + 1
+================================================================================
+
+Grammar: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/imap/mr/append_search_inclusion/grammar.fan
+
+From: testmr@example.com
+To: test@example.com
+Subject: Test 1
+
+Body 2.
+[DEBUG] Appends: 1, Source: 0, Follow-up: 0
+[VIOLATION] Expected 1 after 1 append(s), got 0
+  Possible bug: APPEND did not update search index
+
+================================================================================
+TEST CASE #1
+================================================================================
+
+Stopping after the first test with a violation.
+
+================================================================================
+SUMMARY
+================================================================================
+Total test cases generated: 1
+Passed: 0
+Violations: 1
+
+Violations per solution:
+  solution1:
+    - [VIOLATION] Expected 1 after 1 append(s), got 0
+
+TIMING:
+  Test generation time: 0.43 seconds
+  Total execution time: 0.98 seconds
+  Average time per test: 0.43 seconds
+================================================================================
+
+Log saved to: /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source/imap/mr/append_search_inclusion/mutations/mutation_test_output.log
