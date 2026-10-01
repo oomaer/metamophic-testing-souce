@@ -80,40 +80,18 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
             universal_newlines=True
         )
 
-        # Capture output while displaying in real-time. Stop the test as soon
-        # as any failure signal appears — either a metamorphic-relation
-        # [VIOLATION] print, or a Fandango parse crash. This is what "detected"
-        # means for this MR, so there's nothing to gain by running further.
-        #
-        # SIGKILL (not SIGTERM) — script.py runs Fandango's blocking socket I/O
-        # in C, which swallows SIGTERM for minutes at a time. And we break the
-        # OUTER loop, not just the inner marker loop, otherwise readline() keeps
-        # draining buffered child output for as long as the child stays alive.
-        FAILURE_MARKERS = ('[VIOLATION]', 'FandangoFailedError', 'FandangoValueError')
+        # Keep collecting output until the test exits naturally, including
+        # output after violations or protocol errors.
         output_lines = []
-        early_stop = False
-        early_stop_marker = None
         while True:
             line = process.stdout.readline()
             if not line and process.poll() is not None:
                 break
-            if not line:
-                continue
-            print(line, end='')  # Print to console in real-time
-            output_lines.append(line)
-            hit = next((m for m in FAILURE_MARKERS if m in line), None)
-            if hit is not None:
-                early_stop = True
-                early_stop_marker = hit
-                print(f"\n[EARLY STOP] Detected {hit!r} — killing test.")
-                process.kill()
-                break
+            if line:
+                print(line, end='')
+                output_lines.append(line)
 
-        try:
-            process.wait(timeout=10)
-        except subprocess.TimeoutExpired:
-            process.kill()
-            process.wait()
+        process.wait()
         full_output = ''.join(output_lines)
 
         end_time = time.time()
@@ -124,8 +102,6 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
             f.write(f"Mutation: {mutation_id}\n")
             f.write(f"Description: {MUTATION_DESCRIPTIONS.get(mutation_id, 'Unknown')}\n")
             f.write(f"Duration: {format_duration(duration)}\n")
-            if early_stop:
-                f.write(f"Early stop: {early_stop_marker}\n")
             f.write("="*80 + "\n\n")
             f.write(full_output)
 
@@ -135,8 +111,6 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
 
         print(f"\n{'='*80}")
         print(f"✓ Test completed in {format_duration(duration)}")
-        if early_stop:
-            print(f"  Stopped early on: {early_stop_marker}")
         print(f"  Passes: {passes}")
         print(f"  Violations: {violations}")
         print(f"  Log saved: {log_file.name}")
@@ -147,23 +121,13 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
             'duration': duration,
             'passes': passes,
             'violations': violations,
-            'detected': violations > 0 or early_stop,
-            'early_stop': early_stop_marker,
+            'detected': violations > 0 or any(
+                marker in full_output
+                for marker in ('FandangoFailedError', 'FandangoValueError')
+            ),
             'log_file': log_file.name
         }
 
-    except subprocess.TimeoutExpired:
-        print("✗ Test timed out after 120 seconds")
-        return {
-            'mutation': mutation_id,
-            'description': MUTATION_DESCRIPTIONS.get(mutation_id, 'Unknown'),
-            'duration': 120,
-            'passes': 0,
-            'violations': 0,
-            'detected': False,
-            'error': 'TIMEOUT',
-            'log_file': log_file.name
-        }
     except Exception as e:
         print(f"✗ Error running test: {e}")
         return {

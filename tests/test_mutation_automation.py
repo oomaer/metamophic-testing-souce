@@ -12,7 +12,7 @@ import sys
 import tempfile
 import threading
 import unittest
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import run_all_mutations as runner
 
@@ -126,6 +126,40 @@ class MutationAutomationTests(unittest.TestCase):
                 self.assertNotIn('NONE', mutations)
                 counts.append(len(mutations))
         self.assertEqual(counts, [6, 5, 5, 9, 6, 7, 6, 7])
+
+    def test_smtp_collects_complete_output_without_killing_tests(self):
+        outputs = [
+            ('[VIOLATION] mismatch', True),
+            ('FandangoFailedError: unexpected response', True),
+            ('[FORCED STOP] test interrupted', False),
+        ]
+        for _, name in runner.PROTOCOL_MRS['smtp']:
+            folder = runner.ROOT / 'smtp/mr' / name / 'mutations'
+            for marker, detected in outputs:
+                with self.subTest(mr=name, marker=marker), tempfile.TemporaryDirectory() as directory:
+                    spec = importlib.util.spec_from_file_location('smtp_fixture', folder / 'run_mutations.py')
+                    module = importlib.util.module_from_spec(spec)
+                    spec.loader.exec_module(module)
+                    module.OUTPUT_DIR = Path(directory)
+                    server = MagicMock()
+                    test = MagicMock()
+                    output = marker + '\n[PASS] later test\n[PASS] final test\n'
+                    test.stdout = io.StringIO(output)
+                    test.poll.return_value = 0
+                    test.wait.return_value = 0
+                    with patch.object(module.subprocess, 'Popen', side_effect=[server, test]), patch.object(
+                        module.time, 'sleep'
+                    ), redirect_stdout(io.StringIO()):
+                        result = module.run_mutation('M1', folder, folder.parent)
+                    test.kill.assert_not_called()
+                    test.terminate.assert_not_called()
+                    test.wait.assert_called_once_with()
+                    server.terminate.assert_called_once_with()
+                    self.assertEqual(result['passes'], 2)
+                    self.assertEqual(result['detected'], detected)
+                    log = (Path(directory) / 'logs/log_M1.txt').read_text()
+                    self.assertTrue(log.endswith(output))
+                    self.assertNotIn('Early stop:', log)
 
     def test_ftp_and_imap_cleanup_does_not_match_smtp(self):
         for protocol in ['ftp', 'imap']:

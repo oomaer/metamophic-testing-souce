@@ -1,19 +1,38 @@
 Metamorphic testing
 
+Setup for another computer
+
+Use Python 3.12 (the experiments were checked with Python 3.12.0) on macOS
+or Linux. Install Node.js for the HTTP servers; this computer uses Node
+25.2.1. The JavaScript servers use only Node's built-in `http` module, so no
+npm packages are required. The cleanup scripts also require `pkill` and `lsof`.
+
+Install all Python runtime dependencies with the same interpreter you will
+use for the experiments:
+
+```sh
+python3 -m pip install -r requirements.txt
+```
+
+`requirements.txt` pins the direct and transitive runtime libraries from the
+current environment. Fandango is installed from Git revision
+`0357637f3afb2e051de645416f8804fc8b6a6bb2`, matching the local development
+checkout used for these experiments. Although that checkout reports version
+1.1.1, it is newer than the published release; installing `fandango-fuzzer==1.1.1`
+would not reproduce the same code. This source installation requires Git,
+a C++17 compiler and CMake 3.18 or newer. Pip installs Fandango's declared
+Python build dependencies automatically. Local Fandango build files have
+editable-install adjustments; these are not part of the Git pin, and the
+fresh source installation still needs validation on the recipient's computer.
+
+The runners currently use Unix process-cleanup commands; native Windows is
+not supported by this setup. Run everything with the same Python interpreter.
 Run all MR timing experiments from the repository root, using the Python
 environment in which the individual `run_test.py` scripts work:
 
 ```sh
 python3 run_all_tests.py 10
 ```
-
-If a run fails with `IndexError: list index out of range`, run the same command
-again. For example:
-
-```sh
-python3 run_all_tests.py 10
-```
-
 
 This runs each MR ten times, with five parallel protocol workers. Within a
 protocol, the next MR starts only after the previous runner and its servers stop:
@@ -38,45 +57,46 @@ Raw logs are saved beside the report in `MR<number>_<protocol>_<name>/runs/`;
 `runner.log` contains that MR's console output. Existing grammar-level `runs/`
 folders remain intact. A failed runner or missing timing summary is reported as
 incomplete, without a mean/SD, and the command exits with a nonzero status.
-Other MRs continue. Timing completion does not certify that the MR assertions passed.
+Other MRs continue. 
+If a run fails with `IndexError: list index out of range`, run the same command
+again. 
 
 Useful options:
 
 ```sh
-# Serial execution for timings without contention from other protocol workers
-python3 run_all_tests.py 10 --workers 1
-
 # Only SMTP and HTTP
 python3 run_all_tests.py 10 --protocols smtp http
 
-# Save batches elsewhere; limit each entire MR runner to one hour
-python3 run_all_tests.py 10 --output-dir /path/to/results --timeout 3600
 ```
 
-Individual runners still support `python3 run_test.py 10` and default to their
-local `runs/` folder. The root script sets `MR_RUNS_DIR` to redirect their output.
+To run only individual mr and go its mr folder and run `python3 run_test.py 10` , it saves logs to 
+local `runs/` folder. 
 The existing server/dependency setup is still required (including Node for HTTP
-and the configured pyftpdlib environment for FTP SIZE). Avoid running another
+and the installed `pyftpdlib` package for FTP). Avoid running another
 experiment on the same protocol ports at the same time.
 
-To extract a LaTeX row from existing logs, the old positional interface still
-works, and MR number/name flags are also available:
+FTP baseline and mutation servers use the same Python interpreter as their
+runners (`sys.executable`) and import the installed package. Install it into
+the Python environment used to run the experiments:
+
+```sh
+python3 -m pip install pyftpdlib==2.2.0
+```
+
+No separate pyftpdlib checkout or FTP-specific virtual environment is required.
+
+To extract times per test from existing logs of any mr, run this script with path to the logs of the mr
 
 ```sh
 python3 extract_avg_time_and_sd.py /path/to/runs summary_report.txt --mr-number 1 --mr-name "Repeated Recipient"
 ```
 
-Run the automation's checks without launching protocol servers:
-
-```sh
-python3 -m unittest discover -s tests -v
-```
 
 Follow these steps to run the mutation experiments:
 
 1. Open a terminal in the repository root (the directory containing
    `run_all_mutations.py`). Use the Python environment in which the individual
-   mutation runners work, with their existing server dependencies installed.
+   mutation runners (mutation runner in the specific folder) work, with their existing server dependencies installed.
    Stop any timing or mutation experiments using the same protocol ports.
 
 2. Start the mutation batch:
@@ -95,14 +115,14 @@ Follow these steps to run the mutation experiments:
 
 4. When the batch finishes, open
    `mutation_results/<timestamp>/mutation_report.txt`, using the timestamp printed
-   in the terminal. This contains the analyzed result tables in MR1–MR8 order;
-   no separate analyzer command is required. If an MR is marked incomplete,
-   inspect its `runner.log` and the errors listed in the report.
+   in the terminal. This contains the analyzed result tables in MR1–MR8 order. 
+   If an MR is marked incomplete,
+   inspect its `runner.log` and the errors listed in the report, and try running it again.
 
 This uses the same MR order and five protocol workers as the timing runner.
 SMTP runs MR1 then MR2, HTTP runs MR3 then MR4, and FTP runs MR5 then MR6;
 IMAP and DNS run MR7 and MR8. Each runner uses its existing active `MUTATIONS`
-list; baselines are skipped for all MRs. The next MR of a protocol starts after
+list. The next MR of a protocol starts after
 the preceding runner and its server processes have stopped.
 
 Each invocation creates `mutation_results/<timestamp>/mutation_report.txt`.
@@ -114,43 +134,12 @@ Within each `MR<number>_<protocol>_<name>/` directory, the batch also saves:
 - `runner.log`: the mutation runner's console output and errors.
 
 The combined `mutation_report.txt` is the only generated analysis report.
-MR-local analysis/summary scripts have been removed, and mutation runners no
-longer write separate `mutation_results.txt`, `summary.txt`, or `analysis.txt`
-reports. Use the root `analyze_mutations.py` to inspect any saved logs manually.
 
-The root runner sets `MUTATION_OUTPUT_DIR` for each MR; running an individual
-`python3 run_mutations.py` still writes its per-mutant logs in the local `logs/`
-folder and prints progress and results to the terminal.
-Mutation runners capture test output in `logs/log_<mutation>.txt` and disable
-the test script's duplicate file output. They do not generate extra
-`test_output_<mutation>.log`, `mutation_test_output.log`, or default
-`test_output.log` files. Timing runs still write their normal per-run logs.
-
-An unsuccessful runner or a missing/empty expected mutant log marks the MR
-incomplete and gives the root command a nonzero exit status. Other MRs continue,
-and partial logs and tables remain available. `COMPLETE` describes collection
-of the configured logs; it does not mean all mutants were detected or that every
-per-mutant test succeeded. Inspect the tables and runner logs for those details.
-
-```sh
-# Run only SMTP and HTTP mutations
-python3 run_all_mutations.py --protocols smtp http
-
-# Run protocols sequentially
-python3 run_all_mutations.py --workers 1
-
-# Choose an output location and limit each MR's entire runner to one hour
-python3 run_all_mutations.py --output-dir /path/to/results --timeout 3600
-```
-
-To analyze saved logs again, run the root analyzer with that MR's `logs/` path.
-For example, replace `<timestamp>` with your batch directory's name:
+Running an individual
+`python3 run_mutations.py` still writes its per-mutant logs in the local `logs/`. and 
+can use paths to those logs to run analyze_mutations in root directory to see the results.
 
 ```sh
 python3 analyze_mutations.py "mutation_results/<timestamp>/MR1_smtp_repeated_recipient/logs"
 ```
 
-The optional timeout applies to an entire MR's mutation runner. Ctrl+C stops
-active runners and their servers and saves a partial report. Use the same Python
-environment and server dependencies as for the individual mutation runners.
-Do not run timing experiments alongside mutation experiments on the same ports.

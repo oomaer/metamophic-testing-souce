@@ -1,251 +1,293 @@
-[I 2026-10-01 13:16:19] concurrency model: async
-[I 2026-10-01 13:16:19] masquerade (NAT) address: None
-[I 2026-10-01 13:16:19] passive ports: None
-[I 2026-10-01 13:16:19] >>> starting FTP server on 127.0.0.1:2121, pid=22490 <<<
-[I 2026-10-01 13:16:22] 127.0.0.1:59238-[] FTP session opened (connect)
-[I 2026-10-01 13:16:22] 127.0.0.1:59238-[user] USER 'user' logged in.
-[I 2026-10-01 13:16:22] 127.0.0.1:59238-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:16:22] 127.0.0.1:59238-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:16:22] 127.0.0.1:59238-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:24] 127.0.0.1:59238-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:24] 127.0.0.1:59238-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:16:26] 127.0.0.1:59259-[] FTP session opened (connect)
-[I 2026-10-01 13:16:26] 127.0.0.1:59259-[user] USER 'user' logged in.
-[I 2026-10-01 13:16:26] 127.0.0.1:59259-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:16:26] 127.0.0.1:59259-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:16:26] 127.0.0.1:59259-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:28] 127.0.0.1:59259-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:28] 127.0.0.1:59259-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:16:32] 127.0.0.1:59296-[] FTP session opened (connect)
-[I 2026-10-01 13:16:32] 127.0.0.1:59296-[user] USER 'user' logged in.
-[I 2026-10-01 13:16:32] 127.0.0.1:59296-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:16:32] 127.0.0.1:59296-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:16:32] 127.0.0.1:59296-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:33] 127.0.0.1:59296-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:33] 127.0.0.1:59296-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:16:36] 127.0.0.1:59332-[] FTP session opened (connect)
-[I 2026-10-01 13:16:36] 127.0.0.1:59332-[user] USER 'user' logged in.
-[I 2026-10-01 13:16:36] 127.0.0.1:59332-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:16:36] 127.0.0.1:59332-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:16:36] 127.0.0.1:59332-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:37] 127.0.0.1:59332-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:37] 127.0.0.1:59332-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:16:40] 127.0.0.1:59365-[] FTP session opened (connect)
-[I 2026-10-01 13:16:40] 127.0.0.1:59365-[user] USER 'user' logged in.
-[I 2026-10-01 13:16:40] 127.0.0.1:59365-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:16:40] 127.0.0.1:59365-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:16:40] 127.0.0.1:59365-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:41] 127.0.0.1:59365-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:41] 127.0.0.1:59365-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:16:44] 127.0.0.1:59393-[] FTP session opened (connect)
-[I 2026-10-01 13:16:44] 127.0.0.1:59393-[user] USER 'user' logged in.
-[I 2026-10-01 13:16:44] 127.0.0.1:59393-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:16:44] 127.0.0.1:59393-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:16:44] 127.0.0.1:59393-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:46] 127.0.0.1:59393-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:46] 127.0.0.1:59393-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:16:50] 127.0.0.1:59419-[] FTP session opened (connect)
-[I 2026-10-01 13:16:50] 127.0.0.1:59419-[user] USER 'user' logged in.
-[I 2026-10-01 13:16:50] 127.0.0.1:59419-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:16:50] 127.0.0.1:59419-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:16:50] 127.0.0.1:59419-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:51] 127.0.0.1:59419-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:51] 127.0.0.1:59419-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:16:54] 127.0.0.1:59446-[] FTP session opened (connect)
-[I 2026-10-01 13:16:54] 127.0.0.1:59446-[user] USER 'user' logged in.
-[I 2026-10-01 13:16:54] 127.0.0.1:59446-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:16:54] 127.0.0.1:59446-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:16:54] 127.0.0.1:59446-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:55] 127.0.0.1:59446-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:55] 127.0.0.1:59446-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:16:58] 127.0.0.1:59466-[] FTP session opened (connect)
-[I 2026-10-01 13:16:58] 127.0.0.1:59466-[user] USER 'user' logged in.
-[I 2026-10-01 13:16:58] 127.0.0.1:59466-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:16:58] 127.0.0.1:59466-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:16:58] 127.0.0.1:59466-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:16:59] 127.0.0.1:59466-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:00] 127.0.0.1:59466-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:17:04] 127.0.0.1:59493-[] FTP session opened (connect)
-[I 2026-10-01 13:17:04] 127.0.0.1:59493-[user] USER 'user' logged in.
-[I 2026-10-01 13:17:04] 127.0.0.1:59493-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:17:04] 127.0.0.1:59493-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:17:04] 127.0.0.1:59493-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:05] 127.0.0.1:59493-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:05] 127.0.0.1:59493-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:17:08] 127.0.0.1:59507-[] FTP session opened (connect)
-[I 2026-10-01 13:17:08] 127.0.0.1:59507-[user] USER 'user' logged in.
-[I 2026-10-01 13:17:08] 127.0.0.1:59507-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:17:08] 127.0.0.1:59507-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:17:08] 127.0.0.1:59507-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:09] 127.0.0.1:59507-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:09] 127.0.0.1:59507-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:17:12] 127.0.0.1:59520-[] FTP session opened (connect)
-[I 2026-10-01 13:17:12] 127.0.0.1:59520-[user] USER 'user' logged in.
-[I 2026-10-01 13:17:12] 127.0.0.1:59520-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:17:12] 127.0.0.1:59520-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:17:12] 127.0.0.1:59520-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:14] 127.0.0.1:59520-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:14] 127.0.0.1:59520-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:17:18] 127.0.0.1:59537-[] FTP session opened (connect)
-[I 2026-10-01 13:17:18] 127.0.0.1:59537-[user] USER 'user' logged in.
-[I 2026-10-01 13:17:18] 127.0.0.1:59537-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:17:18] 127.0.0.1:59537-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:17:18] 127.0.0.1:59537-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:19] 127.0.0.1:59537-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:19] 127.0.0.1:59537-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:17:22] 127.0.0.1:59552-[] FTP session opened (connect)
-[I 2026-10-01 13:17:22] 127.0.0.1:59552-[user] USER 'user' logged in.
-[I 2026-10-01 13:17:22] 127.0.0.1:59552-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:17:22] 127.0.0.1:59552-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:17:22] 127.0.0.1:59552-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:23] 127.0.0.1:59552-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:23] 127.0.0.1:59552-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:17:26] 127.0.0.1:59567-[] FTP session opened (connect)
-[I 2026-10-01 13:17:26] 127.0.0.1:59567-[user] USER 'user' logged in.
-[I 2026-10-01 13:17:26] 127.0.0.1:59567-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:17:26] 127.0.0.1:59567-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:17:26] 127.0.0.1:59567-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:27] 127.0.0.1:59567-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:27] 127.0.0.1:59567-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:17:30] 127.0.0.1:59583-[] FTP session opened (connect)
-[I 2026-10-01 13:17:30] 127.0.0.1:59583-[user] USER 'user' logged in.
-[I 2026-10-01 13:17:30] 127.0.0.1:59583-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:17:30] 127.0.0.1:59583-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:17:30] 127.0.0.1:59583-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:32] 127.0.0.1:59583-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:32] 127.0.0.1:59583-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:17:36] 127.0.0.1:59601-[] FTP session opened (connect)
-[I 2026-10-01 13:17:36] 127.0.0.1:59601-[user] USER 'user' logged in.
-[I 2026-10-01 13:17:36] 127.0.0.1:59601-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:17:36] 127.0.0.1:59601-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:17:36] 127.0.0.1:59601-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:37] 127.0.0.1:59601-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:37] 127.0.0.1:59601-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:17:40] 127.0.0.1:59613-[] FTP session opened (connect)
-[I 2026-10-01 13:17:40] 127.0.0.1:59613-[user] USER 'user' logged in.
-[I 2026-10-01 13:17:40] 127.0.0.1:59613-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:17:40] 127.0.0.1:59613-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:17:40] 127.0.0.1:59613-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:41] 127.0.0.1:59613-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:41] 127.0.0.1:59613-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:17:44] 127.0.0.1:59627-[] FTP session opened (connect)
-[I 2026-10-01 13:17:44] 127.0.0.1:59627-[user] USER 'user' logged in.
-[I 2026-10-01 13:17:44] 127.0.0.1:59627-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:17:44] 127.0.0.1:59627-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:17:44] 127.0.0.1:59627-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:45] 127.0.0.1:59627-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:45] 127.0.0.1:59627-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:17:48] 127.0.0.1:59642-[] FTP session opened (connect)
-[I 2026-10-01 13:17:48] 127.0.0.1:59642-[user] USER 'user' logged in.
-[I 2026-10-01 13:17:48] 127.0.0.1:59642-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:17:48] 127.0.0.1:59642-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:17:48] 127.0.0.1:59642-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:50] 127.0.0.1:59642-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:50] 127.0.0.1:59642-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:17:54] 127.0.0.1:59658-[] FTP session opened (connect)
-[I 2026-10-01 13:17:54] 127.0.0.1:59658-[user] USER 'user' logged in.
-[I 2026-10-01 13:17:54] 127.0.0.1:59658-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:17:54] 127.0.0.1:59658-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:17:54] 127.0.0.1:59658-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:55] 127.0.0.1:59658-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:55] 127.0.0.1:59658-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:17:58] 127.0.0.1:59671-[] FTP session opened (connect)
-[I 2026-10-01 13:17:58] 127.0.0.1:59671-[user] USER 'user' logged in.
-[I 2026-10-01 13:17:58] 127.0.0.1:59671-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:17:58] 127.0.0.1:59671-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:17:58] 127.0.0.1:59671-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:59] 127.0.0.1:59671-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:17:59] 127.0.0.1:59671-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:18:02] 127.0.0.1:59687-[] FTP session opened (connect)
-[I 2026-10-01 13:18:02] 127.0.0.1:59687-[user] USER 'user' logged in.
-[I 2026-10-01 13:18:02] 127.0.0.1:59687-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:18:02] 127.0.0.1:59687-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:18:02] 127.0.0.1:59687-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:03] 127.0.0.1:59687-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:04] 127.0.0.1:59687-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:18:06] 127.0.0.1:59700-[] FTP session opened (connect)
-[I 2026-10-01 13:18:06] 127.0.0.1:59700-[user] USER 'user' logged in.
-[I 2026-10-01 13:18:06] 127.0.0.1:59700-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:18:06] 127.0.0.1:59700-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:18:06] 127.0.0.1:59700-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:08] 127.0.0.1:59700-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:08] 127.0.0.1:59700-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:18:11] 127.0.0.1:59714-[] FTP session opened (connect)
-[I 2026-10-01 13:18:11] 127.0.0.1:59714-[user] USER 'user' logged in.
-[I 2026-10-01 13:18:11] 127.0.0.1:59714-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:18:11] 127.0.0.1:59714-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:18:11] 127.0.0.1:59714-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:12] 127.0.0.1:59714-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:12] 127.0.0.1:59714-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:18:15] 127.0.0.1:59730-[] FTP session opened (connect)
-[I 2026-10-01 13:18:15] 127.0.0.1:59730-[user] USER 'user' logged in.
-[I 2026-10-01 13:18:15] 127.0.0.1:59730-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:18:15] 127.0.0.1:59730-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:18:15] 127.0.0.1:59730-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:17] 127.0.0.1:59730-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:17] 127.0.0.1:59730-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:18:21] 127.0.0.1:59748-[] FTP session opened (connect)
-[I 2026-10-01 13:18:21] 127.0.0.1:59748-[user] USER 'user' logged in.
-[I 2026-10-01 13:18:21] 127.0.0.1:59748-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:18:21] 127.0.0.1:59748-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:18:21] 127.0.0.1:59748-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:23] 127.0.0.1:59748-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:23] 127.0.0.1:59748-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:18:25] 127.0.0.1:59759-[] FTP session opened (connect)
-[I 2026-10-01 13:18:25] 127.0.0.1:59759-[user] USER 'user' logged in.
-[I 2026-10-01 13:18:25] 127.0.0.1:59759-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:18:25] 127.0.0.1:59759-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:18:25] 127.0.0.1:59759-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:27] 127.0.0.1:59759-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:27] 127.0.0.1:59759-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:18:29] 127.0.0.1:59773-[] FTP session opened (connect)
-[I 2026-10-01 13:18:29] 127.0.0.1:59773-[user] USER 'user' logged in.
-[I 2026-10-01 13:18:29] 127.0.0.1:59773-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:18:29] 127.0.0.1:59773-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:18:30] 127.0.0.1:59773-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:31] 127.0.0.1:59773-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:31] 127.0.0.1:59773-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:18:34] 127.0.0.1:59788-[] FTP session opened (connect)
-[I 2026-10-01 13:18:34] 127.0.0.1:59788-[user] USER 'user' logged in.
-[I 2026-10-01 13:18:34] 127.0.0.1:59788-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:18:34] 127.0.0.1:59788-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:18:34] 127.0.0.1:59788-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:35] 127.0.0.1:59788-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:35] 127.0.0.1:59788-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:18:39] 127.0.0.1:59803-[] FTP session opened (connect)
-[I 2026-10-01 13:18:39] 127.0.0.1:59803-[user] USER 'user' logged in.
-[I 2026-10-01 13:18:39] 127.0.0.1:59803-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:18:39] 127.0.0.1:59803-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:18:39] 127.0.0.1:59803-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:41] 127.0.0.1:59803-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:41] 127.0.0.1:59803-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:18:43] 127.0.0.1:59816-[] FTP session opened (connect)
-[I 2026-10-01 13:18:43] 127.0.0.1:59816-[user] USER 'user' logged in.
-[I 2026-10-01 13:18:43] 127.0.0.1:59816-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:18:44] 127.0.0.1:59816-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:18:44] 127.0.0.1:59816-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:45] 127.0.0.1:59816-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:45] 127.0.0.1:59816-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:18:49] 127.0.0.1:59831-[] FTP session opened (connect)
-[I 2026-10-01 13:18:49] 127.0.0.1:59831-[user] USER 'user' logged in.
-[I 2026-10-01 13:18:49] 127.0.0.1:59831-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:18:49] 127.0.0.1:59831-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:18:49] 127.0.0.1:59831-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:50] 127.0.0.1:59831-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:50] 127.0.0.1:59831-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:18:53] 127.0.0.1:59846-[] FTP session opened (connect)
-[I 2026-10-01 13:18:53] 127.0.0.1:59846-[user] USER 'user' logged in.
-[I 2026-10-01 13:18:53] 127.0.0.1:59846-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:18:53] 127.0.0.1:59846-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:18:53] 127.0.0.1:59846-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:54] 127.0.0.1:59846-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:54] 127.0.0.1:59846-[user] FTP session closed (disconnect).
-[I 2026-10-01 13:18:57] 127.0.0.1:59859-[] FTP session opened (connect)
-[I 2026-10-01 13:18:57] 127.0.0.1:59859-[user] USER 'user' logged in.
-[I 2026-10-01 13:18:57] 127.0.0.1:59859-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
-[I 2026-10-01 13:18:57] 127.0.0.1:59859-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
-[I 2026-10-01 13:18:57] 127.0.0.1:59859-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:58] 127.0.0.1:59859-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
-[I 2026-10-01 13:18:59] 127.0.0.1:59859-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:19:08] concurrency model: async
+[I 2026-10-01 17:19:08] masquerade (NAT) address: None
+[I 2026-10-01 17:19:08] passive ports: None
+[I 2026-10-01 17:19:08] >>> starting FTP server on 127.0.0.1:2121, pid=71725 <<<
+[I 2026-10-01 17:19:11] 127.0.0.1:52789-[] FTP session opened (connect)
+[I 2026-10-01 17:19:11] 127.0.0.1:52789-[user] USER 'user' logged in.
+[I 2026-10-01 17:19:11] 127.0.0.1:52789-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:19:11] 127.0.0.1:52789-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:19:11] 127.0.0.1:52789-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:12] 127.0.0.1:52789-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:12] 127.0.0.1:52789-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:19:15] 127.0.0.1:52809-[] FTP session opened (connect)
+[I 2026-10-01 17:19:15] 127.0.0.1:52809-[user] USER 'user' logged in.
+[I 2026-10-01 17:19:15] 127.0.0.1:52809-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:19:15] 127.0.0.1:52809-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:19:15] 127.0.0.1:52809-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:16] 127.0.0.1:52809-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:16] 127.0.0.1:52809-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:19:19] 127.0.0.1:52831-[] FTP session opened (connect)
+[I 2026-10-01 17:19:19] 127.0.0.1:52831-[user] USER 'user' logged in.
+[I 2026-10-01 17:19:19] 127.0.0.1:52831-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:19:19] 127.0.0.1:52831-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:19:19] 127.0.0.1:52831-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:20] 127.0.0.1:52831-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:20] 127.0.0.1:52831-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:19:23] 127.0.0.1:52851-[] FTP session opened (connect)
+[I 2026-10-01 17:19:23] 127.0.0.1:52851-[user] USER 'user' logged in.
+[I 2026-10-01 17:19:23] 127.0.0.1:52851-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:19:23] 127.0.0.1:52851-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:19:23] 127.0.0.1:52851-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:25] 127.0.0.1:52851-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:25] 127.0.0.1:52851-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:19:29] 127.0.0.1:52881-[] FTP session opened (connect)
+[I 2026-10-01 17:19:29] 127.0.0.1:52881-[user] USER 'user' logged in.
+[I 2026-10-01 17:19:29] 127.0.0.1:52881-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:19:29] 127.0.0.1:52881-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:19:29] 127.0.0.1:52881-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:31] 127.0.0.1:52881-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:31] 127.0.0.1:52881-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:19:33] 127.0.0.1:52903-[] FTP session opened (connect)
+[I 2026-10-01 17:19:33] 127.0.0.1:52903-[user] USER 'user' logged in.
+[I 2026-10-01 17:19:33] 127.0.0.1:52903-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:19:33] 127.0.0.1:52903-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:19:33] 127.0.0.1:52903-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:35] 127.0.0.1:52903-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:35] 127.0.0.1:52903-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:19:37] 127.0.0.1:52923-[] FTP session opened (connect)
+[I 2026-10-01 17:19:37] 127.0.0.1:52923-[user] USER 'user' logged in.
+[I 2026-10-01 17:19:37] 127.0.0.1:52923-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:19:37] 127.0.0.1:52923-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:19:37] 127.0.0.1:52923-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:39] 127.0.0.1:52923-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:39] 127.0.0.1:52923-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:19:42] 127.0.0.1:52945-[] FTP session opened (connect)
+[I 2026-10-01 17:19:42] 127.0.0.1:52945-[user] USER 'user' logged in.
+[I 2026-10-01 17:19:42] 127.0.0.1:52945-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:19:42] 127.0.0.1:52945-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:19:42] 127.0.0.1:52945-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:43] 127.0.0.1:52945-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:43] 127.0.0.1:52945-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:19:47] 127.0.0.1:52967-[] FTP session opened (connect)
+[I 2026-10-01 17:19:47] 127.0.0.1:52967-[user] USER 'user' logged in.
+[I 2026-10-01 17:19:47] 127.0.0.1:52967-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:19:47] 127.0.0.1:52967-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:19:47] 127.0.0.1:52967-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:49] 127.0.0.1:52967-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:49] 127.0.0.1:52967-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:19:51] 127.0.0.1:52990-[] FTP session opened (connect)
+[I 2026-10-01 17:19:51] 127.0.0.1:52990-[user] USER 'user' logged in.
+[I 2026-10-01 17:19:51] 127.0.0.1:52990-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:19:51] 127.0.0.1:52990-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:19:51] 127.0.0.1:52990-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:53] 127.0.0.1:52990-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:53] 127.0.0.1:52990-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:19:55] 127.0.0.1:53005-[] FTP session opened (connect)
+[I 2026-10-01 17:19:55] 127.0.0.1:53005-[user] USER 'user' logged in.
+[I 2026-10-01 17:19:55] 127.0.0.1:53005-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:19:55] 127.0.0.1:53005-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:19:55] 127.0.0.1:53005-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:57] 127.0.0.1:53005-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:19:57] 127.0.0.1:53005-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:20:00] 127.0.0.1:53019-[] FTP session opened (connect)
+[I 2026-10-01 17:20:00] 127.0.0.1:53019-[user] USER 'user' logged in.
+[I 2026-10-01 17:20:00] 127.0.0.1:53019-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:20:00] 127.0.0.1:53019-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:20:00] 127.0.0.1:53019-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:01] 127.0.0.1:53019-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:01] 127.0.0.1:53019-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:20:04] 127.0.0.1:53033-[] FTP session opened (connect)
+[I 2026-10-01 17:20:04] 127.0.0.1:53033-[user] USER 'user' logged in.
+[I 2026-10-01 17:20:04] 127.0.0.1:53033-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:20:04] 127.0.0.1:53033-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:20:04] 127.0.0.1:53033-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:05] 127.0.0.1:53033-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:06] 127.0.0.1:53033-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:20:10] 127.0.0.1:53051-[] FTP session opened (connect)
+[I 2026-10-01 17:20:10] 127.0.0.1:53051-[user] USER 'user' logged in.
+[I 2026-10-01 17:20:10] 127.0.0.1:53051-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:20:10] 127.0.0.1:53051-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:20:10] 127.0.0.1:53051-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:11] 127.0.0.1:53051-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:11] 127.0.0.1:53051-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:20:14] 127.0.0.1:53065-[] FTP session opened (connect)
+[I 2026-10-01 17:20:14] 127.0.0.1:53065-[user] USER 'user' logged in.
+[I 2026-10-01 17:20:14] 127.0.0.1:53065-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:20:14] 127.0.0.1:53065-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:20:14] 127.0.0.1:53065-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:15] 127.0.0.1:53065-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:15] 127.0.0.1:53065-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:20:18] 127.0.0.1:53078-[] FTP session opened (connect)
+[I 2026-10-01 17:20:18] 127.0.0.1:53078-[user] USER 'user' logged in.
+[I 2026-10-01 17:20:18] 127.0.0.1:53078-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:20:18] 127.0.0.1:53078-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:20:18] 127.0.0.1:53078-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:19] 127.0.0.1:53078-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:20] 127.0.0.1:53078-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:20:23] 127.0.0.1:53095-[] FTP session opened (connect)
+[I 2026-10-01 17:20:24] 127.0.0.1:53095-[user] USER 'user' logged in.
+[I 2026-10-01 17:20:24] 127.0.0.1:53095-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:20:24] 127.0.0.1:53095-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:20:24] 127.0.0.1:53095-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:25] 127.0.0.1:53095-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:25] 127.0.0.1:53095-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:20:28] 127.0.0.1:53112-[] FTP session opened (connect)
+[I 2026-10-01 17:20:28] 127.0.0.1:53112-[user] USER 'user' logged in.
+[I 2026-10-01 17:20:28] 127.0.0.1:53112-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:20:28] 127.0.0.1:53112-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:20:28] 127.0.0.1:53112-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:29] 127.0.0.1:53112-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:29] 127.0.0.1:53112-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:20:32] 127.0.0.1:53126-[] FTP session opened (connect)
+[I 2026-10-01 17:20:32] 127.0.0.1:53126-[user] USER 'user' logged in.
+[I 2026-10-01 17:20:32] 127.0.0.1:53126-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:20:32] 127.0.0.1:53126-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:20:32] 127.0.0.1:53126-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:33] 127.0.0.1:53126-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:33] 127.0.0.1:53126-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:20:36] 127.0.0.1:53138-[] FTP session opened (connect)
+[I 2026-10-01 17:20:36] 127.0.0.1:53138-[user] USER 'user' logged in.
+[I 2026-10-01 17:20:36] 127.0.0.1:53138-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:20:36] 127.0.0.1:53138-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:20:36] 127.0.0.1:53138-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:37] 127.0.0.1:53138-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:37] 127.0.0.1:53138-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:20:40] 127.0.0.1:53153-[] FTP session opened (connect)
+[I 2026-10-01 17:20:40] 127.0.0.1:53153-[user] USER 'user' logged in.
+[I 2026-10-01 17:20:40] 127.0.0.1:53153-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:20:40] 127.0.0.1:53153-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:20:41] 127.0.0.1:53153-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:42] 127.0.0.1:53153-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:42] 127.0.0.1:53153-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:20:46] 127.0.0.1:53170-[] FTP session opened (connect)
+[I 2026-10-01 17:20:46] 127.0.0.1:53170-[user] USER 'user' logged in.
+[I 2026-10-01 17:20:46] 127.0.0.1:53170-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:20:46] 127.0.0.1:53170-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:20:46] 127.0.0.1:53170-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:48] 127.0.0.1:53170-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:48] 127.0.0.1:53170-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:20:50] 127.0.0.1:53187-[] FTP session opened (connect)
+[I 2026-10-01 17:20:50] 127.0.0.1:53187-[user] USER 'user' logged in.
+[I 2026-10-01 17:20:50] 127.0.0.1:53187-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:20:50] 127.0.0.1:53187-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:20:51] 127.0.0.1:53187-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:52] 127.0.0.1:53187-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:52] 127.0.0.1:53187-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:20:54] 127.0.0.1:53204-[] FTP session opened (connect)
+[I 2026-10-01 17:20:54] 127.0.0.1:53204-[user] USER 'user' logged in.
+[I 2026-10-01 17:20:55] 127.0.0.1:53204-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:20:55] 127.0.0.1:53204-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:20:55] 127.0.0.1:53204-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:56] 127.0.0.1:53204-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:20:56] 127.0.0.1:53204-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:20:59] 127.0.0.1:53220-[] FTP session opened (connect)
+[I 2026-10-01 17:20:59] 127.0.0.1:53220-[user] USER 'user' logged in.
+[I 2026-10-01 17:20:59] 127.0.0.1:53220-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:20:59] 127.0.0.1:53220-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:20:59] 127.0.0.1:53220-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:00] 127.0.0.1:53220-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:00] 127.0.0.1:53220-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:21:03] 127.0.0.1:53236-[] FTP session opened (connect)
+[I 2026-10-01 17:21:03] 127.0.0.1:53236-[user] USER 'user' logged in.
+[I 2026-10-01 17:21:03] 127.0.0.1:53236-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:21:03] 127.0.0.1:53236-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:21:03] 127.0.0.1:53236-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:05] 127.0.0.1:53236-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:05] 127.0.0.1:53236-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:21:09] 127.0.0.1:53252-[] FTP session opened (connect)
+[I 2026-10-01 17:21:09] 127.0.0.1:53252-[user] USER 'user' logged in.
+[I 2026-10-01 17:21:09] 127.0.0.1:53252-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:21:09] 127.0.0.1:53252-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:21:09] 127.0.0.1:53252-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:10] 127.0.0.1:53252-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:10] 127.0.0.1:53252-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:21:13] 127.0.0.1:53265-[] FTP session opened (connect)
+[I 2026-10-01 17:21:13] 127.0.0.1:53265-[user] USER 'user' logged in.
+[I 2026-10-01 17:21:13] 127.0.0.1:53265-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:21:13] 127.0.0.1:53265-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:21:13] 127.0.0.1:53265-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:14] 127.0.0.1:53265-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:14] 127.0.0.1:53265-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:21:17] 127.0.0.1:53279-[] FTP session opened (connect)
+[I 2026-10-01 17:21:17] 127.0.0.1:53279-[user] USER 'user' logged in.
+[I 2026-10-01 17:21:17] 127.0.0.1:53279-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:21:17] 127.0.0.1:53279-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:21:17] 127.0.0.1:53279-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:18] 127.0.0.1:53279-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:18] 127.0.0.1:53279-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:21:22] 127.0.0.1:53295-[] FTP session opened (connect)
+[I 2026-10-01 17:21:23] 127.0.0.1:53295-[user] USER 'user' logged in.
+[I 2026-10-01 17:21:23] 127.0.0.1:53295-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:21:23] 127.0.0.1:53295-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:21:23] 127.0.0.1:53295-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:24] 127.0.0.1:53295-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:24] 127.0.0.1:53295-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:21:27] 127.0.0.1:53311-[] FTP session opened (connect)
+[I 2026-10-01 17:21:27] 127.0.0.1:53311-[user] USER 'user' logged in.
+[I 2026-10-01 17:21:27] 127.0.0.1:53311-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:21:27] 127.0.0.1:53311-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:21:27] 127.0.0.1:53311-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:28] 127.0.0.1:53311-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:28] 127.0.0.1:53311-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:21:31] 127.0.0.1:53327-[] FTP session opened (connect)
+[I 2026-10-01 17:21:31] 127.0.0.1:53327-[user] USER 'user' logged in.
+[I 2026-10-01 17:21:31] 127.0.0.1:53327-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:21:31] 127.0.0.1:53327-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:21:31] 127.0.0.1:53327-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:32] 127.0.0.1:53327-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:32] 127.0.0.1:53327-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:21:35] 127.0.0.1:53343-[] FTP session opened (connect)
+[I 2026-10-01 17:21:35] 127.0.0.1:53343-[user] USER 'user' logged in.
+[I 2026-10-01 17:21:35] 127.0.0.1:53343-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:21:35] 127.0.0.1:53343-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:21:35] 127.0.0.1:53343-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:36] 127.0.0.1:53343-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:36] 127.0.0.1:53343-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:21:41] 127.0.0.1:53358-[] FTP session opened (connect)
+[I 2026-10-01 17:21:41] 127.0.0.1:53358-[user] USER 'user' logged in.
+[I 2026-10-01 17:21:41] 127.0.0.1:53358-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:21:41] 127.0.0.1:53358-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:21:41] 127.0.0.1:53358-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:42] 127.0.0.1:53358-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:42] 127.0.0.1:53358-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:21:45] 127.0.0.1:53372-[] FTP session opened (connect)
+[I 2026-10-01 17:21:45] 127.0.0.1:53372-[user] USER 'user' logged in.
+[I 2026-10-01 17:21:45] 127.0.0.1:53372-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:21:45] 127.0.0.1:53372-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:21:45] 127.0.0.1:53372-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:46] 127.0.0.1:53372-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:46] 127.0.0.1:53372-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:21:49] 127.0.0.1:53387-[] FTP session opened (connect)
+[I 2026-10-01 17:21:49] 127.0.0.1:53387-[user] USER 'user' logged in.
+[I 2026-10-01 17:21:49] 127.0.0.1:53387-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:21:49] 127.0.0.1:53387-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:21:49] 127.0.0.1:53387-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:50] 127.0.0.1:53387-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:50] 127.0.0.1:53387-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:21:54] 127.0.0.1:53402-[] FTP session opened (connect)
+[I 2026-10-01 17:21:54] 127.0.0.1:53402-[user] USER 'user' logged in.
+[I 2026-10-01 17:21:54] 127.0.0.1:53402-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:21:55] 127.0.0.1:53402-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:21:55] 127.0.0.1:53402-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:56] 127.0.0.1:53402-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:21:56] 127.0.0.1:53402-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:21:58] 127.0.0.1:53418-[] FTP session opened (connect)
+[I 2026-10-01 17:21:58] 127.0.0.1:53418-[user] USER 'user' logged in.
+[I 2026-10-01 17:21:58] 127.0.0.1:53418-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:21:58] 127.0.0.1:53418-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:21:58] 127.0.0.1:53418-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:22:00] 127.0.0.1:53418-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:22:00] 127.0.0.1:53418-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:22:02] 127.0.0.1:53431-[] FTP session opened (connect)
+[I 2026-10-01 17:22:02] 127.0.0.1:53431-[user] USER 'user' logged in.
+[I 2026-10-01 17:22:02] 127.0.0.1:53431-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:22:02] 127.0.0.1:53431-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:22:03] 127.0.0.1:53431-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:22:04] 127.0.0.1:53431-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:22:04] 127.0.0.1:53431-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:22:07] 127.0.0.1:53445-[] FTP session opened (connect)
+[I 2026-10-01 17:22:07] 127.0.0.1:53445-[user] USER 'user' logged in.
+[I 2026-10-01 17:22:07] 127.0.0.1:53445-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:22:07] 127.0.0.1:53445-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:22:07] 127.0.0.1:53445-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:22:08] 127.0.0.1:53445-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:22:08] 127.0.0.1:53445-[user] FTP session closed (disconnect).
+[I 2026-10-01 17:22:11] 127.0.0.1:53462-[] FTP session opened (connect)
+[I 2026-10-01 17:22:11] 127.0.0.1:53462-[user] USER 'user' logged in.
+[I 2026-10-01 17:22:11] 127.0.0.1:53462-[user] MKD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 257
+[I 2026-10-01 17:22:11] 127.0.0.1:53462-[user] RNFR /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/testdir_a 350
+[I 2026-10-01 17:22:11] 127.0.0.1:53462-[user] RNTO /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:22:13] 127.0.0.1:53462-[user] RMD /Users/i7949486/Desktop/uds/thesis/metamophic-testing-source copy 2/ftp/mr/redundant_rnfr/data/server_a/renamed_a 250
+[I 2026-10-01 17:22:13] 127.0.0.1:53462-[user] FTP session closed (disconnect).
 /Users/i7949486/.pyenv/versions/3.12.0/lib/python3.12/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown
   warnings.warn('resource_tracker: There appear to be %d '

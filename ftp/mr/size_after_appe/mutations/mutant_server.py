@@ -9,12 +9,13 @@ applies the selected mutation to APPE persistence or SIZE accounting.
 import argparse
 import os
 import shutil
-import sys
 from pathlib import Path
 
+from pyftpdlib.authorizers import DummyAuthorizer
+from pyftpdlib.handlers import FTPHandler
+from pyftpdlib.servers import FTPServer
 
-PYFTPDLIB_PATH = Path("/Users/i7949486/Desktop/uds/thesis/mutation/pyftpdlib")
-VENV_PYTHON = PYFTPDLIB_PATH / "venv" / "bin" / "python"
+
 INITIAL_FILE_SIZE = 100
 TEST_FILENAME = "test_file.txt"
 MUTATIONS = ["BASELINE", "M1", "M2", "M3", "M4", "M5", "M6", "M7"]
@@ -29,24 +30,6 @@ MUTATION_DESCRIPTIONS = {
     "M6": "APPE_OVERWRITES_FILE - APPE replaces the file instead of appending",
     "M7": "EXTRA_BYTES_ON_APPEND - APPE silently appends extra bytes",
 }
-
-if not PYFTPDLIB_PATH.exists():
-    print(f"Error: pyftpdlib path not found at {PYFTPDLIB_PATH}")
-    sys.exit(1)
-
-try:
-    import asynchat  # noqa: F401
-except ModuleNotFoundError:
-    if VENV_PYTHON.exists() and Path(sys.executable) != VENV_PYTHON:
-        os.execv(str(VENV_PYTHON), [str(VENV_PYTHON), *sys.argv])
-    raise
-
-sys.path.insert(0, str(PYFTPDLIB_PATH))
-
-from pyftpdlib.authorizers import DummyAuthorizer  # noqa: E402
-from pyftpdlib.handlers import FTPHandler  # noqa: E402
-from pyftpdlib.servers import FTPServer  # noqa: E402
-
 
 def setup_data_dir(data_dir: Path) -> None:
     if data_dir.exists():

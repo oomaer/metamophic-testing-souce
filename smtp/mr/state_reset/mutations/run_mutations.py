@@ -87,7 +87,7 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
                 print(line, end='')  # Print to console in real-time
                 output_lines.append(line)
 
-        process.wait(timeout=120)
+        process.wait()
         full_output = ''.join(output_lines)
 
         end_time = time.time()
@@ -132,18 +132,6 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
             'log_file': log_file.name
         }
 
-    except subprocess.TimeoutExpired:
-        print("Test timed out after 120 seconds")
-        return {
-            'mutation': mutation_id,
-            'description': MUTATION_DESCRIPTIONS.get(mutation_id, 'Unknown'),
-            'duration': 120,
-            'passes': 0,
-            'violations': 0,
-            'detected': False,
-            'error': 'TIMEOUT',
-            'log_file': log_file.name
-        }
     except Exception as e:
         print(f"Error running test: {e}")
         return {

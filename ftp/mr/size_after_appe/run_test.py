@@ -44,8 +44,6 @@ def main():
     output_dir = Path(os.environ.get("MR_RUNS_DIR", script_dir / "runs")).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     ftp_root = script_dir.parent.parent  # ftp/ directory
-    pyftpdlib_path = Path("/Users/i7949486/Desktop/uds/thesis/mutation/pyftpdlib")
-    venv_python = pyftpdlib_path / "venv" / "bin" / "python"
 
     data_dir_a = ftp_root / "data" / "server_a"
     data_dir_b = ftp_root / "data" / "server_b"
@@ -54,10 +52,6 @@ def main():
     print(" FTP SIZE After APPE MR - Test Runner")
     print("=" * 80)
     print()
-
-    if not venv_python.exists():
-        print(f"Error: venv python not found at {venv_python}")
-        sys.exit(1)
 
     print("Cleaning up any existing FTP servers...")
     subprocess.run(['pkill', '-f', 'ftp_server'], capture_output=True)
@@ -79,14 +73,14 @@ def main():
 
     print("Starting FTP server A on port 2121...")
     server_a = subprocess.Popen(
-        [str(venv_python), str(ftp_server_script), "--server", "a", "--data-dir", str(data_dir_a)],
+        [sys.executable, str(ftp_server_script), "--server", "a", "--data-dir", str(data_dir_a)],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
 
     print("Starting FTP server B on port 2122...")
     server_b = subprocess.Popen(
-        [str(venv_python), str(ftp_server_script), "--server", "b", "--data-dir", str(data_dir_b)],
+        [sys.executable, str(ftp_server_script), "--server", "b", "--data-dir", str(data_dir_b)],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )

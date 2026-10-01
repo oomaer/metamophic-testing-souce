@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
-import sys
 import argparse
 from pathlib import Path
-
-pyftpdlib_path = Path("/Users/i7949486/Desktop/uds/thesis/mutation/pyftpdlib")
-sys.path.insert(0, str(pyftpdlib_path))
 
 from pyftpdlib.authorizers import DummyAuthorizer
 from pyftpdlib.handlers import FTPHandler

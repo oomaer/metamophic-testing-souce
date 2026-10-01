@@ -1,0 +1,47 @@
+# Runtime dependencies captured from the Python 3.12 environment.
+# Install with: python3 -m pip install -r requirements.txt
+# System dependencies (outside pip): Node.js, Git, a C++17 compiler,
+# CMake >=3.18, pkill and lsof. See readme.md for setup.
+# Fandango is pinned to the actual development revision used here;
+# its local version label (1.1.1) is not the published 1.1.1 code.
+
+# Direct dependencies
+fandango-fuzzer @ git+https://github.com/fandango-fuzzer/fandango.git@0357637f3afb2e051de645416f8804fc8b6a6bb2
+aiosmtpd==1.4.6
+dnslib==0.9.26
+pyftpdlib==2.2.0
+Twisted==25.5.0
+zope.interface==8.4
+
+# Transitive runtime dependencies, pinned to the same environment.
+accumulation_tree==0.6.4
+ansi-styles==0.2.2
+antlr4-python3-runtime==4.13.2
+astar==0.99
+atpublic==7.0.0
+attrs==25.4.0
+Automat==25.4.16
+beartype==0.22.9
+cachedir-tag==0.0.4
+cachetools==7.1.4
+constantly==23.10.4
+dill==0.4.1
+exrex==0.12.0
+gnureadline==8.3.3; platform_system != "Windows" and implementation_name != "pypy"
+hyperlink==21.0.0
+idna==3.13
+Incremental==24.11.0
+lxml==6.0.2
+packaging==26.0
+py010parser==0.1.18
+pyasynchat==1.0.5; python_version >= "3.12"
+pyasyncore==1.0.5; python_version >= "3.12"
+pyudorandom==1.0.0
+RapidFuzz==3.14.3
+regex==2026.1.15
+six==1.17.0
+sortedcontainers==2.4.0
+tdigest==0.5.2.2
+thefuzz==0.22.1
+typing_extensions==4.15.0
+xdg-base-dirs==6.0.2

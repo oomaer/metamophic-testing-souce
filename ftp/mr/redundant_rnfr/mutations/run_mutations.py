@@ -24,9 +24,6 @@ MUTATION_DESCRIPTIONS = {
     "M6": "WRONG_RNTO_SUCCESS_CODE - RNTO returns 200 instead of 250",
 }
 
-PYFTPDLIB_PATH = Path("/Users/i7949486/Desktop/uds/thesis/mutation/pyftpdlib")
-VENV_PYTHON = PYFTPDLIB_PATH / "venv" / "bin" / "python"
-
 
 def format_duration(seconds):
     if seconds < 60:
@@ -50,11 +47,9 @@ def run_mutation(mutation_id, mutations_dir, parent_dir):
     subprocess.run(["pkill", "-9", "-f", re.escape(str(mutations_dir / "mutant_server.py"))], capture_output=True)
     time.sleep(1)
 
-    server_python = str(VENV_PYTHON) if VENV_PYTHON.exists() else sys.executable
-
     print("Starting mutant FTP servers...")
     server_process = subprocess.Popen(
-        [server_python, str(mutations_dir / "mutant_server.py"), "--mutation", mutation_id],
+        [sys.executable, str(mutations_dir / "mutant_server.py"), "--mutation", mutation_id],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         cwd=str(mutations_dir),
